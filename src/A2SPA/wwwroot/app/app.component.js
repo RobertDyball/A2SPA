@@ -9,10 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var platform_browser_1 = require("@angular/platform-browser");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(titleService) {
+        this.titleService = titleService;
         this.name = 'Angular';
     }
+    AppComponent.prototype.setTitle = function (newTitle) {
+        this.titleService.setTitle(newTitle);
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -20,7 +25,7 @@ AppComponent = __decorate([
         selector: 'my-app',
         templateUrl: '/partial/appComponent'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [platform_browser_1.Title])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
