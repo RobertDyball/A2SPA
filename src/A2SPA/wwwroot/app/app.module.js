@@ -13,7 +13,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var app_routing_1 = require("./app.routing");
 var common_1 = require("@angular/common");
 var app_component_1 = require("./app.component");
-core_1.enableProdMode();
+// enableProdMode();
 var AppModule = (function () {
     function AppModule() {
     }
@@ -23,8 +23,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, app_routing_1.routing],
         declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
-        providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }
-        ],
+        providers: [platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/' }],
         bootstrap: [app_component_1.AppComponent]
     }),
     __metadata("design:paramtypes", [])
