@@ -9,23 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var AppComponent = (function () {
-    function AppComponent(titleService) {
-        this.titleService = titleService;
-        this.angularClientSideData = 'Angular';
+var ContactComponent = (function () {
+    function ContactComponent() {
     }
-    AppComponent.prototype.setTitle = function (newTitle) {
-        this.titleService.setTitle(newTitle);
-    };
-    return AppComponent;
+    return ContactComponent;
 }());
-AppComponent = __decorate([
+ContactComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        templateUrl: '/partial/appComponent'
+        selector: 'my-contact',
+        templateUrl: '/partial/contactComponent'
     }),
-    __metadata("design:paramtypes", [platform_browser_1.Title])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+    __metadata("design:paramtypes", [])
+], ContactComponent);
+exports.ContactComponent = ContactComponent;
+//# sourceMappingURL=contact.component.js.map
