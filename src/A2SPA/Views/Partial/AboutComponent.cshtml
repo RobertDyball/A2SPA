@@ -4,4 +4,16 @@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>Example of Angular 2 requesting data from ASP.Net Core.</p>
+
+<p>Data:</p>
+<table>
+    <tr *ngFor="let data of testData">
+        <td>{{ data }}</td>
+    </tr>
+</table>
+
+<div *ngIf="errorMessage != null">
+    <p>Error:</p>
+    <pre>{{ errorMessage  }}</pre>
+</div>

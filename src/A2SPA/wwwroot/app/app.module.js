@@ -13,6 +13,10 @@ var platform_browser_1 = require("@angular/platform-browser");
 var app_routing_1 = require("./app.routing");
 var common_1 = require("@angular/common");
 var app_component_1 = require("./app.component");
+var forms_1 = require("@angular/forms");
+var http_1 = require("@angular/http");
+var sampleData_service_1 = require("./services/sampleData.service");
+require("./rxjs-operators");
 // enableProdMode();
 var AppModule = (function () {
     function AppModule() {
@@ -21,9 +25,9 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, app_routing_1.routing],
+        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_1.routing],
         declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
-        providers: [platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/' }],
+        providers: [sampleData_service_1.SampleDataService, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/' }],
         bootstrap: [app_component_1.AppComponent]
     }),
     __metadata("design:paramtypes", [])
