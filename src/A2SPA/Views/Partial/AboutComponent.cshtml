@@ -7,11 +7,27 @@
 <p>Example of Angular 2 requesting data from ASP.Net Core.</p>
 
 <p>Data:</p>
-<table>
-    <tr *ngFor="let data of testData">
-        <td>{{ data }}</td>
-    </tr>
-</table>
+
+<div *ngIf="testData != null">
+    <table>
+        <tr>
+            <th> Username: </th>
+            <td> {{ testData.username }} </td>
+        </tr>
+        <tr>
+            <th> Currency: </th>
+            <td> {{ testData.currency }} </td>
+        </tr>
+        <tr>
+            <th> Email Address: </th>
+            <td> {{ testData.emailAddress }} </td>
+        </tr>
+        <tr>
+            <th> Password: </th>
+            <td> {{ testData.password }} </td>
+        </tr>
+    </table>
+</div>
 
 <div *ngIf="errorMessage != null">
     <p>Error:</p>

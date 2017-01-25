@@ -1,6 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
+import { TestData } from '../models/testData';
 
 @Injectable()
 export class SampleDataService {
@@ -9,7 +10,7 @@ export class SampleDataService {
 
     constructor(private http: Http) { }
 
-    getSampleData(): Observable<string[]> {
+    getSampleData(): Observable<TestData> {
         return this.http.get(this.url + 'sampleData')
             .map((resp: Response) => resp.json())
             .catch(this.handleError);

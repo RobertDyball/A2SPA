@@ -13,7 +13,6 @@ var sampleData_service_1 = require("./services/sampleData.service");
 var AboutComponent = (function () {
     function AboutComponent(sampleDataService) {
         this.sampleDataService = sampleDataService;
-        this.testData = [];
     }
     AboutComponent.prototype.ngOnInit = function () {
         var _this = this;
