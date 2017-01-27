@@ -4,30 +4,67 @@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Example of Angular 2 requesting data from ASP.Net Core.</p>
+<p>Examples of Angular 2 data served by ASP.Net Core Web API:</p>
 
-<p>Data:</p>
-
-<div *ngIf="testData != null">
-    <table>
-        <tr>
-            <th> Username: </th>
-            <td> {{ testData.username }} </td>
-        </tr>
-        <tr>
-            <th> Currency: </th>
-            <td> {{ testData.currency }} </td>
-        </tr>
-        <tr>
-            <th> Email Address: </th>
-            <td> {{ testData.emailAddress }} </td>
-        </tr>
-        <tr>
-            <th> Password: </th>
-            <td> {{ testData.password }} </td>
-        </tr>
-    </table>
-</div>
+<form>
+    <div *ngIf="testData != null">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Data Entry</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="testDataUsername">Username</label>
+                            <input type="text" class="form-control" id="testDataUsername" name="testDataUsername"
+                                   placeholder="Username" [(ngModel)]="testData.username">
+                        </div>
+                        <div class="form-group">
+                            <label for="testDataCurrency">Amount (in dollars)</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">$</div>
+                                <input type="number" class="form-control" id="testDataCurrency" name="testDataCurrency"
+                                       placeholder="Amount" [(ngModel)]="testData.currency">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="testDataemailaddress">Email address</label>
+                            <input type="email" class="form-control" id="testDataemailaddress" name="testDataemailaddress"
+                                   placeholder="Email Address" [(ngModel)]="testData.emailAddress">
+                        </div>
+                        <div class="form-group">
+                            <label for="testDatapassword">Password</label>
+                            <input type="password" class="form-control" id="testDatapassword" name="testDatapassword"
+                                   placeholder="Password" [(ngModel)]="testData.password">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Data Display</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label">Username</label>
+                            <p class="form-control-static">{{ testData.username }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Amount (in dollars)</label>
+                            <p class="form-control-static">{{ testData.currency | currency:'USD':true:'1.2-2' }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Email address</label>
+                            <p class="form-control-static">{{ testData.emailAddress }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Password</label>
+                            <p class="form-control-static">{{ testData.password }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 <div *ngIf="errorMessage != null">
     <p>Error:</p>
