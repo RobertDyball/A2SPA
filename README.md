@@ -2,6 +2,9 @@
 
 ASP.Net Core 1.1 backend, Angular 2.4 front end.
 
+Source for part 1 of article series on Code Project:
+https://www.codeproject.com/Articles/1148767/SPA-using-ASP-Net-Core-plus-Angular-part
+
 
 #### Prerequisites
 
