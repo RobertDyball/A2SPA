@@ -13,7 +13,7 @@
     "systemjs": "0.19.40",
     "core-js": "^2.4.1",
     "rxjs": "5.0.1",
-    "zone.js": "^0.7.4"
+    "zone.js": "^0.7.6"
   },
   "devDependencies": {
     "typescript": "~2.0.10",
