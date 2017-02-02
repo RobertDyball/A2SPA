@@ -6,6 +6,7 @@
 /// <reference path="app/contact.component.js" />
 /// <reference path="app/index.component.js" />
 /// <reference path="app/main.js" />
+/// <reference path="app/rxjs-operators.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />
