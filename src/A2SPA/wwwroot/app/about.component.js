@@ -9,9 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var sampleData_service_1 = require("./services/sampleData.service");
 var AboutComponent = (function () {
-    function AboutComponent() {
+    function AboutComponent(sampleDataService) {
+        this.sampleDataService = sampleDataService;
     }
+    AboutComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sampleDataService.getSampleData()
+            .subscribe(function (data) { return _this.testData = data; }, function (error) { return _this.errorMessage = error; });
+    };
     return AboutComponent;
 }());
 AboutComponent = __decorate([
@@ -19,7 +26,7 @@ AboutComponent = __decorate([
         selector: 'my-about',
         templateUrl: '/partial/aboutComponent'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [sampleData_service_1.SampleDataService])
 ], AboutComponent);
 exports.AboutComponent = AboutComponent;
 //# sourceMappingURL=about.component.js.map
