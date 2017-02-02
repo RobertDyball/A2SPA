@@ -4,7 +4,7 @@ namespace A2SPA.ViewModels
 {
     public class TestData
     {
-        [Display(Description = "Username")]
+        [Display(Description = "Username", Name = "Username", Prompt = "Username")]
         public string Username { get; set; }
 
         [Display(Description = "Payment Amount (in dollars)")]

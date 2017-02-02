@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Humanizer;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -17,7 +19,6 @@ namespace A2SPA.Helpers
         /// Option: directly set display format using Angular 2 pipe and pipe format values
         /// </summary>
         ///<remarks>This attribute sets both pipe type and the pipe filter parameters.
-        /// For simple formatting of common data types <seealso cref="Format"/>.
         /// Numeric formats for decimal or percent in Angular use a string with the following format: 
         /// a.b-c where:
         ///     a = minIntegerDigits is the minimum number of integer digits to use.Defaults to 1.
@@ -41,7 +42,12 @@ namespace A2SPA.Helpers
 
             var pTag = new TagBuilder("p");
             pTag.AddCssClass("form-control-static");
-            pTag.InnerHtml.Append("{{" + For.CamelizedName() + pipe + "}}");
+
+            var dataBindExpression = ((DefaultModelMetadata)For.Metadata).DataTypeName == "Password" 
+                                                ? "******" 
+                                                : "{{" + For.CamelizedName() + pipe + "}}";
+
+            pTag.InnerHtml.Append(dataBindExpression);
 
             output.TagName = "div";
             output.Attributes.Add("class", "form-group");

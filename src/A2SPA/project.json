@@ -6,7 +6,6 @@
     },
     "BundlerMinifier.Core": "2.2.306",
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
-    "Microsoft.AspNetCore.Mvc": "1.1.0",
     "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final",
     "Microsoft.AspNetCore.Routing": "1.1.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
@@ -20,8 +19,10 @@
     "Microsoft.Extensions.Logging.Debug": "1.1.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
-    "Microsoft.AspNetCore.SpaServices": "1.1.0-beta-000002",
-    "Humanizer.xproj": "2.1.0"
+    "Humanizer.xproj": "2.1.0",
+    "Microsoft.AspNetCore.Mvc": "1.1.1",
+    "Microsoft.AspNetCore.SpaServices": "1.1.0",
+    "Microsoft.AspNet.Tooling.Razor": "1.0.0-rc1-final"
   },
 
   "tools": {
