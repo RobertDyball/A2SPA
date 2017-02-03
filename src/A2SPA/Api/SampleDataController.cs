@@ -1,24 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using A2SPA.ViewModels;
+using A2SPA.Data;
+using System.Linq;
 
 namespace A2SPA.Api
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
+        private readonly A2spaContext _context;
+
+        public SampleDataController(A2spaContext context)
+        {
+            _context = context;
+        }
+        
         // GET: api/values
         [HttpGet]
         public TestData Get()
         {
-            var testData = new TestData
-            {
-                Username = "BillBloggs",
-                EmailAddress = "bill.bloggs@example.com",
-                Password = "P@55word",
-                Currency = 123.45M
-            };
-
-            return testData;
+            return _context.TestData.DefaultIfEmpty(null as TestData).FirstOrDefault();
         }
 
         // POST api/values

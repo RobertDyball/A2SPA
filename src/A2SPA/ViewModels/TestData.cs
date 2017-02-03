@@ -4,6 +4,8 @@ namespace A2SPA.ViewModels
 {
     public class TestData
     {
+        public int Id { get; set; }
+
         [Display(Description = "Username", Name = "Username", Prompt = "Username")]
         public string Username { get; set; }
 
