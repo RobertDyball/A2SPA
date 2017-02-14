@@ -10,19 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var sampleData_service_1 = require("./services/sampleData.service");
-var AboutComponent = (function () {
-    function AboutComponent(sampleDataService) {
+var About2Component = (function () {
+    function About2Component(sampleDataService) {
         this.sampleDataService = sampleDataService;
     }
-    AboutComponent.prototype.ngOnInit = function () {
+    About2Component.prototype.ngOnInit = function () {
         this.getTestData();
     };
-    AboutComponent.prototype.getTestData = function () {
+    About2Component.prototype.getTestData = function () {
         var _this = this;
         this.sampleDataService.getSampleData()
             .subscribe(function (data) { return _this.testData = data; }, function (error) { return _this.errorMessage = error; });
     };
-    AboutComponent.prototype.addTestData = function (event) {
+    About2Component.prototype.addTestData = function (event) {
         var _this = this;
         event.preventDefault();
         if (!this.testData) {
@@ -31,14 +31,14 @@ var AboutComponent = (function () {
         this.sampleDataService.addSampleData(this.testData)
             .subscribe(function (data) { return _this.testData = data; }, function (error) { return _this.errorMessage = error; });
     };
-    return AboutComponent;
+    return About2Component;
 }());
-AboutComponent = __decorate([
+About2Component = __decorate([
     core_1.Component({
-        selector: 'my-about',
-        templateUrl: '/partial/aboutComponent'
+        selector: 'my-about2',
+        templateUrl: '/areas/about/partial/about2Component'
     }),
     __metadata("design:paramtypes", [sampleData_service_1.SampleDataService])
-], AboutComponent);
-exports.AboutComponent = AboutComponent;
-//# sourceMappingURL=about.component.js.map
+], About2Component);
+exports.About2Component = About2Component;
+//# sourceMappingURL=about2.component.js.map

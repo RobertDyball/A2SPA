@@ -1,0 +1,119 @@
+﻿@using A2SPA.ViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *,A2SPA
+@model TestData
+
+@{
+    ViewData["Title"] = "About 2";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>Examples of Angular 2 data served by ASP.Net Core Web API:</p>
+<form #testForm="ngForm">
+    <div *ngIf="testData != null">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Data Entry</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username"
+                                   required minlength="4" maxlength="24"
+                                   class="form-control" placeholder="Username"
+                                   [(ngModel)]="testData.username" #name="ngModel">
+
+                            <div *ngIf="name.errors && (name.dirty || name.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!name.errors.required">
+                                    Name is required
+                                </div>
+                                <div [hidden]="!name.errors.minlength">
+                                    Name must be at least 4 characters long.
+                                </div>
+                                <div [hidden]="!name.errors.maxlength">
+                                    Name cannot be more than 24 characters long.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="currency">Payment Amount (in dollars)</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">$</div>
+                                <input type="number" id="currency" name="currency"
+                                       required
+                                       class="form-control" placeholder="Amount"
+                                       [(ngModel)]="testData.currency" #currency="ngModel">
+                            </div>
+                            <div *ngIf="currency.errors && (currency.dirty || currency.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!currency.errors.required">
+                                    Payment Amount is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailAddress">Email address</label>
+                            <input type="email" id="emailAddress" name="emailAddress"
+                                   required minlength="6" maxlength="80"
+                                   pattern="([a-zA-Z0-9_\-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})"
+                                   class="form-control" placeholder="Email Address"
+                                   [(ngModel)]="testData.emailAddress" #email="ngModel">
+                            <div *ngIf="email.errors && (email.dirty || email.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!email.errors.required">
+                                    Email Address is required
+                                </div>
+                                <div [hidden]="!email.errors.pattern">
+                                    Email Address is invalid
+                                </div>
+                                <div [hidden]="!email.errors.minlength">
+                                    Email Address must be at least 6 characters long.
+                                </div>
+                                <div [hidden]="!email.errors.maxlength">
+                                    Email Address cannot be more than 80 characters long.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password"
+                                   required minlength="8" maxlength="16"
+                                   class="form-control" placeholder="Password"
+                                   [(ngModel)]="testData.password">
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button type="button" class="btn btn-warning" (click)="addTestData($event)">Save to database</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Data Display</div>
+                    <div class="panel-body">
+                        <tag-dd for="Id"></tag-dd>
+
+                        <tag-dd for="Username"></tag-dd>
+
+                        <tag-dd for="Currency" pipe="| currency:'USD':true:'1.2-2'"></tag-dd>
+
+                        <tag-dd for="EmailAddress"></tag-dd>
+
+                        <tag-dd for="Password"></tag-dd>
+                    </div>
+                    <div class="panel-footer">
+                        <button type="button" class="btn btn-info" (click)="getSampleData($event)">Get last record from database</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div *ngIf="errorMessage != null">
+    <p>Error:</p>
+    <pre>{{ errorMessage  }}</pre>
+</div>

@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="app/about.component.js" />
+/// <reference path="app/about1.component.js" />
+/// <reference path="app/about2.component.js" />
 /// <reference path="app/app.component.js" />
 /// <reference path="app/app.module.js" />
 /// <reference path="app/app.routing.js" />

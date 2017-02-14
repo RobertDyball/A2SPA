@@ -3,11 +3,11 @@ import { SampleDataService } from './services/sampleData.service';
 import { TestData } from './models/testData';
 
 @Component({
-    selector: 'my-about',
-    templateUrl: '/partial/aboutComponent'
+    selector: 'my-about1',
+    templateUrl: '/areas/about/partial/about1Component'
 })
 
-export class AboutComponent implements OnInit {
+export class About1Component implements OnInit {
     testData: TestData;
     errorMessage: string;
 
