@@ -85,12 +85,17 @@
                                    [(ngModel)]="testData.password">
                         </div>
                     </div>
+                    <div class="panel-footer">
+                        <button type="button" class="btn btn-warning" (click)="addTestData($event)">Save to database</button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">Data Display</div>
                     <div class="panel-body">
+                        <tag-dd for="Id"></tag-dd>
+
                         <tag-dd for="Username"></tag-dd>
 
                         <tag-dd for="Currency" pipe="| currency:'USD':true:'1.2-2'"></tag-dd>
@@ -98,6 +103,9 @@
                         <tag-dd for="EmailAddress"></tag-dd>
 
                         <tag-dd for="Password"></tag-dd>
+                    </div>
+                    <div class="panel-footer">
+                        <button type="button" class="btn btn-info" (click)="getSampleData($event)">Get last record from database</button>
                     </div>
                 </div>
             </div>

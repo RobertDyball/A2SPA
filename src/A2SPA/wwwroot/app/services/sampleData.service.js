@@ -14,10 +14,19 @@ var Observable_1 = require("rxjs/Observable");
 var SampleDataService = (function () {
     function SampleDataService(http) {
         this.http = http;
-        this.url = 'api/';
+        this.url = 'api/sampleData';
     }
     SampleDataService.prototype.getSampleData = function () {
-        return this.http.get(this.url + 'sampleData')
+        return this.http.get(this.url)
+            .map(function (resp) { return resp.json(); })
+            .catch(this.handleError);
+    };
+    SampleDataService.prototype.addSampleData = function (testData) {
+        var headers = new http_1.Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http
+            .post(this.url, JSON.stringify(testData), { headers: headers })
             .map(function (resp) { return resp.json(); })
             .catch(this.handleError);
     };
