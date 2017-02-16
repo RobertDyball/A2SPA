@@ -15,8 +15,20 @@ var AboutComponent = (function () {
         this.sampleDataService = sampleDataService;
     }
     AboutComponent.prototype.ngOnInit = function () {
+        this.getTestData();
+    };
+    AboutComponent.prototype.getTestData = function () {
         var _this = this;
         this.sampleDataService.getSampleData()
+            .subscribe(function (data) { return _this.testData = data; }, function (error) { return _this.errorMessage = error; });
+    };
+    AboutComponent.prototype.addTestData = function (event) {
+        var _this = this;
+        event.preventDefault();
+        if (!this.testData) {
+            return;
+        }
+        this.sampleDataService.addSampleData(this.testData)
             .subscribe(function (data) { return _this.testData = data; }, function (error) { return _this.errorMessage = error; });
     };
     return AboutComponent;
