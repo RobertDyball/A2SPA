@@ -9,7 +9,7 @@ namespace A2SPA.ViewModels
         [Display(Description = "Username", Name = "Username", Prompt = "Username")]
         public string Username { get; set; }
 
-        [Display(Description = "Payment Amount (in dollars)")]
+        [Display(Description = "Payment Amount (in dollars)", Name = "Amount", Prompt = "Payment Amount")]
         [DataType(DataType.Currency)]
         public decimal Currency { get; set; }
 

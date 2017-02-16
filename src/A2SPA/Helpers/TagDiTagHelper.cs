@@ -20,8 +20,12 @@ namespace A2SPA.Helpers
         {
             var dataType = ((DefaultModelMetadata)For.Metadata).DataTypeName;
 
+            var shortLabelName = ((DefaultModelMetadata)For.Metadata).DisplayName ?? For.Name.Humanize();
+            var labelName = ((DefaultModelMetadata)For.Metadata).Placeholder ?? shortLabelName;
+            var description = For.Metadata.Description ?? labelName;
+
             var labelTag = new TagBuilder("label");
-            labelTag.InnerHtml.Append(For.Metadata.Description);
+            labelTag.InnerHtml.Append(description);
             labelTag.MergeAttribute("for", For.Name.Camelize());
             labelTag.AddCssClass("control-label");
 
@@ -45,7 +49,12 @@ namespace A2SPA.Helpers
 
             inputTag.MergeAttribute("id", For.Name.Camelize());
             inputTag.MergeAttribute("name", For.Name.Camelize());
-            inputTag.MergeAttribute("placeholder", For.Metadata.Description);
+            inputTag.MergeAttribute("placeholder", shortLabelName);
+            inputTag.MergeAttribute("#" + For.Name.Camelize(), "ngModel");
+
+            TagBuilder validationBlock = new TagBuilder("div");
+            validationBlock.MergeAttribute("*ngIf", string.Format("{0}.errors", For.Name.Camelize()));
+            validationBlock.MergeAttribute("class", "alert alert-danger");
 
             if (((DefaultModelMetadata)For.Metadata).HasMinLengthValidation())
             {
@@ -59,6 +68,10 @@ namespace A2SPA.Helpers
 
             if (((DefaultModelMetadata)For.Metadata).IsRequired)
             {
+                var requiredValidation = new TagBuilder("div");
+                requiredValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.required", For.Name.Camelize()));
+                requiredValidation.InnerHtml.Append(string.Format("{0} is required", labelName));
+                validationBlock.InnerHtml.AppendHtml(requiredValidation);
                 inputTag.Attributes.Add("required", "required");
             }
 
@@ -88,6 +101,8 @@ namespace A2SPA.Helpers
                     output.Content.AppendHtml(inputTag);
                     break;
             }
+
+            output.Content.AppendHtml(validationBlock);
         }
     }
 }
