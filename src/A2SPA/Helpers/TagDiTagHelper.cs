@@ -58,12 +58,31 @@ namespace A2SPA.Helpers
 
             if (((DefaultModelMetadata)For.Metadata).HasMinLengthValidation())
             {
-                inputTag.Attributes.Add("minLength", ((DefaultModelMetadata)For.Metadata).MinLength().ToString());
+                var minLength = ((DefaultModelMetadata)For.Metadata).MinLength();
+                var minLengthValidation = new TagBuilder("div");
+                minLengthValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.minlength", For.Name.Camelize()));
+                minLengthValidation.InnerHtml.Append(string.Format("{0} must be at least {1} characters long", labelName, minLength));
+                validationBlock.InnerHtml.AppendHtml(minLengthValidation);
+                inputTag.Attributes.Add("minLength", minLength.ToString());
             }
 
             if (((DefaultModelMetadata)For.Metadata).HasMaxLengthValidation())
             {
-                inputTag.Attributes.Add("maxLength", ((DefaultModelMetadata)For.Metadata).MaxLength().ToString());
+                var maxLength = ((DefaultModelMetadata)For.Metadata).MaxLength();
+                var maxLengthValidation = new TagBuilder("div");
+                maxLengthValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.maxlength", For.Name.Camelize()));
+                maxLengthValidation.InnerHtml.Append(string.Format("{0} cannot be more than {1} characters long", labelName, maxLength));
+                validationBlock.InnerHtml.AppendHtml(maxLengthValidation);
+                inputTag.Attributes.Add("maxLength", maxLength.ToString());
+            }
+
+            if (((DefaultModelMetadata)For.Metadata).HasRegexValidation())
+            {
+                var regexValidation = new TagBuilder("div");
+                regexValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.pattern", For.Name.Camelize()));
+                regexValidation.InnerHtml.Append(string.Format("{0} is invalid", labelName));
+                validationBlock.InnerHtml.AppendHtml(regexValidation);
+                inputTag.Attributes.Add("pattern", ((DefaultModelMetadata)For.Metadata).RegexExpression());
             }
 
             if (((DefaultModelMetadata)For.Metadata).IsRequired)

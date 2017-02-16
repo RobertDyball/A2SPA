@@ -17,31 +17,10 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Data Entry</div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" name="username"
-                                   required minlength="4" maxlength="24"
-                                   class="form-control" placeholder="Username"
-                                   [(ngModel)]="testData.username" #name="ngModel">
-
-                            <div *ngIf="name.errors && (name.dirty || name.touched)"
-                                 class="alert alert-danger">
-                                <div [hidden]="!name.errors.required">
-                                    Name is required
-                                </div>
-                                <div [hidden]="!name.errors.minlength">
-                                    Name must be at least 4 characters long.
-                                </div>
-                                <div [hidden]="!name.errors.maxlength">
-                                    Name cannot be more than 24 characters long.
-                                </div>
-                            </div>
-                        </div>
 
                         <tag-di for="Username"></tag-di>
 
                         <tag-di for="Currency"></tag-di>
-
 
                         <div class="form-group">
                             <label for="emailAddress">Email address</label>
@@ -66,6 +45,9 @@
                                 </div>
                             </div>
                         </div>
+
+                        <tag-di for="EmailAddress"></tag-di>
+
                         <tag-di for="Password"></tag-di>
                     </div>
                     <div class="panel-footer">
