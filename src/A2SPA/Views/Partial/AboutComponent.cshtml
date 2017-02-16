@@ -17,37 +17,9 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Data Entry</div>
                     <div class="panel-body">
-
                         <tag-di for="Username"></tag-di>
-
                         <tag-di for="Currency"></tag-di>
-
-                        <div class="form-group">
-                            <label for="emailAddress">Email address</label>
-                            <input type="email" id="emailAddress" name="emailAddress"
-                                   required minlength="6" maxlength="80"
-                                   pattern="([a-zA-Z0-9_\-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})"
-                                   class="form-control" placeholder="Email Address"
-                                   [(ngModel)]="testData.emailAddress" #email="ngModel">
-                            <div *ngIf="email.errors && (email.dirty || email.touched)"
-                                 class="alert alert-danger">
-                                <div [hidden]="!email.errors.required">
-                                    Email Address is required
-                                </div>
-                                <div [hidden]="!email.errors.pattern">
-                                    Email Address is invalid
-                                </div>
-                                <div [hidden]="!email.errors.minlength">
-                                    Email Address must be at least 6 characters long.
-                                </div>
-                                <div [hidden]="!email.errors.maxlength">
-                                    Email Address cannot be more than 80 characters long.
-                                </div>
-                            </div>
-                        </div>
-
                         <tag-di for="EmailAddress"></tag-di>
-
                         <tag-di for="Password"></tag-di>
                     </div>
                     <div class="panel-footer">
@@ -60,13 +32,9 @@
                     <div class="panel-heading">Data Display</div>
                     <div class="panel-body">
                         <tag-dd for="Id"></tag-dd>
-
                         <tag-dd for="Username"></tag-dd>
-
                         <tag-dd for="Currency" pipe="| currency:'USD':true:'1.2-2'"></tag-dd>
-
                         <tag-dd for="EmailAddress"></tag-dd>
-
                         <tag-dd for="Password"></tag-dd>
                     </div>
                     <div class="panel-footer">
