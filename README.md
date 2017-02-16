@@ -14,6 +14,7 @@ If using Windows, use Visual Studio 2015 Update 3 with the latest ASP.Net core t
 Install Typescript and Typings globally, as these will be used by the application.
 
 npm install -g typescript
+
 npm install -g typings 
   
 #### Running

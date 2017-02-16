@@ -1,17 +1,28 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import { TestData } from '../models/testData';
 
 @Injectable()
 export class SampleDataService {
 
-    private url: string = 'api/';
+    private url: string = 'api/sampleData';
 
     constructor(private http: Http) { }
 
     getSampleData(): Observable<TestData> {
-        return this.http.get(this.url + 'sampleData')
+        return this.http.get(this.url)
+            .map((resp: Response) => resp.json())
+            .catch(this.handleError);
+    }
+
+    addSampleData(testData: TestData): Observable<TestData> {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+
+        return this.http
+            .post(this.url, JSON.stringify(testData), { headers: headers })
             .map((resp: Response) => resp.json())
             .catch(this.handleError);
     }
