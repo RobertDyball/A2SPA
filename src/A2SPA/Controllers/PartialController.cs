@@ -11,5 +11,9 @@ namespace A2SPA.Controllers
         public IActionResult ContactComponent() => PartialView();
 
         public IActionResult IndexComponent() => PartialView();
+
+        public IActionResult LoginComponent() => PartialView();
+
+        public IActionResult SignupComponent() => PartialView();
     }
 }

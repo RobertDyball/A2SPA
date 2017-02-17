@@ -24,9 +24,15 @@
     "Microsoft.AspNetCore.SpaServices": "1.1.0",
     "Microsoft.AspNet.Tooling.Razor": "1.0.0-rc1-final",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
-    "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final"
+    "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
+    "OpenIddict": "1.0.0-*",
+    "OpenIddict.EntityFrameworkCore": "1.0.0-*",
+    "OpenIddict.Mvc": "1.0.0-*",
+    "Microsoft.AspNetCore.Identity": "1.1.0",
+    "AspNet.Security.OAuth.Introspection": "1.0.0-beta1-0201",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.1.0",
+    "AspNet.Security.OAuth.Validation": "1.0.0-beta1-0201"
   },
-
   "tools": {
   },
 

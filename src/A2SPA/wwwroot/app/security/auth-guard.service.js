@@ -9,19 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var auth_service_1 = require("./security/auth.service");
-var ContactComponent = (function () {
-    function ContactComponent(authService) {
+var router_1 = require("@angular/router");
+var auth_service_1 = require("./auth.service");
+var AuthGuard = (function () {
+    function AuthGuard(authService, router) {
         this.authService = authService;
+        this.router = router;
     }
-    return ContactComponent;
+    AuthGuard.prototype.canActivate = function () {
+        if (!this.authService.loggedIn()) {
+            this.router.navigate(['/login']);
+            return false;
+        }
+        return true;
+    };
+    return AuthGuard;
 }());
-ContactComponent = __decorate([
-    core_1.Component({
-        selector: 'my-contact',
-        templateUrl: '/partial/contactComponent'
-    }),
-    __metadata("design:paramtypes", [auth_service_1.AuthService])
-], ContactComponent);
-exports.ContactComponent = ContactComponent;
-//# sourceMappingURL=contact.component.js.map
+AuthGuard = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+], AuthGuard);
+exports.AuthGuard = AuthGuard;
+//# sourceMappingURL=auth-guard.service.js.map

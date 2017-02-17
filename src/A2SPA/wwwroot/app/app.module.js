@@ -13,6 +13,8 @@ var app_component_1 = require("./app.component");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var sampleData_service_1 = require("./services/sampleData.service");
+var auth_service_1 = require("./security/auth.service");
+var auth_guard_service_1 = require("./security/auth-guard.service");
 require("./rxjs-operators");
 // enableProdMode();
 var AppModule = (function () {
@@ -24,7 +26,9 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_1.routing],
         declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
-        providers: [sampleData_service_1.SampleDataService, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/' }],
+        providers: [sampleData_service_1.SampleDataService,
+            auth_service_1.AuthService,
+            auth_guard_service_1.AuthGuard, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/' }],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

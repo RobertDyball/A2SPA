@@ -12,41 +12,42 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
-var auth_service_1 = require("./security/auth.service");
-var AppComponent = (function () {
-    function AppComponent(router, titleService, http, authService) {
+var auth_service_1 = require("./auth.service");
+var LoginComponent = (function () {
+    function LoginComponent(router, titleService, http, authService) {
         this.router = router;
         this.titleService = titleService;
         this.http = http;
         this.authService = authService;
-        this.angularClientSideData = 'Angular';
     }
-    AppComponent.prototype.setTitle = function (newTitle) {
+    LoginComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
     };
-    AppComponent.prototype.isLoggedIn = function () {
-        return this.authService.loggedIn();
-    };
-    //todo: move this to auth service
-    AppComponent.prototype.logout = function () {
+    LoginComponent.prototype.login = function (event, email, password) {
         var _this = this;
-        this.http.get('/connect/logout', { headers: this.authService.authJsonHeaders() })
+        event.preventDefault();
+        var body = 'username=' + email + '&password=' + password + '&grant_type=password';
+        this.http.post('/connect/token', body, { headers: this.authService.contentHeaders() })
             .subscribe(function (response) {
-            _this.authService.logout();
-            _this.router.navigate(['']);
+            _this.authService.login(response.json());
+            _this.router.navigate(['/employee']);
         }, function (error) {
             alert(error.text());
             console.log(error.text());
         });
     };
-    return AppComponent;
+    LoginComponent.prototype.signup = function (event) {
+        event.preventDefault();
+        this.router.navigate(['/signup']);
+    };
+    return LoginComponent;
 }());
-AppComponent = __decorate([
+LoginComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        templateUrl: '/partial/appComponent'
+        selector: 'login',
+        templateUrl: '/partial/loginComponent'
     }),
     __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], LoginComponent);
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=login.component.js.map

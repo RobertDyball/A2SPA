@@ -1,0 +1,16 @@
+﻿@using A2SPA.ViewModels
+@using A2SPA.ViewModels.Account
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *,A2SPA
+@model RegisterViewModel
+
+<div class="jumbotron center-block">
+    <h1>Signup</h1>
+
+    <form role="form" (submit)="signup($event, email.value, password.value, verifyPassword.value)">
+        <tag-di for="Email"></tag-di>
+        <tag-di for="Password"></tag-di>
+        <tag-di for="VerifyPassword"></tag-di>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>

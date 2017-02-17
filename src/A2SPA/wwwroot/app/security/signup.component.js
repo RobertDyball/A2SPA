@@ -12,41 +12,49 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
-var auth_service_1 = require("./security/auth.service");
-var AppComponent = (function () {
-    function AppComponent(router, titleService, http, authService) {
+var auth_service_1 = require("./auth.service");
+var SignupComponent = (function () {
+    function SignupComponent(router, titleService, http, authService) {
         this.router = router;
         this.titleService = titleService;
         this.http = http;
         this.authService = authService;
-        this.angularClientSideData = 'Angular';
     }
-    AppComponent.prototype.setTitle = function (newTitle) {
+    SignupComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
     };
-    AppComponent.prototype.isLoggedIn = function () {
-        return this.authService.loggedIn();
-    };
-    //todo: move this to auth service
-    AppComponent.prototype.logout = function () {
+    SignupComponent.prototype.signup = function (event, email, password, verifyPassword) {
         var _this = this;
-        this.http.get('/connect/logout', { headers: this.authService.authJsonHeaders() })
+        event.preventDefault();
+        var body = { 'email': email, 'password': password, 'verifyPassword': verifyPassword };
+        this.http.post('/Account/Register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
             .subscribe(function (response) {
-            _this.authService.logout();
-            _this.router.navigate(['']);
+            if (response.status == 200) {
+                _this.router.navigate(['/login']);
+            }
+            else {
+                alert(response.json().error);
+                console.log(response.json().error);
+            }
         }, function (error) {
+            // todo: parse error messages, generate toast popups
+            // {"Email":["The Email field is required.","The Email field is not a valid e-mail address."],"Password":["The Password field is required.","The Password must be at least 6 characters long."]}
             alert(error.text());
             console.log(error.text());
         });
     };
-    return AppComponent;
+    SignupComponent.prototype.login = function (event) {
+        event.preventDefault();
+        this.router.navigate(['/login']);
+    };
+    return SignupComponent;
 }());
-AppComponent = __decorate([
+SignupComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        templateUrl: '/partial/appComponent'
+        selector: 'signup',
+        templateUrl: '/partial/signupComponent'
     }),
     __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], SignupComponent);
+exports.SignupComponent = SignupComponent;
+//# sourceMappingURL=signup.component.js.map
