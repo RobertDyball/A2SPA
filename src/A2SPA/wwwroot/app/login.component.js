@@ -12,21 +12,29 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
-var auth_service_1 = require("./auth.service");
+var auth_service_1 = require("./security/auth.service");
+var LoginViewModel_1 = require("./models/LoginViewModel");
 var LoginComponent = (function () {
     function LoginComponent(router, titleService, http, authService) {
         this.router = router;
         this.titleService = titleService;
         this.http = http;
         this.authService = authService;
+        //this.loginViewModel.email = 'user@example.com';
+        //this.loginViewModel.password = 'P@55word';
     }
+    LoginComponent.prototype.ngOnInit = function () {
+        this.loginViewModel = new LoginViewModel_1.LoginViewModel();
+        //this.loginViewModel.email = 'user@example.com';
+        //this.loginViewModel.password = 'P@55word';
+    };
     LoginComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
     };
-    LoginComponent.prototype.login = function (event, email, password) {
+    LoginComponent.prototype.login = function (event) {
         var _this = this;
         event.preventDefault();
-        var body = 'username=' + email + '&password=' + password + '&grant_type=password';
+        var body = 'username=' + this.loginViewModel.email + '&password=' + this.loginViewModel.password + '&grant_type=password';
         this.http.post('/connect/token', body, { headers: this.authService.contentHeaders() })
             .subscribe(function (response) {
             _this.authService.login(response.json());

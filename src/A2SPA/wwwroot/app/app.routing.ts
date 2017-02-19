@@ -4,8 +4,8 @@ import { AuthGuard } from './security/auth-guard.service';
 import { AboutComponent } from './about.component';
 import { IndexComponent } from './index.component';
 import { ContactComponent } from './contact.component';
-import { LoginComponent } from './security/login.component';
-import { SignupComponent } from './security/signup.component';
+import { LoginComponent } from './login.component';
+import { SignupComponent } from './signup.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },

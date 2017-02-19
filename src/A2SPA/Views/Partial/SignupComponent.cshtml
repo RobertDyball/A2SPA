@@ -7,10 +7,17 @@
 <div class="jumbotron center-block">
     <h1>Signup</h1>
 
-    <form role="form" (submit)="signup($event, email.value, password.value, verifyPassword.value)">
-        <tag-di for="Email"></tag-di>
-        <tag-di for="Password"></tag-di>
-        <tag-di for="VerifyPassword"></tag-di>
-        <button type="submit" class="btn btn-default">Submit</button>
+    <form role="form" #testForm="ngForm">
+        <div *ngIf="registerViewModel != null">
+            <tag-di for="Email"></tag-di>
+            <tag-di for="Password"></tag-di>
+            <tag-di for="VerifyPassword"></tag-di>
+            <button type="button" (click)="signup($event)" class="btn btn-default">Submit</button>
+        </div>
     </form>
+</div>
+
+<div *ngIf="errorMessage != null">
+    <p>Error:</p>
+    <pre>{{ errorMessage  }}</pre>
 </div>

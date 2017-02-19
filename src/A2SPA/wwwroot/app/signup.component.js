@@ -12,7 +12,8 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
-var auth_service_1 = require("./auth.service");
+var auth_service_1 = require("./security/auth.service");
+var RegisterViewModel_1 = require("./models/RegisterViewModel");
 var SignupComponent = (function () {
     function SignupComponent(router, titleService, http, authService) {
         this.router = router;
@@ -20,13 +21,19 @@ var SignupComponent = (function () {
         this.http = http;
         this.authService = authService;
     }
+    SignupComponent.prototype.ngOnInit = function () {
+        this.registerViewModel = new RegisterViewModel_1.RegisterViewModel();
+        //this.registerViewModel.email = 'user@example.com';
+        //this.registerViewModel.password = 'P@55word';
+        //this.registerViewModel.verifyPassword = 'P@55word';
+    };
     SignupComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
     };
-    SignupComponent.prototype.signup = function (event, email, password, verifyPassword) {
+    SignupComponent.prototype.signup = function (event) {
         var _this = this;
         event.preventDefault();
-        var body = { 'email': email, 'password': password, 'verifyPassword': verifyPassword };
+        var body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'verifyPassword': this.registerViewModel.verifyPassword };
         this.http.post('/Account/Register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
             .subscribe(function (response) {
             if (response.status == 200) {

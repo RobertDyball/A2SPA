@@ -4,8 +4,8 @@ var auth_guard_service_1 = require("./security/auth-guard.service");
 var about_component_1 = require("./about.component");
 var index_component_1 = require("./index.component");
 var contact_component_1 = require("./contact.component");
-var login_component_1 = require("./security/login.component");
-var signup_component_1 = require("./security/signup.component");
+var login_component_1 = require("./login.component");
+var signup_component_1 = require("./signup.component");
 var appRoutes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: index_component_1.IndexComponent, data: { title: 'Home' } },

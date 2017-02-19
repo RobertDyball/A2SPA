@@ -1,9 +1,10 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Title }     from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { Http } from '@angular/http';
-import { AuthService } from './auth.service';
+import { AuthService } from './security/auth.service';
+import { RegisterViewModel } from './models/RegisterViewModel';
 
 @Component({
     selector: 'signup',
@@ -11,17 +12,24 @@ import { AuthService } from './auth.service';
 })
 
 export class SignupComponent {
+    registerViewModel: RegisterViewModel;
 
     constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) { }
 
-    public setTitle(newTitle: string) {
+    ngOnInit() {
+        this.registerViewModel = new RegisterViewModel();
+        //this.registerViewModel.email = 'user@example.com';
+        //this.registerViewModel.password = 'P@55word';
+        //this.registerViewModel.verifyPassword = 'P@55word';
+    }
+
+    setTitle(newTitle: string) {
         this.titleService.setTitle(newTitle);
     }
 
-    public signup(event: Event, email: string, password: string, verifyPassword: string) {
+    signup(event: Event): void {
         event.preventDefault();
-
-        let body = { 'email': email, 'password': password, 'verifyPassword': verifyPassword };
+        let body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'verifyPassword': this.registerViewModel.verifyPassword };
 
         this.http.post('/Account/Register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
             .subscribe(response => {
@@ -40,7 +48,7 @@ export class SignupComponent {
             });
     }
 
-    public login(event: Event) {
+    login(event: Event) {
         event.preventDefault();
         this.router.navigate(['/login']);
     }

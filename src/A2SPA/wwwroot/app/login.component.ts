@@ -3,7 +3,8 @@ import { Title }     from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { Http } from '@angular/http';
-import { AuthService } from './auth.service';
+import { AuthService } from './security/auth.service';
+import { LoginViewModel } from './models/LoginViewModel';
 
 @Component({
     selector: 'login',
@@ -11,15 +12,26 @@ import { AuthService } from './auth.service';
 })
 
 export class LoginComponent {
-    constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) { }
+    loginViewModel: LoginViewModel;
+
+    constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) {
+        //this.loginViewModel.email = 'user@example.com';
+        //this.loginViewModel.password = 'P@55word';
+    }
+    ngOnInit() {
+        this.loginViewModel = new LoginViewModel();
+        //this.loginViewModel.email = 'user@example.com';
+        //this.loginViewModel.password = 'P@55word';
+    }
+
 
     public setTitle(newTitle: string) {
         this.titleService.setTitle(newTitle);
     }
 
-    public login(event: Event, email: string, password: string) {
+    login(event: Event) : void {
         event.preventDefault();
-        let body = 'username=' + email + '&password=' + password + '&grant_type=password';
+        let body = 'username=' + this.loginViewModel.email + '&password=' + this.loginViewModel.password + '&grant_type=password';
 
         this.http.post('/connect/token', body, { headers: this.authService.contentHeaders() })
             .subscribe(response => {
@@ -33,7 +45,7 @@ export class LoginComponent {
             );
     }
 
-    public signup(event: Event) {
+    signup(event: Event) {
         event.preventDefault();
         this.router.navigate(['/signup']);
     }
