@@ -18,11 +18,11 @@ export class AppComponent {
         this.titleService.setTitle(newTitle);
     }
 
-    public isLoggedIn() {
+    public isLoggedIn(): boolean {
         return this.authService.loggedIn();
     }
 
-    //todo: move this to auth service
+    // TODO: move this to auth.service
     public logout() {
         this.http.get('/connect/logout', { headers: this.authService.authJsonHeaders() })
             .subscribe(response => {

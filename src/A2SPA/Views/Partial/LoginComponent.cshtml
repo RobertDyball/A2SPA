@@ -5,14 +5,14 @@
 @model LoginViewModel
 
 <div class="jumbotron center-block">
-    <h1>Login</h1>
+    <h2>Login</h2>
 
     <form role="form" #testForm="ngForm">
         <div *ngIf="loginViewModel != null">
             <tag-di for="Email"></tag-di>
             <tag-di for="Password"></tag-di>
             <button type="button" (click)="login($event)" class="btn btn-default">Submit</button>
-            <a [routerLink]="['/signup']">Click here to Signup</a>
+            <span class="small">Not signed up yet? <a [routerLink]="['/signup']"> Click here to Signup</a></span>
         </div>
     </form>
 </div>

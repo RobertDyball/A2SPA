@@ -27,7 +27,7 @@ var AppComponent = (function () {
     AppComponent.prototype.isLoggedIn = function () {
         return this.authService.loggedIn();
     };
-    //todo: move this to auth service
+    // TODO: move this to auth.service
     AppComponent.prototype.logout = function () {
         var _this = this;
         this.http.get('/connect/logout', { headers: this.authService.authJsonHeaders() })
