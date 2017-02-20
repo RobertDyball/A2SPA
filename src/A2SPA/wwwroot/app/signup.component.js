@@ -23,9 +23,6 @@ var SignupComponent = (function () {
     }
     SignupComponent.prototype.ngOnInit = function () {
         this.registerViewModel = new RegisterViewModel_1.RegisterViewModel();
-        //this.registerViewModel.email = 'user@example.com';
-        //this.registerViewModel.password = 'P@55word';
-        //this.registerViewModel.verifyPassword = 'P@55word';
     };
     SignupComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);

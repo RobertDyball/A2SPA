@@ -12,8 +12,8 @@ const appRoutes: Routes = [
     { path: 'home', component: IndexComponent, data: { title: 'Home' } },
     { path: 'login', component: LoginComponent, data: { title: 'Login' } },
     { path: 'signup', component: SignupComponent, data: { title: 'Signup' } },
-    { path: 'about', component: AboutComponent, data: { title: 'About' } },
-    { path: 'contact', component: ContactComponent, data: { title: 'Contact' }, canActivate: [AuthGuard] }
+    { path: 'about', component: AboutComponent, data: { title: 'About' }, canActivate: [AuthGuard]  },
+    { path: 'contact', component: ContactComponent, data: { title: 'Contact' }}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

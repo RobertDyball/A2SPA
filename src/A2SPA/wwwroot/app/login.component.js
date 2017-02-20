@@ -20,13 +20,9 @@ var LoginComponent = (function () {
         this.titleService = titleService;
         this.http = http;
         this.authService = authService;
-        //this.loginViewModel.email = 'user@example.com';
-        //this.loginViewModel.password = 'P@55word';
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.loginViewModel = new LoginViewModel_1.LoginViewModel();
-        //this.loginViewModel.email = 'user@example.com';
-        //this.loginViewModel.password = 'P@55word';
     };
     LoginComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
@@ -38,7 +34,7 @@ var LoginComponent = (function () {
         this.http.post('/connect/token', body, { headers: this.authService.contentHeaders() })
             .subscribe(function (response) {
             _this.authService.login(response.json());
-            _this.router.navigate(['/employee']);
+            _this.router.navigate(['/about']);
         }, function (error) {
             alert(error.text());
             console.log(error.text());

@@ -14,29 +14,24 @@ import { LoginViewModel } from './models/LoginViewModel';
 export class LoginComponent {
     loginViewModel: LoginViewModel;
 
-    constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) {
-        //this.loginViewModel.email = 'user@example.com';
-        //this.loginViewModel.password = 'P@55word';
-    }
+    constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) { }
+
     ngOnInit() {
         this.loginViewModel = new LoginViewModel();
-        //this.loginViewModel.email = 'user@example.com';
-        //this.loginViewModel.password = 'P@55word';
     }
-
 
     public setTitle(newTitle: string) {
         this.titleService.setTitle(newTitle);
     }
 
-    login(event: Event) : void {
+    login(event: Event): void {
         event.preventDefault();
         let body = 'username=' + this.loginViewModel.email + '&password=' + this.loginViewModel.password + '&grant_type=password';
 
         this.http.post('/connect/token', body, { headers: this.authService.contentHeaders() })
             .subscribe(response => {
                 this.authService.login(response.json());
-                this.router.navigate(['/employee']);
+                this.router.navigate(['/about']);
             },
             error => {
                 alert(error.text());

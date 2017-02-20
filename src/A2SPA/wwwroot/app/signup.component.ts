@@ -18,9 +18,6 @@ export class SignupComponent {
 
     ngOnInit() {
         this.registerViewModel = new RegisterViewModel();
-        //this.registerViewModel.email = 'user@example.com';
-        //this.registerViewModel.password = 'P@55word';
-        //this.registerViewModel.verifyPassword = 'P@55word';
     }
 
     setTitle(newTitle: string) {
