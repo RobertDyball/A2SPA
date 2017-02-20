@@ -12,7 +12,7 @@ Part 3: see: https://www.codeproject.com/Articles/1171129/SPA-using-ASP-Net-Core
 covers use of ASP.Net Core tag helpers with Angular 2 for data input
 
 Part 4: (URL to be added; soon to be pubished)
-
+covers token authentication using JWT and OpenIdDict
 
 #### Prerequisites
 
