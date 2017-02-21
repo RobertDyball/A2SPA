@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using A2SPA.Data;
+using A2SPA.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
 using System.IO;
-using Microsoft.EntityFrameworkCore;
-using A2SPA.Data;
-using A2SPA.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace A2SPA
 {
