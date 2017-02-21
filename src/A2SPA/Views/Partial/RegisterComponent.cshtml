@@ -5,15 +5,15 @@
 @model RegisterViewModel
 
 <div class="jumbotron center-block">
-    <h2>Signup</h2>
+    <h2>Register</h2>
 
     <form role="form" #testForm="ngForm">
         <div *ngIf="registerViewModel != null">
             <tag-di for="Email"></tag-di>
             <tag-di for="Password"></tag-di>
             <tag-di for="VerifyPassword"></tag-di>
-            <button type="button" (click)="signup($event)" class="btn btn-default">Submit</button>
-            <span class="small">Already signed up? <a [routerLink]="['/login']"> Click here to Login</a></span>
+            <button type="button" (click)="register($event)" class="btn btn-default">Submit</button>
+            <span class="small">Already registered? <a [routerLink]="['/login']"> Click here to Login</a></span>
         </div>
     </form>
 </div>

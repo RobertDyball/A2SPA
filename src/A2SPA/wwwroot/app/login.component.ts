@@ -40,8 +40,8 @@ export class LoginComponent {
             );
     }
 
-    signup(event: Event) {
+    register(event: Event) {
         event.preventDefault();
-        this.router.navigate(['/signup']);
+        this.router.navigate(['/register']);
     }
 }

@@ -7,11 +7,11 @@ import { AuthService } from './security/auth.service';
 import { RegisterViewModel } from './models/RegisterViewModel';
 
 @Component({
-    selector: 'signup',
-    templateUrl: '/partial/signupComponent'
+    selector: 'register',
+    templateUrl: '/partial/registerComponent'
 })
 
-export class SignupComponent {
+export class RegisterComponent {
     registerViewModel: RegisterViewModel;
 
     constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) { }
@@ -24,7 +24,7 @@ export class SignupComponent {
         this.titleService.setTitle(newTitle);
     }
 
-    signup(event: Event): void {
+    register(event: Event): void {
         event.preventDefault();
         let body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'verifyPassword': this.registerViewModel.verifyPassword };
 

@@ -40,9 +40,9 @@ var LoginComponent = (function () {
             console.log(error.text());
         });
     };
-    LoginComponent.prototype.signup = function (event) {
+    LoginComponent.prototype.register = function (event) {
         event.preventDefault();
-        this.router.navigate(['/signup']);
+        this.router.navigate(['/register']);
     };
     return LoginComponent;
 }());

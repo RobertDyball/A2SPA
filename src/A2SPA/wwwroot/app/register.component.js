@@ -14,20 +14,20 @@ var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var auth_service_1 = require("./security/auth.service");
 var RegisterViewModel_1 = require("./models/RegisterViewModel");
-var SignupComponent = (function () {
-    function SignupComponent(router, titleService, http, authService) {
+var RegisterComponent = (function () {
+    function RegisterComponent(router, titleService, http, authService) {
         this.router = router;
         this.titleService = titleService;
         this.http = http;
         this.authService = authService;
     }
-    SignupComponent.prototype.ngOnInit = function () {
+    RegisterComponent.prototype.ngOnInit = function () {
         this.registerViewModel = new RegisterViewModel_1.RegisterViewModel();
     };
-    SignupComponent.prototype.setTitle = function (newTitle) {
+    RegisterComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
     };
-    SignupComponent.prototype.signup = function (event) {
+    RegisterComponent.prototype.register = function (event) {
         var _this = this;
         event.preventDefault();
         var body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'verifyPassword': this.registerViewModel.verifyPassword };
@@ -47,18 +47,18 @@ var SignupComponent = (function () {
             console.log(error.text());
         });
     };
-    SignupComponent.prototype.login = function (event) {
+    RegisterComponent.prototype.login = function (event) {
         event.preventDefault();
         this.router.navigate(['/login']);
     };
-    return SignupComponent;
+    return RegisterComponent;
 }());
-SignupComponent = __decorate([
+RegisterComponent = __decorate([
     core_1.Component({
-        selector: 'signup',
-        templateUrl: '/partial/signupComponent'
+        selector: 'register',
+        templateUrl: '/partial/registerComponent'
     }),
     __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
-], SignupComponent);
-exports.SignupComponent = SignupComponent;
-//# sourceMappingURL=signup.component.js.map
+], RegisterComponent);
+exports.RegisterComponent = RegisterComponent;
+//# sourceMappingURL=register.component.js.map
