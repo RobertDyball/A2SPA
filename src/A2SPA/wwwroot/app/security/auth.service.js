@@ -13,6 +13,7 @@ var http_1 = require("@angular/http");
 var AuthService = (function () {
     function AuthService() {
     }
+    // for requesting secure data using json
     AuthService.prototype.authJsonHeaders = function () {
         var header = new http_1.Headers();
         header.append('Content-Type', 'application/json');
@@ -20,6 +21,7 @@ var AuthService = (function () {
         header.append('Authorization', 'Bearer ' + sessionStorage.getItem('bearer_token'));
         return header;
     };
+    // for requesting secure data from a form post
     AuthService.prototype.authFormHeaders = function () {
         var header = new http_1.Headers();
         header.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -27,21 +29,24 @@ var AuthService = (function () {
         header.append('Authorization', 'Bearer ' + sessionStorage.getItem('bearer_token'));
         return header;
     };
+    // for requesting unsecured data using json
     AuthService.prototype.jsonHeaders = function () {
         var header = new http_1.Headers();
         header.append('Content-Type', 'application/json');
         header.append('Accept', 'application/json');
         return header;
     };
+    // for requesting unsecured data using form post
     AuthService.prototype.contentHeaders = function () {
         var header = new http_1.Headers();
         header.append('Content-Type', 'application/x-www-form-urlencoded');
         header.append('Accept', 'application/json');
         return header;
     };
+    // handles login, save token data into session storage
+    // note: use "localStorage" for persistent, browser-wide logins; "sessionStorage" for per-session storage.
     AuthService.prototype.login = function (responseData) {
         var access_token = responseData.access_token;
-        //let refresh_token: string = responseData.refresh_token;
         var expires_in = responseData.expires_in;
         sessionStorage.setItem('access_token', access_token);
         sessionStorage.setItem('bearer_token', access_token);
@@ -49,7 +54,6 @@ var AuthService = (function () {
         sessionStorage.setItem('expires_in', expires_in.toString());
     };
     AuthService.prototype.logout = function () {
-        // use localstorage for persistent, browser-wide logins; session storage for per-session storage.
         //localStorage.removeItem('access_token');
         sessionStorage.removeItem('access_token');
         sessionStorage.removeItem('bearer_token');
