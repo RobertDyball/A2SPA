@@ -4,7 +4,8 @@ namespace A2SPA.ViewModels
 {
     public class TestData
     {
-        [Display(Description = "Record #")]        public int Id { get; set; }
+        [Display(Description = "Record #")]
+        public int Id { get; set; }
 
         [Required]
         [StringLength(24, MinimumLength = 4)]

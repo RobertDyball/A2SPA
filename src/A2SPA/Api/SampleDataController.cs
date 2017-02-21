@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using A2SPA.Data;
 using A2SPA.ViewModels;
-using A2SPA.Data;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace A2SPA.Api
