@@ -21,20 +21,25 @@ var AppComponent = (function () {
         this.authService = authService;
         this.angularClientSideData = 'Angular';
     }
+    // wrapper to the Angular title service.
     AppComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
     };
+    // provide local page the user's logged in status (do we have a token or not)
     AppComponent.prototype.isLoggedIn = function () {
         return this.authService.loggedIn();
     };
-    // TODO: move this to auth.service
+    // tell the server that the user wants to logout; clears token from server, then calls auth.service to clear token locally in browser
     AppComponent.prototype.logout = function () {
         var _this = this;
         this.http.get('/connect/logout', { headers: this.authService.authJsonHeaders() })
             .subscribe(function (response) {
+            // clear token in browser
             _this.authService.logout();
+            // return to 'home' page
             _this.router.navigate(['']);
         }, function (error) {
+            // failed; TODO: add some nice toast / error handling
             alert(error.text());
             console.log(error.text());
         });

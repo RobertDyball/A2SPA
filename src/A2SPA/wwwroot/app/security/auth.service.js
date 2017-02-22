@@ -43,7 +43,7 @@ var AuthService = (function () {
         header.append('Accept', 'application/json');
         return header;
     };
-    // handles login, save token data into session storage
+    // After a successful login, save token data into session storage
     // note: use "localStorage" for persistent, browser-wide logins; "sessionStorage" for per-session storage.
     AuthService.prototype.login = function (responseData) {
         var access_token = responseData.access_token;
@@ -53,12 +53,15 @@ var AuthService = (function () {
         // TODO: implement meaningful refresh, handle expiry 
         sessionStorage.setItem('expires_in', expires_in.toString());
     };
+    // called when logging out user; clears tokens from browser
     AuthService.prototype.logout = function () {
         //localStorage.removeItem('access_token');
         sessionStorage.removeItem('access_token');
         sessionStorage.removeItem('bearer_token');
         sessionStorage.removeItem('expires_in');
     };
+    // simple check of logged in status: if there is a token, we're (probably) logged in.
+    // ideally we check status and check token has not expired (server will back us up, if this not done, but it could be cleaner)
     AuthService.prototype.loggedIn = function () {
         return !!sessionStorage.getItem('bearer_token');
     };

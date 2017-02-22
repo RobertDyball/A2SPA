@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
+var auth_service_1 = require("../security/auth.service");
 var SampleDataService = (function () {
-    function SampleDataService(http) {
+    function SampleDataService(http, authService) {
         this.http = http;
+        this.authService = authService;
         this.url = 'api/sampleData';
     }
     SampleDataService.prototype.getSampleData = function () {
@@ -22,11 +24,8 @@ var SampleDataService = (function () {
             .catch(this.handleError);
     };
     SampleDataService.prototype.addSampleData = function (testData) {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json'
-        });
         return this.http
-            .post(this.url, JSON.stringify(testData), { headers: headers })
+            .post(this.url, JSON.stringify(testData), { headers: this.authService.contentHeaders() })
             .map(function (resp) { return resp.json(); })
             .catch(this.handleError);
     };
@@ -49,7 +48,7 @@ var SampleDataService = (function () {
 }());
 SampleDataService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, auth_service_1.AuthService])
 ], SampleDataService);
 exports.SampleDataService = SampleDataService;
 //# sourceMappingURL=sampleData.service.js.map

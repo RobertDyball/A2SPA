@@ -62,7 +62,7 @@ export class AuthService {
     }
 
     // simple check of logged in status: if there is a token, we're (probably) logged in.
-    // ideally we check status and call the logout to clear the token if it's expired
+    // ideally we check status and check token has not expired (server will back us up, if this not done, but it could be cleaner)
     loggedIn() {
         return !!sessionStorage.getItem('bearer_token');
     }

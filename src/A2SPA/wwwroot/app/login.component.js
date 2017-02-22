@@ -27,22 +27,21 @@ var LoginComponent = (function () {
     LoginComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
     };
+    // post the user's login details to server, if authenticated token is returned, then token is saved to session storage
     LoginComponent.prototype.login = function (event) {
         var _this = this;
         event.preventDefault();
         var body = 'username=' + this.loginViewModel.email + '&password=' + this.loginViewModel.password + '&grant_type=password';
         this.http.post('/connect/token', body, { headers: this.authService.contentHeaders() })
             .subscribe(function (response) {
+            // success, save the token to session storage
             _this.authService.login(response.json());
             _this.router.navigate(['/about']);
         }, function (error) {
+            // failed; TODO: add some nice toast / error handling
             alert(error.text());
             console.log(error.text());
         });
-    };
-    LoginComponent.prototype.register = function (event) {
-        event.preventDefault();
-        this.router.navigate(['/register']);
     };
     return LoginComponent;
 }());
