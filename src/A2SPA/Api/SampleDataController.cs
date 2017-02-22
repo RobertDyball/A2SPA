@@ -2,9 +2,11 @@
 using A2SPA.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace A2SPA.Api
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {

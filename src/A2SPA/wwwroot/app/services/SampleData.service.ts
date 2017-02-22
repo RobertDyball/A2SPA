@@ -12,14 +12,14 @@ export class SampleDataService {
     constructor(private http: Http, private authService: AuthService) { }
 
     getSampleData(): Observable<TestData> {
-        return this.http.get(this.url)
+        return this.http.get(this.url, { headers: this.authService.authJsonHeaders() })
             .map((resp: Response) => resp.json())
             .catch(this.handleError);
     }
 
     addSampleData(testData: TestData): Observable<TestData> {
         return this.http
-            .post(this.url, JSON.stringify(testData), { headers: this.authService.contentHeaders() })
+            .post(this.url, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
             .map((resp: Response) => resp.json())
             .catch(this.handleError);
     }

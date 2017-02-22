@@ -19,13 +19,13 @@ var SampleDataService = (function () {
         this.url = 'api/sampleData';
     }
     SampleDataService.prototype.getSampleData = function () {
-        return this.http.get(this.url)
+        return this.http.get(this.url, { headers: this.authService.authJsonHeaders() })
             .map(function (resp) { return resp.json(); })
             .catch(this.handleError);
     };
     SampleDataService.prototype.addSampleData = function (testData) {
         return this.http
-            .post(this.url, JSON.stringify(testData), { headers: this.authService.contentHeaders() })
+            .post(this.url, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
             .map(function (resp) { return resp.json(); })
             .catch(this.handleError);
     };
