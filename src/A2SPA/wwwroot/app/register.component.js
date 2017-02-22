@@ -47,10 +47,6 @@ var RegisterComponent = (function () {
             console.log(error.text());
         });
     };
-    RegisterComponent.prototype.login = function (event) {
-        event.preventDefault();
-        this.router.navigate(['/login']);
-    };
     return RegisterComponent;
 }());
 RegisterComponent = __decorate([

@@ -44,9 +44,4 @@ export class RegisterComponent {
                 console.log(error.text());
             });
     }
-
-    login(event: Event) {
-        event.preventDefault();
-        this.router.navigate(['/login']);
-    }
 }

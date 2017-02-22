@@ -6,5 +6,5 @@
 })
 
 export class ContactComponent {
-
+    // this is not secured, open to anonymous users to access
 }
