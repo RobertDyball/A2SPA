@@ -42,7 +42,7 @@ export class AuthService {
         return header;
     }
 
-    // handles login, save token data into session storage
+    // After a successful login, save token data into session storage
     // note: use "localStorage" for persistent, browser-wide logins; "sessionStorage" for per-session storage.
     login(responseData: OpenIdDictToken) {
         let access_token: string = responseData.access_token;
@@ -53,6 +53,7 @@ export class AuthService {
         sessionStorage.setItem('expires_in', expires_in.toString());
     }
 
+    // called when logging out user; clears tokens from browser
     logout() {
         //localStorage.removeItem('access_token');
         sessionStorage.removeItem('access_token');
@@ -60,6 +61,8 @@ export class AuthService {
         sessionStorage.removeItem('expires_in');
     }
 
+    // simple check of logged in status: if there is a token, we're (probably) logged in.
+    // ideally we check status and call the logout to clear the token if it's expired
     loggedIn() {
         return !!sessionStorage.getItem('bearer_token');
     }
