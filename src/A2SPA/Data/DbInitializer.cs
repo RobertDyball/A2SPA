@@ -20,7 +20,8 @@ namespace A2SPA.Data
                 Username = "JaneDoe",
                 EmailAddress = "jane.doe@example.com",
                 Password = "LetM@In!",
-                Currency = 321.45M            };
+                Currency = 321.45M
+            };
 
             context.TestData.Add(testData);
             context.SaveChanges();

@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using A2SPA.Data;
+using A2SPA.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
 using System.IO;
-using Microsoft.EntityFrameworkCore;
-using A2SPA.Data;
 
 namespace A2SPA
 {
@@ -27,11 +29,41 @@ namespace A2SPA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<A2spaContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             // Add framework services.
             services.AddMvc();
+
+            services.AddDbContext<A2spaContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+
+                // Register the entity sets needed by OpenIddict.
+                // Note: use the generic overload if you need
+                // to replace the default OpenIddict entities.
+                options.UseOpenIddict();
+            });
+            // Register the Identity services.
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<A2spaContext>()
+                .AddDefaultTokenProviders();
+
+            // Register the OpenIddict services.
+            services.AddOpenIddict()
+                // Register the Entity Framework stores.
+                .AddEntityFrameworkCoreStores<A2spaContext>()
+
+                // Register the ASP.NET Core MVC binder used by OpenIddict.
+                // Note: if you don't call this method, you won't be able to
+                // bind OpenIdConnectRequest or OpenIdConnectResponse parameters.
+                .AddMvcBinders()
+
+                // Enable the token endpoint.
+                .EnableTokenEndpoint("/connect/token")
+
+                // Enable the password flow.
+                .AllowPasswordFlow()
+
+                // During development, you can disable the HTTPS requirement.
+                .DisableHttpsRequirement();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +82,25 @@ namespace A2SPA
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            // Add a middleware used to validate access
+            // tokens and protect the API endpoints.
+            app.UseOAuthValidation();
+
+            // Alternatively, you can also use the introspection middleware.
+            // Using it is recommended if your resource server is in a
+            // different application/separated from the authorization server.
+            //
+            // app.UseOAuthIntrospection(options =>
+            // {
+            //     options.AutomaticAuthenticate = true;
+            //     options.AutomaticChallenge = true;
+            //     options.Authority = "http://localhost:58795/";
+            //     options.Audiences.Add("resource_server");
+            //     options.ClientId = "resource_server";
+            //     options.ClientSecret = "875sqd4s5d748z78z7ds1ff8zz8814ff88ed8ea4z4zzd";
+            // });
+
+            app.UseOpenIddict();
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions

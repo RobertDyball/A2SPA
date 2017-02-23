@@ -14,13 +14,14 @@
                 <li>
                     <a class="nav-link" (click)="setTitle('Home - A2SPA')" routerLink="/home" routerLinkActive="active">Home</a>
                 </li>
-                <li>
+                <li [hidden]="!isLoggedIn()">
                     <a class="nav-link" (click)="setTitle('About - A2SPA')" routerLink="/about">About</a>
                 </li>
                 <li>
                     <a class="nav-link" (click)="setTitle('Contact - A2SPA')" routerLink="/contact">Contact</a>
                 </li>
             </ul>
+            @await Html.PartialAsync("_LoginPartial")
         </div>
     </div>
 </div>

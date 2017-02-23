@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using A2SPA.Data;
 using A2SPA.ViewModels;
-using A2SPA.Data;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace A2SPA.Api
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
@@ -20,6 +22,7 @@ namespace A2SPA.Api
         public TestData Get()
         {
             // pick up the last value, so we see something happening
+            // TODO: replace with get, add get(id) method
             return _context.TestData.DefaultIfEmpty(null as TestData).LastOrDefault();
         }
 
@@ -27,7 +30,7 @@ namespace A2SPA.Api
         [HttpPost]
         public TestData Post([FromBody]TestData value)
         {
-            // it's valid isn't it? ToDO: add server-side validation here
+            // it's valid isn't it? TODO: add server-side validation here
             value.Id = 0;
             var newTestData =_context.Add(value);
             _context.SaveChanges();
@@ -38,12 +41,14 @@ namespace A2SPA.Api
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]TestData value)
         {
+            // TODO: add code for put - update/replace
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            // TODO: add code for delete
         }
     }
 }
