@@ -3,6 +3,7 @@ using A2SPA.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace A2SPA.Api
 {
@@ -16,39 +17,69 @@ namespace A2SPA.Api
         {
             _context = context;
         }
-        
-        // GET: api/values
+
+        // GET: api/sampleData
         [HttpGet]
-        public TestData Get()
+        public List<TestData> Get()
         {
-            // pick up the last value, so we see something happening
-            // TODO: replace with get, add get(id) method
-            return _context.TestData.DefaultIfEmpty(null as TestData).LastOrDefault();
+            return _context.TestData.ToList();
         }
 
-        // POST api/values
+        //// GET: api/sampleData/{1}
+        //[HttpGet]
+        //public TestData Get(int id)
+        //{
+        //    return _context.TestData
+        //                   .DefaultIfEmpty(null as TestData)
+        //                   .FirstOrDefault(a => a.Id == id);
+        //}
+
+        // POST api/sampleData
         [HttpPost]
         public TestData Post([FromBody]TestData value)
         {
             // it's valid isn't it? TODO: add server-side validation here
             value.Id = 0;
-            var newTestData =_context.Add(value);
+            var newTestData = _context.Add(value);
             _context.SaveChanges();
             return newTestData.Entity as TestData;
         }
 
-        // PUT api/values/5
+        // PUT api/sampleData/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]TestData value)
         {
-            // TODO: add code for put - update/replace
+            if (value != null && id != 0) // add validation
+            {
+                TestData testData = _context.TestData
+                                 .DefaultIfEmpty(null as TestData)
+                                 .FirstOrDefault(a => a.Id == id);
+                if (testData != null)
+                {
+                    _context.Update(value);
+                    _context.SaveChanges();
+                }
+            }
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE api/sampleData/5
+        [HttpDelete("{id:int}")]
+        public bool Delete(int id)
         {
-            // TODO: add code for delete
+            if (id != 0) // add validation
+            {
+                TestData testData = _context.TestData
+                                 .DefaultIfEmpty(null as TestData)
+                                 .FirstOrDefault(a => a.Id == id);
+                if (testData != null)
+                {
+                    _context.Remove(testData);
+                    _context.SaveChanges();
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

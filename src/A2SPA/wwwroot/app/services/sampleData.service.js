@@ -11,6 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/observable/throw");
+require("rxjs/add/operator/map");
+require("rxjs/add/operator/catch");
 var auth_service_1 = require("../security/auth.service");
 var SampleDataService = (function () {
     function SampleDataService(http, authService) {
@@ -20,13 +23,18 @@ var SampleDataService = (function () {
     }
     SampleDataService.prototype.getSampleData = function () {
         return this.http.get(this.url, { headers: this.authService.authJsonHeaders() })
-            .map(function (resp) { return resp.json(); })
-            .catch(this.handleError);
+            .map(function (resp) { return resp.json(); });
+        //.catch(this.handleError);
     };
     SampleDataService.prototype.addSampleData = function (testData) {
         return this.http
             .post(this.url, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
-            .map(function (resp) { return resp.json(); })
+            .map(function (resp) { return resp.json(); });
+        //.catch(this.handleError);
+    };
+    SampleDataService.prototype.deleteRecord = function (itemToDelete) {
+        return this.http.delete(this.url + '/' + itemToDelete.id, { headers: this.authService.authJsonHeaders() })
+            .map(function (res) { return res.json().status; })
             .catch(this.handleError);
     };
     // from https://angular.io/docs/ts/latest/guide/server-communication.html

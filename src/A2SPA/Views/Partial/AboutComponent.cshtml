@@ -10,41 +10,71 @@
 <h3>@ViewData["Message"]</h3>
 
 <p>Examples of Angular 2 data served by ASP.Net Core Web API:</p>
+
 <form #testForm="ngForm">
-    <div *ngIf="testData != null">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Data Entry</div>
-                    <div class="panel-body">
-                        <tag-di for="Username"></tag-di>
-                        <tag-di for="Currency"></tag-di>
-                        <tag-di for="EmailAddress"></tag-di>
-                        <tag-di for="Password"></tag-di>
-                    </div>
-                    <div class="panel-footer">
-                        <button type="button" class="btn btn-warning" (click)="addTestData($event)">Save to database</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Data Display</div>
-                    <div class="panel-body">
-                        <tag-dd for="Id"></tag-dd>
-                        <tag-dd for="Username"></tag-dd>
-                        <tag-dd for="Currency" pipe="| currency:'USD':true:'1.2-2'"></tag-dd>
-                        <tag-dd for="EmailAddress"></tag-dd>
-                        <tag-dd for="Password"></tag-dd>
-                    </div>
-                    <div class="panel-footer">
-                        <button type="button" class="btn btn-info" (click)="getSampleData($event)">Get last record from database</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div *ngIf="testData != null && testData.length > 0">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-1"> ID </th>
+                    <th class="col-md-3"> Username </th>
+                    <th class="col-md-2"> Currency </th>
+                    <th class="col-md-3"> EmailAddress </th>
+                    <th class="col-md-2"> Password </th>
+                    <th class="col-md-1">  </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of testData">
+                    <td>{{item.id}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.currency}}</td>
+                    <td>{{item.emailAddress}}</td>
+                    <td>{{item.password}}</td>
+                    <td><button type="button" class="btn btn-danger" (click)="deleteRecord(item, $event)">X</button> </td>
+                </tr>
+            </tbody>
+            @*<tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <div class="row" [hidden]="(tablemode=='list' || tablemode=='detail' || tablemode=='delete')">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">Data Entry</div>
+                                    <div class="panel-body">
+                                        <tag-di for="Username"></tag-di>
+                                        <tag-di for="Currency"></tag-di>
+                                        <tag-di for="EmailAddress"></tag-di>
+                                        <tag-di for="Password"></tag-di>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <div>
+                                            <button type="button" class="btn btn-warning" (click)="addTestData($event)">Save to database</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" [hidden]="(tablemode=='list' || tablemode=='edit' || tablemode=='add')">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">Data Display</div>
+                                    <div class="panel-body">
+                                        <tag-dd for="Id"></tag-dd>
+                                        <tag-dd for="Username"></tag-dd>
+                                        <tag-dd for="Currency" pipe="| currency:'USD':true:'1.2-2'"></tag-dd>
+                                        <tag-dd for="EmailAddress"></tag-dd>
+                                        <tag-dd for="Password"></tag-dd>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="button" class="btn btn-info" (click)="getSampleData($event)">Get last record from database</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>*@
+        </table>
     </div>
 </form>
+
 
 <div *ngIf="errorMessage != null">
     <p>Error:</p>
