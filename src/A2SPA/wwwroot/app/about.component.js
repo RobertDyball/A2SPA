@@ -17,12 +17,14 @@ var AboutComponent = (function () {
     function AboutComponent(sampleDataService) {
         this.sampleDataService = sampleDataService;
         this.testDataList = [];
+        this.itemToSelect = null;
         this.testData = null;
-        this.tableMode = 'list';
     }
     AboutComponent.prototype.ngOnInit = function () {
         this.getTestData();
         this.testData = new testData_1.TestData();
+        this.itemToSelect = new testData_1.TestData();
+        this.tableMode = 'list';
     };
     AboutComponent.prototype.getTestData = function () {
         var _this = this;
@@ -45,14 +47,18 @@ var AboutComponent = (function () {
             console.log(error);
         });
     };
+    AboutComponent.prototype.selectCurrentItem = function (itemToSelect, event) {
+        event.preventDefault();
+        this.testData = itemToSelect;
+        console.log('select item: ' + itemToSelect.id);
+    };
     AboutComponent.prototype.addTestData = function (event) {
         var _this = this;
         event.preventDefault();
-        if (!this.testData) {
-            return;
-        }
+        console.log('adding new data');
+        //if (!this.testData) { return; }
         this.sampleDataService.addSampleData(this.testData)
-            .map(function (data) { return _this.testData = data; });
+            .subscribe(function (data) { _this.testData = data; }, function (error) { return _this.errorMessage = error; });
     };
     return AboutComponent;
 }());

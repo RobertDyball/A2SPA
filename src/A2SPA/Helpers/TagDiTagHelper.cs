@@ -10,6 +10,18 @@ namespace A2SPA.Helpers
     public class TagDiTagHelper : TagHelper
     {
         /// <summary>
+        /// Alternate name to set angular data-binding to
+        /// </summary>
+        [HtmlAttributeName("var")]
+        public string Var { get; set; } = null;
+
+        /// <summary>
+        /// Alternate name to set angular parent data-binding to
+        /// </summary>
+        [HtmlAttributeName("par")]
+        public string Par { get; set; } = null;
+
+        /// <summary>
         /// Name of data property 
         /// </summary>
         [HtmlAttributeName("for")]
@@ -112,7 +124,7 @@ namespace A2SPA.Helpers
             }
 
             // bind angular data model to the control,
-            inputTag.MergeAttribute("[(ngModel)]", For.CamelizedName());
+            inputTag.MergeAttribute("[(ngModel)]", For.GetDataBindVariableName(Par, Var));
 
             // TODO: if adding say text area, you want closing tag. For input tag you do not have closing or self-closing
             inputTag.TagRenderMode = TagRenderMode.StartTag;
@@ -120,7 +132,7 @@ namespace A2SPA.Helpers
             // now generate the outer wrapper for the form group, get ready to start filling it with content prepared above
             output.TagName = "div";
             output.Attributes.Add("class", "form-group");
-            
+
             // first the label
             output.Content.AppendHtml(labelTag);
 

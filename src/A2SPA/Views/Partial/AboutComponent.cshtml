@@ -21,30 +21,30 @@
                     <th class="col-md-2"> Currency </th>
                     <th class="col-md-3"> EmailAddress </th>
                     <th class="col-md-2"> Password </th>
-                    <td><button type="button" class="btn btn-info" (click)="tablemode='add'">+</button></td>
+                    <td><button type="button" class="btn btn-info btn-sm" (click)="tablemode='add'">+</button></td>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of testDataList">
-                    <td>{{item.id}}</td>
+                    <td (click)="selectCurrentItem(item,$event)">{{item.id}}</td>
                     <td>{{item.username}}</td>
                     <td>{{item.currency}}</td>
                     <td>{{item.emailAddress}}</td>
                     <td>{{item.password}}</td>
                     <td>
-                        <button type="button" class="btn btn-danger" (click)="deleteRecord(item, $event)">X</button>
-                        <button type="button" class="btn btn-info" (click)="tablemode=='detail'">?</button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteRecord(item, $event)">X</button>
+                        <button type="button" class="btn btn-info btn-sm" (click)="tablemode=='detail'">?</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="col-md-4">
-        <div class="row" [hidden]="tablemode=='detail' || tablemode=='delete'">
+        <div class="row" [hidden]="!(tablemode=='add'||tablemode=='edit')">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     Data Entry
-                    <button type="button" class="btn btn-info pull-right" (click)="tablemode='list'">-</button>
+                    <button type="button" class="btn btn-info btn-sm pull-right" (click)="tablemode='list'">-</button>
                 </div>
                 <div class="panel-body">
                     <tag-di for="Username"></tag-di>
@@ -54,16 +54,16 @@
                 </div>
                 <div class="panel-footer">
                     <div>
-                        <button type="button" class="btn btn-warning" (click)="addTestData($event, testData)">Save to database</button>
+                        <button type="button" class="btn btn-warning" (click)="addTestData($event)">Save to database</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row" [hidden]="tablemode=='edit' || tablemode=='add'">
+        @*<div class="row" [hidden]="!tablemode=='display'">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     Data Display
-                    <button type="button" class="btn btn-info pull-right" (click)="tablemode='list';">-</button>
+                    <button type="button" class="btn btn-info btn-sm pull-right" (click)="tablemode='list';">-</button>
                 </div>
                 <div class="panel-body">
                     <tag-dd for="Id"></tag-dd>
@@ -76,7 +76,7 @@
                     <button type="button" class="btn btn-info" (click)="getSampleData($event)">Get last record from database</button>
                 </div>
             </div>
-        </div>
+        </div>*@
 
     </div>
 </form>

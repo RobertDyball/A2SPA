@@ -13,8 +13,9 @@ import 'rxjs/add/operator/catch';
 
 export class AboutComponent implements OnInit {
     testDataList: TestData[] = [];
+    itemToSelect: TestData = null;
     testData: TestData = null;
-    tableMode: string = 'list';
+    tableMode: string;
 
     errorMessage: string;
 
@@ -23,6 +24,8 @@ export class AboutComponent implements OnInit {
     ngOnInit() {
         this.getTestData();
         this.testData = new TestData();
+        this.itemToSelect = new TestData();
+        this.tableMode = 'list';
     }
 
     getTestData() {
@@ -48,10 +51,18 @@ export class AboutComponent implements OnInit {
             });
     }
 
+    selectCurrentItem(itemToSelect: TestData, event: any) {
+        event.preventDefault();
+        this.testData = itemToSelect;
+        console.log('select item: ' + itemToSelect.id);
+    }
+
     addTestData(event: any) {
         event.preventDefault();
-        if (!this.testData) { return; }
+        console.log('adding new data');
+        //if (!this.testData) { return; }
         this.sampleDataService.addSampleData(this.testData)
-            .map((data: TestData) => this.testData = data);
+            .subscribe((data: TestData) => { this.testData = data },
+            (error: any) => this.errorMessage = error);
     }
 }

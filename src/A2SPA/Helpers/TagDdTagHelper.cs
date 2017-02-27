@@ -10,6 +10,17 @@ namespace A2SPA.Helpers
     public class TagDdTagHelper : TagHelper
     {
         /// <summary>
+        /// Alternate name to set angular data-binding to
+        /// </summary>
+        [HtmlAttributeName("var")]
+        public string Var { get; set; } = null;
+
+        /// <summary>
+        /// Alternate name to set angular parent data-binding to
+        /// </summary>
+        [HtmlAttributeName("par")]
+        public string Par { get; set; } = null;
+        /// <summary>
         /// Name of data property 
         /// </summary>
         [HtmlAttributeName("for")]
@@ -45,7 +56,7 @@ namespace A2SPA.Helpers
 
             var dataBindExpression = ((DefaultModelMetadata)For.Metadata).DataTypeName == "Password" 
                                                 ? "******" 
-                                                : "{{" + For.CamelizedName() + pipe + "}}";
+                                                : "{{" + For.GetDataBindVariableName(Par, Var) + pipe + "}}";
 
             pTag.InnerHtml.Append(dataBindExpression);
 
