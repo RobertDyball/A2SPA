@@ -12,8 +12,9 @@ import 'rxjs/add/operator/catch';
 })
 
 export class AboutComponent implements OnInit {
-    testData: TestData[] = [];
-    testDataItem: TestData = null;
+    testDataList: TestData[] = [];
+    testData: TestData = null;
+    tableMode: string = 'list';
 
     errorMessage: string;
 
@@ -21,12 +22,13 @@ export class AboutComponent implements OnInit {
 
     ngOnInit() {
         this.getTestData();
+        this.testData = new TestData();
     }
 
     getTestData() {
         this.sampleDataService.getSampleData()
-            .subscribe((data: TestData[]) => { this.testData = data },
-            ((error: any) => this.errorMessage = error);
+            .subscribe((data: TestData[]) => { this.testDataList = data },
+            (error: any) => this.errorMessage = error);
     }
 
     deleteRecord(itemToDelete: TestData, event: any) {
@@ -49,7 +51,7 @@ export class AboutComponent implements OnInit {
     addTestData(event: any) {
         event.preventDefault();
         if (!this.testData) { return; }
-        this.sampleDataService.addSampleData(this.testDataItem)
-            .map((data: TestData) => this.testDataItem = data);
+        this.sampleDataService.addSampleData(this.testData)
+            .map((data: TestData) => this.testData = data);
     }
 }
