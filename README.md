@@ -11,8 +11,11 @@ covers use of ASP.Net Core tag helpers with Angular 2 to display data
 Part 3: see: https://www.codeproject.com/Articles/1171129/SPA-using-ASP-Net-Core-plus-Angular-part-3
 covers use of ASP.Net Core tag helpers with Angular 2 for data input
 
-Part 4: (URL to be added; soon to be pubished)
+Part 4: see: https://www.codeproject.com/Articles/1172349/SPA-using-ASP-Net-Core-plus-Angular-part-4
 covers token authentication using JWT and OpenIdDict
+
+Part 5: (URL to be added; soon to be pubished)
+covers Angular 2 / Typescript code generation using NSwag
 
 #### Prerequisites
 
