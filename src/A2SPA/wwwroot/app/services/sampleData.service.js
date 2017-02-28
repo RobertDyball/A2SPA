@@ -23,14 +23,20 @@ var SampleDataService = (function () {
     }
     SampleDataService.prototype.getSampleData = function () {
         return this.http.get(this.url, { headers: this.authService.authJsonHeaders() })
-            .map(function (resp) { return resp.json(); });
-        //.catch(this.handleError);
+            .map(function (resp) { return resp.json(); })
+            .catch(this.handleError);
     };
     SampleDataService.prototype.addSampleData = function (testData) {
         return this.http
             .post(this.url, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
-            .map(function (resp) { return resp.json(); });
-        //.catch(this.handleError);
+            .map(function (resp) { return resp.json(); })
+            .catch(this.handleError);
+    };
+    SampleDataService.prototype.editSampleData = function (testData) {
+        return this.http
+            .put(this.url, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
+            .map(function (resp) { return resp.json(); })
+            .catch(this.handleError);
     };
     SampleDataService.prototype.deleteRecord = function (itemToDelete) {
         return this.http.delete(this.url + '/' + itemToDelete.id, { headers: this.authService.authJsonHeaders() })

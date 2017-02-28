@@ -6,15 +6,28 @@
 @{
     ViewData["Title"] = "About";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+<div class="row">
+    <div class="col-md-8">
+        <h2>@ViewData["Title"].</h2>
+        <h3>@ViewData["Message"]</h3>
+        <p>Examples of Angular 2 data served by ASP.Net Core Web API:</p>
+    </div>
+    <div class="col-md-4">
+        <div class="row pull-right text-right">
+            <br/>
+            <p class="small">rowcount <span class="badge">{{ (testDataList == null) ? '0' : testDataList.length }}</span></p><br />
+            <p class="small">mode <span class="badge">{{tableMode}}</span></p><br />
+        </div>
+    </div>
+</div>
 
-<p>Examples of Angular 2 data served by ASP.Net Core Web API:</p>
-<pre>{{tableMode}}</pre>
 <form #testForm="ngForm">
     <div class="row">
+        <div *ngIf="testDataList == null || testDataList.length == 0" class="col-md-8">
+            (no data)
+        </div>
         <div *ngIf="testDataList != null && testDataList.length > 0" class="col-md-8">
-            <table class="table table-striped">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th class="col-md-1"> ID </th>
@@ -26,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of testDataList" (click)="selectCurrentItem(item,$event)">
+                    <tr *ngFor="let item of testDataList" (click)="selectCurrentItem(item,$event)" [class.info]="item==selectedItem">
                         <td>{{item.id}}</td>
                         <td>{{item.username}}</td>
                         <td>{{item.currency}}</td>
@@ -41,7 +54,7 @@
             </table>
         </div>
         <div class="col-md-4">
-            <div class="row" [hidden]="!(tableMode==='add'||tableMode==='edit')">
+            <div class="row" [hidden]="!(tableMode==='add'||tableMode==='edit')" *ngIf="testData != null">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <span [hidden]="!(tableMode==='add')">Data Entry</span>
@@ -49,10 +62,10 @@
                         <button type="button" class="btn btn-info btn-sm pull-right" (click)="tableMode='list'">-</button>
                     </div>
                     <div class="panel-body">
-                        <tag-di for="Username"></tag-di>
-                        <tag-di for="Currency"></tag-di>
-                        <tag-di for="EmailAddress"></tag-di>
-                        <tag-di for="Password"></tag-di>
+                        <tag-di par="testData" for="Username"></tag-di>
+                        <tag-di par="testData" for="Currency"></tag-di>
+                        <tag-di par="testData" for="EmailAddress"></tag-di>
+                        <tag-di par="testData" for="Password"></tag-di>
                     </div>
                     <div class="panel-footer">
                         <div>
@@ -61,18 +74,18 @@
                     </div>
                 </div>
             </div>
-            <div class="row" [hidden]="!(tableMode==='list')">
+            <div class="row" [hidden]="!(tableMode==='list')" *ngIf="testData != null">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         Data Display
                         <button type="button" class="btn btn-info btn-sm pull-right" (click)="tableMode='list';">-</button>
                     </div>
                     <div class="panel-body">
-                        <tag-dd for="Id"></tag-dd>
-                        <tag-dd for="Username"></tag-dd>
-                        <tag-dd for="Currency" pipe="| currency:'USD':true:'1.2-2'"></tag-dd>
-                        <tag-dd for="EmailAddress"></tag-dd>
-                        <tag-dd for="Password"></tag-dd>
+                        <tag-dd par="testData" for="Id"></tag-dd>
+                        <tag-dd par="testData" for="Username"></tag-dd>
+                        <tag-dd par="testData" for="Currency" pipe="| currency:'USD':true:'1.2-2'"></tag-dd>
+                        <tag-dd par="testData" for="EmailAddress"></tag-dd>
+                        <tag-dd par="testData" for="Password"></tag-dd>
                     </div>
                     <div class="panel-footer">
                         <button type="button" class="btn btn-info" (click)="getSampleData($event)">Get last record from database</button>

@@ -17,28 +17,44 @@ var AboutComponent = (function () {
     function AboutComponent(sampleDataService) {
         this.sampleDataService = sampleDataService;
         this.testDataList = [];
-        this.itemToSelect = null;
+        this.selectedItem = null;
         this.testData = null;
     }
+    AboutComponent.prototype.initTestData = function () {
+        var newTestData = new testData_1.TestData();
+        newTestData.id = null;
+        newTestData.currency = null;
+        newTestData.emailAddress = null;
+        newTestData.password = null;
+        newTestData.username = null;
+        return newTestData;
+    };
     AboutComponent.prototype.ngOnInit = function () {
         this.getTestData();
-        this.testData = new testData_1.TestData();
-        this.itemToSelect = new testData_1.TestData();
-        this.tableMode = 'list';
+        this.testData = this.initTestData();
+        this.selectedItem = null;
+        this.tableMode = 'add';
     };
     AboutComponent.prototype.getTestData = function () {
         var _this = this;
+        console.log('getting test data');
         this.sampleDataService.getSampleData()
-            .subscribe(function (data) { _this.testDataList = data; if (_this.testDataList != null && _this.testDataList.length > 0) {
-            _this.testData = _this.testDataList[1];
-        } }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function (data) {
+            _this.testDataList = data;
+            if (_this.testDataList != null && _this.testDataList.length > 0) {
+                console.log('pop test data');
+                _this.testData = _this.testDataList[1];
+            }
+        }, function (error) { return _this.errorMessage = error; });
     };
     AboutComponent.prototype.deleteRecord = function (itemToDelete, event) {
         var _this = this;
         event.preventDefault();
+        console.log('delete testdata');
         this.sampleDataService.deleteRecord(itemToDelete)
             .subscribe(function (status) {
             if (status = true) {
+                console.log('refresh testdata');
                 _this.getTestData();
             }
             else {
@@ -51,35 +67,53 @@ var AboutComponent = (function () {
     };
     AboutComponent.prototype.changeMode = function (newMode, thisItem, event) {
         event.preventDefault();
+        console.log('change mode current: ' + this.tableMode + ' new: ' + newMode);
         this.tableMode = newMode;
+        if (this.testDataList.length == 0) {
+            this.tableMode = 'add';
+        }
+        if (this.testDataList.length > 0) {
+            if (this.testData == null)
+                this.testData = this.initTestData();
+            else
+                this.testData = this.testDataList[0];
+        }
         switch (newMode) {
             case 'add':
-                this.testData = new testData_1.TestData();
-                this.testData.id = null;
+                this.testData = this.initTestData();
                 break;
             case 'edit':
                 this.testData = thisItem;
                 break;
             case 'list':
-                this.testData = thisItem;
-                break;
             default:
-                this.testData = thisItem;
+                {
+                    this.testData = thisItem;
+                }
+                break;
         }
     };
-    AboutComponent.prototype.selectCurrentItem = function (itemToSelect, event) {
+    AboutComponent.prototype.selectCurrentItem = function (thisItem, event) {
         event.preventDefault();
-        this.testData = itemToSelect;
-        console.log('select item: ' + itemToSelect.id);
+        this.selectedItem = thisItem;
+        console.log('select item: ' + thisItem.id);
     };
     AboutComponent.prototype.addTestData = function (event) {
         var _this = this;
         event.preventDefault();
         console.log('adding new data');
+        //if (!this.testData) { return; }
+        this.sampleDataService.addSampleData(this.testData)
+            .subscribe(function (data) { _this.testData = data; _this.getTestData(); }, function (error) { return _this.errorMessage = error; });
+    };
+    AboutComponent.prototype.editTestData = function (event) {
+        var _this = this;
+        event.preventDefault();
+        console.log('edit existing data');
         if (!this.testData) {
             return;
         }
-        this.sampleDataService.addSampleData(this.testData)
+        this.sampleDataService.editSampleData(this.testData)
             .subscribe(function (data) { _this.testData = data; _this.getTestData(); }, function (error) { return _this.errorMessage = error; });
     };
     return AboutComponent;
