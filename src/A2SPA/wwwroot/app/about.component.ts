@@ -25,12 +25,12 @@ export class AboutComponent implements OnInit {
         this.getTestData();
         this.testData = new TestData();
         this.itemToSelect = new TestData();
-        this.tableMode = 'list';
+        this.tableMode = 'add';
     }
 
     getTestData() {
         this.sampleDataService.getSampleData()
-            .subscribe((data: TestData[]) => { this.testDataList = data },
+            .subscribe((data: TestData[]) => { this.testDataList = data; if (this.testDataList != null && this.testDataList.length > 0) { this.testData = this.testDataList[1]; } },
             (error: any) => this.errorMessage = error);
     }
 
@@ -51,6 +51,42 @@ export class AboutComponent implements OnInit {
             });
     }
 
+    changeMode(newMode: string, thisItem: TestData, event: any) : void {
+        event.preventDefault();
+        this.tableMode = newMode;
+
+        if (this.testDataList.length == 0) {
+            this.tableMode = 'add';
+        }
+
+        if (this.testDataList.length > 0) {
+            if (this.testData == null)
+                this.testData = new TestData();
+            else
+                this.testData = this.testDataList[0];
+        }
+
+
+        switch (newMode) {
+            case 'add':
+                this.testData = new TestData();
+                this.testData.id = null;
+                break;
+
+            case 'edit':
+                this.testData = thisItem;
+                break;
+
+            case 'list':
+            default:
+                {
+                    this.testData = thisItem;
+                }
+
+                break;
+        }
+    }
+
     selectCurrentItem(itemToSelect: TestData, event: any) {
         event.preventDefault();
         this.testData = itemToSelect;
@@ -60,9 +96,18 @@ export class AboutComponent implements OnInit {
     addTestData(event: any) {
         event.preventDefault();
         console.log('adding new data');
-        //if (!this.testData) { return; }
+        if (!this.testData) { return; }
         this.sampleDataService.addSampleData(this.testData)
-            .subscribe((data: TestData) => { this.testData = data },
+            .subscribe((data: TestData) => { this.testData = data; this.getTestData(); },
+            (error: any) => this.errorMessage = error);
+    }
+
+    editTestData(event: any) {
+        event.preventDefault();
+        console.log('edit existing data');
+        if (!this.testData) { return; }
+        this.sampleDataService.editSampleData(this.testData)
+            .subscribe((data: TestData) => { this.testData = data; this.getTestData(); },
             (error: any) => this.errorMessage = error);
     }
 }

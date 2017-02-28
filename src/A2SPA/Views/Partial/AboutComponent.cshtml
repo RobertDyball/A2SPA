@@ -10,7 +10,7 @@
 <h3>@ViewData["Message"]</h3>
 
 <p>Examples of Angular 2 data served by ASP.Net Core Web API:</p>
-
+<pre>{{tableMode}}</pre>
 <form #testForm="ngForm">
     <div class="row">
         <div *ngIf="testDataList != null && testDataList.length > 0" class="col-md-8">
@@ -22,31 +22,31 @@
                         <th class="col-md-2"> Currency </th>
                         <th class="col-md-3"> EmailAddress </th>
                         <th class="col-md-2"> Password </th>
-                        <td><button type="button" class="btn btn-info btn-sm" (click)="tablemode='add'">+</button></td>
+                        <td><button type="button" class="btn btn-info btn-sm" (click)="changeMode('add', null, $event)">+</button></td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of testDataList">
-                        <td (click)="selectCurrentItem(item,$event)">{{item.id}}</td>
+                    <tr *ngFor="let item of testDataList" (click)="selectCurrentItem(item,$event)">
+                        <td>{{item.id}}</td>
                         <td>{{item.username}}</td>
                         <td>{{item.currency}}</td>
                         <td>{{item.emailAddress}}</td>
                         <td>{{item.password}}</td>
                         <td>
                             <button type="button" class="btn btn-danger btn-sm" (click)="deleteRecord(item, $event)">X</button>
-                            <button type="button" class="btn btn-info btn-sm" (click)="tablemode=='detail'">?</button>
+                            <button type="button" class="btn btn-info btn-sm" (click)="changeMode('edit', item, $event)">?</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="col-md-4">
-            <div class="row" [hidden]="!(tablemode==='add'||tablemode==='edit')">
+            <div class="row" [hidden]="!(tableMode==='add'||tableMode==='edit')">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <span [hidden]="!(tablemode==='add')">Data Entry</span>
-                        <span [hidden]="!(tablemode==='edit')">Edit Data</span>
-                        <button type="button" class="btn btn-info btn-sm pull-right" (click)="tablemode='list'">-</button>
+                        <span [hidden]="!(tableMode==='add')">Data Entry</span>
+                        <span [hidden]="!(tableMode==='edit')">Edit Data</span>
+                        <button type="button" class="btn btn-info btn-sm pull-right" (click)="tableMode='list'">-</button>
                     </div>
                     <div class="panel-body">
                         <tag-di for="Username"></tag-di>
@@ -61,11 +61,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row" [hidden]="!tablemode==='display'">
+            <div class="row" [hidden]="!(tableMode==='list')">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         Data Display
-                        <button type="button" class="btn btn-info btn-sm pull-right" (click)="tablemode='list';">-</button>
+                        <button type="button" class="btn btn-info btn-sm pull-right" (click)="tableMode='list';">-</button>
                     </div>
                     <div class="panel-body">
                         <tag-dd for="Id"></tag-dd>

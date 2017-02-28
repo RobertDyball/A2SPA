@@ -19,17 +19,23 @@ export class SampleDataService {
 
     getSampleData() {
         return this.http.get(this.url, { headers: this.authService.authJsonHeaders() })
-            .map((resp: Response) => resp.json());
-            //.catch(this.handleError);
+            .map((resp: Response) => resp.json())
+            .catch(this.handleError);
     }
 
     addSampleData(testData: TestData) {
         return this.http
             .post(this.url, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
-            .map((resp: Response) => resp.json());
-            //.catch(this.handleError);
+            .map((resp: Response) => resp.json())
+            .catch(this.handleError);
     }
 
+    editSampleData(testData: TestData) {
+        return this.http
+            .put(this.url, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
+            .map((resp: Response) => resp.json())
+            .catch(this.handleError);
+    }
 
     deleteRecord(itemToDelete: TestData): Observable<boolean> {
         return this.http.delete(this.url + '/' + itemToDelete.id, { headers: this.authService.authJsonHeaders() })

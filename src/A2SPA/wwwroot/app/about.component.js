@@ -29,7 +29,9 @@ var AboutComponent = (function () {
     AboutComponent.prototype.getTestData = function () {
         var _this = this;
         this.sampleDataService.getSampleData()
-            .subscribe(function (data) { _this.testDataList = data; }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function (data) { _this.testDataList = data; if (_this.testDataList != null && _this.testDataList.length > 0) {
+            _this.testData = _this.testDataList[1];
+        } }, function (error) { return _this.errorMessage = error; });
     };
     AboutComponent.prototype.deleteRecord = function (itemToDelete, event) {
         var _this = this;
@@ -47,6 +49,24 @@ var AboutComponent = (function () {
             console.log(error);
         });
     };
+    AboutComponent.prototype.changeMode = function (newMode, thisItem, event) {
+        event.preventDefault();
+        this.tableMode = newMode;
+        switch (newMode) {
+            case 'add':
+                this.testData = new testData_1.TestData();
+                this.testData.id = null;
+                break;
+            case 'edit':
+                this.testData = thisItem;
+                break;
+            case 'list':
+                this.testData = thisItem;
+                break;
+            default:
+                this.testData = thisItem;
+        }
+    };
     AboutComponent.prototype.selectCurrentItem = function (itemToSelect, event) {
         event.preventDefault();
         this.testData = itemToSelect;
@@ -56,9 +76,11 @@ var AboutComponent = (function () {
         var _this = this;
         event.preventDefault();
         console.log('adding new data');
-        //if (!this.testData) { return; }
+        if (!this.testData) {
+            return;
+        }
         this.sampleDataService.addSampleData(this.testData)
-            .subscribe(function (data) { _this.testData = data; }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function (data) { _this.testData = data; _this.getTestData(); }, function (error) { return _this.errorMessage = error; });
     };
     return AboutComponent;
 }());
