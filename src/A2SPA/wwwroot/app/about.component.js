@@ -75,8 +75,6 @@ var AboutComponent = (function () {
         if (this.testDataList.length > 0) {
             if (this.testData == null)
                 this.testData = this.initTestData();
-            else
-                this.testData = this.testDataList[0];
         }
         switch (newMode) {
             case 'add':
@@ -96,7 +94,9 @@ var AboutComponent = (function () {
     AboutComponent.prototype.selectCurrentItem = function (thisItem, event) {
         event.preventDefault();
         this.selectedItem = thisItem;
+        this.testData = this.selectedItem;
         console.log('select item: ' + thisItem.id);
+        console.log('testData item: ' + this.testData.id);
     };
     AboutComponent.prototype.addTestData = function (event) {
         var _this = this;
@@ -110,9 +110,7 @@ var AboutComponent = (function () {
         var _this = this;
         event.preventDefault();
         console.log('edit existing data');
-        if (!this.testData) {
-            return;
-        }
+        //if (!this.testData) { return; }
         this.sampleDataService.editSampleData(this.testData)
             .subscribe(function (data) { _this.testData = data; _this.getTestData(); }, function (error) { return _this.errorMessage = error; });
     };

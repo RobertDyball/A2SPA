@@ -82,8 +82,8 @@ export class AboutComponent implements OnInit {
         if (this.testDataList.length > 0) {
             if (this.testData == null)
                 this.testData = this.initTestData();
-            else
-                this.testData = this.testDataList[0];
+            //else
+            //    this.testData = this.testDataList[0];
         }
 
 
@@ -109,7 +109,9 @@ export class AboutComponent implements OnInit {
     selectCurrentItem(thisItem: TestData, event: any) {
         event.preventDefault();
         this.selectedItem = thisItem;
+        this.testData = this.selectedItem;
         console.log('select item: ' + thisItem.id);
+        console.log('testData item: ' + this.testData.id);
     }
 
     addTestData(event: any) {
@@ -124,7 +126,7 @@ export class AboutComponent implements OnInit {
     editTestData(event: any) {
         event.preventDefault();
         console.log('edit existing data');
-        if (!this.testData) { return; }
+        //if (!this.testData) { return; }
         this.sampleDataService.editSampleData(this.testData)
             .subscribe((data: TestData) => { this.testData = data; this.getTestData(); },
             (error: any) => this.errorMessage = error);

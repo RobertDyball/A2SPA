@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
+using A2SPA.Helpers;
+using System.ComponentModel.DataAnnotations;
 
 namespace A2SPA.Api
 {
@@ -38,6 +40,9 @@ namespace A2SPA.Api
         [HttpPost]
         public TestData Post([FromBody]TestData value)
         {
+            //var results = new List<ValidationResult>();
+            //if (!value.IsModelValid(results)) return null;
+            
             // it's valid isn't it? TODO: add server-side validation here
             value.Id = 0;
             var newTestData = _context.Add(value);
