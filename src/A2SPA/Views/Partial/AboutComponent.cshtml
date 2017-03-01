@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-4">
         <div class="row pull-right text-right">
-            <br/>
+            <br />
             <p class="small">rowcount <span class="badge">{{ (testDataList == null) ? '0' : testDataList.length }}</span></p><br />
             <p class="small">mode <span class="badge">{{tableMode}}</span></p><br />
         </div>
@@ -57,7 +57,7 @@
             <div class="row" [hidden]="!(tableMode==='add'||tableMode==='edit')" *ngIf="testData != null">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <span [hidden]="!(tableMode==='add')">Data Entry</span>
+                        <span [hidden]="!(tableMode==='add')">Add Data</span>
                         <span [hidden]="!(tableMode==='edit')">Edit Data</span>
                         <button type="button" class="btn btn-info btn-sm pull-right" (click)="tableMode='list'">-</button>
                     </div>
@@ -69,12 +69,9 @@
                         <tag-di par="testData" for="Password"></tag-di>
                     </div>
                     <div class="panel-footer">
-                        <div>
-                            <button [hidden]="!(tableMode==='add')" type="button" class="btn btn-warning" (click)="addTestData($event)">Save new item</button>
-                            <button [hidden]="!(tableMode==='edit')" type="button" class="btn btn-warning" (click)="editTestData($event)">Save updated item</button>
-                        </div>
+                        <button [hidden]="!(tableMode==='add')" type="button" class="btn btn-warning" (click)="addTestData($event)">Save new item</button>
+                        <button [hidden]="!(tableMode==='edit')" type="button" class="btn btn-warning" (click)="editTestData($event)">Save updated item</button>
                     </div>
-                    <pre>{{ngForm|json}}</pre>
                 </div>
             </div>
             <div class="row" [hidden]="!(tableMode==='list')" *ngIf="selectedItem != null">
@@ -91,7 +88,7 @@
                         <tag-dd par="selectedItem" for="Password"></tag-dd>
                     </div>
                     <div class="panel-footer">
-                        <button type="button" class="btn btn-info" (click)="getSampleData($event)">Get last record from database</button>
+                        <button type="button" class="btn btn-info" (click)="getTestData()">Get all records from database</button>
                     </div>
                 </div>
             </div>
@@ -99,7 +96,8 @@
         </div>
     </div>
 </form>
-
+<pre class="col-md-6">testData: {{testData|json}}</pre>
+<pre class="col-md-6">selectedItem: {{selectedItem|json}}</pre>
 
 <div *ngIf="errorMessage != null">
     <p>Error:</p>

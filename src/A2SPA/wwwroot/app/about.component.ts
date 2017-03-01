@@ -23,11 +23,11 @@ export class AboutComponent implements OnInit {
 
     initTestData(): TestData {
         var newTestData = new TestData();
-        newTestData.id = null;
-        newTestData.currency = null;
-        newTestData.emailAddress = null;
-        newTestData.password = null;
-        newTestData.username = null;
+        //newTestData.id = 0;
+        //newTestData.currency = null;
+        //newTestData.emailAddress = null;
+        //newTestData.password = null;
+        //newTestData.username = null;
 
         return newTestData;
     }
@@ -36,29 +36,25 @@ export class AboutComponent implements OnInit {
         this.getTestData();
         this.testData = this.initTestData();
         this.selectedItem = null;
-        this.tableMode = 'add';
+        this.tableMode = 'list';
     }
 
     getTestData() {
-        console.log('getting test data');
         this.sampleDataService.getSampleData()
             .subscribe((data: TestData[]) => {
-            this.testDataList = data;
-            if (this.testDataList != null && this.testDataList.length > 0) {
-                console.log('pop test data');
-                this.testData = this.testDataList[1];
-            }
+                this.testDataList = data;
+                if (this.testDataList != null && this.testDataList.length > 0) {
+                    this.selectedItem = this.testDataList[0];
+                }
             },
             (error: any) => this.errorMessage = error);
     }
 
     deleteRecord(itemToDelete: TestData, event: any) {
         event.preventDefault();
-        console.log('delete testdata');
         this.sampleDataService.deleteRecord(itemToDelete)
             .subscribe((status: boolean) => {
                 if (status = true) {
-                    console.log('refresh testdata');
                     this.getTestData();
                 }
                 else {
@@ -71,9 +67,8 @@ export class AboutComponent implements OnInit {
             });
     }
 
-    changeMode(newMode: string, thisItem: TestData, event: any) : void {
+    changeMode(newMode: string, thisItem: TestData, event: any): void {
         event.preventDefault();
-        console.log('change mode current: ' + this.tableMode + ' new: ' + newMode);
         this.tableMode = newMode;
         if (this.testDataList.length == 0) {
             this.tableMode = 'add';
@@ -110,14 +105,11 @@ export class AboutComponent implements OnInit {
         event.preventDefault();
         this.selectedItem = thisItem;
         this.testData = this.selectedItem;
-        console.log('select item: ' + thisItem.id);
-        console.log('testData item: ' + this.testData.id);
     }
 
     addTestData(event: any) {
         event.preventDefault();
-        console.log('adding new data');
-        //if (!this.testData) { return; }
+        if (!this.testData) { return; }
         this.sampleDataService.addSampleData(this.testData)
             .subscribe((data: TestData) => { this.testData = data; this.getTestData(); },
             (error: any) => this.errorMessage = error);
@@ -125,8 +117,7 @@ export class AboutComponent implements OnInit {
 
     editTestData(event: any) {
         event.preventDefault();
-        console.log('edit existing data');
-        //if (!this.testData) { return; }
+        if (!this.testData) { return; }
         this.sampleDataService.editSampleData(this.testData)
             .subscribe((data: TestData) => { this.testData = data; this.getTestData(); },
             (error: any) => this.errorMessage = error);
