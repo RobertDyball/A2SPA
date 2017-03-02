@@ -1,5 +1,6 @@
 ﻿using A2SPA.Data;
 using A2SPA.Models;
+using AspNet.Security.OpenIdConnect.Primitives;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -45,6 +46,16 @@ namespace A2SPA
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<A2spaContext>()
                 .AddDefaultTokenProviders();
+
+            // Configure Identity to use the same JWT claims as OpenIddict instead
+            // of the legacy WS-Federation claims it uses by default (ClaimTypes),
+            // which saves you from doing the mapping in your authorization controller.
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
+                options.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
+                //options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
+            });
 
             // Register the OpenIddict services.
             services.AddOpenIddict()
