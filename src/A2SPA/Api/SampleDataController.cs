@@ -3,9 +3,11 @@ using A2SPA.Helpers;
 using A2SPA.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace A2SPA.Api
 {
@@ -22,41 +24,62 @@ namespace A2SPA.Api
 
         // GET: api/sampleData/{1}
         [HttpGet("{id}")]
-        public TestData GetById(int id)
+        public IActionResult GetById(int id)
         {
-            return _context.TestData
-                           .DefaultIfEmpty(null as TestData)
-                           .FirstOrDefault(a => a.Id == id);
+            var testData = _context.TestData
+                                   .DefaultIfEmpty(null as TestData)
+                                   .FirstOrDefault(a => a.Id == id);
+
+            if (testData == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(testData);
         }
 
         // GET: api/sampleData
         [HttpGet]
-        public List<TestData> Get()
+        public IActionResult Get()
         {
-            return _context.TestData.ToList();
+            var testData = _context.TestData;
+
+            if (!testData.Any())
+            {
+                return NoContent();
+            }
+
+            return Ok(testData.ToList());
         }
 
         // POST api/sampleData
         [HttpPost]
-        public TestData Post([FromBody]TestData value)
+        public IActionResult Post([FromBody]TestData value)
         {
             value.Id = 0;
             ICollection<ValidationResult> results = new List<ValidationResult>();
             // TODO: wrap result in response object to include http result, success/error message, validation results etc.
-            if (!value.IsModelValid(out results)) return null;
+            if (!value.IsModelValid(out results))
+            {
+                return BadRequest(results);
+            }
 
             var newTestData = _context.Add(value);
             _context.SaveChanges();
-            return newTestData.Entity as TestData;
+
+            return Ok(newTestData.Entity as TestData);
         }
 
         // PUT api/sampleData/5
         [HttpPut]
-        public TestData Put([FromBody]TestData value)
+        public IActionResult Put([FromBody]TestData value)
         {
             ICollection<ValidationResult> results = new List<ValidationResult>();
             // TODO: wrap result in response object to include http result, success/error message, validation results etc.
-            if (!value.IsModelValid(out results)) return null;
+            if (!value.IsModelValid(out results))
+            {
+                return BadRequest(results);
+            }
 
             bool recordExists = _context.TestData.Where(a => a.Id == value.Id).Any();
 
@@ -64,14 +87,15 @@ namespace A2SPA.Api
             {
                 _context.Update(value);
                 _context.SaveChanges();
+                return Ok(value);
             }
 
-            return value;
+            return NoContent();
         }
 
         // DELETE api/sampleData/5
         [HttpDelete("{id:int}")]
-        public bool Delete(int id)
+        public IActionResult Delete(int id)
         {
             if (id > 0)
             {
@@ -82,11 +106,11 @@ namespace A2SPA.Api
                 {
                     _context.Remove(testData);
                     _context.SaveChanges();
-                    return true;
+                    return Ok();
                 }
             }
 
-            return false;
+            return NoContent();
         }
     }
 }
