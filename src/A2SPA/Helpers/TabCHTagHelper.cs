@@ -1,5 +1,4 @@
 ﻿using Humanizer;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -19,9 +18,7 @@ namespace A2SPA.Helpers
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var labelTag = new TagBuilder("span");
-            labelTag.InnerHtml.Append(For.Metadata.PropertyName.Humanize());
-
+            var labelTag = For.Metadata.PropertyName.Humanize();
             output.TagName = "span";
             output.Content.AppendHtml(labelTag);
         }

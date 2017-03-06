@@ -31,7 +31,7 @@ namespace A2SPA.Helpers
         }
 
         /// <summary>
-        /// returns a string populated with angular data binding expression to display data
+        /// Returns a string populated with angular data binding expression to display data
         /// </summary>
         /// <param name="modelFor">data model as a ModelExpression</param>
         /// <param name="pipe">pipe string, optional</param>

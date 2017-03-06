@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace A2SPA.Helpers
 {
+    /// <summary>
+    /// Tag helper to generate form group and form controls for data entry
+    /// </summary>
     [HtmlTargetElement("tag-di")]
     public class TagDiTagHelper : TagHelper
     {
