@@ -30,21 +30,21 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th class="col-md-1"> ID </th>
-                        <th class="col-md-3"> Username </th>
-                        <th class="col-md-2"> Currency </th>
-                        <th class="col-md-3"> EmailAddress </th>
-                        <th class="col-md-2"> Password </th>
+                        <th class="col-md-1"> <tab-ch for="Id"></tab-ch> </th>
+                        <th class="col-md-3"> <tab-ch for="Username"></tab-ch> </th>
+                        <th class="col-md-2"> <tab-ch for="Currency"></tab-ch> </th>
+                        <th class="col-md-3"> <tab-ch for="EmailAddress"></tab-ch> </th>
+                        <th class="col-md-2"> <tab-ch for="Password"></tab-ch> </th>
                         <td><button type="button" class="btn btn-info btn-sm" (click)="changeMode('add', null, $event)">+</button></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of testDataList" (click)="selectCurrentItem(item,$event)" [class.info]="item==selectedItem">
-                        <td>{{item.id}}</td>
-                        <td>{{item.username}}</td>
-                        <td>{{item.currency}}</td>
-                        <td>{{item.emailAddress}}</td>
-                        <td>{{item.password}}</td>
+                        <td><tab-cd par="item" for="Id"></tab-cd></td>
+                        <td><tab-cd par="item" for="Username"></tab-cd></td>
+                        <td><tab-cd par="item" for="Currency"></tab-cd></td>
+                        <td><tab-cd par="item" for="EmailAddress"></tab-cd></td>
+                        <td><tab-cd par="item" for="Password"></tab-cd></td>
                         <td>
                             <button type="button" class="btn btn-danger btn-sm" (click)="deleteRecord(item, $event)">X</button>
                             <button type="button" class="btn btn-info btn-sm" (click)="changeMode('edit', item, $event)">?</button>

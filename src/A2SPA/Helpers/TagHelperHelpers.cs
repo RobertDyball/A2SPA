@@ -1,9 +1,10 @@
 ﻿using Humanizer;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace A2SPA.Helpers
 {
-    public static class VariableNames
+    public static class TagHelperHelpers
    {
         /// <summary>
         /// Create the angular binding variable name
@@ -27,6 +28,23 @@ namespace A2SPA.Helpers
             var varName = string.IsNullOrEmpty(Var) ? propertyName.Camelize() : Var;
 
             return string.Format("{0}.{1}", prefixName, varName);
+        }
+
+        /// <summary>
+        /// returns a string populated with angular data binding expression to display data
+        /// </summary>
+        /// <param name="modelFor">data model as a ModelExpression</param>
+        /// <param name="pipe">pipe string, optional</param>
+        /// <param name="parentID">optional parent variable name, overrides default data class name</param>
+        /// <param name="varName">optional variable name, overrides default data property name</param>
+        /// <returns></returns>
+        public static string PopulateDataDisplayContents(this ModelExpression modelFor, string pipe, string parentID, string varName)
+        {
+            string dataBindExpression = ((DefaultModelMetadata)modelFor.Metadata).DataTypeName == "Password"
+                                                ? "******"
+                                                : "{{" + modelFor.GetDataBindVariableName(parentID, varName) + pipe + "}}";
+
+            return dataBindExpression;
         }
     }
 }
