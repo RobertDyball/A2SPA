@@ -32,7 +32,7 @@ export class SampleDataService {
 
     editSampleData(testData: TestData) {
         return this.http
-            .put(this.url + '/' + testData.id, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
+            .put(this.url, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
             .map((resp: Response) => resp.json())
             .catch(this.handleError);
     }
