@@ -3,11 +3,9 @@ using A2SPA.Helpers;
 using A2SPA.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace A2SPA.Api
 {
@@ -58,7 +56,7 @@ namespace A2SPA.Api
         {
             value.Id = 0;
             ICollection<ValidationResult> results = new List<ValidationResult>();
-            // TODO: wrap result in response object to include http result, success/error message, validation results etc.
+
             if (!value.IsModelValid(out results))
             {
                 return BadRequest(results);
@@ -75,7 +73,7 @@ namespace A2SPA.Api
         public IActionResult Put([FromBody]TestData value)
         {
             ICollection<ValidationResult> results = new List<ValidationResult>();
-            // TODO: wrap result in response object to include http result, success/error message, validation results etc.
+
             if (!value.IsModelValid(out results))
             {
                 return BadRequest(results);
