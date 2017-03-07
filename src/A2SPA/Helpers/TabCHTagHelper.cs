@@ -15,7 +15,7 @@ namespace A2SPA.Helpers
         /// <summary>
         /// Name of data property 
         /// </summary>
-        [HtmlAttributeName("chfor")]
+        [HtmlAttributeName(columnHeadingAttribute)]
         public ModelExpression ChFor { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
+﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace A2SPA.Helpers
@@ -7,9 +6,11 @@ namespace A2SPA.Helpers
     /// <summary>
     /// Tag Helper for Table columns to data display
     /// </summary>
-    [HtmlTargetElement("tab-cd")]
+    [HtmlTargetElement("td", Attributes = columnDataAttribute)]
     public class TabCDTagHelper : TagHelper
     {
+        private const string columnDataAttribute = "cdfor";
+
         /// <summary>
         /// Alternate name to set angular data-binding to
         /// </summary>
@@ -21,11 +22,12 @@ namespace A2SPA.Helpers
         /// </summary>
         [HtmlAttributeName("par")]
         public string Par { get; set; } = null;
+
         /// <summary>
         /// Name of data property 
         /// </summary>
-        [HtmlAttributeName("for")]
-        public ModelExpression For { get; set; }
+        [HtmlAttributeName(columnDataAttribute)]
+        public ModelExpression CdFor { get; set; }
 
         /// <summary>
         /// Option: directly set display format using Angular 2 pipe and pipe format values
@@ -47,13 +49,8 @@ namespace A2SPA.Helpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             var pipe = string.IsNullOrEmpty(Pipe) ? string.Empty : Pipe;
-            var pTag = new TagBuilder("p");
-
-            var tagContents = For.PopulateDataDisplayContents(pipe, Par, Var);
-            pTag.InnerHtml.Append(tagContents);
-
-            output.TagName = "span";
-            output.Content.AppendHtml(pTag);
+            var tagContents = CdFor.PopulateDataDisplayContents(pipe, Par, Var);
+            output.Content.AppendHtml(tagContents);
         }
     }
 }

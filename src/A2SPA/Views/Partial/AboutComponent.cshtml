@@ -40,11 +40,11 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of testDataList" (click)="selectCurrentItem(item,$event)" [class.info]="item==selectedItem">
-                        <td><tab-cd par="item" for="Id"></tab-cd></td>
-                        <td><tab-cd par="item" for="Username"></tab-cd></td>
-                        <td><tab-cd par="item" for="Currency" pipe="| currency:'USD':true:'1.2-2'"></tab-cd></td>
-                        <td><tab-cd par="item" for="EmailAddress"></tab-cd></td>
-                        <td><tab-cd par="item" for="Password"></tab-cd></td>
+                        <td par="item" cdfor="Id"></td>
+                        <td par="item" cdfor="Username"></td>
+                        <td par="item" cdfor="Currency" pipe="| currency:'USD':true:'1.2-2'"></td>
+                        <td par="item" cdfor="EmailAddress"></td>
+                        <td par="item" cdfor="Password"></td>
                         <td>
                             <button type="button" class="btn btn-danger btn-sm" (click)="deleteRecord(item, $event)">X</button>
                             <button type="button" class="btn btn-info btn-sm" (click)="changeMode('edit', item, $event)">?</button>
@@ -96,8 +96,6 @@
         </div>
     </div>
 </form>
-<pre class="col-md-6">testData: {{testData|json}}</pre>
-<pre class="col-md-6">selectedItem: {{selectedItem|json}}</pre>
 
 <div *ngIf="errorMessage != null">
     <p>Error:</p>
