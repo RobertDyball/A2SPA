@@ -7,19 +7,20 @@ namespace A2SPA.Helpers
     /// <summary>
     /// Tag Helper for Table columns headers to display column name
     /// </summary>
-    [HtmlTargetElement("tab-ch")]
+    [HtmlTargetElement("th", Attributes=columnHeadingAttribute)]
     public class TabCHTagHelper : TagHelper
     {
+        private const string columnHeadingAttribute = "chfor";
+
         /// <summary>
         /// Name of data property 
         /// </summary>
-        [HtmlAttributeName("for")]
-        public ModelExpression For { get; set; }
+        [HtmlAttributeName("chfor")]
+        public ModelExpression ChFor { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var labelTag = For.Metadata.PropertyName.Humanize();
-            output.TagName = "span";
+            var labelTag = ChFor.Metadata.PropertyName.Humanize();
             output.Content.AppendHtml(labelTag);
         }
     }

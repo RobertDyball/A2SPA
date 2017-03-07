@@ -37,7 +37,7 @@ namespace A2SPA.Helpers
         /// <param name="pipe">pipe string, optional</param>
         /// <param name="parentID">optional parent variable name, overrides default data class name</param>
         /// <param name="varName">optional variable name, overrides default data property name</param>
-        /// <returns></returns>
+        /// <returns>string populated with Angular data binding expression, and optional pipe if supplied</returns>
         public static string PopulateDataDisplayContents(this ModelExpression modelFor, string pipe, string parentID, string varName)
         {
             string dataBindExpression = ((DefaultModelMetadata)modelFor.Metadata).DataTypeName == "Password"
