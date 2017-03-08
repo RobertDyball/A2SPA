@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { SampleDataService } from './services/sampleData.service';
 import { TestData } from './models/testData';
-
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -19,16 +19,10 @@ export class AboutComponent implements OnInit {
 
     errorMessage: string;
 
-    constructor(private sampleDataService: SampleDataService) { }
+    constructor(private sampleDataService: SampleDataService, private toastrService: ToastrService) { }
 
     initTestData(): TestData {
         var newTestData = new TestData();
-        //newTestData.id = 0;
-        //newTestData.currency = null;
-        //newTestData.emailAddress = null;
-        //newTestData.password = null;
-        //newTestData.username = null;
-
         return newTestData;
     }
 
@@ -39,6 +33,14 @@ export class AboutComponent implements OnInit {
         this.tableMode = 'list';
     }
 
+    showSuccess(title: string, message: string) {
+        this.toastrService.success(message, title);
+    }
+
+    showError(title: string, message: string) {
+        this.toastrService.error(message, title);
+    }
+
     getTestData() {
         this.sampleDataService.getSampleData()
             .subscribe((data: TestData[]) => {
@@ -47,23 +49,27 @@ export class AboutComponent implements OnInit {
                     this.selectedItem = this.testDataList[0];
                 }
             },
-            (error: any) => this.errorMessage = error);
+            (error: any) => {
+                this.showError('Error during Get', error);
+                this.errorMessage = error;
+                console.log(error)
+            });
     }
 
     deleteRecord(itemToDelete: TestData, event: any) {
         event.preventDefault();
         this.sampleDataService.deleteRecord(itemToDelete)
-            .subscribe((status: boolean) => {
-                if (status = true) {
+            .subscribe((status: any) => {
+                if (status != null && status.statusCode == "200") {
+                    this.showSuccess('Delete', status.value);
                     this.getTestData();
                 }
                 else {
-                    this.errorMessage = 'Unable to delete customer';
+                    this.showError('Delete', status.value);
                 }
             },
             (error: any) => {
-                this.errorMessage = error;
-                console.log(error)
+                this.showError('Delete', JSON.stringify(error));
             });
     }
 
@@ -112,7 +118,11 @@ export class AboutComponent implements OnInit {
         if (!this.testData) { return; }
         this.sampleDataService.addSampleData(this.testData)
             .subscribe((data: TestData) => { this.testData = data; this.getTestData(); },
-            (error: any) => this.errorMessage = error);
+            (error: any) => {
+                this.showError('Error during Add', error);
+                this.errorMessage = error;
+                console.log(error)
+            });
     }
 
     editTestData(event: any) {
@@ -120,6 +130,10 @@ export class AboutComponent implements OnInit {
         if (!this.testData) { return; }
         this.sampleDataService.editSampleData(this.testData)
             .subscribe((data: TestData) => { this.testData = data; this.getTestData(); },
-            (error: any) => this.errorMessage = error);
+            (error: any) => {
+                this.showError('Error during Edit', error);
+                this.errorMessage = error;
+                console.log(error)
+            });
     }
 }

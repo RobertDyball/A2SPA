@@ -11,22 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var sampleData_service_1 = require("./services/sampleData.service");
 var testData_1 = require("./models/testData");
+var ngx_toastr_1 = require("ngx-toastr");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var AboutComponent = (function () {
-    function AboutComponent(sampleDataService) {
+    function AboutComponent(sampleDataService, toastrService) {
         this.sampleDataService = sampleDataService;
+        this.toastrService = toastrService;
         this.testDataList = [];
         this.selectedItem = null;
         this.testData = null;
     }
     AboutComponent.prototype.initTestData = function () {
         var newTestData = new testData_1.TestData();
-        //newTestData.id = 0;
-        //newTestData.currency = null;
-        //newTestData.emailAddress = null;
-        //newTestData.password = null;
-        //newTestData.username = null;
         return newTestData;
     };
     AboutComponent.prototype.ngOnInit = function () {
@@ -34,6 +31,12 @@ var AboutComponent = (function () {
         this.testData = this.initTestData();
         this.selectedItem = null;
         this.tableMode = 'list';
+    };
+    AboutComponent.prototype.showSuccess = function (title, message) {
+        this.toastrService.success(message, title);
+    };
+    AboutComponent.prototype.showError = function (title, message) {
+        this.toastrService.error(message, title);
     };
     AboutComponent.prototype.getTestData = function () {
         var _this = this;
@@ -43,22 +46,26 @@ var AboutComponent = (function () {
             if (_this.testDataList != null && _this.testDataList.length > 0) {
                 _this.selectedItem = _this.testDataList[0];
             }
-        }, function (error) { return _this.errorMessage = error; });
+        }, function (error) {
+            _this.showError('Error during Get', error);
+            _this.errorMessage = error;
+            console.log(error);
+        });
     };
     AboutComponent.prototype.deleteRecord = function (itemToDelete, event) {
         var _this = this;
         event.preventDefault();
         this.sampleDataService.deleteRecord(itemToDelete)
             .subscribe(function (status) {
-            if (status = true) {
+            if (status != null && status.statusCode == "200") {
+                _this.showSuccess('Delete', status.value);
                 _this.getTestData();
             }
             else {
-                _this.errorMessage = 'Unable to delete customer';
+                _this.showError('Delete', status.value);
             }
         }, function (error) {
-            _this.errorMessage = error;
-            console.log(error);
+            _this.showError('Delete', JSON.stringify(error));
         });
     };
     AboutComponent.prototype.changeMode = function (newMode, thisItem, event) {
@@ -98,7 +105,11 @@ var AboutComponent = (function () {
             return;
         }
         this.sampleDataService.addSampleData(this.testData)
-            .subscribe(function (data) { _this.testData = data; _this.getTestData(); }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function (data) { _this.testData = data; _this.getTestData(); }, function (error) {
+            _this.showError('Error during Add', error);
+            _this.errorMessage = error;
+            console.log(error);
+        });
     };
     AboutComponent.prototype.editTestData = function (event) {
         var _this = this;
@@ -107,7 +118,11 @@ var AboutComponent = (function () {
             return;
         }
         this.sampleDataService.editSampleData(this.testData)
-            .subscribe(function (data) { _this.testData = data; _this.getTestData(); }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function (data) { _this.testData = data; _this.getTestData(); }, function (error) {
+            _this.showError('Error during Edit', error);
+            _this.errorMessage = error;
+            console.log(error);
+        });
     };
     return AboutComponent;
 }());
@@ -116,7 +131,7 @@ AboutComponent = __decorate([
         selector: 'my-about',
         templateUrl: '/partial/aboutComponent'
     }),
-    __metadata("design:paramtypes", [sampleData_service_1.SampleDataService])
+    __metadata("design:paramtypes", [sampleData_service_1.SampleDataService, ngx_toastr_1.ToastrService])
 ], AboutComponent);
 exports.AboutComponent = AboutComponent;
 //# sourceMappingURL=about.component.js.map

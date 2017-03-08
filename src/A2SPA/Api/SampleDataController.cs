@@ -104,11 +104,11 @@ namespace A2SPA.Api
                 {
                     _context.Remove(testData);
                     _context.SaveChanges();
-                    return Ok();
+                    return Json(Ok("deleted"));
                 }
             }
 
-            return NoContent();
+            return Json(NotFound("Record not found; not deleted"));
         }
     }
 }

@@ -40,8 +40,9 @@ var SampleDataService = (function () {
     };
     SampleDataService.prototype.deleteRecord = function (itemToDelete) {
         return this.http.delete(this.url + '/' + itemToDelete.id, { headers: this.authService.authJsonHeaders() })
-            .map(function (res) { return res.json().status; })
+            .map(function (res) { return res.json(); })
             .catch(this.handleError);
+        //            .catch((err: Response) => Observable.throw(JSON.stringify(err)));
     };
     // from https://angular.io/docs/ts/latest/guide/server-communication.html
     SampleDataService.prototype.handleError = function (error) {

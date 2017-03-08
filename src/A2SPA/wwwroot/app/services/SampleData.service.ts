@@ -39,8 +39,9 @@ export class SampleDataService {
 
     deleteRecord(itemToDelete: TestData): Observable<boolean> {
         return this.http.delete(this.url + '/' + itemToDelete.id, { headers: this.authService.authJsonHeaders() })
-            .map((res: Response) => res.json().status)
+            .map((res: Response) => res.json())
             .catch(this.handleError);
+//            .catch((err: Response) => Observable.throw(JSON.stringify(err)));
     }
 
     // from https://angular.io/docs/ts/latest/guide/server-communication.html
