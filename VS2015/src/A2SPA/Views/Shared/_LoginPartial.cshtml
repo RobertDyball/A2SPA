@@ -1,0 +1,15 @@
+﻿
+<div [hidden]="!isLoggedIn()">
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a class="nav-link" (click)="logout()" routerLink="/home">Logout</a>
+        </li>
+    </ul>
+</div>
+
+<div [hidden]="isLoggedIn()">
+    <ul class="nav navbar-nav navbar-right">
+        <li><a class="nav-link" (click)="setTitle('Register - A2SPA')" routerLink="/register">Register</a></li>
+        <li><a class="nav-link" (click)="setTitle('Login - A2SPA')" routerLink="/login">Login</a></li>
+    </ul>
+</div>

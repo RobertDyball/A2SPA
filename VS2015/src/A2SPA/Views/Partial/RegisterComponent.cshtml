@@ -1,0 +1,24 @@
+﻿@using A2SPA.ViewModels
+@using A2SPA.ViewModels.Account
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *,A2SPA
+@model RegisterViewModel
+
+<div class="jumbotron center-block">
+    <h2>Register</h2>
+
+    <form role="form" #testForm="ngForm">
+        <div *ngIf="registerViewModel != null">
+            <tag-di for="Email"></tag-di>
+            <tag-di for="Password"></tag-di>
+            <tag-di for="VerifyPassword"></tag-di>
+            <button type="button" (click)="register($event)" class="btn btn-default">Submit</button>
+            <span class="small">Already registered? <a [routerLink]="['/login']"> Click here to Login</a></span>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="errorMessage != null">
+    <p>Error:</p>
+    <pre>{{ errorMessage  }}</pre>
+</div>

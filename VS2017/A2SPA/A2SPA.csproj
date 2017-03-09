@@ -1,0 +1,94 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\app\about.component.js" />
+    <Content Include="wwwroot\app\about.component.js.map" />
+    <Content Include="wwwroot\app\about.component.ts" />
+    <Content Include="wwwroot\app\app.component.js" />
+    <Content Include="wwwroot\app\app.component.js.map" />
+    <Content Include="wwwroot\app\app.component.spec.js" />
+    <Content Include="wwwroot\app\app.component.spec.js.map" />
+    <Content Include="wwwroot\app\app.component.ts" />
+    <Content Include="wwwroot\app\app.module.js" />
+    <Content Include="wwwroot\app\app.module.js.map" />
+    <Content Include="wwwroot\app\app.module.ts" />
+    <Content Include="wwwroot\app\app.routing.js" />
+    <Content Include="wwwroot\app\app.routing.js.map" />
+    <Content Include="wwwroot\app\app.routing.ts" />
+    <Content Include="wwwroot\app\contact.component.js" />
+    <Content Include="wwwroot\app\contact.component.js.map" />
+    <Content Include="wwwroot\app\contact.component.ts" />
+    <Content Include="wwwroot\app\index.component.js" />
+    <Content Include="wwwroot\app\index.component.js.map" />
+    <Content Include="wwwroot\app\index.component.ts" />
+    <Content Include="wwwroot\app\login.component.js" />
+    <Content Include="wwwroot\app\login.component.js.map" />
+    <Content Include="wwwroot\app\login.component.ts" />
+    <Content Include="wwwroot\app\main.js" />
+    <Content Include="wwwroot\app\main.js.map" />
+    <Content Include="wwwroot\app\main.ts" />
+    <Content Include="wwwroot\app\models\LoginViewModel.js" />
+    <Content Include="wwwroot\app\models\LoginViewModel.js.map" />
+    <Content Include="wwwroot\app\models\LoginViewModel.ts" />
+    <Content Include="wwwroot\app\models\RegisterViewModel.js" />
+    <Content Include="wwwroot\app\models\RegisterViewModel.js.map" />
+    <Content Include="wwwroot\app\models\RegisterViewModel.ts" />
+    <Content Include="wwwroot\app\models\testData.js" />
+    <Content Include="wwwroot\app\models\testData.js.map" />
+    <Content Include="wwwroot\app\models\TestData.ts" />
+    <Content Include="wwwroot\app\register.component.js" />
+    <Content Include="wwwroot\app\register.component.js.map" />
+    <Content Include="wwwroot\app\register.component.ts" />
+    <Content Include="wwwroot\app\rxjs-operators.js" />
+    <Content Include="wwwroot\app\rxjs-operators.js.map" />
+    <Content Include="wwwroot\app\rxjs-operators.ts" />
+    <Content Include="wwwroot\app\security\auth-guard.service.js" />
+    <Content Include="wwwroot\app\security\auth-guard.service.js.map" />
+    <Content Include="wwwroot\app\security\auth-guard.service.ts" />
+    <Content Include="wwwroot\app\security\auth.service.js" />
+    <Content Include="wwwroot\app\security\auth.service.js.map" />
+    <Content Include="wwwroot\app\security\auth.service.ts" />
+    <Content Include="wwwroot\app\security\OpenIdDictToken.js" />
+    <Content Include="wwwroot\app\security\OpenIdDictToken.js.map" />
+    <Content Include="wwwroot\app\security\OpenIdDictToken.ts" />
+    <Content Include="wwwroot\app\services\sampleData.service.js" />
+    <Content Include="wwwroot\app\services\sampleData.service.js.map" />
+    <Content Include="wwwroot\app\services\SampleData.service.ts" />
+    <Content Include="wwwroot\css\styles.css" />
+    <Content Include="wwwroot\favicon.ico" />
+    <Content Include="wwwroot\systemjs.config.extras.js" />
+    <Content Include="wwwroot\systemjs.config.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AspNet.Security.OAuth.Introspection" Version="1.0.0-beta1-final" />
+    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="1.0.0-beta1-final" />
+    <PackageReference Include="Humanizer.xproj" Version="2.1.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="OpenIddict" Version="1.0.0-beta2-0580" />
+    <PackageReference Include="OpenIddict.Core" Version="1.0.0-beta2-0580" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="1.0.0-beta2-0580" />
+    <PackageReference Include="OpenIddict.Mvc" Version="1.0.0-beta2-0580" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>
