@@ -4,7 +4,6 @@ A SPA that uses the best of ASP.Net Core 1.1 for the backend and Angular 2.4 for
 
 Part 1: see: https://www.codeproject.com/Articles/1148767/SPA-using-ASP-Net-Core-plus-Angular-part1
 Part 2: see: https://www.codeproject.com/Articles/1168647/SPA-using-ASP-Net-Core-plus-Angular-part2
-<<<<<<< HEAD
 Part 3: see https://www.codeproject.com/Articles/1171129/SPA-using-ASP-Net-Core-plus-Angular-part3
 *(this is part 3)
 Part 4: see https://www.codeproject.com/Articles/1172349/SPA-using-ASP-Net-Core-plus-Angular-part4
@@ -25,3 +24,4 @@ npm install -g typings
 
 Pull a copy of the repo, load the solution into Visual Studio 2015/2017, click Ctrl-F5 to launch browser and viewthe site.
 (Ctrl-F5 which retrieve any missing dependencies, build, load IIS Express and then load the VS 2015 default browser).
+
