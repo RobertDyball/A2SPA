@@ -9,7 +9,6 @@ Part 3: see https://www.codeproject.com/Articles/1171129/SPA-using-ASP-Net-Core-
 Part 4: see https://www.codeproject.com/Articles/1172349/SPA-using-ASP-Net-Core-plus-Angular-part4
 Part 5: (URL to be added; soon to be pubished)
 
-
 #### Prerequisites
 
 Download and install ASP.Net Core here: http://dot.net 
