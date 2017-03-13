@@ -30,10 +30,10 @@ namespace A2SPA.Api
 
             if (testData == null)
             {
-                return NoContent();
+                return Json(NoContent());
             }
 
-            return Ok(testData);
+            return Json(Ok(testData));
         }
 
         // GET: api/sampleData
@@ -44,10 +44,10 @@ namespace A2SPA.Api
 
             if (!testData.Any())
             {
-                return NoContent();
+                return Json(NoContent());
             }
 
-            return Ok(testData.ToList());
+            return Json(Ok(testData.ToList()));
         }
 
         // POST api/sampleData
@@ -59,13 +59,13 @@ namespace A2SPA.Api
 
             if (!value.IsModelValid(out results))
             {
-                return BadRequest(results);
+                return Json(BadRequest(results));
             }
 
             var newTestData = _context.Add(value);
             _context.SaveChanges();
 
-            return Ok(newTestData.Entity as TestData);
+            return Json(Ok(newTestData.Entity as TestData));
         }
 
         // PUT api/sampleData/5
@@ -76,7 +76,7 @@ namespace A2SPA.Api
 
             if (!value.IsModelValid(out results))
             {
-                return BadRequest(results);
+                return Json(BadRequest(results));
             }
 
             bool recordExists = _context.TestData.Where(a => a.Id == value.Id).Any();
@@ -85,10 +85,10 @@ namespace A2SPA.Api
             {
                 _context.Update(value);
                 _context.SaveChanges();
-                return Ok(value);
+                return Json(Ok(value));
             }
 
-            return NoContent();
+            return Json(NoContent());
         }
 
         // DELETE api/sampleData/5

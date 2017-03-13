@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var ngx_toastr_1 = require("ngx-toastr");
 var ContactComponent = (function () {
-    // this is not secured, open to anonymous users to access
+    // this is not meant to be secured; demonstrating a component that is open to anonymous users to access
     function ContactComponent(toastrService) {
         this.toastrService = toastrService;
     }

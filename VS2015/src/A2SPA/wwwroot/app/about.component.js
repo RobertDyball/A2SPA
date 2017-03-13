@@ -38,65 +38,32 @@ var AboutComponent = (function () {
     AboutComponent.prototype.showError = function (title, message) {
         this.toastrService.error(message, title);
     };
-    AboutComponent.prototype.getTestData = function () {
-        var _this = this;
-        this.sampleDataService.getSampleData()
-            .subscribe(function (data) {
-            _this.testDataList = data;
-            if (_this.testDataList != null && _this.testDataList.length > 0) {
-                _this.selectedItem = _this.testDataList[0];
-            }
-        }, function (error) {
-            _this.showError('Error during Get', error);
-            _this.errorMessage = error;
-            console.log(error);
-        });
-    };
-    AboutComponent.prototype.deleteRecord = function (itemToDelete, event) {
-        var _this = this;
-        event.preventDefault();
-        this.sampleDataService.deleteRecord(itemToDelete)
-            .subscribe(function (status) {
-            if (status != null && status.statusCode == "200") {
-                _this.showSuccess('Delete', status.value);
-                _this.getTestData();
-            }
-            else {
-                _this.showError('Delete', status.value);
-            }
-        }, function (error) {
-            _this.showError('Delete', JSON.stringify(error));
-        });
-    };
     AboutComponent.prototype.changeMode = function (newMode, thisItem, event) {
         event.preventDefault();
         this.tableMode = newMode;
         if (this.testDataList.length == 0) {
             this.tableMode = 'add';
         }
-        if (this.testDataList.length > 0) {
-            if (this.testData == null)
-                this.testData = this.initTestData();
+        else if (this.testData == null) {
+            this.testData = this.initTestData();
         }
         switch (newMode) {
             case 'add':
                 this.testData = this.initTestData();
                 break;
             case 'edit':
-                this.testData = thisItem;
+                this.testData = Object.assign({}, thisItem);
                 break;
             case 'list':
             default:
-                {
-                    this.testData = thisItem;
-                }
+                this.testData = Object.assign({}, thisItem);
                 break;
         }
     };
     AboutComponent.prototype.selectCurrentItem = function (thisItem, event) {
         event.preventDefault();
         this.selectedItem = thisItem;
-        this.testData = this.selectedItem;
+        this.testData = Object.assign({}, thisItem);
     };
     AboutComponent.prototype.addTestData = function (event) {
         var _this = this;
@@ -105,10 +72,40 @@ var AboutComponent = (function () {
             return;
         }
         this.sampleDataService.addSampleData(this.testData)
-            .subscribe(function (data) { _this.testData = data; _this.getTestData(); }, function (error) {
-            _this.showError('Error during Add', error);
+            .subscribe(function (data) {
+            if (data != null && data.statusCode == 200) {
+                //use this to save network traffic; just pushes new record into existing
+                _this.testDataList.push(data.value);
+                // or keep these 2 lines; subscribe to data, but then refresh all data anyway
+                //this.testData = data.value;
+                //this.getTestData();
+                _this.showSuccess('Add', "data added ok");
+            }
+            else {
+                _this.showError('Add', data.value);
+            }
+        }, function (error) {
+            _this.showError('Add', error);
             _this.errorMessage = error;
             console.log(error);
+        });
+    };
+    AboutComponent.prototype.getTestData = function () {
+        var _this = this;
+        this.sampleDataService.getSampleData()
+            .subscribe(function (data) {
+            if (data != null && data.statusCode == 200) {
+                _this.testDataList = data.value;
+                _this.showSuccess('Get', "data fetched ok");
+                if (_this.testDataList != null && _this.testDataList.length > 0) {
+                    _this.selectedItem = _this.testDataList[0];
+                }
+            }
+            else {
+                _this.showError('Get', data.value);
+            }
+        }, function (error) {
+            _this.showError('Get', JSON.stringify(error));
         });
     };
     AboutComponent.prototype.editTestData = function (event) {
@@ -118,10 +115,33 @@ var AboutComponent = (function () {
             return;
         }
         this.sampleDataService.editSampleData(this.testData)
-            .subscribe(function (data) { _this.testData = data; _this.getTestData(); }, function (error) {
-            _this.showError('Error during Edit', error);
-            _this.errorMessage = error;
-            console.log(error);
+            .subscribe(function (data) {
+            if (data != null && data.statusCode == 200) {
+                _this.showSuccess('Update', "updated ok");
+                _this.testData = data.value;
+                _this.getTestData();
+            }
+            else {
+                _this.showError('Update', data.value);
+            }
+        }, function (error) {
+            _this.showError('Update', JSON.stringify(error));
+        });
+    };
+    AboutComponent.prototype.deleteRecord = function (itemToDelete, event) {
+        var _this = this;
+        event.preventDefault();
+        this.sampleDataService.deleteRecord(itemToDelete)
+            .subscribe(function (status) {
+            if (status != null && status.statusCode == 200) {
+                _this.showSuccess('Delete', status.value);
+                _this.getTestData();
+            }
+            else {
+                _this.showError('Delete', status.value);
+            }
+        }, function (error) {
+            _this.showError('Delete', JSON.stringify(error));
         });
     };
     return AboutComponent;

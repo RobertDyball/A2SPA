@@ -35,7 +35,7 @@
                         <th class="col-md-2" chfor="Currency"> </th>
                         <th class="col-md-3" chfor="EmailAddress"> </th>
                         <th class="col-md-2" chfor="Password"> </th>
-                        <td><button type="button" class="btn btn-info btn-sm" (click)="changeMode('add', null, $event)">+</button></td>
+                        <td><button type="button" class="btn btn-info btn-sm" (click)="testForm.reset();changeMode('add', null, $event)">+</button></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,8 +69,9 @@
                         <tag-di par="testData" for="Password"></tag-di>
                     </div>
                     <div class="panel-footer">
-                        <button [hidden]="!(tableMode==='add')" type="button" class="btn btn-warning" (click)="addTestData($event)">Save new item</button>
-                        <button [hidden]="!(tableMode==='edit')" type="button" class="btn btn-warning" (click)="editTestData($event)">Save updated item</button>
+                        <button [disabled]="!testForm.form.valid" [hidden]="!(tableMode==='add')" type="button" class="btn btn-warning" (click)="addTestData($event)">Save new item</button>
+                        <button [disabled]="!testForm.form.valid" [hidden]="!(tableMode==='edit')" type="button" class="btn btn-warning" (click)="editTestData($event)">Save updated item</button>
+                        <button [hidden]="(tableMode==='list')" type="button" class="btn btn-info" (click)="testForm.reset();tableMode='list';">Cancel</button>
                     </div>
                 </div>
             </div>

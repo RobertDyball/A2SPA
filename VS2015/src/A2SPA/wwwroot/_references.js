@@ -10,6 +10,7 @@
 /// <reference path="app/models/loginviewmodel.js" />
 /// <reference path="app/models/registerviewmodel.js" />
 /// <reference path="app/models/testdata.js" />
+/// <reference path="app/models/viewmodelresponse.js" />
 /// <reference path="app/register.component.js" />
 /// <reference path="app/rxjs-operators.js" />
 /// <reference path="app/security/auth.service.js" />
