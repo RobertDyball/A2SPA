@@ -3,9 +3,12 @@ using A2SPA.Helpers;
 using A2SPA.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace A2SPA.Api
 {
@@ -22,11 +25,11 @@ namespace A2SPA.Api
 
         // GET: api/sampleData/{1}
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var testData = _context.TestData
+            var testData = await _context.TestData
                                    .DefaultIfEmpty(null as TestData)
-                                   .FirstOrDefault(a => a.Id == id);
+                                   .SingleOrDefaultAsync(a => a.Id == id);
 
             if (testData == null)
             {
@@ -38,7 +41,7 @@ namespace A2SPA.Api
 
         // GET: api/sampleData
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             var testData = _context.TestData;
 
@@ -47,14 +50,13 @@ namespace A2SPA.Api
                 return Json(NoContent());
             }
 
-            return Json(Ok(testData.ToList()));
+            return Json(Ok(await testData.ToListAsync()));
         }
 
         // POST api/sampleData
         [HttpPost]
-        public IActionResult Post([FromBody]TestData value)
+        public async Task<IActionResult> Post([FromBody]TestData value)
         {
-            value.Id = 0;
             ICollection<ValidationResult> results = new List<ValidationResult>();
 
             if (!value.IsModelValid(out results))
@@ -62,15 +64,24 @@ namespace A2SPA.Api
                 return Json(BadRequest(results));
             }
 
-            var newTestData = _context.Add(value);
-            _context.SaveChanges();
+            try
+            {
+                value.Id = 0;
+                var newTestData = _context.AddAsync(value);
+                await _context.SaveChangesAsync();
 
-            return Json(Ok(newTestData.Entity as TestData));
+                return Json(Ok(newTestData.Result.Entity as TestData));
+            }
+            catch (DbUpdateException exception)
+            {
+                Debug.WriteLine("An exception occurred: {0}, {1}", exception.InnerException, exception.Message);
+                return Json(NotFound("An error occurred; new record not saved"));
+            }
         }
 
         // PUT api/sampleData/5
         [HttpPut]
-        public IActionResult Put([FromBody]TestData value)
+        public async Task<IActionResult> Put([FromBody]TestData value)
         {
             ICollection<ValidationResult> results = new List<ValidationResult>();
 
@@ -81,34 +92,48 @@ namespace A2SPA.Api
 
             bool recordExists = _context.TestData.Where(a => a.Id == value.Id).Any();
 
-            if (recordExists)
+            if (!recordExists)
             {
-                _context.Update(value);
-                _context.SaveChanges();
-                return Json(Ok(value));
+                return Json(NoContent());
             }
 
-            return Json(NoContent());
+            try
+            {
+                _context.Update(value);
+                await _context.SaveChangesAsync();
+                return Json(Ok(value));
+            }
+            catch (DbUpdateException exception)
+            {
+                Debug.WriteLine("An exception occurred: {0}, {1}", exception.InnerException, exception.Message);
+                return Json(NotFound("An error occurred; record not updated"));
+            }
         }
 
         // DELETE api/sampleData/5
         [HttpDelete("{id:int}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id > 0)
+            var testData = await _context.TestData
+                                         .AsNoTracking()
+                                         .SingleOrDefaultAsync(m => m.Id == id);
+
+            if (testData == null)
             {
-                TestData testData = _context.TestData
-                                    .DefaultIfEmpty(null as TestData)
-                                    .FirstOrDefault(a => a.Id == id);
-                if (testData != null)
-                {
-                    _context.Remove(testData);
-                    _context.SaveChanges();
-                    return Json(Ok("deleted"));
-                }
+                return Json(NotFound("Record not found; not deleted"));
             }
 
-            return Json(NotFound("Record not found; not deleted"));
+            try
+            {
+                _context.TestData.Remove(testData);
+                await _context.SaveChangesAsync();
+                return Json(Ok("deleted"));
+            }
+            catch (DbUpdateException exception) 
+            {
+                Debug.WriteLine("An exception occurred: {0}, {1}", exception.InnerException, exception.Message);
+                return Json(NotFound("An error occurred; not deleted"));
+            }
         }
     }
 }
