@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
 		NuGet.config = NuGet.config
-		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "A2SPA", "src\A2SPA\A2SPA.xproj", "{0E8981F8-23D5-463A-8F77-4FA521FA56C3}"

@@ -44,6 +44,9 @@
     <Content Include="wwwroot\app\models\testData.js" />
     <Content Include="wwwroot\app\models\testData.js.map" />
     <Content Include="wwwroot\app\models\TestData.ts" />
+    <Content Include="wwwroot\app\models\ViewModelResponse.js" />
+    <Content Include="wwwroot\app\models\ViewModelResponse.js.map" />
+    <Content Include="wwwroot\app\models\ViewModelResponse.ts" />
     <Content Include="wwwroot\app\register.component.js" />
     <Content Include="wwwroot\app\register.component.js.map" />
     <Content Include="wwwroot\app\register.component.ts" />

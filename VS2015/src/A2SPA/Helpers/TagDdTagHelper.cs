@@ -1,14 +1,26 @@
-﻿using Humanizer;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace A2SPA.Helpers
 {
+    /// <summary>
+    /// Tag Helper to display data
+    /// </summary>
     [HtmlTargetElement("tag-dd")]
     public class TagDdTagHelper : TagHelper
     {
+        /// <summary>
+        /// Alternate name to set angular data-binding to
+        /// </summary>
+        [HtmlAttributeName("var")]
+        public string Var { get; set; } = null;
+
+        /// <summary>
+        /// Alternate name to set angular parent data-binding to
+        /// </summary>
+        [HtmlAttributeName("par")]
+        public string Par { get; set; } = null;
         /// <summary>
         /// Name of data property 
         /// </summary>
@@ -43,11 +55,8 @@ namespace A2SPA.Helpers
             var pTag = new TagBuilder("p");
             pTag.AddCssClass("form-control-static");
 
-            var dataBindExpression = ((DefaultModelMetadata)For.Metadata).DataTypeName == "Password" 
-                                                ? "******" 
-                                                : "{{" + For.CamelizedName() + pipe + "}}";
-
-            pTag.InnerHtml.Append(dataBindExpression);
+            var tagContents = For.PopulateDataDisplayContents(pipe, Par, Var);
+            pTag.InnerHtml.Append(tagContents);
 
             output.TagName = "div";
             output.Attributes.Add("class", "form-group");

@@ -12,13 +12,15 @@ namespace A2SPA.Api
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly A2spaContext _context;
+        private readonly A2spaContext _applicationDbContext;
         private static bool _databaseChecked;
 
-        public AccountController(UserManager<ApplicationUser> userManager, A2spaContext applicationDbContext)
+        public AccountController(
+            UserManager<ApplicationUser> userManager,
+            A2spaContext applicationDbContext)
         {
             _userManager = userManager;
-            _context = applicationDbContext;
+            _applicationDbContext = applicationDbContext;
         }
 
         //

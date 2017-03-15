@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace A2SPA.ViewModels
 {
@@ -29,5 +30,9 @@ namespace A2SPA.ViewModels
         [Display(Description = "Password", Name = "Password")]
         public string Password { get; set; }
 
+        internal bool IsModelValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
