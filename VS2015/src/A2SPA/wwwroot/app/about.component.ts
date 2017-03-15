@@ -16,7 +16,8 @@ export class AboutComponent implements OnInit {
     testDataList: TestData[] = [];
     selectedItem: TestData = null;
     testData: TestData = null;
-    tableMode: string;
+    tableMode: string = 'list';
+    showForm: boolean = true;
 
     errorMessage: string;
 
