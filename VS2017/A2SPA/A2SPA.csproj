@@ -35,6 +35,7 @@
     <Content Include="wwwroot\app\main.js" />
     <Content Include="wwwroot\app\main.js.map" />
     <Content Include="wwwroot\app\main.ts" />
+    <Content Include="wwwroot\app\models\ErrorResponse.ts" />
     <Content Include="wwwroot\app\models\LoginViewModel.js" />
     <Content Include="wwwroot\app\models\LoginViewModel.js.map" />
     <Content Include="wwwroot\app\models\LoginViewModel.ts" />
