@@ -14,12 +14,9 @@ covers use of ASP.Net Core tag helpers with Angular 2 for data input
 Part 4: see https://www.codeproject.com/Articles/1172349/SPA-using-ASP-Net-Core-plus-Angular-part4
 covers token authentication using JWT and OpenIdDict 
 
-Part 5: see https://www.codeproject.com/Articles/1176561/SPA-using-ASP-Net-Core-plus-Angular-part-5
+Part 5: see Part 5: see https://www.codeproject.com/Articles/1176561/SPA-using-ASP-Net-Core-plus-Angular-part-5
 Covers Web API changes; adding create/read/update/delete "CRUD" support, async and model server-side driven data validation
 (this is part 5)
-
-Part 6: Covers Swagger / NSwag Web API documentation and automated Angular 2 typescript code generation, pubishing to IIS
-(URL to be added; soon to be pubished)
 
 #### Prerequisites
 
@@ -34,8 +31,7 @@ Install Typescript and Typings globally, as these will be used by the applicatio
 npm install -g typescript
 
 npm install -g typings 
-
-
+  
 #### Running
 
 Pull a copy of the repo, load the solution into Visual Studio 2015/2017, click Ctrl-F5 to launch browser and viewthe site.
