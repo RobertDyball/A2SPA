@@ -21,6 +21,8 @@ var AboutComponent = (function () {
         this.testDataList = [];
         this.selectedItem = null;
         this.testData = null;
+        this.tableMode = 'list';
+        this.showForm = true;
     }
     AboutComponent.prototype.initTestData = function () {
         var newTestData = new testData_1.TestData();
@@ -65,6 +67,18 @@ var AboutComponent = (function () {
         this.selectedItem = thisItem;
         this.testData = Object.assign({}, thisItem);
     };
+    AboutComponent.prototype.formattedErrorResponse = function (error) {
+        var plural = (error.length > 0) ? 's' : '';
+        var errorMessage = "Error" + plural + ": ";
+        for (var i = 0; i < error.length; i++) {
+            if (error.length > 0)
+                errorMessage += "(" + (i + 1) + ") ";
+            errorMessage += "field: " + error[0].memberNames + ", error: " + error[0].errorMessage;
+            if (i < error.length)
+                errorMessage += ", ";
+        }
+        return errorMessage;
+    };
     AboutComponent.prototype.addTestData = function (event) {
         var _this = this;
         event.preventDefault();
@@ -82,12 +96,10 @@ var AboutComponent = (function () {
                 _this.showSuccess('Add', "data added ok");
             }
             else {
-                _this.showError('Add', data.value);
+                _this.showError('Add', _this.formattedErrorResponse(data.value));
             }
         }, function (error) {
-            _this.showError('Add', error);
-            _this.errorMessage = error;
-            console.log(error);
+            _this.showError('Get', JSON.stringify(error));
         });
     };
     AboutComponent.prototype.getTestData = function () {
@@ -102,7 +114,7 @@ var AboutComponent = (function () {
                 }
             }
             else {
-                _this.showError('Get', data.value);
+                _this.showError('Get', "An error occurred");
             }
         }, function (error) {
             _this.showError('Get', JSON.stringify(error));
@@ -122,7 +134,7 @@ var AboutComponent = (function () {
                 _this.getTestData();
             }
             else {
-                _this.showError('Update', data.value);
+                _this.showError('Update', _this.formattedErrorResponse(data.value));
             }
         }, function (error) {
             _this.showError('Update', JSON.stringify(error));
@@ -132,13 +144,13 @@ var AboutComponent = (function () {
         var _this = this;
         event.preventDefault();
         this.sampleDataService.deleteRecord(itemToDelete)
-            .subscribe(function (status) {
-            if (status != null && status.statusCode == 200) {
-                _this.showSuccess('Delete', status.value);
+            .subscribe(function (data) {
+            if (data != null && data.statusCode == 200) {
+                _this.showSuccess('Delete', data.value);
                 _this.getTestData();
             }
             else {
-                _this.showError('Delete', status.value);
+                _this.showError('Delete', "An error occurred");
             }
         }, function (error) {
             _this.showError('Delete', JSON.stringify(error));
