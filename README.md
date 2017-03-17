@@ -24,7 +24,9 @@ Part 6: Covers Swagger / NSwag Web API documentation and automated Angular 2 typ
 #### Prerequisites
 
 Download and install ASP.Net Core here: http://dot.net 
+
 If using Windows, use Visual Studio 2015 Update 3 with the latest ASP.Net core tooling updates. (see ./VS2015 folder)
+
 or use Visual Studio Studio 2017 (see ./VS2015 folder)
 
 Install Typescript and Typings globally, as these will be used by the application.
