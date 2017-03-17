@@ -16,10 +16,9 @@ covers token authentication using JWT and OpenIdDict
 
 Part 5: see https://www.codeproject.com/Articles/1176561/SPA-using-ASP-Net-Core-plus-Angular-part-5
 Covers Web API changes; adding create/read/update/delete "CRUD" support, async and model server-side driven data validation
-(this is part 5)
 
 Part 6: Covers Swagger / NSwag Web API documentation and automated Angular 2 typescript code generation, pubishing to IIS
-(URL to be added; soon to be pubished)
+(this is part 6, URL to be added; soon to be pubished)
 
 #### Prerequisites
 
