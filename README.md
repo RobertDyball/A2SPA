@@ -14,18 +14,22 @@ covers use of ASP.Net Core tag helpers with Angular 2 for data input
 Part 4: see https://www.codeproject.com/Articles/1172349/SPA-using-ASP-Net-Core-plus-Angular-part4
 covers token authentication using JWT and OpenIdDict 
 
-Part 5: Covers Web API changes; adding create/read/update/delete "CRUD" support, async and model server-side driven data validation
-* (this part - URL to be added; soon to be pubished)
+Part 5: see Part 5: see https://www.codeproject.com/Articles/1176561/SPA-using-ASP-Net-Core-plus-Angular-part-5
+Covers Web API changes; adding create/read/update/delete "CRUD" support, async and model server-side driven data validation
+(this is part 5)
 
 #### Prerequisites
 
 Download and install ASP.Net Core here: http://dot.net 
+
 If using Windows, use Visual Studio 2015 Update 3 with the latest ASP.Net core tooling updates. (see ./VS2015 folder)
+
 or use Visual Studio Studio 2017 (see ./VS2015 folder)
 
 Install Typescript and Typings globally, as these will be used by the application.
 
 npm install -g typescript
+
 npm install -g typings 
   
 #### Running
