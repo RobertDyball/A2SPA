@@ -4,15 +4,15 @@ using AspNet.Security.OpenIdConnect.Primitives;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using NJsonSchema;
+using NSwag;
 using NSwag.AspNetCore;
+using NSwag.SwaggerGeneration.WebApi.Processors.Security;
 using System.IO;
 using System.Reflection;
 
@@ -35,22 +35,8 @@ namespace A2SPA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
-            });
-
             // Add framework services.
             services.AddMvc();
-
-            services.Configure<MvcOptions>(options =>
-            {
-                options.Filters.Add(new CorsAuthorizationFilterFactory("CorsPolicy"));
-            });
 
             services.AddDbContext<A2spaContext>(options =>
             {
@@ -139,10 +125,21 @@ namespace A2SPA
                 RequestPath = "/node_modules"
             });
 
-            app.UseCors("CorsPolicy");
-
             app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, new SwaggerUiOwinSettings()
             {
+                OperationProcessors =
+                {
+                    new OperationSecurityScopeProcessor("apikey")
+                },
+                DocumentProcessors =
+                {
+                    new SecurityDefinitionAppender("apikey", new SwaggerSecurityScheme
+                    {
+                        Type = SwaggerSecuritySchemeType.ApiKey,
+                        Name = "Bearer",
+                        In = SwaggerSecurityApiKeyLocation.Header
+                    })
+                },
                 DefaultPropertyNameHandling = PropertyNameHandling.CamelCase
             });
 

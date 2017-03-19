@@ -24,6 +24,7 @@ namespace A2SPA.Api
         }
 
         // GET: api/sampleData/{1}
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

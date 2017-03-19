@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NSwag.Annotations;
 using OpenIddict.Core;
 using System.Diagnostics;
 using System.Linq;
@@ -19,6 +20,7 @@ using System.Threading.Tasks;
 
 namespace A2SPA.Api
 {
+    [SwaggerIgnore]
     public class AuthorizationController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
