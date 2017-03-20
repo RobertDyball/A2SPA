@@ -137,7 +137,7 @@ namespace A2SPA
                     new SecurityDefinitionAppender("apikey", new SwaggerSecurityScheme
                     {
                         Type = SwaggerSecuritySchemeType.ApiKey,
-                        Name = "Bearer",
+                        Name = "Authorization",
                         In = SwaggerSecurityApiKeyLocation.Header
                     })
                 },
