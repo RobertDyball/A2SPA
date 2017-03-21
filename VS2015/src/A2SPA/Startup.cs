@@ -9,7 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using NJsonSchema;
+using NSwag;
+using NSwag.AspNetCore;
+using NSwag.SwaggerGeneration.WebApi.Processors.Security;
 using System.IO;
+using System.Reflection;
 
 namespace A2SPA
 {
@@ -120,6 +125,25 @@ namespace A2SPA
                 RequestPath = "/node_modules"
             });
 
+            app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, new SwaggerUiOwinSettings()
+            {
+                OperationProcessors =
+                {
+                    new OperationSecurityScopeProcessor("apikey")
+                },
+                DocumentProcessors =
+                {
+                    new SecurityDefinitionAppender("apikey", new SwaggerSecurityScheme
+                    {
+                        Type = SwaggerSecuritySchemeType.ApiKey,
+                        Name = "Authorization",
+                        In = SwaggerSecurityApiKeyLocation.Header
+                    })
+                },
+                DefaultPropertyNameHandling = PropertyNameHandling.CamelCase
+            });
+
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

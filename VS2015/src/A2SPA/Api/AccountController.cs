@@ -4,10 +4,12 @@ using A2SPA.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NSwag.Annotations;
 using System.Threading.Tasks;
 
 namespace A2SPA.Api
 {
+    [SwaggerIgnore]
     [Authorize]
     public class AccountController : Controller
     {

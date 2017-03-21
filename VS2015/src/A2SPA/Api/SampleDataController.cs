@@ -23,7 +23,13 @@ namespace A2SPA.Api
             _context = context;
         }
 
-        // GET: api/sampleData/{1}
+        /// <summary>
+        /// Returns a single TestData record with matching Id
+        /// </summary>
+        /// <remarks>This method will return an IActionResult containing the TestData record and StatusCode 200 if successful. 
+        /// If there is a an error, you will get a status message and StatusCode which will indicate what was the error.</remarks>
+        /// <param name="id">the ID of the record to retrieve</param>
+        /// <returns>an IActionResult</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

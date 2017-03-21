@@ -3,10 +3,12 @@ using AspNet.Security.OAuth.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NSwag.Annotations;
 using System.Threading.Tasks;
 
 namespace A2SPA.Api
 {
+    [SwaggerIgnore]
     [Route("api")]
     public class ResourceController : Controller
     {

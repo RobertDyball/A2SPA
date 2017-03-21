@@ -31,7 +31,8 @@
     "Microsoft.AspNetCore.Identity": "1.1.0",
     "AspNet.Security.OAuth.Introspection": "1.0.0-beta1-*",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.1.0",
-    "AspNet.Security.OAuth.Validation": "1.0.0-beta1-*"
+    "AspNet.Security.OAuth.Validation": "1.0.0-beta1-*",
+    "NSwag.AspNetCore": "9.12.0"
   },
   "tools": {
   },
@@ -47,7 +48,8 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+    "xmlDoc": true
   },
 
   "runtimeOptions": {

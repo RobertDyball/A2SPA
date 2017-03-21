@@ -8,6 +8,10 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp1.1\A2SPA.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Content Include="wwwroot\app\about.component.js" />
     <Content Include="wwwroot\app\about.component.js.map" />
@@ -66,7 +70,6 @@
     <Content Include="wwwroot\app\services\sampleData.service.js" />
     <Content Include="wwwroot\app\services\sampleData.service.js.map" />
     <Content Include="wwwroot\app\services\SampleData.service.ts" />
-    <Content Include="wwwroot\css\styles.css" />
     <Content Include="wwwroot\favicon.ico" />
     <Content Include="wwwroot\systemjs.config.extras.js" />
     <Content Include="wwwroot\systemjs.config.js" />
@@ -86,6 +89,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="NSwag.AspNetCore" Version="9.12.0" />
     <PackageReference Include="OpenIddict" Version="1.0.0-beta2-0580" />
     <PackageReference Include="OpenIddict.Core" Version="1.0.0-beta2-0580" />
     <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="1.0.0-beta2-0580" />
