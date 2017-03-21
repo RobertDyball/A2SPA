@@ -143,7 +143,7 @@ namespace A2SPA
                 DefaultPropertyNameHandling = PropertyNameHandling.CamelCase
             });
 
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -154,7 +154,6 @@ namespace A2SPA
                 routes.MapSpaFallbackRoute("spa-fallback", new { controller = "home", action = "index" });
 
             });
-
 
             if (env.IsDevelopment())
             {

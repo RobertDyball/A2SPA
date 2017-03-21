@@ -8,6 +8,10 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp1.1\A2SPA.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Content Include="wwwroot\app\about.component.js" />
     <Content Include="wwwroot\app\about.component.js.map" />
