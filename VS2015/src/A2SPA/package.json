@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@angular/animations": "^4.0.0",
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",
     "@angular/core": "~4.0.0",
@@ -10,7 +11,7 @@
     "@angular/router": "~4.0.0",
     "angular-in-memory-web-api": "~0.3.0",
     "core-js": "^2.4.1",
-    "ngx-toastr": "^4.3.0",
+    "ngx-toastr": "^5.0.5",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",
     "typescript": "^2.1.6",
