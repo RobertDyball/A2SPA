@@ -20,20 +20,24 @@ namespace A2SPA
 {
     public class Startup
     {
+        private IHostingEnvironment CurrentEnvironment { get; set; }
+        public IConfigurationRoot Configuration { get; }
+
         public Startup(IHostingEnvironment env)
         {
+            CurrentEnvironment = env;
+
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
+                .SetBasePath(CurrentEnvironment.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"appsettings.{CurrentEnvironment.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services, IHostingEnvironment env)
+        public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddMvc();
@@ -47,6 +51,7 @@ namespace A2SPA
                 // to replace the default OpenIddict entities.
                 options.UseOpenIddict();
             });
+
             // Register the Identity services.
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<A2spaContext>()
@@ -63,44 +68,48 @@ namespace A2SPA
             });
 
             // Register the OpenIddict services.
-            if (env.IsDevelopment())
+            services.AddOpenIddict(options =>
             {
-                services.AddOpenIddict()
-                    // Register the Entity Framework stores.
-                    .AddEntityFrameworkCoreStores<A2spaContext>()
+                // Register the Entity Framework stores.
+                options.AddEntityFrameworkCoreStores<A2spaContext>();
 
-                    // Register the ASP.NET Core MVC binder used by OpenIddict.
-                    // Note: if you don't call this method, you won't be able to
-                    // bind OpenIdConnectRequest or OpenIdConnectResponse parameters.
-                    .AddMvcBinders()
+                // Register the ASP.NET Core MVC binder used by OpenIddict.
+                // Note: if you don't call this method, you won't be able to
+                // bind OpenIdConnectRequest or OpenIdConnectResponse parameters.
+                options.AddMvcBinders();
 
-                    // Enable the token endpoint.
-                    .EnableTokenEndpoint("/connect/token")
+                // Enable the authorization, logout, token and userinfo endpoints.
+                options.EnableAuthorizationEndpoint("/connect/authorize")
+                       .EnableLogoutEndpoint("/connect/logout")
+                       .EnableTokenEndpoint("/connect/token")
+                       .EnableUserinfoEndpoint("/api/userinfo");
 
-                    // Enable the password flow.
-                    .AllowPasswordFlow()
+                // Note: the Mvc.Client sample only uses the authorization code flow but you can enable
+                // the other flows if you need to support implicit, password or client credentials.
+                options.AllowPasswordFlow();
 
-                    // During development, you can disable the HTTPS requirement.
-                    .DisableHttpsRequirement();
-            }
-            else
-            {
-                // Register the OpenIddict services.
-                services.AddOpenIddict()
-                    .AddEntityFrameworkCoreStores<A2spaContext>()
-                    .AddMvcBinders()
-                    .EnableTokenEndpoint("/connect/token")
-                    .AllowPasswordFlow();
-            }
+                // When request caching is enabled, authorization and logout requests
+                // are stored in the distributed cache by OpenIddict and the user agent
+                // is redirected to the same page with a single parameter (request_id).
+                // This allows flowing large OpenID Connect requests even when using
+                // an external authentication provider like Google, Facebook or Twitter.
+                options.EnableRequestCaching();
+
+                // During development, you can disable the HTTPS requirement.
+                if (CurrentEnvironment.IsDevelopment())
+                {
+                    options.DisableHttpsRequirement();
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, A2spaContext context)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, A2spaContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
+            if (CurrentEnvironment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 // app.UseBrowserLink();
@@ -133,7 +142,7 @@ namespace A2SPA
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "node_modules")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(CurrentEnvironment.ContentRootPath, "node_modules")),
                 RequestPath = "/node_modules"
             });
 
@@ -167,7 +176,7 @@ namespace A2SPA
 
             });
 
-            if (env.IsDevelopment())
+            if (CurrentEnvironment.IsDevelopment())
             {
                 DbInitializer.Initialize(context);
             }
