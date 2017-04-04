@@ -19,7 +19,7 @@ var AuthGuard = (function () {
     }
     AuthGuard.prototype.canActivate = function () {
         if (!this.authService.loggedIn()) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['login']);
             return false;
         }
         return true;
