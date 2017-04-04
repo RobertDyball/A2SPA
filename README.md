@@ -24,7 +24,7 @@ Covers Swagger / NSwag Web API documentation and automated Angular 2 typescript 
 Part 7: Covers Publishing to IS using VS2015, conversion frmo localDB to SQLExpress
 (this is part 7, URL to be added; soon to be pubished)
 
-Part 8 coming next - publishnig to IIS using VS2017, code cleanup and optimization
+Part 8 coming next - publishing to IIS using VS2017, code cleanup and optimization
 
 #### Prerequisites
 
