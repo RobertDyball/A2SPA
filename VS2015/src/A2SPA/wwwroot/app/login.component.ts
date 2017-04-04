@@ -8,7 +8,7 @@ import { LoginViewModel } from './models/LoginViewModel';
 
 @Component({
     selector: 'login',
-    templateUrl: '/partial/loginComponent'
+    templateUrl: 'partial/loginComponent'
 })
 
 export class LoginComponent {

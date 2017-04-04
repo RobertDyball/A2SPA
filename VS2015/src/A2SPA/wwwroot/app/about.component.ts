@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 @Component({
     selector: 'my-about',
-    templateUrl: '/partial/aboutComponent'
+    templateUrl: 'partial/aboutComponent'
 })
 
 export class AboutComponent implements OnInit {

@@ -49,7 +49,7 @@ var LoginComponent = (function () {
 LoginComponent = __decorate([
     core_1.Component({
         selector: 'login',
-        templateUrl: '/partial/loginComponent'
+        templateUrl: 'partial/loginComponent'
     }),
     __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
 ], LoginComponent);

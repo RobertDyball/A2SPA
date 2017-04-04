@@ -8,7 +8,7 @@ import { RegisterViewModel } from './models/RegisterViewModel';
 
 @Component({
     selector: 'register',
-    templateUrl: '/partial/registerComponent'
+    templateUrl: 'partial/registerComponent'
 })
 
 export class RegisterComponent {

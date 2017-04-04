@@ -53,7 +53,7 @@ var RegisterComponent = (function () {
 RegisterComponent = __decorate([
     core_1.Component({
         selector: 'register',
-        templateUrl: '/partial/registerComponent'
+        templateUrl: 'partial/registerComponent'
     }),
     __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
 ], RegisterComponent);

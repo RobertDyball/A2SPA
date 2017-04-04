@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'my-contact',
-    templateUrl: '/partial/contactComponent'
+    templateUrl: 'partial/contactComponent'
 })
 
 export class ContactComponent {
