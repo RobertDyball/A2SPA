@@ -29,11 +29,11 @@ export class LoginComponent {
         event.preventDefault();
         let body = 'username=' + this.loginViewModel.email + '&password=' + this.loginViewModel.password + '&grant_type=password';
 
-        this.http.post('/connect/token', body, { headers: this.authService.contentHeaders() })
+        this.http.post('connect/token', body, { headers: this.authService.contentHeaders() })
             .subscribe(response => {
                 // success, save the token to session storage
                 this.authService.login(response.json());
-                this.router.navigate(['/about']);
+                this.router.navigate(['about']);
             },
             error => {
                 // failed; TODO: add some nice toast / error handling

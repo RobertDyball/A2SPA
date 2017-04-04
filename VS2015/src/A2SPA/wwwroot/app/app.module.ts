@@ -19,7 +19,7 @@ import './rxjs-operators';
     declarations: [AppComponent, routedComponents],
     providers: [SampleDataService,
         AuthService,
-        AuthGuard, Title, { provide: APP_BASE_HREF, useValue: '/' }],
+        AuthGuard, Title, { provide: APP_BASE_HREF, useValue: '/a2spa' }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

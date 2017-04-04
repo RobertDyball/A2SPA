@@ -1,4 +1,4 @@
-﻿using A2SPA.Data;
+﻿using A2SPA.Data;   
 using A2SPA.Models;
 using AspNet.Security.OpenIdConnect.Primitives;
 using Microsoft.AspNetCore.Builder;
@@ -168,7 +168,7 @@ namespace A2SPA
 
             });
 
-            if (CurrentEnvironment.IsDevelopment())
+            //if (CurrentEnvironment.IsDevelopment())
             {
                 DbInitializer.Initialize(context);
             }

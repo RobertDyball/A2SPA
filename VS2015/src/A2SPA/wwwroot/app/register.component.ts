@@ -28,10 +28,10 @@ export class RegisterComponent {
         event.preventDefault();
         let body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'verifyPassword': this.registerViewModel.verifyPassword };
 
-        this.http.post('/Account/Register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
+        this.http.post('Account/Register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
             .subscribe(response => {
                 if (response.status == 200) {
-                    this.router.navigate(['/login']);
+                    this.router.navigate(['login']);
                 } else {
                     alert(response.json().error);
                     console.log(response.json().error);
