@@ -2,7 +2,7 @@
 
 @Component({
     selector: 'my-index',
-    templateUrl: '/partial/indexComponent'
+    templateUrl: 'partial/indexComponent'
 })
 
 export class IndexComponent {

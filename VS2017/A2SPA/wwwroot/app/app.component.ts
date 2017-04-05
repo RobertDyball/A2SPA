@@ -7,7 +7,7 @@ import { AuthService } from './security/auth.service';
 
 @Component({
     selector: 'my-app',
-    templateUrl: '/partial/appComponent'
+    templateUrl: 'partial/appComponent'
 })
 export class AppComponent {
     angularClientSideData = 'Angular';
