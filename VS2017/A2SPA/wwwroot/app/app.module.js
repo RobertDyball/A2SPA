@@ -30,7 +30,7 @@ AppModule = __decorate([
         declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
         providers: [sampleData_service_1.SampleDataService,
             auth_service_1.AuthService,
-            auth_guard_service_1.AuthGuard, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/' }],
+            auth_guard_service_1.AuthGuard, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/a2spa' }],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

@@ -23,7 +23,7 @@ var ContactComponent = (function () {
 ContactComponent = __decorate([
     core_1.Component({
         selector: 'my-contact',
-        templateUrl: '/partial/contactComponent'
+        templateUrl: 'partial/contactComponent'
     }),
     __metadata("design:paramtypes", [ngx_toastr_1.ToastrService])
 ], ContactComponent);

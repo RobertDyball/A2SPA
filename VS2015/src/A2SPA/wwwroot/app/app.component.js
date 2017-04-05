@@ -33,7 +33,7 @@ var AppComponent = (function () {
     // tell the server that the user wants to logout; clears token from server, then calls auth.service to clear token locally in browser
     AppComponent.prototype.logout = function () {
         var _this = this;
-        this.http.get('/connect/logout', { headers: this.authService.authJsonHeaders() })
+        this.http.get('connect/logout', { headers: this.authService.authJsonHeaders() })
             .subscribe(function (response) {
             // clear token in browser
             _this.authService.logout();

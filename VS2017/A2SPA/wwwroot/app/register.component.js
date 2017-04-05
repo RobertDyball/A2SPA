@@ -31,10 +31,10 @@ var RegisterComponent = (function () {
         var _this = this;
         event.preventDefault();
         var body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'verifyPassword': this.registerViewModel.verifyPassword };
-        this.http.post('/Account/Register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
+        this.http.post('Account/Register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
             .subscribe(function (response) {
             if (response.status == 200) {
-                _this.router.navigate(['/login']);
+                _this.router.navigate(['login']);
             }
             else {
                 alert(response.json().error);
@@ -52,7 +52,7 @@ var RegisterComponent = (function () {
 RegisterComponent = __decorate([
     core_1.Component({
         selector: 'register',
-        templateUrl: '/partial/registerComponent'
+        templateUrl: 'partial/registerComponent'
     }),
     __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
 ], RegisterComponent);
