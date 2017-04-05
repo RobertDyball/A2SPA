@@ -1,7 +1,7 @@
 {
-  "name": "angular-quickstart",
+  "name": "a2spa",
   "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "description": "ASP.Net Core and Angular 4 Single Page Applicaiton",
   "keywords": [],
   "author": "",
   "license": "MIT",
@@ -17,11 +17,11 @@
     "@angular/router": "~4.0.0",
     "angular-in-memory-web-api": "^0.3.1",
     "core-js": "^2.4.1",
-    "ngx-toastr":"5.0.6",
+    "ngx-toastr": "5.0.6",
     "rxjs": "^5.3.0",
     "systemjs": "^0.20.11",
     "typescript": "^2.2.2",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.5"
   },
   "devDependencies": {
     "typescript": "^2.2.2",
