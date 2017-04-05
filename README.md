@@ -20,11 +20,11 @@ Covers Web API changes; adding create/read/update/delete "CRUD" support, async a
 Part 6: see https://www.codeproject.com/Articles/1177725/SPA-using-ASP-Net-Core-plus-Angular-part6
 Covers Swagger / NSwag Web API documentation and automated Angular 2 typescript code generation, pubishing to IIS
 
-
-Part 7: Covers Publishing to IS using VS2015, conversion frmo localDB to SQLExpress
-(this is part 7, URL to be added; soon to be pubished)
+Part 7: see https://www.codeproject.com/Articles/1179438/SPA-using-ASP-Net-Core-plus-Angular-part7
+Covers Publishing to IS using VS2015, conversion from localDB to SQLExpress, conversion from Angular 2.4 to Angular 4
 
 Part 8 coming next - publishing to IIS using VS2017, code cleanup and optimization
+(this is part 8, URL to be added; soon to be pubished)
 
 #### Prerequisites
 
