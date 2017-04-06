@@ -2,15 +2,34 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>A2SPA</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>A2SPA</PackageId>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
+    <PreBuildEvent>if exist "C:\Projects\A2SPA\VS2017\A2SPA" (
+cd "C:\Projects\A2SPA\VS2017\A2SPA"
+del obj\*.ts /s /q
+)</PreBuildEvent>
+    <!--<PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>-->
   </PropertyGroup>
 
-  <PropertyGroup>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-  </PropertyGroup>
+  <ItemGroup>
+    <None Update="wwwroot\**\*;node_modules\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <Content Include="node_modules\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp1.1\A2SPA.xml</DocumentationFile>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PublishRelease|AnyCPU'" />
 
   <ItemGroup>
     <Content Include="wwwroot\app\about.component.js" />
@@ -98,5 +117,10 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
-
+  
+  <Target Name="SpicNSpan" BeforeTargets="Build">
+    <!--<RemoveDir Directories="$(TargetDir)" />-->    <!-- bin -->
+    <!--<RemoveDir Directories="$(SolutionDir).vs" />-->    <!-- .vs -->
+    <RemoveDir Directories="$(ProjectDir)$(BaseIntermediateOutputPath)" />
+  </Target>
 </Project>
