@@ -33,6 +33,14 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PublishRelease|AnyCPU'" />
 
   <ItemGroup>
+    <Content Include="web.release.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="web.debug.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="wwwroot\app\about.component.js" />
     <Content Include="wwwroot\app\about.component.js.map" />
     <Content Include="wwwroot\app\about.component.ts" />
@@ -118,10 +126,21 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   
-  <Target Name="SpicNSpan" BeforeTargets="Build">
-    <!--<RemoveDir Directories="$(TargetDir)" />-->    <!-- bin -->
-    <!--<RemoveDir Directories="$(SolutionDir).vs" />-->    <!-- .vs -->
+  <Target Name="CleanupTypescriptFromObjFolder" BeforeTargets="Build">
     <RemoveDir Directories="$(ProjectDir)$(BaseIntermediateOutputPath)" />
+  </Target>
+
+  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
+    <Exec Command="c:\windows\system32\inetsrv\appcmd stop apppool a2spa" />
+  </Target>
+
+  <Target Name="PostpublishScript" AfterTargets="Publish" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
+    <Exec Command="c:\windows\system32\inetsrv\appcmd start apppool a2spa" />
   </Target>
 </Project>

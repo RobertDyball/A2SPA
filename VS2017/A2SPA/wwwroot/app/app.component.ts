@@ -9,6 +9,7 @@ import { AuthService } from './security/auth.service';
     selector: 'my-app',
     templateUrl: 'partial/appComponent'
 })
+
 export class AppComponent {
     angularClientSideData = 'Angular';
 
@@ -26,7 +27,7 @@ export class AppComponent {
 
     // tell the server that the user wants to logout; clears token from server, then calls auth.service to clear token locally in browser
     public logout() {
-        this.http.get('/connect/logout', { headers: this.authService.authJsonHeaders() })
+        this.http.get('connect/logout', { headers: this.authService.authJsonHeaders() })
             .subscribe(response => {
                 // clear token in browser
                 this.authService.logout();
