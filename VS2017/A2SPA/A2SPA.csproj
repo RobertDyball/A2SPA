@@ -30,17 +30,11 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
     <DocumentationFile>bin\Debug\netcoreapp1.1\A2SPA.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PublishRelease|AnyCPU'" />
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PublishRelease|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp1.1\A2SPA.xml</DocumentationFile>
+  </PropertyGroup>
+  
   <ItemGroup>
-    <Content Include="web.release.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="web.debug.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="wwwroot\app\about.component.js" />
     <Content Include="wwwroot\app\about.component.js.map" />
     <Content Include="wwwroot\app\about.component.ts" />
@@ -136,6 +130,10 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
     <RemoveDir Directories="$(ProjectDir)$(BaseIntermediateOutputPath)" />
   </Target>
 
+  <Target Name="AfterBuild">
+    <TransformXml Source="Web.config" Transform="Web.$(Configuration).config" Destination="Web.config" />
+  </Target>
+
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
     <Exec Command="c:\windows\system32\inetsrv\appcmd stop apppool a2spa" />
   </Target>
@@ -143,4 +141,5 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
   <Target Name="PostpublishScript" AfterTargets="Publish" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
     <Exec Command="c:\windows\system32\inetsrv\appcmd start apppool a2spa" />
   </Target>
+
 </Project>
