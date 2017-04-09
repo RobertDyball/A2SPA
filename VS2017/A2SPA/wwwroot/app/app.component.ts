@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
-import { Http } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { AuthService } from './security/auth.service';
 
 @Component({
@@ -29,10 +29,11 @@ export class AppComponent {
     public logout() {
         this.http.get('connect/logout', { headers: this.authService.authJsonHeaders() })
             .subscribe(response => {
+                console.log(response);
                 // clear token in browser
                 this.authService.logout();
                 // return to 'home' page
-                this.router.navigate(['']);
+                this.router.navigate(['home']);
             },
             error => {
                 // failed; TODO: add some nice toast / error handling

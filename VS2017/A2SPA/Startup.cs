@@ -174,7 +174,7 @@ namespace A2SPA
 
             });
 
-            if (CurrentEnvironment.IsDevelopment())
+            //if (CurrentEnvironment.IsDevelopment())
             {
                 DbInitializer.Initialize(context);
             }

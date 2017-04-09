@@ -34,10 +34,11 @@ var AppComponent = (function () {
         var _this = this;
         this.http.get('connect/logout', { headers: this.authService.authJsonHeaders() })
             .subscribe(function (response) {
+            console.log(response);
             // clear token in browser
             _this.authService.logout();
             // return to 'home' page
-            _this.router.navigate(['']);
+            _this.router.navigate(['home']);
         }, function (error) {
             // failed; TODO: add some nice toast / error handling
             alert(error.text());
