@@ -13,7 +13,6 @@ using NJsonSchema;
 using NSwag;
 using NSwag.AspNetCore;
 using NSwag.SwaggerGeneration.WebApi.Processors.Security;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -93,7 +92,7 @@ namespace A2SPA
                 // is redirected to the same page with a single parameter (request_id).
                 // This allows flowing large OpenID Connect requests even when using
                 // an external authentication provider like Google, Facebook or Twitter.
-                options.EnableRequestCaching();
+                // options.EnableRequestCaching();
 
                 // During development, you can disable the HTTPS requirement.
                 if (CurrentEnvironment.IsDevelopment())
@@ -175,7 +174,7 @@ namespace A2SPA
 
             });
 
-            if (CurrentEnvironment.IsDevelopment())
+            //if (CurrentEnvironment.IsDevelopment())
             {
                 DbInitializer.Initialize(context);
             }

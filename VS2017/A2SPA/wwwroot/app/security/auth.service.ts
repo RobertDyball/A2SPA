@@ -59,11 +59,13 @@ export class AuthService {
         sessionStorage.removeItem('access_token');
         sessionStorage.removeItem('bearer_token');
         sessionStorage.removeItem('expires_in');
+        return;
     }
 
     // simple check of logged in status: if there is a token, we're (probably) logged in.
     // ideally we check status and check token has not expired (server will back us up, if this not done, but it could be cleaner)
     loggedIn() {
-        return !!sessionStorage.getItem('bearer_token');
+
+        return sessionStorage.getItem('bearer_token') != null;
     }
 }

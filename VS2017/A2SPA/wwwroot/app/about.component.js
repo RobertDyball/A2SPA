@@ -161,7 +161,7 @@ var AboutComponent = (function () {
 AboutComponent = __decorate([
     core_1.Component({
         selector: 'my-about',
-        templateUrl: '/partial/aboutComponent'
+        templateUrl: 'partial/aboutComponent'
     }),
     __metadata("design:paramtypes", [sampleData_service_1.SampleDataService, ngx_toastr_1.ToastrService])
 ], AboutComponent);

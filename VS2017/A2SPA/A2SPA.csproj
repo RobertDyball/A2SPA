@@ -2,16 +2,38 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>A2SPA</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>A2SPA</PackageId>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
+    <PreBuildEvent>@echo "---------- Cleaning up .ts files from obj folder (start) ---------"
+if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
+  del $(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)*.ts /s /q
+)
+@echo "---------- Cleaning up .ts files from obj folder (end) ---------"</PreBuildEvent>
+    <!--<PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>-->
   </PropertyGroup>
 
-  <PropertyGroup>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-  </PropertyGroup>
-
+  <ItemGroup>
+    <None Update="wwwroot\**\*;node_modules\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <Content Include="node_modules\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp1.1\A2SPA.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PublishRelease|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp1.1\A2SPA.xml</DocumentationFile>
+  </PropertyGroup>
+  
   <ItemGroup>
     <Content Include="wwwroot\app\about.component.js" />
     <Content Include="wwwroot\app\about.component.js.map" />
@@ -98,5 +120,26 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  
+  <Target Name="CleanupTypescriptFromObjFolder" BeforeTargets="Build">
+    <RemoveDir Directories="$(ProjectDir)$(BaseIntermediateOutputPath)" />
+  </Target>
+
+  <Target Name="AfterBuild">
+    <TransformXml Source="Web.config" Transform="Web.$(Configuration).config" Destination="Web.config" />
+  </Target>
+
+  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
+    <Exec Command="c:\windows\system32\inetsrv\appcmd stop apppool a2spa" />
+  </Target>
+
+  <Target Name="PostpublishScript" AfterTargets="Publish" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
+    <Exec Command="c:\windows\system32\inetsrv\appcmd start apppool a2spa" />
+  </Target>
 
 </Project>

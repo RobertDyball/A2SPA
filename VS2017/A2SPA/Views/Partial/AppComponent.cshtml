@@ -12,16 +12,16 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a class="nav-link" (click)="setTitle('Home - A2SPA')" routerLink="/home" routerLinkActive="active">Home</a>
+                    <a class="nav-link" (click)="setTitle('Home - A2SPA')" routerLink="home" routerLinkActive="active">Home</a>
                 </li>
                 <li [hidden]="!isLoggedIn()">
-                    <a class="nav-link" (click)="setTitle('About - A2SPA')" routerLink="/about">About</a>
+                    <a class="nav-link" (click)="setTitle('About - A2SPA')" routerLink="about">About</a>
                 </li>
                 <li [hidden]="!isLoggedIn()">
-                    <a class="nav-link" href="/swagger">NSwag</a>
+                    <a class="nav-link" href="swagger">NSwag</a>
                 </li>
                 <li>
-                    <a class="nav-link" (click)="setTitle('Contact - A2SPA')" routerLink="/contact">Contact</a>
+                    <a class="nav-link" (click)="setTitle('Contact - A2SPA')" routerLink="contact">Contact</a>
                 </li>
             </ul>
             @await Html.PartialAsync("_LoginPartial")

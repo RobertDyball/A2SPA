@@ -32,12 +32,13 @@ var AppComponent = (function () {
     // tell the server that the user wants to logout; clears token from server, then calls auth.service to clear token locally in browser
     AppComponent.prototype.logout = function () {
         var _this = this;
-        this.http.get('/connect/logout', { headers: this.authService.authJsonHeaders() })
+        this.http.get('connect/logout', { headers: this.authService.authJsonHeaders() })
             .subscribe(function (response) {
+            console.log(response);
             // clear token in browser
             _this.authService.logout();
             // return to 'home' page
-            _this.router.navigate(['']);
+            _this.router.navigate(['home']);
         }, function (error) {
             // failed; TODO: add some nice toast / error handling
             alert(error.text());
@@ -49,7 +50,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        templateUrl: '/partial/appComponent'
+        templateUrl: 'partial/appComponent'
     }),
     __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
 ], AppComponent);

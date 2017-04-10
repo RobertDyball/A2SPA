@@ -118,7 +118,7 @@ namespace A2SPA.Api
         }
 
         // DELETE api/sampleData/5
-        [HttpDelete("{id:int}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var testData = await _context.TestData

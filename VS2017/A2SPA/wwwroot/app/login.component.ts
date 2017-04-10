@@ -8,7 +8,7 @@ import { LoginViewModel } from './models/LoginViewModel';
 
 @Component({
     selector: 'login',
-    templateUrl: '/partial/loginComponent'
+    templateUrl: 'partial/loginComponent'
 })
 
 export class LoginComponent {
@@ -26,14 +26,15 @@ export class LoginComponent {
 
     // post the user's login details to server, if authenticated token is returned, then token is saved to session storage
     login(event: Event): void {
+        this.authService.logout();
         event.preventDefault();
         let body = 'username=' + this.loginViewModel.email + '&password=' + this.loginViewModel.password + '&grant_type=password';
 
-        this.http.post('/connect/token', body, { headers: this.authService.contentHeaders() })
+        this.http.post('connect/token', body, { headers: this.authService.contentHeaders() })
             .subscribe(response => {
                 // success, save the token to session storage
                 this.authService.login(response.json());
-                this.router.navigate(['/about']);
+                this.router.navigate(['about']);
             },
             error => {
                 // failed; TODO: add some nice toast / error handling
