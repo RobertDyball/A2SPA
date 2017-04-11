@@ -21,7 +21,7 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
     <None Update="wwwroot\**\*;node_modules\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
-    <Content Include="node_modules\**\*">
+    <Content Include="node_modules\**\*" Exclude="node_modules\**\*.ts">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
