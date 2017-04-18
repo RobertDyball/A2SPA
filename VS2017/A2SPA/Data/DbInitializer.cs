@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using A2SPA.ViewModels;
+using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace A2SPA.Data
 {
@@ -7,7 +9,8 @@ namespace A2SPA.Data
     {
         public static void Initialize(A2spaContext context)
         {
-            context.Database.EnsureCreated();
+            // context.Database.EnsureCreated();
+            context.Database.Migrate();
 
             // Look for any test data.
             if (context.TestData.Any())
