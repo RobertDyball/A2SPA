@@ -26,8 +26,8 @@ Covers Publishing to IS using VS2015, conversion from localDB to SQLExpress, con
 Part 8  see https://www.codeproject.com/Articles/1180361/SPA-2-using-ASP-Net-Core-1-1-plus-Angular-4-0-part8
 Covers publishing to IIS using VS2017.
 
-Part 9 to cover optimization, automated SQL migrations, and publishing to Azure/other servers
-(URL to be added; soon to be pubished)
+Part 9 seehttps://www.codeproject.com/Articles/1181665/SPA-using-ASP-Net-Core-plus-Angular-part-9
+Covers optimization, automated SQL migrations, and publishing to Azure, external IIS hosts
 
 #### Prerequisites
 

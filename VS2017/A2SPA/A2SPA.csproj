@@ -18,20 +18,21 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="wwwroot\**\*;node_modules\**\*">
+    <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
-    <Content Include="node_modules\**\*">
+    <Content Include="node_modules\**\*" Exclude="node_modules\**\*.ts">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-  
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp1.1\A2SPA.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PublishRelease|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp1.1\A2SPA.xml</DocumentationFile>
+    <DefineConstants>TRACE;RELEASE;NETCOREAPP1_1</DefineConstants>
   </PropertyGroup>
   
   <ItemGroup>
@@ -119,6 +120,7 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="web.config">

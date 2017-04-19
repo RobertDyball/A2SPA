@@ -95,7 +95,7 @@ namespace A2SPA
                 // options.EnableRequestCaching();
 
                 // During development, you can disable the HTTPS requirement.
-                if (CurrentEnvironment.IsDevelopment())
+                //if (CurrentEnvironment.IsDevelopment())
                 {
                     options.DisableHttpsRequirement();
                 }
@@ -174,7 +174,8 @@ namespace A2SPA
 
             });
 
-            //if (CurrentEnvironment.IsDevelopment())
+            // if you want to use automated deployments, keep the following line remarked out
+            // if (CurrentEnvironment.IsDevelopment())
             {
                 DbInitializer.Initialize(context);
             }
