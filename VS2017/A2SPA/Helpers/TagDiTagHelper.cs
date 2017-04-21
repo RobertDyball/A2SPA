@@ -46,7 +46,7 @@ namespace A2SPA.Helpers
             var labelTag = new TagBuilder("label");
             labelTag.InnerHtml.Append(description);
             labelTag.MergeAttribute("for", propertyName);
-            labelTag.AddCssClass("control-label");
+            //labelTag.AddCssClass("control-label");
 
             // add the input control; TODO: add textarea, date picker support
             var inputTag = new TagBuilder("input");

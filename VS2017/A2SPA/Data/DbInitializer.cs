@@ -8,8 +8,11 @@ namespace A2SPA.Data
     {
         public static void Initialize(A2spaContext context)
         {
-            // performsny outstanding migrations.
-            context.Database.Migrate();
+            // performs any outstanding migrations.
+            if (context.Database.GetPendingMigrations().Any())
+            {
+                context.Database.Migrate();
+            }
 
             // Look for any test data.
             if (context.TestData.Any())

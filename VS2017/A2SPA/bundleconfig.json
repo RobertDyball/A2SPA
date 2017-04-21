@@ -3,8 +3,7 @@
     "outputFileName": "wwwroot/css/site.min.css",
     "inputFiles": [
       "wwwroot/css/site.css",
-      "wwwroot/lib/bootstrap/dist/css/bootstrap.css",
-      "node_modules/ngx-toastr/toastr.css"
+      "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
     ]
   },
   {

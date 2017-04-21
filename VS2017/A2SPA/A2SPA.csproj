@@ -41,8 +41,6 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
     <Content Include="wwwroot\app\about.component.ts" />
     <Content Include="wwwroot\app\app.component.js" />
     <Content Include="wwwroot\app\app.component.js.map" />
-    <Content Include="wwwroot\app\app.component.spec.js" />
-    <Content Include="wwwroot\app\app.component.spec.js.map" />
     <Content Include="wwwroot\app\app.component.ts" />
     <Content Include="wwwroot\app\app.module.js" />
     <Content Include="wwwroot\app\app.module.js.map" />

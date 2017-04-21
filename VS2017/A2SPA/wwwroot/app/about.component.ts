@@ -3,7 +3,6 @@ import { SampleDataService } from './services/sampleData.service';
 import { TestData } from './models/testData';
 import { ViewModelResponse } from './models/viewModelResponse';
 import { ErrorResponse } from './models/errorResponse';
-import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -22,7 +21,8 @@ export class AboutComponent implements OnInit {
 
     errorMessage: string;
 
-    constructor(private sampleDataService: SampleDataService, private toastrService: ToastrService) { }
+    // TODO: restore toasts....
+    constructor(private sampleDataService: SampleDataService) { }
 
     initTestData(): TestData {
         var newTestData = new TestData();
@@ -37,12 +37,14 @@ export class AboutComponent implements OnInit {
     }
 
     showSuccess(title: string, message: string) {
-        this.toastrService.success(message, title);
+        //this.toastrService.success(message, title);
+        // TODO: restore toasts....
     }
 
     showError(title: string, message: string) {
-        this.toastrService.error(message, title);
-    }
+        //this.toastrService.error(message, title);
+        // TODO: restore toasts....
+}
 
     changeMode(newMode: string, thisItem: TestData, event: any): void {
         event.preventDefault();
