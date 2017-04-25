@@ -6,9 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
+var Subject_1 = require("rxjs/Subject");
+require("rxjs/add/operator/debounceTime");
 var ContactComponent = (function () {
     function ContactComponent() {
+        this._success = new Subject_1.Subject();
+        this.staticAlertClosed = false;
     }
+    ContactComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        setTimeout(function () { return _this.staticAlertClosed = true; }, 20000);
+        this._success.subscribe(function (message) { return _this.successMessage = message; });
+        this._success.debounceTime(5000).subscribe(function () { return _this.successMessage = null; });
+    };
+    ContactComponent.prototype.changeSuccessMessage = function () {
+        this._success.next(new Date() + " - Message successfully changed.");
+    };
     // this is not meant to be secured; demonstrating a component that is open to anonymous users to access
     // TODO: restore toasts....    constructor(private toastrService: NgbdAlertSelfclosing) { }
     ContactComponent.prototype.showSuccess = function () {

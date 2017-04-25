@@ -10,11 +10,12 @@ import { SampleDataService } from './services/sampleData.service';
 import { AuthService } from './security/auth.service';
 import { AuthGuard } from './security/auth-guard.service';
 import './rxjs-operators';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // enableProdMode();
 
 @NgModule({
-    imports: [BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, routing],
+    imports: [NgbModule.forRoot(), BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, routing],
     declarations: [AppComponent, routedComponents],
     providers: [SampleDataService,
         AuthService,

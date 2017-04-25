@@ -1,4 +1,6 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
     selector: 'my-contact',
@@ -6,11 +8,20 @@
 })
 
 
-export class ContactComponent {
-    // this is not meant to be secured; demonstrating a component that is open to anonymous users to access
-    // TODO: restore toasts....    constructor(private toastrService: NgbdAlertSelfclosing) { }
+export class ContactComponent implements OnInit {
+    private _success = new Subject<string>();
 
-    showSuccess() {
-        // this.toastrService.success('Hello world!', 'Toastr fun!');
+    staticAlertClosed = false;
+    successMessage: string;
+
+    ngOnInit(): void {
+        setTimeout(() => this.staticAlertClosed = true, 20000);
+
+        this._success.subscribe((message) => this.successMessage = message);
+        this._success.debounceTime(5000).subscribe(() => this.successMessage = null);
+    }
+
+    public changeSuccessMessage() {
+        this._success.next(`${new Date()} - Message successfully changed.`);
     }
 }

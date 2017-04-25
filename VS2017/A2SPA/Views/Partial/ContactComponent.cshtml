@@ -4,16 +4,35 @@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<p>Examples from ng-bootstrap</p>
+<p> see: <a href="https://github.com/ng-bootstrap/ng-bootstrap">Github</a> for further information </p>
+<h3>Alert</h3>
+<p>
+    Static self-closing alert that disappears after 20 seconds (refresh the page if it has already disappeared)
+</p>
+<ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">Check out our awesome new features!</ngb-alert>
+<hr />
+<p>
+    Show a self-closing success message that disappears after 5 seconds.
+</p>
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+<p>
+    <button class="btn btn-primary" (click)="changeSuccessMessage()">Change message</button>
+</p>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<h3>Datepicker</h3>
+<form class="form-inline">
+    <div class="form-group">
+        <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-addon" (click)="d.toggle()">
+                <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+            </div>
+        </div>
+    </div>
+</form>
 
-<button (click)="showSuccess()" class="btn btn-primary">Open Toast</button>
+<hr />
+<pre>Model: {{ model | json }}</pre>
+
