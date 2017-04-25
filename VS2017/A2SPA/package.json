@@ -6,7 +6,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@angular/animations": "~4.0.0",
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",
     "@angular/core": "~4.0.0",
@@ -15,7 +14,6 @@
     "@angular/platform-browser": "~4.0.0",
     "@angular/platform-browser-dynamic": "~4.0.0",
     "@angular/router": "~4.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.23",
     "angular-in-memory-web-api": "^0.3.1",
     "bootstrap": "4.0.0-alpha.6",
     "core-js": "^2.4.1",

@@ -16,10 +16,6 @@
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
-      // animations required by ngx-toastr. re: adding deps below, see https://github.com/angular/angular/issues/15005
-      '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.min.js',
-      '@angular/animations/browser':'npm:@angular/animations/bundles/animations-browser.umd.js',
-      '@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
       '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
       '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
       '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
@@ -29,9 +25,7 @@
 
       // other libraries
       'rxjs':                      'npm:rxjs',
-      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      //'ngx-toastr': 'npm:ngx-toastr/toastr.umd.js',
-      '@ng-bootstrap/ng-bootstrap': 'node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js'
+      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

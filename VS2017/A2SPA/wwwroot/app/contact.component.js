@@ -9,11 +9,6 @@ var core_1 = require("@angular/core");
 var ContactComponent = (function () {
     function ContactComponent() {
     }
-    // this is not meant to be secured; demonstrating a component that is open to anonymous users to access
-    // TODO: restore toasts....    constructor(private toastrService: NgbdAlertSelfclosing) { }
-    ContactComponent.prototype.showSuccess = function () {
-        // this.toastrService.success('Hello world!', 'Toastr fun!');
-    };
     return ContactComponent;
 }());
 ContactComponent = __decorate([
