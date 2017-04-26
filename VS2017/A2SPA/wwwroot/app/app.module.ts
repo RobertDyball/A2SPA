@@ -9,11 +9,12 @@ import { SampleDataService } from './services/sampleData.service';
 import { AuthService } from './security/auth.service';
 import { AuthGuard } from './security/auth-guard.service';
 import './rxjs-operators';
+import { AlertModule, BsDropdownModule } from 'ngx-bootstrap';
 
 // enableProdMode();
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, HttpModule, routing],
+    imports: [AlertModule.forRoot(), BsDropdownModule.forRoot(), BrowserModule, FormsModule, HttpModule, routing],
     declarations: [AppComponent, routedComponents],
     providers: [SampleDataService,
         AuthService,

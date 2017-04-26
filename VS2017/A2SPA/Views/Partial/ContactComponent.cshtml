@@ -4,14 +4,27 @@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="btn-group" dropdown>
+    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+        Button dropdown <span class="caret"></span>
+    </button>
+    <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <li role="menuitem"><a class="dropdown-item" href="home">Home</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="contact">Contact</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="register">Register</a></li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem">
+            <a class="dropdown-item" href="#login">Login</a>
+        </li>
+        <li role="menuitem"><a class="dropdown-item" href="swagger">NSwag</a></li>
+    </ul>
+</div>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<alert type="success" dismissOnTimeout="5000">
+    <strong>Well done!</strong> You successfully read this important alert message.
+</alert>
+<p>If you missed alert on top of me, just press <code>Add more</code> button</p>
+<div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+<button type="button" class="btn btn-primary" (click)="add()">Add more</button>

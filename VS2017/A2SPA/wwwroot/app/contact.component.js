@@ -8,7 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var ContactComponent = (function () {
     function ContactComponent() {
+        this.alerts = [];
     }
+    ContactComponent.prototype.add = function () {
+        this.alerts.push({
+            type: 'info',
+            msg: "This alert will be closed in 5 seconds (added: " + (new Date()).toLocaleTimeString() + ")",
+            timeout: 5000
+        });
+    };
     return ContactComponent;
 }());
 ContactComponent = __decorate([

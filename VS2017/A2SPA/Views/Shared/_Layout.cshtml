@@ -17,6 +17,8 @@
 
 </head>
 <body>
+    <!-- Enable bootstrap 4 theme -->
+    <script>window.__theme = 'bs4';</script>
 
     @RenderBody()
 
@@ -42,7 +44,6 @@
             System.import('app').catch(function (err) { console.error(err); });
         </script>
     </environment>
-
     @RenderSection("scripts", required: false)
 
 </body>

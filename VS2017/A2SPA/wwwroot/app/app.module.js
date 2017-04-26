@@ -16,6 +16,7 @@ var sampleData_service_1 = require("./services/sampleData.service");
 var auth_service_1 = require("./security/auth.service");
 var auth_guard_service_1 = require("./security/auth-guard.service");
 require("./rxjs-operators");
+var ngx_bootstrap_1 = require("ngx-bootstrap");
 // enableProdMode();
 var AppModule = (function () {
     function AppModule() {
@@ -24,7 +25,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_1.routing],
+        imports: [ngx_bootstrap_1.AlertModule.forRoot(), ngx_bootstrap_1.BsDropdownModule.forRoot(), platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_1.routing],
         declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
         providers: [sampleData_service_1.SampleDataService,
             auth_service_1.AuthService,
