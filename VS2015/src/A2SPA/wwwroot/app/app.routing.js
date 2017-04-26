@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var router_1 = require("@angular/router");
 var auth_guard_service_1 = require("./security/auth-guard.service");
 var about_component_1 = require("./about.component");

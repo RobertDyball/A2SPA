@@ -5,13 +5,20 @@
     "outputFileName": "wwwroot/css/site.min.css",
     // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
-      "wwwroot/css/site.css"
+      "wwwroot/css/site.css",
+      "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
     ]
   },
   {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
-      "wwwroot/js/site.js"
+      "wwwroot/lib/jquery/dist/jquery.js",
+      "wwwroot/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/js/site.js",
+      "node_modules/core-js/client/shim.min.js",
+      "node_modules/zone.js/dist/zone.js",
+      "node_modules/systemjs/dist/system.src.js",
+      "wwwroot/systemjs.config.js"
     ],
     // Optionally specify minification options
     "minify": {

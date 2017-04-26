@@ -11,12 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var sampleData_service_1 = require("./services/sampleData.service");
 var testData_1 = require("./models/testData");
+var ngx_toastr_1 = require("ngx-toastr");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var AboutComponent = (function () {
     // TODO: restore toasts....
-    function AboutComponent(sampleDataService) {
+    function AboutComponent(sampleDataService, toastrService) {
         this.sampleDataService = sampleDataService;
+        this.toastrService = toastrService;
         this.testDataList = [];
         this.selectedItem = null;
         this.testData = null;
@@ -34,12 +36,10 @@ var AboutComponent = (function () {
         this.tableMode = 'list';
     };
     AboutComponent.prototype.showSuccess = function (title, message) {
-        //this.toastrService.success(message, title);
-        // TODO: restore toasts....
+        this.toastrService.success(message, title);
     };
     AboutComponent.prototype.showError = function (title, message) {
-        //this.toastrService.error(message, title);
-        // TODO: restore toasts....
+        this.toastrService.error(message, title);
     };
     AboutComponent.prototype.changeMode = function (newMode, thisItem, event) {
         event.preventDefault();
@@ -164,7 +164,7 @@ AboutComponent = __decorate([
         selector: 'my-about',
         templateUrl: 'partial/aboutComponent'
     }),
-    __metadata("design:paramtypes", [sampleData_service_1.SampleDataService])
+    __metadata("design:paramtypes", [sampleData_service_1.SampleDataService, ngx_toastr_1.ToastrService])
 ], AboutComponent);
 exports.AboutComponent = AboutComponent;
 //# sourceMappingURL=about.component.js.map
