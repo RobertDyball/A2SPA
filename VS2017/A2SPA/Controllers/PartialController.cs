@@ -17,5 +17,9 @@ namespace A2SPA.Controllers
         public IActionResult LoginComponent() => PartialView();
 
         public IActionResult RegisterComponent() => PartialView();
+
+        public IActionResult ManageComponent() => PartialView();
+
+        public IActionResult ChangePasswordComponent() => PartialView();
     }
 }

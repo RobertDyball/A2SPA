@@ -48,6 +48,9 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
     <Content Include="wwwroot\app\app.routing.js" />
     <Content Include="wwwroot\app\app.routing.js.map" />
     <Content Include="wwwroot\app\app.routing.ts" />
+    <Content Include="wwwroot\app\changePassword.component.js" />
+    <Content Include="wwwroot\app\changePassword.component.js.map" />
+    <Content Include="wwwroot\app\changePassword.component.ts" />
     <Content Include="wwwroot\app\contact.component.js" />
     <Content Include="wwwroot\app\contact.component.js.map" />
     <Content Include="wwwroot\app\contact.component.ts" />
@@ -60,6 +63,12 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
     <Content Include="wwwroot\app\main.js" />
     <Content Include="wwwroot\app\main.js.map" />
     <Content Include="wwwroot\app\main.ts" />
+    <Content Include="wwwroot\app\manage.component.js" />
+    <Content Include="wwwroot\app\manage.component.js.map" />
+    <Content Include="wwwroot\app\manage.component.ts" />
+    <Content Include="wwwroot\app\models\ChangePasswordViewModel.js" />
+    <Content Include="wwwroot\app\models\ChangePasswordViewModel.js.map" />
+    <Content Include="wwwroot\app\models\ChangePasswordViewModel.ts" />
     <Content Include="wwwroot\app\models\ErrorResponse.ts" />
     <Content Include="wwwroot\app\models\LoginViewModel.js" />
     <Content Include="wwwroot\app\models\LoginViewModel.js.map" />
@@ -106,10 +115,13 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0" />
     <PackageReference Include="NSwag.AspNetCore" Version="9.12.0" />
     <PackageReference Include="OpenIddict" Version="1.0.0-beta2-0580" />
     <PackageReference Include="OpenIddict.Core" Version="1.0.0-beta2-0580" />

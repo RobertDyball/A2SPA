@@ -67,10 +67,10 @@
                             </div>
                             <div class="card-block">
                                 <tag-dd par="testData" for="Id"></tag-dd>
-                                <tag-di par="testData" for="Username"></tag-di>
-                                <tag-di par="testData" for="Currency"></tag-di>
-                                <tag-di par="testData" for="EmailAddress"></tag-di>
-                                <tag-di par="testData" for="Password"></tag-di>
+                                <vfdi par="testData" for="Username"></vfdi>
+                                <vfdi par="testData" for="Currency"></vfdi>
+                                <vfdi par="testData" for="EmailAddress"></vfdi>
+                                <vfdi par="testData" for="Password"></vfdi>
                             </div>
                             <div class="card-footer">
                                 <button [disabled]="!testForm.form.valid" [hidden]="!(tableMode==='add')" type="button" class="btn btn-warning" (click)="addTestData($event)">Save new item</button>

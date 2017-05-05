@@ -1,4 +1,4 @@
-# Angular 2 + ASP.Net Core SPA
+# Angular 4 + Bootstrap 4 + ASP.Net Core 1.1.1 SPA
 
 A SPA that uses the best of ASP.Net Core 1.1 for the backend and Angular 2.4 for the front end.
 

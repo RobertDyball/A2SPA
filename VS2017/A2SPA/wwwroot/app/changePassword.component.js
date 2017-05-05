@@ -13,32 +13,40 @@ var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var auth_service_1 = require("./security/auth.service");
-var RegisterViewModel_1 = require("./models/RegisterViewModel");
-var RegisterComponent = (function () {
-    function RegisterComponent(router, titleService, http, authService) {
+var ChangePasswordViewModel_1 = require("./models/ChangePasswordViewModel");
+var ngx_toastr_1 = require("ngx-toastr");
+var ChangePasswordComponent = (function () {
+    function ChangePasswordComponent(router, titleService, http, authService, toastrService) {
         this.router = router;
         this.titleService = titleService;
         this.http = http;
         this.authService = authService;
+        this.toastrService = toastrService;
     }
-    RegisterComponent.prototype.ngOnInit = function () {
-        this.registerViewModel = new RegisterViewModel_1.RegisterViewModel();
+    ChangePasswordComponent.prototype.ngOnInit = function () {
+        this.changePasswordViewModel = new ChangePasswordViewModel_1.ChangePasswordViewModel();
     };
-    RegisterComponent.prototype.setTitle = function (newTitle) {
+    ChangePasswordComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
     };
-    RegisterComponent.prototype.register = function (event) {
+    ChangePasswordComponent.prototype.showSuccess = function (title, message) {
+        this.toastrService.success(message, title);
+    };
+    ChangePasswordComponent.prototype.showError = function (title, message) {
+        this.toastrService.error(message, title);
+    };
+    ChangePasswordComponent.prototype.changePassword = function (event) {
         var _this = this;
         event.preventDefault();
-        var body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'confirmPassword': this.registerViewModel.confirmPassword };
-        this.http.post('Account/Register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
+        var body = { 'oldPassword': this.changePasswordViewModel.oldPassword, 'newPassword': this.changePasswordViewModel.newPassword, 'confirmPassword': this.changePasswordViewModel.confirmPassword };
+        this.http.post('manage/changePassword', JSON.stringify(body), { headers: this.authService.authJsonHeaders() })
             .subscribe(function (response) {
             if (response.status == 200) {
-                _this.router.navigate(['login']);
+                _this.showSuccess('Password changed', response.json());
+                _this.router.navigate(['manage']);
             }
             else {
-                alert(response.json().error);
-                console.log(response.json().error);
+                _this.showError('Password not changed', response.json());
             }
         }, function (error) {
             // TODO: parse error messages, generate toast popups
@@ -47,14 +55,14 @@ var RegisterComponent = (function () {
             console.log(error.text());
         });
     };
-    return RegisterComponent;
+    return ChangePasswordComponent;
 }());
-RegisterComponent = __decorate([
+ChangePasswordComponent = __decorate([
     core_1.Component({
         selector: 'register',
-        templateUrl: 'partial/registerComponent'
+        templateUrl: 'partial/changePasswordComponent'
     }),
-    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
-], RegisterComponent);
-exports.RegisterComponent = RegisterComponent;
-//# sourceMappingURL=register.component.js.map
+    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService, ngx_toastr_1.ToastrService])
+], ChangePasswordComponent);
+exports.ChangePasswordComponent = ChangePasswordComponent;
+//# sourceMappingURL=changePassword.component.js.map

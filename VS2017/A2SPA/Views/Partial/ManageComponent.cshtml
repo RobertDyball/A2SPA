@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Manage your account";
+}
+
+<h2>@ViewData["Title"].</h2>
+<p class="text-success">@ViewData["StatusMessage"]</p>
+
+<div>
+    <h4>Change your account settings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+            <a class="nav-link" (click)="setTitle('Change Password')" routerLink="/changePassword">Change Password</a>
+        </dd>
+    </dl>
+</div>

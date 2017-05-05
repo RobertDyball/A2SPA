@@ -4,17 +4,37 @@
 @addTagHelper *,A2SPA
 @model LoginViewModel
 
-<div class="jumbotron center-block">
-    <h2>Login</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section>
+            <h2>Log in.</h2>
+            <h5>Use a local account to log in.</h5>
+            <hr />
+            <div *ngIf="loginViewModel != null">
+                <form role="form" #testForm="ngForm" class="form-horizontal">
+                    <hfdi for="Email"></hfdi>
+                    <hfdi for="Password"></hfdi>
+                    <div class="form-group row">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="button" (click)="login($event)" class="btn btn-secondary">Log in</button>
+                            <p>Not registered? <a routerLink="register"> Click here to Register</a></p>
+                            @*
+                                <-- to be added -->
+                                <p>
+                                <a asp-action="ForgotPassword">Forgot your password?</a>
+                            </p>*@
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section>
+            <!-- tba -->
+        </section>
+    </div>
 
-    <form role="form" #testForm="ngForm">
-        <div *ngIf="loginViewModel != null">
-            <tag-di for="Email"></tag-di>
-            <tag-di for="Password"></tag-di>
-            <button type="button" (click)="login($event)" class="btn btn-default">Submit</button>
-            <span class="small">Not registered? <a [routerLink]="['register']"> Click here to Register</a></span>
-        </div>
-    </form>
 </div>
 
 <div *ngIf="errorMessage != null">

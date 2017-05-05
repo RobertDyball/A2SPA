@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace A2SPA.Helpers
 {
     /// <summary>
-    /// Tag helper to generate form group and form controls for data entry
+    /// Tag helper to horizontal form form group and form controls for data entry
     /// </summary>
-    [HtmlTargetElement("tag-di")]
-    public class TagDiTagHelper : TagHelper
+    [HtmlTargetElement("hfdi")]
+    public class HfDiTagHelper : TagHelper
     {
         /// <summary>
         /// Alternate name to set angular data-binding to
@@ -46,7 +46,8 @@ namespace A2SPA.Helpers
             var labelTag = new TagBuilder("label");
             labelTag.InnerHtml.Append(description);
             labelTag.MergeAttribute("for", propertyName);
-            //labelTag.AddCssClass("control-label");
+            labelTag.AddCssClass("form-control-label");
+            labelTag.AddCssClass("col-md-2");
 
             // add the input control; TODO: add textarea, date picker support
             var inputTag = new TagBuilder("input");
@@ -134,9 +135,12 @@ namespace A2SPA.Helpers
 
             // now generate the outer wrapper for the form group, get ready to start filling it with content prepared above
             output.TagName = "div";
-            output.Attributes.Add("class", "form-group");
+            output.Attributes.Add("class", "form-group row");
 
             // first the label
+            var rhsColumn = new TagBuilder("div");
+            rhsColumn.Attributes.Add("class", "col-md-10");
+
             output.Content.AppendHtml(labelTag);
 
             // Some input controls use bootstrap "input group"- wrap the input tag with an input group, if needed
@@ -153,12 +157,14 @@ namespace A2SPA.Helpers
                     divInputGroup.InnerHtml.AppendHtml(spanInputGroupAddon);
                     divInputGroup.InnerHtml.AppendHtml(inputTag);
 
-                    output.Content.AppendHtml(divInputGroup);
+                    rhsColumn.InnerHtml.AppendHtml(divInputGroup);
+                    output.Content.AppendHtml(rhsColumn);
                     break;
 
                 default:
                     // most of the time we simply append the input controls prepared above
-                    output.Content.AppendHtml(inputTag);
+                    rhsColumn.InnerHtml.AppendHtml(inputTag);
+                    output.Content.AppendHtml(rhsColumn);
                     break;
             }
 
