@@ -22,6 +22,7 @@ export class AboutComponent implements OnInit {
 
     errorMessage: string;
 
+    // TODO: restore toasts....
     constructor(private sampleDataService: SampleDataService, private toastrService: ToastrService) { }
 
     initTestData(): TestData {

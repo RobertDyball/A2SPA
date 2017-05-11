@@ -6,7 +6,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@angular/animations": "^4.0.0",
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",
     "@angular/core": "~4.0.0",
@@ -17,6 +16,10 @@
     "@angular/router": "~4.0.0",
     "angular-in-memory-web-api": "^0.3.1",
     "core-js": "^2.4.1",
+    "bootstrap": "4.0.0-alpha.6",
+    "ionicons": "^3.0.0",
+    "octicons": "^5.0.1",
+    "reflect-metadata": "^0.1.8",
     "ngx-toastr": "^5.0.6",
     "rxjs": "^5.3.0",
     "systemjs": "^0.20.11",

@@ -5,7 +5,7 @@ import { routing, routedComponents } from './app.routing';
 import { APP_BASE_HREF, Location } from '@angular/common';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule  } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { SampleDataService } from './services/sampleData.service';
 import { AuthService } from './security/auth.service';
 import { AuthGuard } from './security/auth-guard.service';

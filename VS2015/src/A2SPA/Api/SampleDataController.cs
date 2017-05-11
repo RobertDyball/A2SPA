@@ -24,12 +24,13 @@ namespace A2SPA.Api
         }
 
         /// <summary>
-        /// Returns a single TestData record with matching Id
+        /// Returns a TestData with matching Id
         /// </summary>
         /// <remarks>This method will return an IActionResult containing the TestData record and StatusCode 200 if successful. 
         /// If there is a an error, you will get a status message and StatusCode which will indicate what was the error.</remarks>
         /// <param name="id">the ID of the record to retrieve</param>
         /// <returns>an IActionResult</returns>
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -117,7 +118,7 @@ namespace A2SPA.Api
         }
 
         // DELETE api/sampleData/5
-        [HttpDelete("{id:int}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var testData = await _context.TestData
@@ -135,7 +136,7 @@ namespace A2SPA.Api
                 await _context.SaveChangesAsync();
                 return Json(Ok("deleted"));
             }
-            catch (DbUpdateException exception)
+            catch (DbUpdateException exception) 
             {
                 Debug.WriteLine("An exception occurred: {0}, {1}", exception.InnerException, exception.Message);
                 return Json(NotFound("An error occurred; not deleted"));

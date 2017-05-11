@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var AuthService = (function () {
@@ -60,11 +59,12 @@ var AuthService = (function () {
         sessionStorage.removeItem('access_token');
         sessionStorage.removeItem('bearer_token');
         sessionStorage.removeItem('expires_in');
+        return;
     };
     // simple check of logged in status: if there is a token, we're (probably) logged in.
     // ideally we check status and check token has not expired (server will back us up, if this not done, but it could be cleaner)
     AuthService.prototype.loggedIn = function () {
-        return !!sessionStorage.getItem('bearer_token');
+        return sessionStorage.getItem('bearer_token') != null;
     };
     return AuthService;
 }());

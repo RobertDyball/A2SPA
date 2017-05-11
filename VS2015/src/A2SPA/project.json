@@ -6,12 +6,13 @@
     "Humanizer.xproj": "2.1.0",
     "Microsoft.AspNetCore.SpaServices": "1.1.0",
     "Microsoft.AspNet.Tooling.Razor": "1.0.0-rc1-final",
-    "OpenIddict": "1.0.0-*",
-    "OpenIddict.EntityFrameworkCore": "1.0.0-*",
-    "OpenIddict.Mvc": "1.0.0-*",
-    "AspNet.Security.OAuth.Introspection": "1.0.0-rtm-0237",
+    "OpenIddict": "1.0.0-beta2-0614",
+    "OpenIddict.Core": "1.0.0-beta2-0614",
+    "OpenIddict.EntityFrameworkCore": "1.0.0-beta2-0614",
+    "OpenIddict.Mvc": "1.0.0-beta2-0614",
+    "AspNet.Security.OAuth.Introspection": "1.0.0",
     "NSwag.AspNetCore": "9.12.0",
-    "AspNet.Security.OAuth.Validation": "1.0.0-rtm-0237",
+    "AspNet.Security.OAuth.Validation": "1.0.0",
     "BundlerMinifier.Core": "2.4.337",
     "Microsoft.AspNetCore.Diagnostics": "1.1.1",
     "Microsoft.AspNetCore.Identity": "1.1.1",
@@ -49,7 +50,8 @@
   "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true,
-    "xmlDoc": true
+    "xmlDoc": true,
+    "define": [ "DEBUG", "TRACE", "NETCOREAPP1_1" ]
   },
 
   "runtimeOptions": {

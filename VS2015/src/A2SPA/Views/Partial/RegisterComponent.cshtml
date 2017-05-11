@@ -6,16 +6,21 @@
 
 <div class="jumbotron center-block">
     <h2>Register</h2>
-
-    <form role="form" #testForm="ngForm">
-        <div *ngIf="registerViewModel != null">
-            <tag-di for="Email"></tag-di>
-            <tag-di for="Password"></tag-di>
-            <tag-di for="VerifyPassword"></tag-di>
-            <button type="button" (click)="register($event)" class="btn btn-default">Submit</button>
-            <span class="small">Already registered? <a [routerLink]="['/login']"> Click here to Login</a></span>
-        </div>
-    </form>
+    <h4>Create a new account.</h4>
+    <hr />
+    <div *ngIf="registerViewModel != null">
+        <form role="form" #testForm="ngForm" class="form-horizontal">
+            <hfdi for="Email"></hfdi>
+            <hfdi for="Password"></hfdi>
+            <hfdi for="ConfirmPassword"></hfdi>
+            <div class="form-group row">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="button" (click)="register($event)" class="btn btn-secondary">Register</button>
+                </div>
+            </div>
+            <span class="small">Already registered? <a [routerLink]="['login']"> Click here to Login</a></span>
+        </form>
+    </div>
 </div>
 
 <div *ngIf="errorMessage != null">

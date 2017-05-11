@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var sampleData_service_1 = require("./services/sampleData.service");
 var testData_1 = require("./models/testData");
@@ -16,6 +15,7 @@ var ngx_toastr_1 = require("ngx-toastr");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var AboutComponent = (function () {
+    // TODO: restore toasts....
     function AboutComponent(sampleDataService, toastrService) {
         this.sampleDataService = sampleDataService;
         this.toastrService = toastrService;

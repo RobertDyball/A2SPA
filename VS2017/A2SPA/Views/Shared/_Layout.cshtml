@@ -2,13 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>@ViewData["Title"] - A2SPA</title>
     <base href="~/">
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/node_modules/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/node_modules/ionicons/dist/css/ionicons.css" />
         <link rel="stylesheet" href="~/node_modules/ngx-toastr/toastr.css" />
     </environment>
     <environment names="Staging,Production">
@@ -22,7 +23,10 @@
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/node_modules/tether/dist/js/tether.min.js"></script>
+        <script src="~/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/node_modules/reflect-metadata/Reflect.js"></script>
+        <script src="~/node_modules/tether/dist/js/tether.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <!-- Polyfill(s) for older browsers -->
         <script src="~/node_modules/core-js/client/shim.min.js"></script>

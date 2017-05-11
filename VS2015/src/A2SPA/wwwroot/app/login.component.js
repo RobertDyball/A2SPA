@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
@@ -31,6 +30,7 @@ var LoginComponent = (function () {
     // post the user's login details to server, if authenticated token is returned, then token is saved to session storage
     LoginComponent.prototype.login = function (event) {
         var _this = this;
+        this.authService.logout();
         event.preventDefault();
         var body = 'username=' + this.loginViewModel.email + '&password=' + this.loginViewModel.password + '&grant_type=password';
         this.http.post('connect/token', body, { headers: this.authService.contentHeaders() })

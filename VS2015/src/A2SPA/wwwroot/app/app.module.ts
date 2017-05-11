@@ -5,7 +5,7 @@ import { routing, routedComponents } from './app.routing';
 import { APP_BASE_HREF, Location } from '@angular/common';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule  } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { SampleDataService } from './services/sampleData.service';
 import { AuthService } from './security/auth.service';
 import { AuthGuard } from './security/auth-guard.service';
@@ -15,7 +15,7 @@ import './rxjs-operators';
 // enableProdMode();
 
 @NgModule({
-    imports: [ BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
+    imports: [BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
     declarations: [AppComponent, routedComponents],
     providers: [SampleDataService,
         AuthService,
