@@ -14,7 +14,7 @@ namespace A2SPA
                 .CaptureStartupErrors(true)
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
+                //.UseApplicationInsights()
                 .Build();
 
             host.Run();

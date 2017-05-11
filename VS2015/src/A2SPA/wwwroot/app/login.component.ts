@@ -26,6 +26,7 @@ export class LoginComponent {
 
     // post the user's login details to server, if authenticated token is returned, then token is saved to session storage
     login(event: Event): void {
+        this.authService.logout();
         event.preventDefault();
         let body = 'username=' + this.loginViewModel.email + '&password=' + this.loginViewModel.password + '&grant_type=password';
 

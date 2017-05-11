@@ -10,8 +10,11 @@ namespace A2SPA
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseSetting("detailedErrors", "true")
+                .CaptureStartupErrors(true)
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                //.UseApplicationInsights()
                 .Build();
 
             host.Run();

@@ -30,7 +30,7 @@ var RegisterComponent = (function () {
     RegisterComponent.prototype.register = function (event) {
         var _this = this;
         event.preventDefault();
-        var body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'verifyPassword': this.registerViewModel.verifyPassword };
+        var body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'confirmPassword': this.registerViewModel.confirmPassword };
         this.http.post('Account/Register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
             .subscribe(function (response) {
             if (response.status == 200) {

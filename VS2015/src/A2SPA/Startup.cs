@@ -1,4 +1,4 @@
-﻿using A2SPA.Data;   
+﻿using A2SPA.Data;
 using A2SPA.Models;
 using AspNet.Security.OpenIdConnect.Primitives;
 using Microsoft.AspNetCore.Builder;
@@ -32,9 +32,9 @@ namespace A2SPA
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{CurrentEnvironment.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-
             Configuration = builder.Build();
         }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -51,7 +51,6 @@ namespace A2SPA
                 // to replace the default OpenIddict entities.
                 options.UseOpenIddict();
             });
-
             // Register the Identity services.
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<A2spaContext>()
@@ -61,9 +60,9 @@ namespace A2SPA
             // of the legacy WS-Federation claims it uses by default (ClaimTypes),
             // which saves you from doing the mapping in your authorization controller.
             services.Configure<IdentityOptions>(options =>
-        {
-            options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
-            options.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
+            {
+                options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
+                options.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
                 //options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
             });
 
@@ -74,21 +73,29 @@ namespace A2SPA
                 options.AddEntityFrameworkCoreStores<A2spaContext>();
 
                 // Register the ASP.NET Core MVC binder used by OpenIddict.
-                // Note: if you don't call this method, you won't be able to bind OpenIdConnectRequest or OpenIdConnectResponse parameters.
+                // Note: if you don't call this method, you won't be able to
+                // bind OpenIdConnectRequest or OpenIdConnectResponse parameters.
                 options.AddMvcBinders();
 
-                // Enable the authorization, logout, token or userinfo endpoints here:
-                options.EnableTokenEndpoint("/connect/token");
+                // Enable the authorization, logout, token and userinfo endpoints.
+                options.EnableAuthorizationEndpoint("/connect/authorize")
+                       .EnableLogoutEndpoint("/connect/logout")
+                       .EnableTokenEndpoint("/connect/token")
+                       .EnableUserinfoEndpoint("/api/userinfo");
 
+                // Note: the Mvc.Client sample only uses the authorization code flow but you can enable
+                // the other flows if you need to support implicit, password or client credentials.
                 options.AllowPasswordFlow();
 
-                // When request caching is enabled, authorization and logout requests are stored in the distributed cache by OpenIddict and the user agent
+                // When request caching is enabled, authorization and logout requests
+                // are stored in the distributed cache by OpenIddict and the user agent
                 // is redirected to the same page with a single parameter (request_id).
-                // This allows flowing large OpenID Connect requests even when using an external authentication provider like Google, Facebook or Twitter.
+                // This allows flowing large OpenID Connect requests even when using
+                // an external authentication provider like Google, Facebook or Twitter.
                 // options.EnableRequestCaching();
 
                 // During development, you can disable the HTTPS requirement.
-                if (CurrentEnvironment.IsDevelopment())
+                //if (CurrentEnvironment.IsDevelopment())
                 {
                     options.DisableHttpsRequirement();
                 }
@@ -156,7 +163,6 @@ namespace A2SPA
                 DefaultPropertyNameHandling = PropertyNameHandling.CamelCase
             });
 
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -168,7 +174,8 @@ namespace A2SPA
 
             });
 
-            if (CurrentEnvironment.IsDevelopment())
+            // if you want to use automated deployments, keep the following line remarked out
+            // if (CurrentEnvironment.IsDevelopment())
             {
                 DbInitializer.Initialize(context);
             }

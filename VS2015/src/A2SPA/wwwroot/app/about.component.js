@@ -15,6 +15,7 @@ var ngx_toastr_1 = require("ngx-toastr");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var AboutComponent = (function () {
+    // TODO: restore toasts....
     function AboutComponent(sampleDataService, toastrService) {
         this.sampleDataService = sampleDataService;
         this.toastrService = toastrService;

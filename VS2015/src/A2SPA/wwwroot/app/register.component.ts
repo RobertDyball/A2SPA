@@ -26,7 +26,7 @@ export class RegisterComponent {
 
     register(event: Event): void {
         event.preventDefault();
-        let body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'verifyPassword': this.registerViewModel.verifyPassword };
+        let body = { 'email': this.registerViewModel.email, 'password': this.registerViewModel.password, 'confirmPassword': this.registerViewModel.confirmPassword };
 
         this.http.post('Account/Register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
             .subscribe(response => {

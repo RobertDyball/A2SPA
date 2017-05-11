@@ -37,7 +37,7 @@ textarea {
 }
 
 /* Sticky footer styles
--------------------------------------------------- */
+---------------------------------------------------------------------------------------------------- */
 html {
     position: relative;
     min-height: 100%;
@@ -58,21 +58,30 @@ body {
 }
 
 /* Custom jumbotron styles
--------------------------------------------------- */
+---------------------------------------------------------------------------------------------------- */
 .jumbotron-narrow {
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
 /* validation */
-.ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
-}
-.ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
+.ng-valid[required], .ng-valid.required {
+    border-left: 5px solid #42A948; /* green */
 }
 
-/* hidden .. see: http://www.talkingdotnet.com/dont-use-hidden-attribute-angularjs-2/ */
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442; /* red */
+}
+
+/* hidden .. see: http://www.talkingdotnet.com/dont-use-hidden-attribute-angularjs-2/ 
+---------------------------------------------------------------------------------------------------- */
 [hidden] {
     display: none !important;
+}
+
+/* change appearance of the active menu link 
+---------------------------------------------------------------------------------------------------- */
+.active-link {
+    color: #ffd800;
+    font-weight: bold;
 }

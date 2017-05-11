@@ -34,6 +34,21 @@ namespace A2SPA.Api
             _userManager = userManager;
         }
 
+        [HttpGet("~/connect/logout")]
+        public async Task<IActionResult> Logout()
+        {
+            // Ask ASP.NET Core Identity to delete the local and external cookies created
+            // when the user agent is redirected from the external identity provider
+            // after a successful authentication flow (e.g Google or Facebook).
+            // await _signInManager.SignOutAsync();
+
+            // Returning a SignOutResult will ask OpenIddict to redirect the user agent
+            // to the post_logout_redirect_uri specified by the client application.
+            // return SignOut(OpenIdConnectServerDefaults.);
+
+            return Json(Ok("logged out"));
+        }
+
         [HttpPost("~/connect/token"), Produces("application/json")]
         public async Task<IActionResult> Exchange(OpenIdConnectRequest request)
         {
