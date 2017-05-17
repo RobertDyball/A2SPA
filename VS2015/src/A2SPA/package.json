@@ -1,23 +1,28 @@
 {
+  "name": "angular-quickstart",
+  "version": "1.0.0",
+  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "dependencies": {
-    "@angular/common": "~2.4.0",
-    "@angular/compiler": "~2.4.0",
-    "@angular/core": "~2.4.0",
-    "@angular/forms": "~2.4.0",
-    "@angular/http": "~2.4.0",
-    "@angular/platform-browser": "~2.4.0",
-    "@angular/platform-browser-dynamic": "~2.4.0",
-    "@angular/router": "~3.4.0",
-
-    "angular-in-memory-web-api": "~0.2.4",
-    "systemjs": "0.19.40",
+    "@angular/common": "~4.0.0",
+    "@angular/compiler": "~4.0.0",
+    "@angular/core": "~4.0.0",
+    "@angular/forms": "~4.0.0",
+    "@angular/http": "~4.0.0",
+    "@angular/platform-browser": "~4.0.0",
+    "@angular/platform-browser-dynamic": "~4.0.0",
+    "@angular/router": "~4.0.0",
+    "angular-in-memory-web-api": "^0.3.1",
+    "systemjs": "^0.20.11",
     "core-js": "^2.4.1",
-    "rxjs": "5.0.1",
-    "zone.js": "^0.7.6"
+    "rxjs": "^5.3.0",
+    "zone.js": "^0.8.5"
   },
   "devDependencies": {
-    "typescript": "~2.0.10",
-    "tslint": "^3.15.1"
+    "typescript": "^2.2.2",
+    "tslint": "^5.0.0"
   },
   "repository": {}
 }
