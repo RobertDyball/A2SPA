@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, enableProdMode } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { routing, routedComponents } from './app.routing';
@@ -14,7 +15,7 @@ import './rxjs-operators';
 // enableProdMode();
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
+    imports: [BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
     declarations: [AppComponent, routedComponents],
     providers: [SampleDataService,
         AuthService,
