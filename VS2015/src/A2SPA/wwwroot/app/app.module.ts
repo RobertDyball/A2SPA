@@ -15,7 +15,7 @@ import './rxjs-operators';
 // enableProdMode();
 
 @NgModule({
-    imports: [ BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
+    imports: [BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
     declarations: [AppComponent, routedComponents],
     providers: [SampleDataService,
         AuthService,
