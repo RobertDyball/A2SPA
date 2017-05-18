@@ -4,13 +4,13 @@ A SPA that uses the best of ASP.Net Core 1.1.* for the backend and Angular 4.1.0
 Updated: now includes change password
 
 Part 1: see: https://www.codeproject.com/Articles/1148767/SPA-using-ASP-Net-Core-plus-Angular-part1
-covers this technique to integrate ASP.Net Core and Angular 2
+covers this technique to integrate ASP.Net Core and Angular 4
 
 Part 2: see: https://www.codeproject.com/Articles/1168647/SPA-using-ASP-Net-Core-plus-Angular-part2
-covers use of ASP.Net Core tag helpers with Angular 2 to display data
+covers use of ASP.Net Core tag helpers with Angular 4 to display data
 
 Part 3: see https://www.codeproject.com/Articles/1171129/SPA-using-ASP-Net-Core-plus-Angular-part3
-covers use of ASP.Net Core tag helpers with Angular 2 for data input
+covers use of ASP.Net Core tag helpers with Angular 4 for data input
 
 Part 4: see https://www.codeproject.com/Articles/1172349/SPA-using-ASP-Net-Core-plus-Angular-part4
 covers token authentication using JWT and OpenIdDict 
@@ -19,7 +19,7 @@ Part 5: see https://www.codeproject.com/Articles/1176561/SPA-using-ASP-Net-Core-
 Covers Web API changes; adding create/read/update/delete "CRUD" support, async and model server-side driven data validation
 
 Part 6: see https://www.codeproject.com/Articles/1177725/SPA-using-ASP-Net-Core-plus-Angular-part6
-Covers Swagger / NSwag Web API documentation and automated Angular 2 typescript code generation, pubishing to IIS
+Covers Swagger / NSwag Web API documentation and automated Angular 4 typescript code generation, pubishing to IIS
 
 Part 7: see https://www.codeproject.com/Articles/1179438/SPA-using-ASP-Net-Core-plus-Angular-part7
 Covers Publishing to IS using VS2015, conversion from localDB to SQLExpress, conversion from Angular 2.4 to Angular 4
