@@ -163,6 +163,7 @@ namespace A2SPA
                 DefaultPropertyNameHandling = PropertyNameHandling.CamelCase
             });
 
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
