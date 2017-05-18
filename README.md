@@ -1,6 +1,6 @@
 # Angular 4 + Bootstrap 4 + ASP.Net Core 1.1.1 SPA
 
-A SPA that uses the best of ASP.Net Core 1.1.* for the backend and Angular 4.1.0 for the front end.
+A SPA that uses the best of ASP.Net Core 1.1.* for the backend and Angular 4.0 for the front end.
 Updated: now includes change password
 
 Part 1: see: https://www.codeproject.com/Articles/1148767/SPA-using-ASP-Net-Core-plus-Angular-part1
