@@ -1,6 +1,7 @@
 // NOTE: use this option to add ALL RxJS statics & operators to Observable (upside: simple, downside: larger, slower to load)
 // import 'rxjs/Rx';
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // NOTE: Use this option below to import just the rxjs statics and operators needed for this app.
 // Observable class extensions
 require("rxjs/add/observable/of");

@@ -47,5 +47,5 @@ textarea {
 
 /* hidden .. see: http://www.talkingdotnet.com/dont-use-hidden-attribute-angularjs-2/ */
 [hidden] {
-    display: none !important;
+  display: none !important;
 }

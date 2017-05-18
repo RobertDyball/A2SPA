@@ -13,7 +13,6 @@ using NJsonSchema;
 using NSwag;
 using NSwag.AspNetCore;
 using NSwag.SwaggerGeneration.WebApi.Processors.Security;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -164,6 +163,7 @@ namespace A2SPA
                 DefaultPropertyNameHandling = PropertyNameHandling.CamelCase
             });
 
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
