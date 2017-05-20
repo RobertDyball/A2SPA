@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 
-namespace VS2017_2
+namespace A2SPA
 {
     public class Startup
     {

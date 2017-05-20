@@ -1,6 +1,6 @@
 using System;
 
-namespace VS2017_2.Models
+namespace A2SPA.Models
 {
     public class ErrorViewModel
     {
