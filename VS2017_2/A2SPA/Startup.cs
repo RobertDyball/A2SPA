@@ -38,44 +38,44 @@ namespace A2SPA
                 // Register the entity sets needed by OpenIddict.
                 // Note: use the generic overload if you need
                 // to replace the default OpenIddict entities.
-                options.UseOpenIddict();
+//                options.UseOpenIddict();
             });
 
             // Register the Identity services.
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<A2spaContext>()
-                .AddDefaultTokenProviders();
+//            services.AddIdentity<ApplicationUser, IdentityRole>()
+//                .AddEntityFrameworkStores<A2spaContext>()
+//                .AddDefaultTokenProviders();
 
             // Configure Identity to use the same JWT claims as OpenIddict instead
             // of the legacy WS-Federation claims it uses by default (ClaimTypes),
             // which saves you from doing the mapping in your authorization controller.
-            services.Configure<IdentityOptions>(options =>
-            {
-                options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
-                options.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
-                //options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
-            });
+//            services.Configure<IdentityOptions>(options =>
+//            {
+//                options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
+//                options.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
+//                //options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
+//            });
 
             // Register the OpenIddict services.
-            services.AddOpenIddict(options =>
-            {
+//            services.AddOpenIddict(options =>
+//            {
                 // Register the Entity Framework stores.
-                options.AddEntityFrameworkCoreStores<A2spaContext>();
+//                options.AddEntityFrameworkCoreStores<A2spaContext>();
 
                 // Register the ASP.NET Core MVC binder used by OpenIddict.
                 // Note: if you don't call this method, you won't be able to
                 // bind OpenIdConnectRequest or OpenIdConnectResponse parameters.
-                options.AddMvcBinders();
+//                options.AddMvcBinders();
 
                 // Enable the authorization, logout, token and userinfo endpoints.
-                options.EnableAuthorizationEndpoint("/connect/authorize")
-                       .EnableLogoutEndpoint("/connect/logout")
-                       .EnableTokenEndpoint("/connect/token")
-                       .EnableUserinfoEndpoint("/api/userinfo");
+//                options.EnableAuthorizationEndpoint("/connect/authorize")
+//                       .EnableLogoutEndpoint("/connect/logout")
+//                       .EnableTokenEndpoint("/connect/token")
+//                       .EnableUserinfoEndpoint("/api/userinfo");
 
                 // Note: the Mvc.Client sample only uses the authorization code flow but you can enable
                 // the other flows if you need to support implicit, password or client credentials.
-                options.AllowPasswordFlow();
+//                options.AllowPasswordFlow();
 
                 // When request caching is enabled, authorization and logout requests
                 // are stored in the distributed cache by OpenIddict and the user agent
@@ -86,10 +86,10 @@ namespace A2SPA
 
                 // During development, you can disable the HTTPS requirement.
                 //if (CurrentEnvironment.IsDevelopment())
-                {
-                    options.DisableHttpsRequirement();
-                }
-            });
+//                {
+//                    options.DisableHttpsRequirement();
+//                }
+//            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,7 +109,7 @@ namespace A2SPA
 
             // Add a middleware used to validate access
             // tokens and protect the API endpoints.
-            app.UseOAuthValidation();
+//            app.UseOAuthValidation();
 
             // Alternatively, you can also use the introspection middleware.
             // Using it is recommended if your resource server is in a
@@ -125,7 +125,7 @@ namespace A2SPA
             //     options.ClientSecret = "875sqd4s5d748z78z7ds1ff8zz8814ff88ed8ea4z4zzd";
             // });
 
-            app.UseOpenIddict();
+//            app.UseOpenIddict();
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions

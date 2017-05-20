@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace A2SPA.Api
 {
-    [Authorize]
+//    [Authorize]
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {

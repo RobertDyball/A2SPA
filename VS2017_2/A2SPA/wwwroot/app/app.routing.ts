@@ -15,9 +15,12 @@ const appRoutes: Routes = [
     { path: 'home', component: IndexComponent, data: { title: 'Home' } },
     { path: 'login', component: LoginComponent, data: { title: 'Login' } },
     { path: 'register', component: RegisterComponent, data: { title: 'Register' } },
-    { path: 'changePassword', component: ChangePasswordComponent, data: { title: 'Change Password' }, canActivate: [AuthGuard] },
-    { path: 'manage', component: ManageComponent, data: { title: 'Manage Account' }, canActivate: [AuthGuard] },
-    { path: 'about', component: AboutComponent, data: { title: 'About' }, canActivate: [AuthGuard] },
+//    { path: 'changePassword', component: ChangePasswordComponent, data: { title: 'Change Password' }, canActivate: [AuthGuard] },
+    { path: 'changePassword', component: ChangePasswordComponent, data: { title: 'Change Password' } },
+//    { path: 'manage', component: ManageComponent, data: { title: 'Manage Account' }, canActivate: [AuthGuard] },
+    { path: 'manage', component: ManageComponent, data: { title: 'Manage Account' } },
+//    { path: 'about', component: AboutComponent, data: { title: 'About' }, canActivate: [AuthGuard] },
+    { path: 'about', component: AboutComponent, data: { title: 'About' } },
     { path: 'contact', component: ContactComponent, data: { title: 'Contact' } }
 ];
 
