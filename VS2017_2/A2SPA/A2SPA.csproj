@@ -11,13 +11,13 @@
     <PackageReference Include="AspNet.Security.OAuth.Introspection" Version="1.0.0" />
     <PackageReference Include="AspNet.Security.OAuth.Validation" Version="1.0.0" />
     <PackageReference Include="Humanizer" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0-preview2-25132" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-25132" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview2-25132" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0-preview2-25132" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0-preview2-25137" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-25137" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview2-25137" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0-preview2-25137" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Tools" Version="1.2.0-preview4-23182" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0-preview2-25132" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0-preview2-25132" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0-preview2-25137" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0-preview2-25137" />
     <PackageReference Include="NSwag.AspNetCore" Version="10.6.0" />
     <PackageReference Include="OpenIddict" Version="1.0.0-beta2-0614" />
     <PackageReference Include="OpenIddict.Core" Version="1.0.0-beta2-0614" />
