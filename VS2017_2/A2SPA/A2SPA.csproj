@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\main.js" />
+    <Content Include="wwwroot\main.js.map" />
+    <Content Include="wwwroot\main.ts" />
+    <Content Include="wwwroot\systemjs-angular-loader.js" />
+    <Content Include="wwwroot\systemjs.config.extras.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNet.Security.OAuth.Introspection" Version="1.0.0" />
     <PackageReference Include="AspNet.Security.OAuth.Validation" Version="1.0.0" />
     <PackageReference Include="Humanizer" Version="2.2.0" />
