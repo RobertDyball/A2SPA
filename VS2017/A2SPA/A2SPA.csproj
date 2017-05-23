@@ -94,6 +94,10 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
     <Content Include="wwwroot\app\services\sampleData.service.js.map" />
     <Content Include="wwwroot\app\services\SampleData.service.ts" />
     <Content Include="wwwroot\favicon.ico" />
+    <Content Include="wwwroot\main.js" />
+    <Content Include="wwwroot\main.js.map" />
+    <Content Include="wwwroot\main.ts" />
+    <Content Include="wwwroot\systemjs-angular-loader.js" />
     <Content Include="wwwroot\systemjs.config.extras.js" />
     <Content Include="wwwroot\systemjs.config.js" />
   </ItemGroup>

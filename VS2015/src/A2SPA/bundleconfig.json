@@ -20,7 +20,9 @@
       "node_modules/core-js/client/shim.min.js",
       "node_modules/zone.js/dist/zone.js",
       "node_modules/systemjs/dist/system.src.js",
-      "wwwroot/systemjs.config.js"
+      "wwwroot/systemjs.config.js",
+      "wwwroot/systemjs.config.extras.js",
+      "wwwroot/systemjs-angular-loader.js"
     ],
     // Optionally specify minification options
     "minify": {
