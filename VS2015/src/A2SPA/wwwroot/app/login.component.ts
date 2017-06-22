@@ -8,6 +8,7 @@ import { LoginViewModel } from './models/LoginViewModel';
 
 @Component({
     selector: 'login',
+    styleUrls: ['./styles/login.css', 'partial/LoginStyleSheetTest'],
     templateUrl: 'partial/loginComponent'
 })
 
