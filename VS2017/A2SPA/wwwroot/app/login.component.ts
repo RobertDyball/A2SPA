@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { Title }     from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { Http } from '@angular/http';
@@ -8,6 +8,7 @@ import { LoginViewModel } from './models/LoginViewModel';
 
 @Component({
     selector: 'login',
+    styleUrls: ['./styles/login.css', 'partial/LoginStyleSheetTest'],
     templateUrl: 'partial/loginComponent'
 })
 
