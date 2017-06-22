@@ -3,6 +3,10 @@
 
 @*  the following could be emitted from C# or razor code, or plain text, or both *@
 
+@{
+    ViewData["myColor"] = "red";
+}
+
 p.styleLinkedFromPartialController {
-    color:red
+    color:@ViewData["myColor"]
 }
