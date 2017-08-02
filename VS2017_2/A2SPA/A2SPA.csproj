@@ -3,39 +3,70 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-    <UserSecretsId>aspnet-A2SPA-3045C25A-4D8E-4B35-A5C1-01F5C6E06A51</UserSecretsId>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <UserSecretsId>aspnet-A2SPA-B794315C-6AA1-4EF8-8045-313966E08C95</UserSecretsId>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\main.js" />
-    <Content Include="wwwroot\main.js.map" />
-    <Content Include="wwwroot\main.ts" />
-    <Content Include="wwwroot\systemjs-angular-loader.js" />
-    <Content Include="wwwroot\systemjs.config.extras.js" />
+    <Content Remove="wwwroot\app\about.component.ts" />
+    <Content Remove="wwwroot\app\app.routing.ts" />
+    <Content Remove="wwwroot\app\contact.component.ts" />
+    <Content Remove="wwwroot\app\index.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNet.Security.OAuth.Introspection" Version="1.0.0" />
-    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="1.0.0" />
-    <PackageReference Include="Humanizer" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0-preview2-25137" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-25137" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview2-25137" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.0-preview2-25137" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Tools" Version="1.2.0-preview4-23182" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0-preview2-25137" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0-preview2-25137" />
-    <PackageReference Include="NSwag.AspNetCore" Version="10.6.0" />
-    <PackageReference Include="OpenIddict" Version="1.0.0-beta2-0614" />
-    <PackageReference Include="OpenIddict.Core" Version="1.0.0-beta2-0614" />
-    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="1.0.0-beta2-0614" />
-    <PackageReference Include="OpenIddict.Models" Version="1.0.0-beta2-0614" />
-    <PackageReference Include="OpenIddict.Mvc" Version="1.0.0-beta2-0614" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0-preview2-final" />
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0-preview1-final" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0-preview2-final" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Partial\AboutComponent.cshtml" />
+    <None Include="Views\Partial\AppComponent.cshtml" />
+    <None Include="Views\Partial\ContactComponent.cshtml" />
+    <None Include="Views\Partial\IndexComponent.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="wwwroot\images\banner1.svg" />
+    <None Include="wwwroot\images\banner2.svg" />
+    <None Include="wwwroot\images\banner3.svg" />
+    <None Include="wwwroot\images\banner4.svg" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\site.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\app\about.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\app.routing.ts" />
+    <TypeScriptCompile Include="wwwroot\app\contact.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\index.component.ts" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>ES6</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir></TypeScriptOutDir>
+    <TypeScriptGeneratesDeclarations>True</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot></TypeScriptMapRoot>
+    <TypeScriptSourceRoot></TypeScriptSourceRoot>
+  </PropertyGroup>
 
 </Project>

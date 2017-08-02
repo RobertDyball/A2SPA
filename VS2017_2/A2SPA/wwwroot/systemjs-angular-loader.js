@@ -1,4 +1,4 @@
-var templateUrlRegex = /templateUrl\s*:(\s*['"`](.*?)['"`]\s*)/gm;
+﻿var templateUrlRegex = /templateUrl\s*:(\s*['"`](.*?)['"`]\s*)/gm;
 var stylesRegex = /styleUrls *:(\s*\[[^\]]*?\])/g;
 var stringRegex = /(['`"])((?:[^\\]\\\1|.)*?)\1/g;
 

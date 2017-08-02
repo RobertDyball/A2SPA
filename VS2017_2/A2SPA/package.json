@@ -5,8 +5,8 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "private": true,
   "dependencies": {
-    "@angular/animations": "~4.0.0",
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",
     "@angular/core": "~4.0.0",
@@ -28,7 +28,7 @@
     "zone.js": "^0.8.5"
   },
   "devDependencies": {
-    "typescript": "^2.2.2",
+    "typescript": "~2.3.0",
     "tslint": "^5.0.0"
   },
   "repository": {}

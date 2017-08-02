@@ -11,49 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
-var router_1 = require("@angular/router");
-var http_1 = require("@angular/http");
-var auth_service_1 = require("./security/auth.service");
 var AppComponent = (function () {
-    function AppComponent(router, titleService, http, authService) {
-        this.router = router;
+    function AppComponent(titleService) {
         this.titleService = titleService;
-        this.http = http;
-        this.authService = authService;
         this.angularClientSideData = 'Angular';
     }
-    // wrapper to the Angular title service.
     AppComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
-    };
-    // provide local page the user's logged in status (do we have a token or not)
-    AppComponent.prototype.isLoggedIn = function () {
-        return this.authService.loggedIn();
-    };
-    // tell the server that the user wants to logout; clears token from server, then calls auth.service to clear token locally in browser
-    AppComponent.prototype.logout = function () {
-        var _this = this;
-        this.http.get('connect/logout', { headers: this.authService.authJsonHeaders() })
-            .subscribe(function (response) {
-            console.log(response);
-            // clear token in browser
-            _this.authService.logout();
-            // return to 'home' page
-            _this.router.navigate(['home']);
-        }, function (error) {
-            // failed; TODO: add some nice toast / error handling
-            alert(error.text());
-            console.log(error.text());
-        });
     };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        templateUrl: 'partial/appComponent'
+        templateUrl: '/partial/appComponent'
     }),
-    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
+    __metadata("design:paramtypes", [platform_browser_1.Title])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

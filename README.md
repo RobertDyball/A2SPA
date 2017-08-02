@@ -1,7 +1,10 @@
-# Angular 4 + Bootstrap 4 + ASP.Net Core 1.1.1 SPA
+# Angular 4 + Bootstrap 4 + ASP.Net Core 1/2 SPA
 
-A SPA that uses the best of ASP.Net Core 1.1.* for the backend and Angular 4.0 for the front end.
-Updated: now includes change password
+A SPA that uses ASP.Net Core for the backend and Angular 4.0 for the front end.
+Updated: now includes source ASP.Net Core 2 preview 2
+(still to be added back into .net core 2 project are tag helpers, Auth using OpenIDDict and Swagger docs using NSWAG)
+
+Following are links to the original article series based on ASP.Net Core 1.1.1 and Angular 4 
 
 Part 1: see: https://www.codeproject.com/Articles/1148767/SPA-using-ASP-Net-Core-plus-Angular-part1
 covers this technique to integrate ASP.Net Core and Angular 4

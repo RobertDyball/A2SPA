@@ -14,15 +14,15 @@
             <li class="nav-item">
                 <a class="nav-link" (click)="setTitle('About')" routerLink="/about" routerLinkActive="active-link">About</a>
             </li>
-            <li class="nav-item" [hidden]="!isLoggedIn()">
+            @*<li class="nav-item" [hidden]="!isLoggedIn()">
                 <a class="nav-link" href="swagger">NSwag</a>
-            </li>
+            </li>*@
             <li class="nav-item">
                 <a class="nav-link" (click)="setTitle('Contact')" routerLink="/contact" routerLinkActive="active-link">Contact</a>
             </li>
         </ul>
 
-        @await Html.PartialAsync("_LoginPartial")
+        @*@await Html.PartialAsync("_LoginPartial")*@
 
     </div>
 </nav>
