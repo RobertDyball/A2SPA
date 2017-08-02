@@ -40,7 +40,7 @@
     <environment names="Staging,Production">
         <script src="~/js/site.min.js" asp-append-version="true"></script>
         <script>
-            System.import('app').catch(function (err) { console.error(err); });
+            System.import('main.js').catch(function (err) { console.error(err); });
         </script>
     </environment>
 
