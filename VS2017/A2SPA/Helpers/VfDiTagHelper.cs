@@ -76,7 +76,7 @@ namespace A2SPA.Helpers
 
             // set up validation conditional DIV's here; only show error if modifications to form have been made
             TagBuilder outerValidationBlock = new TagBuilder("div");
-            outerValidationBlock.MergeAttribute("*ngIf", string.Format("({0}.dirty || {0}.touched)", propertyName));
+            outerValidationBlock.MergeAttribute("*ngIf", string.Format("{0}.errors && ({0}.dirty || {0}.touched)", propertyName));
 
             // .. and then, only if an error in data entry
             TagBuilder validationBlock = new TagBuilder("div");
@@ -88,11 +88,11 @@ namespace A2SPA.Helpers
             {
                 var minLength = metadata.MinLength();
                 var minLengthValidation = new TagBuilder("div");
-                minLengthValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.minlength", propertyName));
+                minLengthValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.minLength", propertyName));
                 minLengthValidation.InnerHtml.Append(string.Format("{0} must be at least {1} characters long", labelName, minLength));
                 validationBlock.InnerHtml.AppendHtml(minLengthValidation);
 
-                inputTag.Attributes.Add("minLength", minLength.ToString());
+                inputTag.Attributes.Add("minlength", minLength.ToString());
             }
 
             if (metadata.HasMaxLengthValidation())
@@ -103,7 +103,7 @@ namespace A2SPA.Helpers
                 maxLengthValidation.InnerHtml.Append(string.Format("{0} cannot be more than {1} characters long", labelName, maxLength));
                 validationBlock.InnerHtml.AppendHtml(maxLengthValidation);
 
-                inputTag.Attributes.Add("maxLength", maxLength.ToString());
+                inputTag.Attributes.Add("maxlength", maxLength.ToString());
             }
 
             if (metadata.HasRegexValidation())

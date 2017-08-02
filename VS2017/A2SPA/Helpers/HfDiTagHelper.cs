@@ -93,7 +93,7 @@ namespace A2SPA.Helpers
                 minLengthValidation.InnerHtml.Append(string.Format("{0} must be at least {1} characters long", labelName, minLength));
                 validationBlock.InnerHtml.AppendHtml(minLengthValidation);
 
-                inputTag.Attributes.Add("minLength", minLength.ToString());
+                inputTag.Attributes.Add("minlength", minLength.ToString());
             }
 
             if (metadata.HasMaxLengthValidation())
@@ -104,7 +104,7 @@ namespace A2SPA.Helpers
                 maxLengthValidation.InnerHtml.Append(string.Format("{0} cannot be more than {1} characters long", labelName, maxLength));
                 validationBlock.InnerHtml.AppendHtml(maxLengthValidation);
 
-                inputTag.Attributes.Add("maxLength", maxLength.ToString());
+                inputTag.Attributes.Add("maxlength", maxLength.ToString());
             }
 
             if (metadata.HasRegexValidation())
