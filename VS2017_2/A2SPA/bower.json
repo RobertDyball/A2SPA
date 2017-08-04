@@ -2,6 +2,6 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-    "jquery": "2.2.0"
+    "jquery": "3.2.1"
   }
 }

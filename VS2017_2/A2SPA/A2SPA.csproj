@@ -9,13 +9,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Api\AuthorizationController.cs" />
+    <Compile Remove="Api\ManageController.cs" />
+    <Compile Remove="Api\ResourceController.cs" />
+    <Compile Remove="Data\DbInitializer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\app\about.component.ts" />
     <Content Remove="wwwroot\app\app.routing.ts" />
     <Content Remove="wwwroot\app\contact.component.ts" />
     <Content Remove="wwwroot\app\index.component.ts" />
+    <Content Remove="wwwroot\app\models\ErrorResponse.ts" />
+    <Content Remove="wwwroot\app\security\AuthService.ts" />
+    <Content Remove="wwwroot\app\security\OpenIdDictToken.ts" />
+    <Content Remove="wwwroot\app\models\TestData.ts" />
+    <Content Remove="wwwroot\app\models\ViewModelResponse.ts" />
+    <Content Remove="wwwroot\app\rxjs-operators.ts" />
+    <Content Remove="wwwroot\app\services\SampleDataService.js" />
+    <Content Remove="wwwroot\app\services\SampleDataService.js.map" />
+    <Content Remove="wwwroot\app\services\SampleDataService.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Humanizer.Core" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0-preview2-final" />
   </ItemGroup>
@@ -51,6 +68,13 @@
     <TypeScriptCompile Include="wwwroot\app\app.routing.ts" />
     <TypeScriptCompile Include="wwwroot\app\contact.component.ts" />
     <TypeScriptCompile Include="wwwroot\app\index.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\models\ErrorResponse.ts" />
+    <TypeScriptCompile Include="wwwroot\app\security\AuthService.ts" />
+    <TypeScriptCompile Include="wwwroot\app\security\OpenIdDictToken.ts" />
+    <TypeScriptCompile Include="wwwroot\app\models\TestData.ts" />
+    <TypeScriptCompile Include="wwwroot\app\models\ViewModelResponse.ts" />
+    <TypeScriptCompile Include="wwwroot\app\rxjs-operators.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\SampleDataService.ts" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
