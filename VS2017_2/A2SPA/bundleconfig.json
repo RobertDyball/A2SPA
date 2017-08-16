@@ -15,12 +15,17 @@
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
       "wwwroot/lib/jquery/dist/jquery.js",
+      "node_modules/tether/dist/js/tether.js",
+      "node_modules/popper.js/dist/umd/popper.js",
       "wwwroot/bootstrap/dist/js/bootstrap.js",
+      "node_modules/reflect-metadata/Reflect.js",
       "wwwroot/js/site.js",
       "node_modules/core-js/client/shim.min.js",
       "node_modules/zone.js/dist/zone.js",
       "node_modules/systemjs/dist/system.src.js",
-      "wwwroot/systemjs.config.js"
+      "wwwroot/systemjs.config.js",
+      "wwwroot/systemjs.config.extras.js",
+      "wwwroot/systemjs-angular-loader.js"
     ],
     // Optionally specify minification options
     "minify": {
