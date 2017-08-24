@@ -1,35 +1,33 @@
-﻿//using A2SPA.Models;
-//using AspNet.Security.OAuth.Validation;
-//using Microsoft.AspNetCore.Authorization;
-//using Microsoft.AspNetCore.Identity;
-//using Microsoft.AspNetCore.Mvc;
-//using NSwag.Annotations;
-//using System.Threading.Tasks;
+﻿using A2SPA.Models;
+using AspNet.Security.OAuth.Validation;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-//namespace A2SPA.Api
-//{
-//    [SwaggerIgnore]
-//    [Route("api")]
-//    public class ResourceController : Controller
-//    {
-//        private readonly UserManager<ApplicationUser> _userManager;
+namespace A2SPA.Controllers
+{
+    [Route("api")]
+    public class ResourceController : Controller
+    {
+        private readonly UserManager<ApplicationUser> _userManager;
 
-//        public ResourceController(UserManager<ApplicationUser> userManager)
-//        {
-//            _userManager = userManager;
-//        }
+        public ResourceController(UserManager<ApplicationUser> userManager)
+        {
+            _userManager = userManager;
+        }
 
-//        [Authorize(ActiveAuthenticationSchemes = OAuthValidationDefaults.AuthenticationScheme)]
-//        [HttpGet("message")]
-//        public async Task<IActionResult> GetMessage()
-//        {
-//            var user = await _userManager.GetUserAsync(User);
-//            if (user == null)
-//            {
-//                return BadRequest();
-//            }
+        [Authorize(AuthenticationSchemes = OAuthValidationDefaults.AuthenticationScheme)]
+        [HttpGet("message")]
+        public async Task<IActionResult> GetMessage()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return BadRequest();
+            }
 
-//            return Content($"{user.UserName} has been successfully authenticated.");
-//        }
-//    }
-//}
+            return Content($"{user.UserName} has been successfully authenticated.");
+        }
+    }
+}

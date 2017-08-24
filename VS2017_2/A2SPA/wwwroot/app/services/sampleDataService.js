@@ -66,4 +66,4 @@ SampleDataService = __decorate([
     __metadata("design:paramtypes", [http_1.Http, AuthService_1.AuthService])
 ], SampleDataService);
 exports.SampleDataService = SampleDataService;
-//# sourceMappingURL=SampleDataService.js.map
+//# sourceMappingURL=sampleDataService.js.map

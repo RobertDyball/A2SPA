@@ -10,12 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var SampleDataService_1 = require("./services/SampleDataService");
+var sampleDataService_1 = require("./services/sampleDataService");
 var testData_1 = require("./models/testData");
 var ngx_toastr_1 = require("ngx-toastr");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var AboutComponent = (function () {
+    // TODO: restore toasts....
     function AboutComponent(sampleDataService, toastrService) {
         this.sampleDataService = sampleDataService;
         this.toastrService = toastrService;
@@ -68,6 +69,18 @@ var AboutComponent = (function () {
         this.selectedItem = thisItem;
         this.testData = Object.assign({}, thisItem);
     };
+    AboutComponent.prototype.formattedErrorResponse = function (error) {
+        var plural = (error.length > 0) ? 's' : '';
+        var errorMessage = "Error" + plural + ": ";
+        for (var i = 0; i < error.length; i++) {
+            if (error.length > 0)
+                errorMessage += "(" + (i + 1) + ") ";
+            errorMessage += "field: " + error[0].memberNames + ", error: " + error[0].errorMessage;
+            if (i < error.length)
+                errorMessage += ", ";
+        }
+        return errorMessage;
+    };
     AboutComponent.prototype.addTestData = function (event) {
         var _this = this;
         event.preventDefault();
@@ -85,35 +98,25 @@ var AboutComponent = (function () {
                 _this.showSuccess('Add', "data added ok");
             }
             else {
-                _this.showError('Add', data.value);
+                _this.showError('Add', _this.formattedErrorResponse(data.value));
             }
         }, function (error) {
-            _this.showError('Add', error);
-            _this.errorMessage = error;
-            console.log(error);
+            _this.showError('Get', JSON.stringify(error));
         });
     };
     AboutComponent.prototype.getTestData = function () {
         var _this = this;
         this.sampleDataService.getSampleData()
             .subscribe(function (data) {
-            if (data != null && data.statusCode == 204) {
-                _this.testDataList = [];
-                _this.showSuccess('Get', "no initial data");
-                _this.selectedItem = null;
-                _this.tableMode = 'add';
+            if (data != null && data.statusCode == 200) {
+                _this.testDataList = data.value;
+                _this.showSuccess('Get', "data fetched ok");
+                if (_this.testDataList != null && _this.testDataList.length > 0) {
+                    _this.selectedItem = _this.testDataList[0];
+                }
             }
             else {
-                if (data != null && data.statusCode == 200) {
-                    _this.testDataList = data.value;
-                    _this.showSuccess('Get', "data fetched ok");
-                    if (_this.testDataList != null && _this.testDataList.length > 0) {
-                        _this.selectedItem = _this.testDataList[0];
-                    }
-                }
-                else {
-                    _this.showError('Get', data.value);
-                }
+                _this.showError('Get', "An error occurred");
             }
         }, function (error) {
             _this.showError('Get', JSON.stringify(error));
@@ -133,7 +136,7 @@ var AboutComponent = (function () {
                 _this.getTestData();
             }
             else {
-                _this.showError('Update', data.value);
+                _this.showError('Update', _this.formattedErrorResponse(data.value));
             }
         }, function (error) {
             _this.showError('Update', JSON.stringify(error));
@@ -143,13 +146,13 @@ var AboutComponent = (function () {
         var _this = this;
         event.preventDefault();
         this.sampleDataService.deleteRecord(itemToDelete)
-            .subscribe(function (status) {
-            if (status != null && status.statusCode == 200) {
-                _this.showSuccess('Delete', status.value);
+            .subscribe(function (data) {
+            if (data != null && data.statusCode == 200) {
+                _this.showSuccess('Delete', data.value);
                 _this.getTestData();
             }
             else {
-                _this.showError('Delete', status.value);
+                _this.showError('Delete', "An error occurred");
             }
         }, function (error) {
             _this.showError('Delete', JSON.stringify(error));
@@ -160,9 +163,9 @@ var AboutComponent = (function () {
 AboutComponent = __decorate([
     core_1.Component({
         selector: 'my-about',
-        templateUrl: '/partial/aboutComponent'
+        templateUrl: 'partial/aboutComponent'
     }),
-    __metadata("design:paramtypes", [SampleDataService_1.SampleDataService, ngx_toastr_1.ToastrService])
+    __metadata("design:paramtypes", [sampleDataService_1.SampleDataService, ngx_toastr_1.ToastrService])
 ], AboutComponent);
 exports.AboutComponent = AboutComponent;
 //# sourceMappingURL=about.component.js.map

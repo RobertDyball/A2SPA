@@ -6,8 +6,9 @@ import { APP_BASE_HREF, Location } from '@angular/common';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { SampleDataService } from './services/SampleDataService';
-import { AuthService } from './security/AuthService';
+import { SampleDataService } from './services/sampleDataService';
+import { AuthService } from './security/authService';
+import { AuthGuard } from './security/authGuardService';
 import { ToastrModule } from 'ngx-toastr';
 import './rxjs-operators';
 
@@ -16,7 +17,9 @@ import './rxjs-operators';
 @NgModule({
     imports: [BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
     declarations: [AppComponent, routedComponents],
-    providers: [SampleDataService,AuthService, Title, { provide: APP_BASE_HREF, useValue: '/' }],
+    providers: [SampleDataService,
+        AuthService,
+        AuthGuard, Title, { provide: APP_BASE_HREF, useValue: '/a2spa' }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

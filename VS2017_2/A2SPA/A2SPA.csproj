@@ -9,9 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Api\AuthorizationController.cs" />
-    <Compile Remove="Api\ManageController.cs" />
-    <Compile Remove="Api\ResourceController.cs" />
     <Compile Remove="Data\DbInitializer.cs" />
   </ItemGroup>
 
@@ -26,15 +23,21 @@
     <Content Remove="wwwroot\app\models\TestData.ts" />
     <Content Remove="wwwroot\app\models\ViewModelResponse.ts" />
     <Content Remove="wwwroot\app\rxjs-operators.ts" />
-    <Content Remove="wwwroot\app\services\SampleDataService.js" />
-    <Content Remove="wwwroot\app\services\SampleDataService.js.map" />
     <Content Remove="wwwroot\app\services\SampleDataService.ts" />
+    <Content Remove="wwwroot\app\security\AuthGuardService.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="2.0.0-preview1-0283" />
     <PackageReference Include="Humanizer.Core" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0" />
+    <PackageReference Include="NSwag.AspNetCore" Version="11.3.5" />
+    <PackageReference Include="OpenIddict" Version="2.0.0-preview1-0643" />
+    <PackageReference Include="OpenIddict.Core" Version="2.0.0-preview1-0643" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0-preview1-0643" />
+    <PackageReference Include="OpenIddict.Models" Version="2.0.0-preview1-0643" />
+    <PackageReference Include="OpenIddict.Mvc" Version="2.0.0-preview1-0643" />
   </ItemGroup>
 
   <ItemGroup>

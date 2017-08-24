@@ -6,4 +6,4 @@ var ErrorResponse = (function () {
     return ErrorResponse;
 }());
 exports.ErrorResponse = ErrorResponse;
-//# sourceMappingURL=ErrorResponse.js.map
+//# sourceMappingURL=errorResponse.js.map
