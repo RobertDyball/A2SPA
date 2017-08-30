@@ -1,9 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { SampleDataService } from './services/sampleDataService';
+import { SampleDataService } from './services/sampleData.service';
 import { TestData } from './models/testData';
 import { ViewModelResponse } from './models/viewModelResponse';
 import { ErrorResponse } from './models/errorResponse';
-import { ToastrService } from 'ngx-toastr';
+import { ErrorMessageService } from './services/ErrorMessageService';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -18,43 +18,36 @@ export class AboutComponent implements OnInit {
     selectedItem: TestData = null;
     testData: TestData = null;
     tableMode: string = 'list';
-    showForm: boolean = true;
 
+    showForm: boolean = true;
     errorMessage: string;
 
-    // TODO: restore toasts....
-    constructor(private sampleDataService: SampleDataService, private toastrService: ToastrService) { }
+    constructor(private sampleDataService: SampleDataService, private errorMessageService: ErrorMessageService) { }
 
     initTestData(): TestData {
         var newTestData = new TestData();
+        newTestData.id = null;
+        newTestData.currency = null;
+        newTestData.emailAddress = null;
+        newTestData.password = null;
+        newTestData.username = null;
         return newTestData;
     }
 
     ngOnInit() {
+        this.tableMode = 'add';
         this.getTestData();
         this.testData = this.initTestData();
-        this.selectedItem = null;
-        this.tableMode = 'list';
-    }
-
-    showSuccess(title: string, message: string) {
-        this.toastrService.success(message, title);
-    }
-
-    showError(title: string, message: string) {
-        this.toastrService.error(message, title);
+        this.selectedItem = new TestData();
     }
 
     changeMode(newMode: string, thisItem: TestData, event: any): void {
         event.preventDefault();
         this.tableMode = newMode;
-        if (this.testDataList.length == 0) {
+
+        if (this.testDataList.length == 0 || this.testData == null) {
             this.tableMode = 'add';
         }
-        else
-            if (this.testData == null) {
-                this.testData = this.initTestData();
-            }
 
         switch (newMode) {
             case 'add':
@@ -78,17 +71,6 @@ export class AboutComponent implements OnInit {
         this.testData = Object.assign({}, thisItem);
     }
 
-    formattedErrorResponse(error: ErrorResponse[]): string {
-        var plural = (error.length > 0) ? 's' : '';
-        var errorMessage = "Error" + plural + ": ";
-        for (var i = 0; i < error.length; i++) {
-            if (error.length > 0) errorMessage += "(" + (i + 1) + ") ";
-            errorMessage += "field: " + error[0].memberNames + ", error: " + error[0].errorMessage;
-            if (i < error.length) errorMessage += ", ";
-        }
-        return errorMessage;
-    }
-
     addTestData(event: any) {
         event.preventDefault();
         if (!this.testData) { return; }
@@ -100,14 +82,14 @@ export class AboutComponent implements OnInit {
                     // or keep these 2 lines; subscribe to data, but then refresh all data anyway
                     //this.testData = data.value;
                     //this.getTestData();
-                    this.showSuccess('Add', "data added ok");
+                    this.errorMessageService.showSuccess('Add', "data added ok");
                 }
                 else {
-                    this.showError('Add', this.formattedErrorResponse(data.value));
+                    this.errorMessageService.showError('Add', this.errorMessageService.formattedErrorResponse(data.value));
                 }
             },
             (error: any) => {
-                this.showError('Get', JSON.stringify(error));
+                this.errorMessageService.showError('Get', JSON.stringify(error));
             });
     }
 
@@ -116,17 +98,25 @@ export class AboutComponent implements OnInit {
             .subscribe((data: ViewModelResponse) => {
                 if (data != null && data.statusCode == 200) {
                     this.testDataList = data.value;
-                    this.showSuccess('Get', "data fetched ok");
+                    this.errorMessageService.showSuccess('Get', "data fetched ok");
                     if (this.testDataList != null && this.testDataList.length > 0) {
                         this.selectedItem = this.testDataList[0];
+                        this.tableMode = 'list';
+                    } else {
+                        this.tableMode = 'add';
                     }
                 }
+                else if (data == null || data.statusCode == 204) {
+                    this.tableMode = 'add';
+                    this.errorMessageService.showError('Get', "No data available");
+                }
                 else {
-                    this.showError('Get', "An error occurred");
+                    this.tableMode = 'add';
+                    this.errorMessageService.showError('Get', "An error occurred");
                 }
             },
             (error: any) => {
-                this.showError('Get', JSON.stringify(error));
+                this.errorMessageService.showError('Get', JSON.stringify(error));
             });
     }
 
@@ -136,16 +126,16 @@ export class AboutComponent implements OnInit {
         this.sampleDataService.editSampleData(this.testData)
             .subscribe((data: ViewModelResponse) => {
                 if (data != null && data.statusCode == 200) {
-                    this.showSuccess('Update', "updated ok");
+                    this.errorMessageService.showSuccess('Update', "updated ok");
                     this.testData = data.value;
                     this.getTestData();
                 }
                 else {
-                    this.showError('Update', this.formattedErrorResponse(data.value));
+                    this.errorMessageService.showError('Update', this.errorMessageService.formattedErrorResponse(data.value));
                 }
             },
             (error: any) => {
-                this.showError('Update', JSON.stringify(error));
+                this.errorMessageService.showError('Update', JSON.stringify(error));
             });
     }
 
@@ -154,15 +144,15 @@ export class AboutComponent implements OnInit {
         this.sampleDataService.deleteRecord(itemToDelete)
             .subscribe((data: ViewModelResponse) => {
                 if (data != null && data.statusCode == 200) {
-                    this.showSuccess('Delete', data.value);
+                    this.errorMessageService.showSuccess('Delete', data.value);
                     this.getTestData();
                 }
                 else {
-                    this.showError('Delete', "An error occurred");
+                    this.errorMessageService.showError('Delete', "An error occurred");
                 }
             },
             (error: any) => {
-                this.showError('Delete', JSON.stringify(error));
+                this.errorMessageService.showError('Delete', JSON.stringify(error));
             });
     }
 }

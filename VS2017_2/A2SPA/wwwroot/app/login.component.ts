@@ -3,8 +3,9 @@ import { Title }     from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { Http } from '@angular/http';
-import { AuthService } from './security/authService';
+import { AuthService } from './security/auth.service';
 import { LoginViewModel } from './models/LoginViewModel';
+import { ErrorMessageService } from './services/ErrorMessageService';
 
 @Component({
     selector: 'login',
@@ -14,7 +15,7 @@ import { LoginViewModel } from './models/LoginViewModel';
 export class LoginComponent {
     loginViewModel: LoginViewModel;
 
-    constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService) { }
+    constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService, private errorMessageService: ErrorMessageService) { }
 
     ngOnInit() {
         this.loginViewModel = new LoginViewModel();
@@ -37,9 +38,14 @@ export class LoginComponent {
                 this.router.navigate(['about']);
             },
             error => {
-                // failed; TODO: add some nice toast / error handling
-                alert(error.text());
-                console.log(error.text());
+                // failed
+                if (error != null) {
+                    this.errorMessageService.showError("Error", error.json().error_description);
+                }
+                else {
+                    this.errorMessageService.showError('Error', "An error occurred");
+                }
+                console.log(JSON.stringify(error));
             }
             );
     }

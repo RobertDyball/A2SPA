@@ -13,14 +13,16 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
-var authService_1 = require("./security/authService");
+var auth_service_1 = require("./security/auth.service");
 var LoginViewModel_1 = require("./models/LoginViewModel");
+var ErrorMessageService_1 = require("./services/ErrorMessageService");
 var LoginComponent = (function () {
-    function LoginComponent(router, titleService, http, authService) {
+    function LoginComponent(router, titleService, http, authService, errorMessageService) {
         this.router = router;
         this.titleService = titleService;
         this.http = http;
         this.authService = authService;
+        this.errorMessageService = errorMessageService;
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.loginViewModel = new LoginViewModel_1.LoginViewModel();
@@ -40,9 +42,14 @@ var LoginComponent = (function () {
             _this.authService.login(response.json());
             _this.router.navigate(['about']);
         }, function (error) {
-            // failed; TODO: add some nice toast / error handling
-            alert(error.text());
-            console.log(error.text());
+            // failed
+            if (error != null) {
+                _this.errorMessageService.showError("Error", error.json().error_description);
+            }
+            else {
+                _this.errorMessageService.showError('Error', "An error occurred");
+            }
+            console.log(JSON.stringify(error));
         });
     };
     return LoginComponent;
@@ -52,7 +59,7 @@ LoginComponent = __decorate([
         selector: 'login',
         templateUrl: 'partial/loginComponent'
     }),
-    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, authService_1.AuthService])
+    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService, ErrorMessageService_1.ErrorMessageService])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

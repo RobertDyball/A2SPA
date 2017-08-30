@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { TestData } from '../models/testData';
-import { AuthService } from '../security/AuthService';
+import { AuthService } from '../security/auth.service';
 
 @Injectable()
 export class SampleDataService {

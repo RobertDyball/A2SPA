@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { Http, Response, Headers } from '@angular/http';
-import { AuthService } from './security/authService';
+import { AuthService } from './security/auth.service';
 
 @Component({
     selector: 'my-app',

@@ -74,4 +74,4 @@ AuthService = __decorate([
     __metadata("design:paramtypes", [])
 ], AuthService);
 exports.AuthService = AuthService;
-//# sourceMappingURL=authService.js.map
+//# sourceMappingURL=auth.service.js.map

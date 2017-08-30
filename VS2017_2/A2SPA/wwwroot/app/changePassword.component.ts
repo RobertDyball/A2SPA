@@ -3,9 +3,9 @@ import { Title }     from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { Http } from '@angular/http';
-import { AuthService } from './security/authService';
+import { AuthService } from './security/auth.service';
 import { ChangePasswordViewModel } from './models/ChangePasswordViewModel';
-import { ToastrService } from 'ngx-toastr';
+import { ErrorMessageService } from './services/ErrorMessageService';
 
 @Component({
     selector: 'register',
@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ChangePasswordComponent {
     changePasswordViewModel: ChangePasswordViewModel;
 
-    constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService, private toastrService: ToastrService) { }
+    constructor(public router: Router, private titleService: Title, public http: Http, private authService: AuthService, private errorMessageService: ErrorMessageService) { }
 
     ngOnInit() {
         this.changePasswordViewModel = new ChangePasswordViewModel();
@@ -25,14 +25,6 @@ export class ChangePasswordComponent {
         this.titleService.setTitle(newTitle);
     }
 
-    showSuccess(title: string, message: string) {
-        this.toastrService.success(message, title);
-    }
-
-    showError(title: string, message: string) {
-        this.toastrService.error(message, title);
-    }
-
     changePassword(event: Event): void {
         event.preventDefault();
         let body = { 'oldPassword': this.changePasswordViewModel.oldPassword, 'newPassword': this.changePasswordViewModel.newPassword, 'confirmPassword': this.changePasswordViewModel.confirmPassword };
@@ -40,10 +32,10 @@ export class ChangePasswordComponent {
         this.http.post('manage/changePassword', JSON.stringify(body), { headers: this.authService.authJsonHeaders() })
             .subscribe(response => {
                 if (response.status == 200) {
-                    this.showSuccess('Password changed',response.json());
+                    this.errorMessageService.showSuccess('Change Password', this.errorMessageService.formattedErrorResponse(response.json().value));
                     this.router.navigate(['manage']);
                 } else {
-                    this.showError('Password not changed', response.json());
+                    this.errorMessageService.showError('Change Password', this.errorMessageService.formattedErrorResponse(response.json().value));
                 }
             },
             error => {

@@ -1,16 +1,20 @@
-﻿using A2SPA.Models;
+﻿using A2SPA.Helpers;
+using A2SPA.Models;
 using A2SPA.Services;
 using A2SPA.ViewModels.Manage;
+using AspNet.Security.OAuth.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace A2SPA.Controllers
 {
-    [Authorize]
+    [Authorize(AuthenticationSchemes = OAuthValidationDefaults.AuthenticationScheme)]
     public class ManageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -19,12 +23,8 @@ namespace A2SPA.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
 
-        public ManageController(
-        UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager,
-        IEmailSender emailSender,
-        ISmsSender smsSender,
-        ILoggerFactory loggerFactory)
+        public ManageController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
+                                IEmailSender emailSender, ISmsSender smsSender, ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -194,33 +194,37 @@ namespace A2SPA.Controllers
         [HttpGet]
         public IActionResult ChangePassword()
         {
-            return View();
+            return Json(NoContent());
         }
 
         //
         // POST: /Manage/ChangePassword
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword([FromBody]ChangePasswordViewModel value)
         {
-            if (!ModelState.IsValid)
+            ICollection<ValidationResult> results = new List<ValidationResult>();
+            if (!value.IsModelValid(out results))
             {
-                return View(model);
+                return Json(BadRequest(results));
             }
+
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                IdentityResult result = await _userManager.ChangePasswordAsync(user, value.OldPassword, value.NewPassword);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User changed their password successfully.");
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
+                    return Json(Ok("Password Changed Successfully"));
                 }
+
                 AddErrors(result);
-                return View(model);
+                return Json(BadRequest(result));
             }
-            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
+
+            return Json(Forbid());
         }
 
         //
@@ -228,32 +232,38 @@ namespace A2SPA.Controllers
         [HttpGet]
         public IActionResult SetPassword()
         {
-            return View();
+            return Json(NoContent());
         }
 
         //
         // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
+        public async Task<IActionResult> SetPassword(SetPasswordViewModel value)
         {
-            if (!ModelState.IsValid)
+            ICollection<ValidationResult> results = new List<ValidationResult>();
+
+            if (!value.IsModelValid(out results))
             {
-                return View(model);
+                return Json(BadRequest(results));
             }
 
             var user = await GetCurrentUserAsync();
+
             if (user != null)
             {
-                var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
+                var result = await _userManager.AddPasswordAsync(user, value.NewPassword);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction(nameof(Index), new { Message = ManageMessageId.SetPasswordSuccess });
                 }
+
                 AddErrors(result);
-                return View(model);
+
+                return View(value);
             }
+
             return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
         }
 

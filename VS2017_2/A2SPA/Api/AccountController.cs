@@ -19,7 +19,7 @@ namespace A2SPA.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
-        private readonly ApplicationDbContext _applicationDbContext;
+        private readonly A2spaContext _applicationDbContext;
         private static bool _databaseChecked;
 
         public AccountController(
@@ -27,7 +27,7 @@ namespace A2SPA.Controllers
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ApplicationDbContext applicationDbContext)
+            A2spaContext applicationDbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -436,7 +436,7 @@ namespace A2SPA.Controllers
         // not yet supported in this release.
         // Please see this http://go.microsoft.com/fwlink/?LinkID=615859 for more information on how to do deploy the database
         // when publishing your application.
-        private static void EnsureDatabaseCreated(ApplicationDbContext context)
+        private static void EnsureDatabaseCreated(A2spaContext context)
         {
             if (!_databaseChecked)
             {

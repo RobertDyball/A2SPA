@@ -39,7 +39,7 @@ namespace A2SPA
                         new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
                 });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<A2spaContext>(options =>
             {
                 // Configure the context to use Microsoft SQL Server.
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -51,12 +51,11 @@ namespace A2SPA
 
             // Register the Identity services.
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<A2spaContext>()
                 .AddDefaultTokenProviders();
 
-            // Configure Identity to use the same JWT claims as OpenIddict instead
-            // of the legacy WS-Federation claims it uses by default (ClaimTypes),
-            // which saves you from doing the mapping in your authorization controller.
+            // Configure Identity to use the same JWT claims as OpenIddict instead of the legacy WS-Federation claims it 
+            // uses by default (ClaimTypes), which saves you from doing the mapping in your authorization controller.
             services.Configure<IdentityOptions>(options =>
             {
                 options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
@@ -72,7 +71,7 @@ namespace A2SPA
             services.AddOpenIddict(options =>
             {
                 // Register the Entity Framework stores.
-                options.AddEntityFrameworkCoreStores<ApplicationDbContext>();
+                options.AddEntityFrameworkCoreStores<A2spaContext>();
 
                 // Register the ASP.NET Core MVC binder used by OpenIddict.
                 // Note: if you don't call this method, you won't be able to
@@ -94,18 +93,15 @@ namespace A2SPA
                 // Make the "client_id" parameter mandatory when sending a token request.
                 // options.RequireClientIdentification();
 
-                // When request caching is enabled, authorization and logout requests
-                // are stored in the distributed cache by OpenIddict and the user agent
-                // is redirected to the same page with a single parameter (request_id).
-                // This allows flowing large OpenID Connect requests even when using
-                // an external authentication provider like Google, Facebook or Twitter.
+                // When request caching is enabled, authorization and logout requests are stored in the distributed cache by OpenIddict 
+                // and the user agent is redirected to the same page with a single parameter (request_id). This allows flowing large 
+                // OpenID Connect requests even when using an external authentication provider like Google, Facebook or Twitter.
                 options.EnableRequestCaching();
 
                 // During development, you can disable the HTTPS requirement.
                 options.DisableHttpsRequirement();
 
-                // Note: to use JWT access tokens instead of the default
-                // encrypted format, the following lines are required:
+                // Note: to use JWT access tokens instead of the default encrypted format, the following lines are required:
                 //
                 // options.UseJsonWebTokens();
                 // options.AddEphemeralSigningKey();
@@ -167,8 +163,7 @@ namespace A2SPA
 
             //app.UseOpenIddict();
 
-            //// Add a middleware used to validate access
-            //// tokens and protect the API endpoints.
+            //// Add a middleware used to validate access tokens and protect the API endpoints.
             //app.UseOpenIdConnectAuthentication();
 
             app.UseMvc(routes =>

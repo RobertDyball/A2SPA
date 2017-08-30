@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
-var authService_1 = require("./security/authService");
+var auth_service_1 = require("./security/auth.service");
 var AppComponent = (function () {
     function AppComponent(router, titleService, http, authService) {
         this.router = router;
@@ -53,7 +53,7 @@ AppComponent = __decorate([
         selector: 'my-app',
         templateUrl: 'partial/appComponent'
     }),
-    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, authService_1.AuthService])
+    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

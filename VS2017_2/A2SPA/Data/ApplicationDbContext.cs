@@ -1,14 +1,13 @@
 ﻿using A2SPA.Models;
 using A2SPA.ViewModels;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace A2SPA.Data
 {
-    public class ApplicationDbContext :  IdentityDbContext<ApplicationUser>
+    public class A2spaContext :  IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public A2spaContext(DbContextOptions<A2spaContext> options) : base(options)
         {
         }
 
@@ -16,14 +15,7 @@ namespace A2SPA.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<TestData>().ToTable("TestData");
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Ignore<IdentityUserLogin<string>>();
-            //modelBuilder.Ignore<IdentityUserRole<string>>();
-            //modelBuilder.Ignore<IdentityUserClaim<string>>();
-            //modelBuilder.Ignore<IdentityUserToken<string>>();
-            //modelBuilder.Ignore<IdentityUser<string>>();
-            //modelBuilder.Ignore<ApplicationUser>();
         }
     }
 }

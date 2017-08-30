@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
-var authService_1 = require("./security/authService");
+var auth_service_1 = require("./security/auth.service");
 var RegisterViewModel_1 = require("./models/RegisterViewModel");
 var RegisterComponent = (function () {
     function RegisterComponent(router, titleService, http, authService) {
@@ -55,7 +55,7 @@ RegisterComponent = __decorate([
         selector: 'register',
         templateUrl: 'partial/registerComponent'
     }),
-    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, authService_1.AuthService])
+    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
 ], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 //# sourceMappingURL=register.component.js.map

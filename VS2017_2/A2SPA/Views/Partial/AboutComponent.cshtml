@@ -58,12 +58,15 @@
                     </table>
                 </div>
                 <div class="col-md-4">
-                    <div class="row" [hidden]="!(tableMode==='add'||tableMode==='edit')" *ngIf="testData != null">
+                    <div class="row" [hidden]="!(tableMode==='add'||tableMode==='edit')">
                         <div class="card">
                             <div class="card-header">
-                                <span [hidden]="!(tableMode==='add')">Add Data</span>
-                                <span [hidden]="!(tableMode==='edit')">Edit Data</span>
-                                <button type="button" class="btn btn-info btn-sm pull-right" (click)="tableMode='list'">-</button>
+                                <button type="button" [disabled]="tableMode == 'add'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='add'">Add</button>
+                                <button type="button" [disabled]="testDataList.length==0 || tableMode == 'edit'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='edit';">Edit</button>
+                                <button type="button" [disabled]="testDataList.length==0 || tableMode == 'list'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='list'">List</button>
                             </div>
                             <div class="card-block">
                                 <tag-dd par="testData" for="Id"></tag-dd>
@@ -79,11 +82,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" [hidden]="!(tableMode==='list')" *ngIf="selectedItem != null">
+                    <div class="row" [hidden]="!(tableMode==='list')" *ngIf="testDataList.length>0 && selectedItem != null">
                         <div class="card">
                             <div class="card-header">
-                                Data Display
-                                <button type="button" class="btn btn-info btn-sm pull-right" (click)="tableMode='list';">-</button>
+                                <button type="button" [disabled]="tableMode == 'add'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='add'">Add</button>
+                                <button type="button" [disabled]="testDataList.length==0 || tableMode == 'edit'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='edit';">Edit</button>
+                                <button type="button" [disabled]="testDataList.length==0 || tableMode == 'list'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='list'">List</button>
                             </div>
                             <div class="card-block">
                                 <tag-dd par="selectedItem" for="Id"></tag-dd>

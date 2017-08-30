@@ -15,7 +15,7 @@ var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/observable/throw");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
-var AuthService_1 = require("../security/AuthService");
+var auth_service_1 = require("../security/auth.service");
 var SampleDataService = (function () {
     function SampleDataService(http, authService) {
         this.http = http;
@@ -63,7 +63,7 @@ var SampleDataService = (function () {
 }());
 SampleDataService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, AuthService_1.AuthService])
+    __metadata("design:paramtypes", [http_1.Http, auth_service_1.AuthService])
 ], SampleDataService);
 exports.SampleDataService = SampleDataService;
-//# sourceMappingURL=sampleDataService.js.map
+//# sourceMappingURL=sampleData.service.js.map

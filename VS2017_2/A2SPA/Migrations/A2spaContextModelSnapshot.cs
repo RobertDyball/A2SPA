@@ -10,7 +10,7 @@ using System;
 
 namespace A2SPA.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(A2spaContext))]
     partial class A2spaContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

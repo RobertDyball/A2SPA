@@ -4,15 +4,11 @@
  * the license and the contributors participating to this project.
  */
 
-using A2SPA.Helpers;
 using A2SPA.Models;
-using A2SPA.ViewModels.Authorization;
-using A2SPA.ViewModels.Shared;
 using AspNet.Security.OpenIdConnect.Extensions;
 using AspNet.Security.OpenIdConnect.Primitives;
 using AspNet.Security.OpenIdConnect.Server;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -44,109 +40,18 @@ namespace A2SPA.Controllers
             _userManager = userManager;
         }
 
-        #region Authorization code, implicit and implicit flows
-        // Note: to support interactive flows like the code flow,
-        // you must provide your own authorization endpoint action:
-
-        [Authorize, HttpGet("~/connect/authorize")]
-        public async Task<IActionResult> Authorize(OpenIdConnectRequest request)
-        {
-            Debug.Assert(request.IsAuthorizationRequest(),
-                "The OpenIddict binder for ASP.NET Core MVC is not registered. " +
-                "Make sure services.AddOpenIddict().AddMvcBinders() is correctly called.");
-
-            // Retrieve the application details from the database.
-            var application = await _applicationManager.FindByClientIdAsync(request.ClientId, HttpContext.RequestAborted);
-            if (application == null)
-            {
-                return View("Error", new ErrorViewModel
-                {
-                    Error = OpenIdConnectConstants.Errors.InvalidClient,
-                    ErrorDescription = "Details concerning the calling client application cannot be found in the database"
-                });
-            }
-
-            // Flow the request_id to allow OpenIddict to restore
-            // the original authorization request from the cache.
-            return View(new AuthorizeViewModel
-            {
-                ApplicationName = application.DisplayName,
-                RequestId = request.RequestId,
-                Scope = request.Scope
-            });
-        }
-
-        [Authorize, FormValueRequired("submit.Accept")]
-        [HttpPost("~/connect/authorize"), ValidateAntiForgeryToken]
-        public async Task<IActionResult> Accept(OpenIdConnectRequest request)
-        {
-            Debug.Assert(request.IsAuthorizationRequest(),
-                "The OpenIddict binder for ASP.NET Core MVC is not registered. " +
-                "Make sure services.AddOpenIddict().AddMvcBinders() is correctly called.");
-
-            // Retrieve the profile of the logged in user.
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return View("Error", new ErrorViewModel
-                {
-                    Error = OpenIdConnectConstants.Errors.ServerError,
-                    ErrorDescription = "An internal error has occurred"
-                });
-            }
-
-            // Create a new authentication ticket.
-            var ticket = await CreateTicketAsync(request, user);
-
-            // Returning a SignInResult will ask OpenIddict to issue the appropriate access/identity tokens.
-            return SignIn(ticket.Principal, ticket.Properties, ticket.AuthenticationScheme);
-        }
-
-        [Authorize, FormValueRequired("submit.Deny")]
-        [HttpPost("~/connect/authorize"), ValidateAntiForgeryToken]
-        public IActionResult Deny()
-        {
-            // Notify OpenIddict that the authorization grant has been denied by the resource owner
-            // to redirect the user agent to the client application using the appropriate response_mode.
-            return Forbid(OpenIdConnectServerDefaults.AuthenticationScheme);
-        }
-
-        // Note: the logout action is only useful when implementing interactive
-        // flows like the authorization code flow or the implicit flow.
-
-        [HttpGet("~/connect/logout")]
-        public IActionResult Logout(OpenIdConnectRequest request)
-        {
-            Debug.Assert(request.IsLogoutRequest(),
-                "The OpenIddict binder for ASP.NET Core MVC is not registered. " +
-                "Make sure services.AddOpenIddict().AddMvcBinders() is correctly called.");
-
-            // Flow the request_id to allow OpenIddict to restore
-            // the original logout request from the distributed cache.
-            return View(new LogoutViewModel
-            {
-                RequestId = request.RequestId
-            });
-        }
-
         [HttpPost("~/connect/logout"), ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            // Ask ASP.NET Core Identity to delete the local and external cookies created
-            // when the user agent is redirected from the external identity provider
-            // after a successful authentication flow (e.g Google or Facebook).
+            // Ask ASP.NET Core Identity to delete the local and external tokens created when the user agent is redirected from the 
+            // external identity provider after a successful authentication flow (e.g Google or Facebook).
             await _signInManager.SignOutAsync();
 
-            // Returning a SignOutResult will ask OpenIddict to redirect the user agent
-            // to the post_logout_redirect_uri specified by the client application.
+            // Returning a SignOutResult will ask OpenIddict to redirect the user agent to the post_logout_redirect_uri 
+            // specified by the client application.
             return SignOut(OpenIdConnectServerDefaults.AuthenticationScheme);
         }
-        #endregion
-
-        #region Password, authorization code and refresh token flows
-        // Note: to support non-interactive flows like password,
-        // you must provide your own token endpoint action:
-
+        
         [HttpPost("~/connect/token"), Produces("application/json")]
         public async Task<IActionResult> Exchange(OpenIdConnectRequest request)
         {
@@ -188,9 +93,8 @@ namespace A2SPA.Controllers
                 // Retrieve the claims principal stored in the authorization code/refresh token.
                 var info = await HttpContext.AuthenticateAsync(OpenIdConnectServerDefaults.AuthenticationScheme);
 
-                // Retrieve the user profile corresponding to the authorization code/refresh token.
-                // Note: if you want to automatically invalidate the authorization code/refresh token
-                // when the user password/roles change, use the following line instead:
+                // Retrieve the user profile corresponding to the authorization code/refresh token. Note: if you want to automatically 
+                // invalidate the authorization code/refresh token when the user password/roles change, use the following line instead:
                 // var user = _signInManager.ValidateSecurityStampAsync(info.Principal);
                 var user = await _userManager.GetUserAsync(info.Principal);
                 if (user == null)
@@ -225,8 +129,7 @@ namespace A2SPA.Controllers
                 ErrorDescription = "The specified grant type is not supported."
             });
         }
-        #endregion
-
+ 
         private async Task<AuthenticationTicket> CreateTicketAsync(
             OpenIdConnectRequest request, ApplicationUser user,
             AuthenticationProperties properties = null)
@@ -236,8 +139,7 @@ namespace A2SPA.Controllers
             var principal = await _signInManager.CreateUserPrincipalAsync(user);
 
             // Create a new authentication ticket holding the user identity.
-            var ticket = new AuthenticationTicket(principal, properties,
-                OpenIdConnectServerDefaults.AuthenticationScheme);
+            var ticket = new AuthenticationTicket(principal, properties, OpenIdConnectServerDefaults.AuthenticationScheme);
 
             if (!request.IsAuthorizationCodeGrantType() && !request.IsRefreshTokenGrantType())
             {

@@ -14,9 +14,10 @@ var common_1 = require("@angular/common");
 var app_component_1 = require("./app.component");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
-var sampleDataService_1 = require("./services/sampleDataService");
-var authService_1 = require("./security/authService");
-var authGuardService_1 = require("./security/authGuardService");
+var ErrorMessageService_1 = require("./services/ErrorMessageService");
+var sampleData_service_1 = require("./services/sampleData.service");
+var auth_service_1 = require("./security/auth.service");
+var auth_guard_service_1 = require("./security/auth-guard.service");
 var ngx_toastr_1 = require("ngx-toastr");
 require("./rxjs-operators");
 // enableProdMode();
@@ -29,9 +30,10 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [animations_1.BrowserAnimationsModule, platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, ngx_toastr_1.ToastrModule.forRoot(), app_routing_1.routing],
         declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
-        providers: [sampleDataService_1.SampleDataService,
-            authService_1.AuthService,
-            authGuardService_1.AuthGuard, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/a2spa' }],
+        providers: [sampleData_service_1.SampleDataService,
+            ErrorMessageService_1.ErrorMessageService,
+            auth_service_1.AuthService,
+            auth_guard_service_1.AuthGuard, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/a2spa' }],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
