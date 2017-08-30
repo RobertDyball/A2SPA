@@ -1,0 +1,98 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <UserSecretsId>aspnet-A2SPA-B794315C-6AA1-4EF8-8045-313966E08C95</UserSecretsId>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\DbInitializer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\app\about.component.ts" />
+    <Content Remove="wwwroot\app\app.routing.ts" />
+    <Content Remove="wwwroot\app\contact.component.ts" />
+    <Content Remove="wwwroot\app\index.component.ts" />
+    <Content Remove="wwwroot\app\models\ErrorResponse.ts" />
+    <Content Remove="wwwroot\app\security\AuthService.ts" />
+    <Content Remove="wwwroot\app\security\OpenIdDictToken.ts" />
+    <Content Remove="wwwroot\app\models\TestData.ts" />
+    <Content Remove="wwwroot\app\models\ViewModelResponse.ts" />
+    <Content Remove="wwwroot\app\rxjs-operators.ts" />
+    <Content Remove="wwwroot\app\services\ErrorMessageService.ts" />
+    <Content Remove="wwwroot\app\services\SampleDataService.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="2.0.0-preview1-0283" />
+    <PackageReference Include="Humanizer.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0" />
+    <PackageReference Include="NSwag.AspNetCore" Version="11.3.5" />
+    <PackageReference Include="OpenIddict" Version="2.0.0-preview1-0643" />
+    <PackageReference Include="OpenIddict.Core" Version="2.0.0-preview1-0643" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0-preview1-0643" />
+    <PackageReference Include="OpenIddict.Models" Version="2.0.0-preview1-0643" />
+    <PackageReference Include="OpenIddict.Mvc" Version="2.0.0-preview1-0643" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Partial\AboutComponent.cshtml" />
+    <None Include="Views\Partial\AppComponent.cshtml" />
+    <None Include="Views\Partial\ContactComponent.cshtml" />
+    <None Include="Views\Partial\IndexComponent.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="wwwroot\images\banner1.svg" />
+    <None Include="wwwroot\images\banner2.svg" />
+    <None Include="wwwroot\images\banner3.svg" />
+    <None Include="wwwroot\images\banner4.svg" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\site.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\app\about.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\app.routing.ts" />
+    <TypeScriptCompile Include="wwwroot\app\contact.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\index.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\models\ErrorResponse.ts" />
+    <TypeScriptCompile Include="wwwroot\app\security\OpenIdDictToken.ts" />
+    <TypeScriptCompile Include="wwwroot\app\models\TestData.ts" />
+    <TypeScriptCompile Include="wwwroot\app\models\ViewModelResponse.ts" />
+    <TypeScriptCompile Include="wwwroot\app\rxjs-operators.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\ErrorMessageService.ts" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>ES6</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir></TypeScriptOutDir>
+    <TypeScriptGeneratesDeclarations>True</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot></TypeScriptMapRoot>
+    <TypeScriptSourceRoot></TypeScriptSourceRoot>
+  </PropertyGroup>
+
+</Project>

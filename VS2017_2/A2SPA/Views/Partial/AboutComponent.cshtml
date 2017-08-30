@@ -1,0 +1,116 @@
+﻿@using A2SPA.ViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *,A2SPA
+@model TestData
+
+@{
+    ViewData["Title"] = "About";
+}
+
+<div class="container">
+    <div class="container-fluid body-content">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>@ViewData["Title"].</h2>
+                <h3>@ViewData["Message"]</h3>
+                <p>Examples of Angular 2 data served by ASP.Net Core Web API:</p>
+            </div>
+            <div class="col-md-4">
+                <div class="row pull-right text-right">
+                    <span class="badge badge-pill badge-success">rowcount: {{ (testDataList == null) ? '0' : testDataList.length }}</span><br />
+                </div>
+                <div class="row pull-right text-right">
+                    <span class="badge badge-pill badge-primary">mode: {{tableMode}}</span><br />
+                </div>
+            </div>
+        </div>
+
+        <form #testForm="ngForm">
+            <div class="row">
+                <div *ngIf="testDataList == null || testDataList.length == 0" class="col-md-8">
+                    (no data)
+                </div>
+                <div *ngIf="testDataList != null && testDataList.length > 0" class="col-md-8">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-1" chfor="Id"> </th>
+                                <th class="col-md-3" chfor="Username"> </th>
+                                <th class="col-md-2" chfor="Currency"> </th>
+                                <th class="col-md-3" chfor="EmailAddress"> </th>
+                                <th class="col-md-2" chfor="Password"> </th>
+                                <td><button type="button" class="btn btn-info btn-sm" (click)="testForm.reset();changeMode('add', null, $event)">+</button></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of testDataList" (click)="selectCurrentItem(item,$event)" [class.info]="item==selectedItem">
+                                <td par="item" cdfor="Id"></td>
+                                <td par="item" cdfor="Username"></td>
+                                <td par="item" cdfor="Currency" pipe="| currency:'USD':true:'1.2-2'"></td>
+                                <td par="item" cdfor="EmailAddress"></td>
+                                <td par="item" cdfor="Password"></td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteRecord(item, $event)">X</button>
+                                    <button type="button" class="btn btn-info btn-sm" (click)="changeMode('edit', item, $event)">?</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <div class="row" [hidden]="!(tableMode==='add'||tableMode==='edit')">
+                        <div class="card">
+                            <div class="card-header">
+                                <button type="button" [disabled]="tableMode == 'add'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='add'">Add</button>
+                                <button type="button" [disabled]="testDataList.length==0 || tableMode == 'edit'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='edit';">Edit</button>
+                                <button type="button" [disabled]="testDataList.length==0 || tableMode == 'list'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='list'">List</button>
+                            </div>
+                            <div class="card-block">
+                                <tag-dd par="testData" for="Id"></tag-dd>
+                                <vfdi par="testData" for="Username"></vfdi>
+                                <vfdi par="testData" for="Currency"></vfdi>
+                                <vfdi par="testData" for="EmailAddress"></vfdi>
+                                <vfdi par="testData" for="Password"></vfdi>
+                            </div>
+                            <div class="card-footer">
+                                <button [disabled]="!testForm.form.valid" [hidden]="!(tableMode==='add')" type="button" class="btn btn-warning" (click)="addTestData($event)">Save new item</button>
+                                <button [disabled]="!testForm.form.valid" [hidden]="!(tableMode==='edit')" type="button" class="btn btn-warning" (click)="editTestData($event)">Save updated item</button>
+                                <button [hidden]="(tableMode==='list')" type="button" class="btn btn-info" (click)="testForm.reset();tableMode='list';">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" [hidden]="!(tableMode==='list')" *ngIf="testDataList.length>0 && selectedItem != null">
+                        <div class="card">
+                            <div class="card-header">
+                                <button type="button" [disabled]="tableMode == 'add'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='add'">Add</button>
+                                <button type="button" [disabled]="testDataList.length==0 || tableMode == 'edit'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='edit';">Edit</button>
+                                <button type="button" [disabled]="testDataList.length==0 || tableMode == 'list'"
+                                        class="btn btn-info btn-sm pull-right" (click)="tableMode='list'">List</button>
+                            </div>
+                            <div class="card-block">
+                                <tag-dd par="selectedItem" for="Id"></tag-dd>
+                                <tag-dd par="selectedItem" for="Username"></tag-dd>
+                                <tag-dd par="selectedItem" for="Currency" pipe="| currency:'USD':true:'1.2-2'"></tag-dd>
+                                <tag-dd par="selectedItem" for="EmailAddress"></tag-dd>
+                                <tag-dd par="selectedItem" for="Password"></tag-dd>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-info" (click)="getTestData()">Get all records from database</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div *ngIf="errorMessage != null">
+            <p>Error:</p>
+            <pre>{{ errorMessage  }}</pre>
+        </div>
+    </div>
+</div>

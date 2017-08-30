@@ -1,7 +1,14 @@
-# Angular 4 + Bootstrap 4 + ASP.Net Core 1.1.1 SPA
+# Angular 4 + Bootstrap 4 + ASP.Net Core 1.1, ASP.Net Core 2 SPA
 
-A SPA that uses the best of ASP.Net Core 1.1.* for the backend and Angular 4.0 for the front end.
-Updated: now includes change password
+NOTE: this is an early release of the VS2017 ASP.Net Core 2 code (see the VS2017_2 folder)
+
+This new ASP.Net 2 version of the code is still rough and in need of cleanup, debugging and does not yet have NSwag / Swagger added back in. On the other hand login, logout, password change and the data CRUD functions should work (usually).
+
+What is A2SPA?
+
+A SPA that uses ASP.Net Core for the backend and Angular 4.0 for the front end.
+
+Following are links to the original article series based on ASP.Net Core 1.1.1 and Angular 4 
 
 Part 1: see: https://www.codeproject.com/Articles/1148767/SPA-using-ASP-Net-Core-plus-Angular-part1
 covers this technique to integrate ASP.Net Core and Angular 4

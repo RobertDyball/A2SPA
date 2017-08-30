@@ -14,6 +14,7 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
   del $(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)*.ts /s /q
 )
 @echo "---------- Cleaning up .ts files from obj folder (end) ---------"</PreBuildEvent>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
     <!--<PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>-->
   </PropertyGroup>
 
@@ -21,9 +22,6 @@ if exist "$(SolutionDir)$(SolutionName)\$(BaseIntermediateOutputPath)" (
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
-    <Content Include="node_modules\**\*" Exclude="node_modules\**\*.ts">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
