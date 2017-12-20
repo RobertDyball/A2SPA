@@ -19,6 +19,7 @@ var sampleData_service_1 = require("./services/sampleData.service");
 var auth_service_1 = require("./security/auth.service");
 var auth_guard_service_1 = require("./security/auth-guard.service");
 var ngx_toastr_1 = require("ngx-toastr");
+var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 require("./rxjs-operators");
 // enableProdMode();
 var AppModule = /** @class */ (function () {
@@ -26,7 +27,7 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [animations_1.BrowserAnimationsModule, platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, ngx_toastr_1.ToastrModule.forRoot(), app_routing_1.routing],
+            imports: [ng_bootstrap_1.NgbModule.forRoot(), animations_1.BrowserAnimationsModule, platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, ngx_toastr_1.ToastrModule.forRoot(), app_routing_1.routing],
             declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
             providers: [sampleData_service_1.SampleDataService,
                 ErrorMessageService_1.ErrorMessageService,

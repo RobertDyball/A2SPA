@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Examples of libraries used in the A2SPA framework.";
+    ViewData["Title"] = "A2SPA is built using the following:";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
@@ -8,75 +8,185 @@
     <p><br /></p>
 </div>
 
-<div class="row">
+<div class="card-deck">
 
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-block">
-                <h3 class="card-title">
-                    Octicons - SVG Icons <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-thumbsup" aria-hidden="true">
-                        <image xlink:href="/node_modules/octicons/build/svg/thumbsup.svg" />
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title">ASP.Net Core 2 MVC</h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Built using ASP.Net Core 2.x MVC</h6>
+            <p class="card-text">
+
+            </p>
+        </div>
+    </div>
+
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title">Angular 5</h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Client-side Single Page Application framework built on Angular 5.x and Typescript 2.x</h6>
+            <p class="card-text">
+
+            </p>
+        </div>
+    </div>
+
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title">.Net core Tag Helpers</h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Client side markup generated dynamically using tag helpers</h6>
+            <p class="card-text">
+
+            </p>
+        </div>
+    </div>
+
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title">EF Core Code-first</h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Code first database generation and maintenance using EF Core</h6>
+            <p class="card-text">
+
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<div class="card-deck">
+
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title">OpenId Token auth</h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">OpenID authentication and authorization using tokens genereted by OpenIDDict</h6>
+            <p class="card-text">
+
+            </p>
+        </div>
+    </div>
+
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title">Bootstrap 4</h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Styled using Bootstap 4</h6>
+            <p class="card-text">
+
+            </p>
+        </div>
+    </div>
+
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title">Swagger docs</h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Swagger style API documentation generated dynamically using NSwag.</h6>
+            <p class="card-text">
+                NSwag's toolset also dynamically generates, or re-generates, Angular5 / Typescript data model + data services from your API.
+            </p>
+        </div>
+    </div>
+
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title">Easy debugging</h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Client-side debugging into Typescript using Visual Studio. Server-side debugging using visual Studio or VS Code.</h6>
+            <p class="card-text">
+
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<div class="card-deck">
+
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title">Octicons</h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Support for <a href="https://octicons.github.com/">Octicons</a>, a scalable set of handcrafted SVG icons.</h6>
+            <p class="card-text">
+                <span class="col-xs-3">
+                    <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-clippy" aria-hidden="true">
+                        <image xlink:href="/node_modules/octicons/build/svg/clippy.svg" />
                     </svg>
-                </h3>
-                <p class="card-text">Support for <a href="https://octicons.github.com/">Octicons</a>, a scalable set of handcrafted SVG icons.</p>
-                <div>
-                    <span class="col-xs-3">
-                        <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-clippy" aria-hidden="true">
-                            <image xlink:href="/node_modules/octicons/build/svg/clippy.svg" />
-                        </svg>
-                    </span>
-                    <span class="col-xs-3">
-                        <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-mail" aria-hidden="true">
-                            <image xlink:href="/node_modules/octicons/build/svg/mail.svg" />
-                        </svg>
-                    </span>
-                    <span class="col-xs-3">
-                        <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-mail-read" aria-hidden="true">
-                            <image xlink:href="/node_modules/octicons/build/svg/mail-read.svg" />
-                        </svg>
-                    </span>
-                    <span class="col-xs-3">
-                        <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-location" aria-hidden="true">
-                            <image xlink:href="/node_modules/octicons/build/svg/location.svg" />
-                        </svg>
-                    </span>
-                </div>
-            </div>
+                </span>
+                <span class="col-xs-3">
+                    <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-mail" aria-hidden="true">
+                        <image xlink:href="/node_modules/octicons/build/svg/mail.svg" />
+                    </svg>
+                </span>
+                <span class="col-xs-3">
+                    <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-mail-read" aria-hidden="true">
+                        <image xlink:href="/node_modules/octicons/build/svg/mail-read.svg" />
+                    </svg>
+                </span>
+                <span class="col-xs-3">
+                    <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-location" aria-hidden="true">
+                        <image xlink:href="/node_modules/octicons/build/svg/location.svg" />
+                    </svg>
+                </span>
+            </p>
         </div>
     </div>
 
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-block">
-                <h3 class="card-title"><a href="https://material.io/icons/">Material Icons</a> <i class="material-icons">pets</i></h3>
-                <p class="card-text">Support for <a href="https://google.github.io/material-design-icons/">Material Design Icons and Fonts</a> </p>
-                <div>
-                    <span class="col-xs-3">18px <i class="material-icons md-18">face</i></span>
-                    <span class="col-xs-3">24px <i class="material-icons md-24">face</i></span>
-                    <span class="col-xs-3">36px <i class="material-icons md-36">face</i></span>
-                    <span class="col-xs-3">48px <i class="material-icons md-48">face</i></span>
-                </div>
-            </div>
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title"><a href="https://material.io/icons/">Material Icons</a></h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Support for <a href="https://google.github.io/material-design-icons/">Material Design Icons and Fonts</a></h6>
+            <p class="card-text">
+                <span class="col-sm-6">18px <i class="material-icons md-18">face</i></span>
+                <span class="col-sm-6">24px <i class="material-icons md-24">face</i></span>
+            </p>
+            <p class="card-text">
+                <span class="col-sm-6">36px <i class="material-icons md-36">face</i></span>
+                <span class="col-sm-6">48px <i class="material-icons md-48">face</i></span>
+            </p>
         </div>
     </div>
 
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-block">
-                <h3 class="card-title">ng-boostrap</h3>
-                <p class="card-text">Angular Bootstrap integration with <a href="https://ng-bootstrap.github.io/#/getting-started">ng-bootstrap</a>.</p>
-
-            </div>
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title"><a href="https://ng-bootstrap.github.io/">ng-boostrap</a></h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Angular Bootstrap integration with <a href="https://ng-bootstrap.github.io/#/getting-started">ng-bootstrap</a>.</h6>
+            <p class="card-text">
+                <span>
+                    <ngb-rating [(rate)]="currentRate"></ngb-rating>
+                    <br />
+<pre>Rate: <b>{{ currentRate !== currentRate ? 'unrated' :currentRate}}</b></pre>
+                </span>
+            </p>
         </div>
     </div>
 
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-block">
-                <h3 class="card-title">Popup 'Toasts'</h3>
-                <p class="card-text">Popup 'Toasts' using <a href="https://github.com/scttcper/ngx-toastr">ngx-toastr</a>.</p>
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h3 class="card-title"><a href="https://github.com/scttcper/ngx-toastr">ngx-toastr</a></h3>
+        </div>
+        <div class="card-body text-dark">
+            <h6 class="card-title">Popup 'Toasts' using <a href="https://github.com/scttcper/ngx-toastr">ngx-toastr</a>.</h6>
+            <p class="card-text">
                 <button (click)="showSuccess()" class="btn btn-primary">Open Toast</button>
-            </div>
+            </p>
         </div>
     </div>
 
