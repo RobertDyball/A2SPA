@@ -16,7 +16,7 @@ var http_1 = require("@angular/http");
 var auth_service_1 = require("./security/auth.service");
 var LoginViewModel_1 = require("./models/LoginViewModel");
 var ErrorMessageService_1 = require("./services/ErrorMessageService");
-var LoginComponent = (function () {
+var LoginComponent = /** @class */ (function () {
     function LoginComponent(router, titleService, http, authService, errorMessageService) {
         this.router = router;
         this.titleService = titleService;
@@ -52,14 +52,14 @@ var LoginComponent = (function () {
             console.log(JSON.stringify(error));
         });
     };
+    LoginComponent = __decorate([
+        core_1.Component({
+            selector: 'login',
+            templateUrl: 'partial/loginComponent'
+        }),
+        __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService, ErrorMessageService_1.ErrorMessageService])
+    ], LoginComponent);
     return LoginComponent;
 }());
-LoginComponent = __decorate([
-    core_1.Component({
-        selector: 'login',
-        templateUrl: 'partial/loginComponent'
-    }),
-    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService, ErrorMessageService_1.ErrorMessageService])
-], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

@@ -15,7 +15,7 @@ var testData_1 = require("./models/testData");
 var ErrorMessageService_1 = require("./services/ErrorMessageService");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
-var AboutComponent = (function () {
+var AboutComponent = /** @class */ (function () {
     function AboutComponent(sampleDataService, errorMessageService) {
         this.sampleDataService = sampleDataService;
         this.errorMessageService = errorMessageService;
@@ -150,14 +150,14 @@ var AboutComponent = (function () {
             _this.errorMessageService.showError('Delete', JSON.stringify(error));
         });
     };
+    AboutComponent = __decorate([
+        core_1.Component({
+            selector: 'my-about',
+            templateUrl: 'partial/aboutComponent'
+        }),
+        __metadata("design:paramtypes", [sampleData_service_1.SampleDataService, ErrorMessageService_1.ErrorMessageService])
+    ], AboutComponent);
     return AboutComponent;
 }());
-AboutComponent = __decorate([
-    core_1.Component({
-        selector: 'my-about',
-        templateUrl: 'partial/aboutComponent'
-    }),
-    __metadata("design:paramtypes", [sampleData_service_1.SampleDataService, ErrorMessageService_1.ErrorMessageService])
-], AboutComponent);
 exports.AboutComponent = AboutComponent;
 //# sourceMappingURL=about.component.js.map

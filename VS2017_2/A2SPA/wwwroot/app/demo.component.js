@@ -10,25 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var auth_service_1 = require("./auth.service");
-var AuthGuard = /** @class */ (function () {
-    function AuthGuard(authService, router) {
-        this.authService = authService;
-        this.router = router;
+var ngx_toastr_1 = require("ngx-toastr");
+var DemoComponent = /** @class */ (function () {
+    // this is not meant to be secured; demonstrating a component that is open to anonymous users to access
+    function DemoComponent(toastrService) {
+        this.toastrService = toastrService;
     }
-    AuthGuard.prototype.canActivate = function () {
-        if (!this.authService.loggedIn()) {
-            this.router.navigate(['login']);
-            return false;
-        }
-        return true;
+    DemoComponent.prototype.showSuccess = function () {
+        this.toastrService.success('Hello world!', 'Toastr fun!');
     };
-    AuthGuard = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
-    ], AuthGuard);
-    return AuthGuard;
+    DemoComponent = __decorate([
+        core_1.Component({
+            selector: 'my-contact',
+            templateUrl: 'partial/demoComponent'
+        }),
+        __metadata("design:paramtypes", [ngx_toastr_1.ToastrService])
+    ], DemoComponent);
+    return DemoComponent;
 }());
-exports.AuthGuard = AuthGuard;
-//# sourceMappingURL=auth-guard.service.js.map
+exports.DemoComponent = DemoComponent;
+//# sourceMappingURL=demo.component.js.map

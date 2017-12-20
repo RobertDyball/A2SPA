@@ -14,7 +14,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var auth_service_1 = require("./security/auth.service");
-var AppComponent = (function () {
+var AppComponent = /** @class */ (function () {
     function AppComponent(router, titleService, http, authService) {
         this.router = router;
         this.titleService = titleService;
@@ -46,14 +46,14 @@ var AppComponent = (function () {
             console.log(error.text());
         });
     };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'my-app',
+            templateUrl: 'partial/appComponent'
+        }),
+        __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        templateUrl: 'partial/appComponent'
-    }),
-    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

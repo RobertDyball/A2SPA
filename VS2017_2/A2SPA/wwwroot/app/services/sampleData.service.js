@@ -16,7 +16,7 @@ require("rxjs/add/observable/throw");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var auth_service_1 = require("../security/auth.service");
-var SampleDataService = (function () {
+var SampleDataService = /** @class */ (function () {
     function SampleDataService(http, authService) {
         this.http = http;
         this.authService = authService;
@@ -59,11 +59,11 @@ var SampleDataService = (function () {
         console.error(errMsg);
         return Observable_1.Observable.throw(errMsg);
     };
+    SampleDataService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http, auth_service_1.AuthService])
+    ], SampleDataService);
     return SampleDataService;
 }());
-SampleDataService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, auth_service_1.AuthService])
-], SampleDataService);
 exports.SampleDataService = SampleDataService;
 //# sourceMappingURL=sampleData.service.js.map

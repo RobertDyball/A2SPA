@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var OpenIdDictToken = (function () {
+var OpenIdDictToken = /** @class */ (function () {
     function OpenIdDictToken() {
     }
     return OpenIdDictToken;

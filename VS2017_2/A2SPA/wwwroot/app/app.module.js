@@ -21,21 +21,21 @@ var auth_guard_service_1 = require("./security/auth-guard.service");
 var ngx_toastr_1 = require("ngx-toastr");
 require("./rxjs-operators");
 // enableProdMode();
-var AppModule = (function () {
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
+    AppModule = __decorate([
+        core_1.NgModule({
+            imports: [animations_1.BrowserAnimationsModule, platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, ngx_toastr_1.ToastrModule.forRoot(), app_routing_1.routing],
+            declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
+            providers: [sampleData_service_1.SampleDataService,
+                ErrorMessageService_1.ErrorMessageService,
+                auth_service_1.AuthService,
+                auth_guard_service_1.AuthGuard, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/a2spa' }],
+            bootstrap: [app_component_1.AppComponent]
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [animations_1.BrowserAnimationsModule, platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, ngx_toastr_1.ToastrModule.forRoot(), app_routing_1.routing],
-        declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
-        providers: [sampleData_service_1.SampleDataService,
-            ErrorMessageService_1.ErrorMessageService,
-            auth_service_1.AuthService,
-            auth_guard_service_1.AuthGuard, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/a2spa' }],
-        bootstrap: [app_component_1.AppComponent]
-    })
-], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

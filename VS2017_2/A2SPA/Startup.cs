@@ -12,7 +12,7 @@ using Microsoft.Extensions.FileProviders;
 using NJsonSchema;
 using NSwag;
 using NSwag.AspNetCore;
-using NSwag.SwaggerGeneration.WebApi.Processors.Security;
+using NSwag.SwaggerGeneration.Processors.Security;
 using System.IO;
 using System.Reflection;
 

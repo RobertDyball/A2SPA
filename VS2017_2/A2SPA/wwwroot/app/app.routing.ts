@@ -5,6 +5,7 @@ import { AuthGuard } from './security/auth-guard.service';
 import { AboutComponent } from './about.component';
 import { IndexComponent } from './index.component';
 import { ContactComponent } from './contact.component';
+import { DemoComponent } from './demo.component';
 import { LoginComponent } from './login.component';
 import { RegisterComponent } from './register.component';
 import { ChangePasswordComponent } from './changePassword.component';
@@ -18,9 +19,10 @@ const appRoutes: Routes = [
     { path: 'changePassword', component: ChangePasswordComponent, data: { title: 'Change Password' }, canActivate: [AuthGuard] },
     { path: 'manage', component: ManageComponent, data: { title: 'Manage Account' }, canActivate: [AuthGuard] },
     { path: 'about', component: AboutComponent, data: { title: 'About' }, canActivate: [AuthGuard] },
-    { path: 'contact', component: ContactComponent, data: { title: 'Contact' } }
+    { path: 'contact', component: ContactComponent, data: { title: 'Contact' } },
+    { path: 'demo', component: DemoComponent, data: { title: 'Demo' } }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
 
-export const routedComponents = [AboutComponent, IndexComponent, ContactComponent, LoginComponent, RegisterComponent, ChangePasswordComponent, ManageComponent];
+export const routedComponents = [AboutComponent, IndexComponent, ContactComponent, DemoComponent, LoginComponent, RegisterComponent, ChangePasswordComponent, ManageComponent];

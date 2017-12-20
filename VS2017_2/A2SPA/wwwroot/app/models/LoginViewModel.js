@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var LoginViewModel = (function () {
+var LoginViewModel = /** @class */ (function () {
     function LoginViewModel() {
     }
     return LoginViewModel;

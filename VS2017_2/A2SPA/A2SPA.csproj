@@ -16,6 +16,7 @@
     <Content Remove="wwwroot\app\about.component.ts" />
     <Content Remove="wwwroot\app\app.routing.ts" />
     <Content Remove="wwwroot\app\contact.component.ts" />
+    <Content Remove="wwwroot\app\demo.component.ts" />
     <Content Remove="wwwroot\app\index.component.ts" />
     <Content Remove="wwwroot\app\models\ErrorResponse.ts" />
     <Content Remove="wwwroot\app\security\AuthService.ts" />
@@ -28,16 +29,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="2.0.0-preview1-0283" />
+    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="2.0.0-rc1-final" />
     <PackageReference Include="Humanizer.Core" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0" />
-    <PackageReference Include="NSwag.AspNetCore" Version="11.3.5" />
-    <PackageReference Include="OpenIddict" Version="2.0.0-preview1-0643" />
-    <PackageReference Include="OpenIddict.Core" Version="2.0.0-preview1-0643" />
-    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0-preview1-0643" />
-    <PackageReference Include="OpenIddict.Models" Version="2.0.0-preview1-0643" />
-    <PackageReference Include="OpenIddict.Mvc" Version="2.0.0-preview1-0643" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.1" />
+    <PackageReference Include="NSwag.AspNetCore" Version="11.12.13" />
+    <PackageReference Include="OpenIddict" Version="2.0.0-rc2-0783" />
+    <PackageReference Include="OpenIddict.Core" Version="2.0.0-rc2-0783" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0-rc2-0783" />
+    <PackageReference Include="OpenIddict.Models" Version="2.0.0-rc2-0783" />
+    <PackageReference Include="OpenIddict.Mvc" Version="2.0.0-rc2-0783" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,6 +70,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\app\about.component.ts" />
     <TypeScriptCompile Include="wwwroot\app\app.routing.ts" />
+    <TypeScriptCompile Include="wwwroot\app\demo.component.ts" />
     <TypeScriptCompile Include="wwwroot\app\contact.component.ts" />
     <TypeScriptCompile Include="wwwroot\app\index.component.ts" />
     <TypeScriptCompile Include="wwwroot\app\models\ErrorResponse.ts" />

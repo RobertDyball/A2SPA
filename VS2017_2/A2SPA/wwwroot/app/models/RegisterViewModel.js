@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var RegisterViewModel = (function () {
+var RegisterViewModel = /** @class */ (function () {
     function RegisterViewModel() {
     }
     return RegisterViewModel;

@@ -15,7 +15,7 @@ var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var auth_service_1 = require("./security/auth.service");
 var RegisterViewModel_1 = require("./models/RegisterViewModel");
-var RegisterComponent = (function () {
+var RegisterComponent = /** @class */ (function () {
     function RegisterComponent(router, titleService, http, authService) {
         this.router = router;
         this.titleService = titleService;
@@ -48,14 +48,14 @@ var RegisterComponent = (function () {
             console.log(error.text());
         });
     };
+    RegisterComponent = __decorate([
+        core_1.Component({
+            selector: 'register',
+            templateUrl: 'partial/registerComponent'
+        }),
+        __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
+    ], RegisterComponent);
     return RegisterComponent;
 }());
-RegisterComponent = __decorate([
-    core_1.Component({
-        selector: 'register',
-        templateUrl: 'partial/registerComponent'
-    }),
-    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService])
-], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 //# sourceMappingURL=register.component.js.map

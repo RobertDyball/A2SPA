@@ -21,7 +21,7 @@ export class LoginComponent {
         this.loginViewModel = new LoginViewModel();
     }
 
-    public setTitle(newTitle: string) {
+        public setTitle(newTitle: string) {
         this.titleService.setTitle(newTitle);
     }
 

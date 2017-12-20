@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ErrorResponse = (function () {
+var ErrorResponse = /** @class */ (function () {
     function ErrorResponse() {
     }
     return ErrorResponse;

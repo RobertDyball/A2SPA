@@ -10,23 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ngx_toastr_1 = require("ngx-toastr");
-var ContactComponent = (function () {
+var ContactComponent = /** @class */ (function () {
     // this is not meant to be secured; demonstrating a component that is open to anonymous users to access
-    function ContactComponent(toastrService) {
-        this.toastrService = toastrService;
+    function ContactComponent() {
     }
-    ContactComponent.prototype.showSuccess = function () {
-        this.toastrService.success('Hello world!', 'Toastr fun!');
-    };
+    ContactComponent = __decorate([
+        core_1.Component({
+            selector: 'my-contact',
+            templateUrl: 'partial/contactComponent'
+        }),
+        __metadata("design:paramtypes", [])
+    ], ContactComponent);
     return ContactComponent;
 }());
-ContactComponent = __decorate([
-    core_1.Component({
-        selector: 'my-contact',
-        templateUrl: 'partial/contactComponent'
-    }),
-    __metadata("design:paramtypes", [ngx_toastr_1.ToastrService])
-], ContactComponent);
 exports.ContactComponent = ContactComponent;
 //# sourceMappingURL=contact.component.js.map

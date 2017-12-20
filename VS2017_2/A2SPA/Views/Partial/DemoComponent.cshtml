@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Examples of libraries used in the A2SPA framework.";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<div class="row">
+    <p><br /></p>
+</div>
+
+<div class="row">
+
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">
+                    Octicons - SVG Icons <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-thumbsup" aria-hidden="true">
+                        <image xlink:href="/node_modules/octicons/build/svg/thumbsup.svg" />
+                    </svg>
+                </h3>
+                <p class="card-text">Support for <a href="https://octicons.github.com/">Octicons</a>, a scalable set of handcrafted SVG icons.</p>
+                <div>
+                    <span class="col-xs-3">
+                        <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-clippy" aria-hidden="true">
+                            <image xlink:href="/node_modules/octicons/build/svg/clippy.svg" />
+                        </svg>
+                    </span>
+                    <span class="col-xs-3">
+                        <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-mail" aria-hidden="true">
+                            <image xlink:href="/node_modules/octicons/build/svg/mail.svg" />
+                        </svg>
+                    </span>
+                    <span class="col-xs-3">
+                        <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-mail-read" aria-hidden="true">
+                            <image xlink:href="/node_modules/octicons/build/svg/mail-read.svg" />
+                        </svg>
+                    </span>
+                    <span class="col-xs-3">
+                        <svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-location" aria-hidden="true">
+                            <image xlink:href="/node_modules/octicons/build/svg/location.svg" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title"><a href="https://material.io/icons/">Material Icons</a> <i class="material-icons">pets</i></h3>
+                <p class="card-text">Support for <a href="https://google.github.io/material-design-icons/">Material Design Icons and Fonts</a> </p>
+                <div>
+                    <span class="col-xs-3">18px <i class="material-icons md-18">face</i></span>
+                    <span class="col-xs-3">24px <i class="material-icons md-24">face</i></span>
+                    <span class="col-xs-3">36px <i class="material-icons md-36">face</i></span>
+                    <span class="col-xs-3">48px <i class="material-icons md-48">face</i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">ng-boostrap</h3>
+                <p class="card-text">Angular Bootstrap integration with <a href="https://ng-bootstrap.github.io/#/getting-started">ng-bootstrap</a>.</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Popup 'Toasts'</h3>
+                <p class="card-text">Popup 'Toasts' using <a href="https://github.com/scttcper/ngx-toastr">ngx-toastr</a>.</p>
+                <button (click)="showSuccess()" class="btn btn-primary">Open Toast</button>
+            </div>
+        </div>
+    </div>
+
+</div>
