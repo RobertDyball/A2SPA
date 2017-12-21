@@ -21,18 +21,30 @@ var auth_guard_service_1 = require("./security/auth-guard.service");
 var ngx_toastr_1 = require("ngx-toastr");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 require("./rxjs-operators");
+var angular2_highcharts_1 = require("angular2-highcharts");
+var HighchartsService_1 = require("angular2-highcharts/dist/HighchartsService");
+function highchartsFactory() {
+    var hc = require('highcharts');
+    var dd = require('highcharts/modules/drilldown');
+    dd(hc);
+    return hc;
+}
+exports.highchartsFactory = highchartsFactory;
 // enableProdMode();
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [ng_bootstrap_1.NgbModule.forRoot(), animations_1.BrowserAnimationsModule, platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, ngx_toastr_1.ToastrModule.forRoot(), app_routing_1.routing],
+            imports: [ng_bootstrap_1.NgbModule.forRoot(), angular2_highcharts_1.ChartModule, animations_1.BrowserAnimationsModule, platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, ngx_toastr_1.ToastrModule.forRoot(), app_routing_1.routing],
             declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
             providers: [sampleData_service_1.SampleDataService,
                 ErrorMessageService_1.ErrorMessageService,
                 auth_service_1.AuthService,
-                auth_guard_service_1.AuthGuard, platform_browser_1.Title, { provide: common_1.APP_BASE_HREF, useValue: '/a2spa' }],
+                auth_guard_service_1.AuthGuard,
+                { provide: common_1.APP_BASE_HREF, useValue: '/a2spa' },
+                platform_browser_1.Title,
+                { provide: HighchartsService_1.HighchartsStatic, useFactory: highchartsFactory }],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

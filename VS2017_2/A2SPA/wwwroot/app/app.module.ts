@@ -13,16 +13,31 @@ import { AuthGuard } from './security/auth-guard.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import './rxjs-operators';
+import { ChartModule } from 'angular2-highcharts';
+import * as highcharts from 'highcharts';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+
+declare var require: any;
+
+export function highchartsFactory() {
+    const hc = require('highcharts');
+    const dd = require('highcharts/modules/drilldown');
+    dd(hc);
+    return hc;
+}
 
 // enableProdMode();
 
 @NgModule({
-    imports: [NgbModule.forRoot(), BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
+    imports: [NgbModule.forRoot(), ChartModule, BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
     declarations: [AppComponent, routedComponents],
     providers: [SampleDataService,
         ErrorMessageService,
         AuthService,
-        AuthGuard, Title, { provide: APP_BASE_HREF, useValue: '/a2spa' }],
+        AuthGuard,
+        { provide: APP_BASE_HREF, useValue: '/a2spa' },
+        Title,
+        { provide: HighchartsStatic, useFactory: highchartsFactory }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
