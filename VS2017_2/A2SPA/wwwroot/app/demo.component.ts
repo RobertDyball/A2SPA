@@ -9,13 +9,18 @@ import { ChartModule } from "angular2-highcharts";
 })
 
 export class DemoComponent {
+    // set the page title
+    setTitle(newTitle: string) {
+        this.titleService.setTitle(newTitle);
+    }
 
+    // ngx-toastr example
     showSuccess() {
         this.toastrService.success('Hello world!', 'Toastr fun!');
     }
 
-    // this is not meant to be secured; demonstrating a component that is open to anonymous users to access
     constructor(private toastrService: ToastrService, public titleService: Title) {
+        // highchart example .... to usenormally, remove/change line below: pane: [{ size: 50 }],
         this.options = {
             title: {
                 text: 'Monthly Average Temperature'
@@ -23,7 +28,7 @@ export class DemoComponent {
             subtitle: {
                 text: 'Source: WorldClimate.com'
             },
-            pane: [{ size: 50}],
+            pane: [{ size: 50 }],
             xAxis: {
                 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
             },
@@ -49,9 +54,7 @@ export class DemoComponent {
             }]
         };
     }
-    options: Object;
 
-    setTitle(newTitle: string) {
-        this.titleService.setTitle(newTitle);
-    }
+    // highchart example
+    options: Object;
 }

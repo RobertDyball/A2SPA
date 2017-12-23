@@ -13,10 +13,10 @@ var core_1 = require("@angular/core");
 var ngx_toastr_1 = require("ngx-toastr");
 var platform_browser_1 = require("@angular/platform-browser");
 var DemoComponent = /** @class */ (function () {
-    // this is not meant to be secured; demonstrating a component that is open to anonymous users to access
     function DemoComponent(toastrService, titleService) {
         this.toastrService = toastrService;
         this.titleService = titleService;
+        // highchart example .... to usenormally, remove/change line below: pane: [{ size: 50 }],
         this.options = {
             title: {
                 text: 'Monthly Average Temperature'
@@ -50,11 +50,13 @@ var DemoComponent = /** @class */ (function () {
                 }]
         };
     }
-    DemoComponent.prototype.showSuccess = function () {
-        this.toastrService.success('Hello world!', 'Toastr fun!');
-    };
+    // set the page title
     DemoComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
+    };
+    // ngx-toastr example
+    DemoComponent.prototype.showSuccess = function () {
+        this.toastrService.success('Hello world!', 'Toastr fun!');
     };
     DemoComponent = __decorate([
         core_1.Component({
