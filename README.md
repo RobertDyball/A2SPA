@@ -1,12 +1,18 @@
-# Angular 4 + Bootstrap 4 + ASP.Net Core 1.1, ASP.Net Core 2 SPA
+# Angular 5 + Bootstrap 4 + ASP.Net Core 2 = ASP.Net Core 2 SPA
 
-NOTE: this is an early release of the VS2017 ASP.Net Core 2 code (see the VS2017_2 folder)
+NOTE: This branch now supports Angular 5 + .Net Core 2.x using VS2017. 
 
-This new ASP.Net 2 version of the code is still rough and in need of cleanup, debugging and does not yet have NSwag / Swagger added back in. On the other hand login, logout, password change and the data CRUD functions should work (usually).
+There will no longer be active support for VS2015 nor for earlier versions of .Net Core 1.x
+VS Code should also work but has not been tested.
+
+This new version of the code is still rough and a work in progress. (todo: code cleanup, debugging, re-addition of NSwag).
+OPenIdDict implementation in A2SPA supports login, logout and password. (Still needto add 2FA and user maintenance).
+Basic data CRUD functions should work (usually).
 
 What is A2SPA?
 
-A SPA that uses ASP.Net Core for the backend and Angular 4.0 for the front end.
+A SPA or "Single Page Application" framework that uses ASP.Net Core 2 for the backend and Angular 5.0 for the front end.
+It differs from many implementations of .Net / Angular SPAs by using .Net Core views (allowing use of server-side code including ViewData, data models and tag helpers) instead of 'flat' HTML.
 
 Following are links to the original article series based on ASP.Net Core 1.1.1 and Angular 4 
 
@@ -34,31 +40,27 @@ Covers Publishing to IS using VS2015, conversion from localDB to SQLExpress, con
 Part 8  see https://www.codeproject.com/Articles/1180361/SPA-2-using-ASP-Net-Core-1-1-plus-Angular-4-0-part8
 Covers publishing to IIS using VS2017.
 
-Part 9 seehttps://www.codeproject.com/Articles/1181665/SPA-using-ASP-Net-Core-plus-Angular-part-9
+Part 9 see https://www.codeproject.com/Articles/1181665/SPA-using-ASP-Net-Core-plus-Angular-part-9
 Covers optimization, automated SQL migrations, and publishing to Azure, external IIS hosts
 
 #### Prerequisites
 
-Download and install ASP.Net Core here: http://dot.net 
-If using Windows, use Visual Studio 2015 Update 3 with the latest ASP.Net core tooling updates. (see ./VS2015 folder)
-or use Visual Studio Studio 2017 (see ./VS2015 folder)
-
-Install Typescript and Typings globally, as these will be used by the application.
+Download and install ASP.Net Core 2.x - http://dot.net 
+Download and install Visual Studio 2017.
+Install Typescript and Typings globally.
 
 npm install -g typescript
-
 npm install -g typings 
-
 
 #### Running
 
-Pull a copy of the repo, load the solution into Visual Studio 2015/2017, click Ctrl-F5 to launch browser and viewthe site.
-(Ctrl-F5 which retrieve any missing dependencies, build, load IIS Express and then load the VS 2015 default browser).
+Pull a copy of the repo, load the solution into Visual Studio 2017, click Ctrl-F5 to launch browser and view the site.
+(Ctrl-F5 will retrieve missing dependencies, build the app, then run IIS Express and load the default browser).
 
-NOTE: if using VS2017 (or VS2015) and you have not yet added aspn-net contributions MyGet, to your NuGet feeds, add this reference:
+NOTE: if using VS2017 ensure your NuGet feed sources include this reference:
 
 aspnet-contrib
 
-and point it to this feed:
+pointing to:
 
 https://www.myget.org/F/aspnet-contrib/api/v3/index.json
