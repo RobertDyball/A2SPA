@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var auth_service_1 = require("./auth.service");
-var AuthGuard = /** @class */ (function () {
+var AuthGuard = (function () {
     function AuthGuard(authService, router) {
         this.authService = authService;
         this.router = router;
@@ -24,11 +24,11 @@ var AuthGuard = /** @class */ (function () {
         }
         return true;
     };
-    AuthGuard = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
-    ], AuthGuard);
     return AuthGuard;
 }());
+AuthGuard = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+], AuthGuard);
 exports.AuthGuard = AuthGuard;
 //# sourceMappingURL=auth-guard.service.js.map

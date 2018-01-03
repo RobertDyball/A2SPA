@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ngx_toastr_1 = require("ngx-toastr");
 var platform_browser_1 = require("@angular/platform-browser");
-var DemoComponent = /** @class */ (function () {
+var DemoComponent = (function () {
     function DemoComponent(toastrService, titleService) {
         this.toastrService = toastrService;
         this.titleService = titleService;
@@ -58,14 +58,14 @@ var DemoComponent = /** @class */ (function () {
     DemoComponent.prototype.showSuccess = function () {
         this.toastrService.success('Hello world!', 'Toastr fun!');
     };
-    DemoComponent = __decorate([
-        core_1.Component({
-            selector: 'my-contact',
-            templateUrl: 'partial/demoComponent'
-        }),
-        __metadata("design:paramtypes", [ngx_toastr_1.ToastrService, platform_browser_1.Title])
-    ], DemoComponent);
     return DemoComponent;
 }());
+DemoComponent = __decorate([
+    core_1.Component({
+        selector: 'my-contact',
+        templateUrl: 'partial/demoComponent'
+    }),
+    __metadata("design:paramtypes", [ngx_toastr_1.ToastrService, platform_browser_1.Title])
+], DemoComponent);
 exports.DemoComponent = DemoComponent;
 //# sourceMappingURL=demo.component.js.map

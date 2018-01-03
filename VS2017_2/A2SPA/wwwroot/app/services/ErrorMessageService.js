@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ngx_toastr_1 = require("ngx-toastr");
-var ErrorMessageService = /** @class */ (function () {
+var ErrorMessageService = (function () {
     function ErrorMessageService(toastrService) {
         this.toastrService = toastrService;
     }
@@ -33,11 +33,11 @@ var ErrorMessageService = /** @class */ (function () {
     ErrorMessageService.prototype.showError = function (title, message) {
         this.toastrService.error(message, title);
     };
-    ErrorMessageService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [ngx_toastr_1.ToastrService])
-    ], ErrorMessageService);
     return ErrorMessageService;
 }());
+ErrorMessageService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [ngx_toastr_1.ToastrService])
+], ErrorMessageService);
 exports.ErrorMessageService = ErrorMessageService;
 //# sourceMappingURL=ErrorMessageService.js.map

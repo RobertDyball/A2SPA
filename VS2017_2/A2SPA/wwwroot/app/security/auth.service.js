@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var AuthService = /** @class */ (function () {
+var AuthService = (function () {
     function AuthService() {
     }
     // for requesting secure data using json
@@ -67,11 +67,11 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.loggedIn = function () {
         return sessionStorage.getItem('bearer_token') != null;
     };
-    AuthService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [])
-    ], AuthService);
     return AuthService;
 }());
+AuthService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

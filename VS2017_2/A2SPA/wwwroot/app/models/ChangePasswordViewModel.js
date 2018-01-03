@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ChangePasswordViewModel = /** @class */ (function () {
+var ChangePasswordViewModel = (function () {
     function ChangePasswordViewModel() {
     }
     return ChangePasswordViewModel;

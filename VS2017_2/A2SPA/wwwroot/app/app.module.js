@@ -31,24 +31,24 @@ function highchartsFactory() {
 }
 exports.highchartsFactory = highchartsFactory;
 // enableProdMode();
-var AppModule = /** @class */ (function () {
+var AppModule = (function () {
     function AppModule() {
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [ng_bootstrap_1.NgbModule.forRoot(), angular2_highcharts_1.ChartModule, animations_1.BrowserAnimationsModule, platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, ngx_toastr_1.ToastrModule.forRoot(), app_routing_1.routing],
-            declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
-            providers: [sampleData_service_1.SampleDataService,
-                ErrorMessageService_1.ErrorMessageService,
-                auth_service_1.AuthService,
-                auth_guard_service_1.AuthGuard,
-                { provide: common_1.APP_BASE_HREF, useValue: '/a2spa' },
-                platform_browser_1.Title,
-                { provide: HighchartsService_1.HighchartsStatic, useFactory: highchartsFactory }],
-            bootstrap: [app_component_1.AppComponent]
-        })
-    ], AppModule);
     return AppModule;
 }());
+AppModule = __decorate([
+    core_1.NgModule({
+        imports: [ng_bootstrap_1.NgbModule.forRoot(), angular2_highcharts_1.ChartModule, animations_1.BrowserAnimationsModule, platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, ngx_toastr_1.ToastrModule.forRoot(), app_routing_1.routing],
+        declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
+        providers: [sampleData_service_1.SampleDataService,
+            ErrorMessageService_1.ErrorMessageService,
+            auth_service_1.AuthService,
+            auth_guard_service_1.AuthGuard,
+            { provide: common_1.APP_BASE_HREF, useValue: '/a2spa' },
+            platform_browser_1.Title,
+            { provide: HighchartsService_1.HighchartsStatic, useFactory: highchartsFactory }],
+        bootstrap: [app_component_1.AppComponent]
+    })
+], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

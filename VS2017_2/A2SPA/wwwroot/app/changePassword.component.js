@@ -16,7 +16,7 @@ var http_1 = require("@angular/http");
 var auth_service_1 = require("./security/auth.service");
 var ChangePasswordViewModel_1 = require("./models/ChangePasswordViewModel");
 var ErrorMessageService_1 = require("./services/ErrorMessageService");
-var ChangePasswordComponent = /** @class */ (function () {
+var ChangePasswordComponent = (function () {
     function ChangePasswordComponent(router, titleService, http, authService, errorMessageService) {
         this.router = router;
         this.titleService = titleService;
@@ -50,14 +50,14 @@ var ChangePasswordComponent = /** @class */ (function () {
             console.log(error.text());
         });
     };
-    ChangePasswordComponent = __decorate([
-        core_1.Component({
-            selector: 'register',
-            templateUrl: 'partial/changePasswordComponent'
-        }),
-        __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService, ErrorMessageService_1.ErrorMessageService])
-    ], ChangePasswordComponent);
     return ChangePasswordComponent;
 }());
+ChangePasswordComponent = __decorate([
+    core_1.Component({
+        selector: 'register',
+        templateUrl: 'partial/changePasswordComponent'
+    }),
+    __metadata("design:paramtypes", [router_1.Router, platform_browser_1.Title, http_1.Http, auth_service_1.AuthService, ErrorMessageService_1.ErrorMessageService])
+], ChangePasswordComponent);
 exports.ChangePasswordComponent = ChangePasswordComponent;
 //# sourceMappingURL=changePassword.component.js.map

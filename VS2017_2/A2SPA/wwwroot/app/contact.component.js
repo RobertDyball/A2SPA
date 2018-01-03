@@ -10,18 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ContactComponent = /** @class */ (function () {
+var ContactComponent = (function () {
     // this is not meant to be secured; demonstrating a component that is open to anonymous users to access
     function ContactComponent() {
     }
-    ContactComponent = __decorate([
-        core_1.Component({
-            selector: 'my-contact',
-            templateUrl: 'partial/contactComponent'
-        }),
-        __metadata("design:paramtypes", [])
-    ], ContactComponent);
     return ContactComponent;
 }());
+ContactComponent = __decorate([
+    core_1.Component({
+        selector: 'my-contact',
+        templateUrl: 'partial/contactComponent'
+    }),
+    __metadata("design:paramtypes", [])
+], ContactComponent);
 exports.ContactComponent = ContactComponent;
 //# sourceMappingURL=contact.component.js.map

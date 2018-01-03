@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ViewModelResponse = /** @class */ (function () {
+var ViewModelResponse = (function () {
     function ViewModelResponse() {
     }
     return ViewModelResponse;

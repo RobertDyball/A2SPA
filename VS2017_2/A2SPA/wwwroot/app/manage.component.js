@@ -11,21 +11,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
-var ManageComponent = /** @class */ (function () {
+var ManageComponent = (function () {
     function ManageComponent(titleService) {
         this.titleService = titleService;
     }
     ManageComponent.prototype.setTitle = function (newTitle) {
         this.titleService.setTitle(newTitle);
     };
-    ManageComponent = __decorate([
-        core_1.Component({
-            selector: 'register',
-            templateUrl: 'partial/manageComponent'
-        }),
-        __metadata("design:paramtypes", [platform_browser_1.Title])
-    ], ManageComponent);
     return ManageComponent;
 }());
+ManageComponent = __decorate([
+    core_1.Component({
+        selector: 'register',
+        templateUrl: 'partial/manageComponent'
+    }),
+    __metadata("design:paramtypes", [platform_browser_1.Title])
+], ManageComponent);
 exports.ManageComponent = ManageComponent;
 //# sourceMappingURL=manage.component.js.map
