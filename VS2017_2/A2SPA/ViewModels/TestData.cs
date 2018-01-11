@@ -30,6 +30,18 @@ namespace A2SPA.ViewModels
         [Display(Description = "Password", Name = "Password")]
         public string Password { get; set; }
 
+        [DataType(DataType.Date)]
+        [Display(Description = "Date of Birth", Name = "Date of Birth")]
+        public DateTime? DateOfBirth { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Display(Description = "Login Login Date", Name = "Last Login Date")]
+        public DateTime? LastLoginDate { get; set; }
+
+        [DataType(DataType.Time)]
+        [Display(Description = "Session Expiry Time", Name = "Session Expiry Time")]
+        public DateTime? SessionExpiryTime { get; set; }
+
         internal bool IsModelValid()
         {
             throw new NotImplementedException();

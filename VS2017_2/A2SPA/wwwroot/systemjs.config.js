@@ -1,7 +1,4 @@
-﻿/**
- * System configuration for Angular samples
- * Adjust as necessary for your application needs.
- */
+﻿// System configuration for Angular samples .. Adjust as necessary for your application needs.
 (function (global) {
     System.config({
         paths: {
@@ -28,11 +25,8 @@
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
             'angular2-highcharts': 'npm:angular2-highcharts',
             'highcharts': 'npm:highcharts',
-
             'moment': 'npm:moment/moment.js',
-
-            '@ng-bootstrap': 'npm:@ng-bootstrap',
-            '@ng-bootstrap/ng-bootstrap': 'npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',
+            'ngx-bootstrap': 'npm:ngx-bootstrap',
 
             // other libraries
             'rxjs': 'npm:rxjs',
@@ -41,26 +35,16 @@
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
-            app: {
-                defaultExtension: 'js',
-                meta: { './*.js': { loader: 'systemjs-angular-loader.js' } }
-            },
+            app: { defaultExtension: 'js', meta: { './*.js': { loader: 'systemjs-angular-loader.js' } } },
             //moment: {
             //    map: 'node_modules/moment/moment.js',
             //    type: 'cjs',
             //    defaultExtension: 'js'
             //},
-            rxjs: {
-                defaultExtension: 'js'
-            },
-            highcharts: {
-                main: './highcharts.js',
-                defaultExtension: 'js'
-            },
-            'angular2-highcharts': {
-                main: './index.js',
-                defaultExtension: 'js'
-            }
+            'ngx-bootstrap': { format: 'cjs', main: 'bundles/ngx-bootstrap.umd.js', defaultExtension: 'js' },
+            rxjs: { defaultExtension: 'js' },
+            highcharts: { main: './highcharts.js', defaultExtension: 'js' },
+            'angular2-highcharts': { main: './index.js', defaultExtension: 'js' }
         }
     });
 })(this);

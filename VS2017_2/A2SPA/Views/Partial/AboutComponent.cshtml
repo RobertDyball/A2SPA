@@ -35,10 +35,13 @@
                         <thead>
                             <tr>
                                 <th class="col-md-1" chfor="Id"> </th>
-                                <th class="col-md-3" chfor="Username"> </th>
-                                <th class="col-md-2" chfor="Currency"> </th>
-                                <th class="col-md-3" chfor="EmailAddress"> </th>
+                                <th class="col-md-2" chfor="Username"> </th>
+                                <th class="col-md-1" chfor="Currency"> </th>
+                                <th class="col-md-2" chfor="EmailAddress"> </th>
                                 <th class="col-md-2" chfor="Password"> </th>
+                                <th class="col-md-1" chfor="DateOfBirth"> </th>
+                                <th class="col-md-2" chfor="LastLoginDate"> </th>
+                                <th class="col-md-1" chfor="SessionExpiryTime"> </th>
                                 <td><button type="button" class="btn btn-info btn-sm" (click)="testForm.reset();changeMode('add', null, $event)">+</button></td>
                             </tr>
                         </thead>
@@ -49,6 +52,9 @@
                                 <td par="item" cdfor="Currency" pipe="| currency:'USD':true:'1.2-2'"></td>
                                 <td par="item" cdfor="EmailAddress"></td>
                                 <td par="item" cdfor="Password"></td>
+                                <td par="item" cdfor="DateOfBirth"></td>
+                                <td par="item" cdfor="LastLoginDate"></td>
+                                <td par="item" cdfor="SessionExpiryTime"></td>
                                 <td>
                                     <button type="button" class="btn btn-danger btn-sm" (click)="deleteRecord(item, $event)">X</button>
                                     <button type="button" class="btn btn-info btn-sm" (click)="changeMode('edit', item, $event)">?</button>
@@ -74,6 +80,9 @@
                                 <vfdi par="testData" for="Currency"></vfdi>
                                 <vfdi par="testData" for="EmailAddress"></vfdi>
                                 <vfdi par="testData" for="Password"></vfdi>
+                                <vfdi par="testData" for="DateOfBirth"></vfdi>
+                                <vfdi par="testData" for="LastLoginDate"></vfdi>
+                                <vfdi par="testData" for="SessionExpiryTime"></vfdi>
                             </div>
                             <div class="card-footer">
                                 <button [disabled]="!testForm.form.valid" [hidden]="!(tableMode==='add')" type="button" class="btn btn-warning" (click)="addTestData($event)">Save new item</button>
@@ -98,6 +107,9 @@
                                 <tag-dd par="selectedItem" for="Currency" pipe="| currency:'USD':true:'1.2-2'"></tag-dd>
                                 <tag-dd par="selectedItem" for="EmailAddress"></tag-dd>
                                 <tag-dd par="selectedItem" for="Password"></tag-dd>
+                                <tag-dd par="selectedItem" for="DateOfBirth"></tag-dd>
+                                <tag-dd par="selectedItem" for="LastLoginDate"></tag-dd>
+                                <tag-dd par="selectedItem" for="SessionExpiryTime"></tag-dd>
                             </div>
                             <div class="card-footer">
                                 <button type="button" class="btn btn-info" (click)="getTestData()">Get all records from database</button>

@@ -2,6 +2,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { Title } from '@angular/platform-browser';
 import { ChartModule } from "angular2-highcharts";
+import * as moment from 'moment';
 
 @Component({
     selector: 'my-contact',
@@ -9,6 +10,9 @@ import { ChartModule } from "angular2-highcharts";
 })
 
 export class DemoComponent {
+    max: number = 10;
+    rate: number = 7;
+
     // set the page title
     setTitle(newTitle: string) {
         this.titleService.setTitle(newTitle);

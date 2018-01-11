@@ -19,10 +19,10 @@ var sampleData_service_1 = require("./services/sampleData.service");
 var auth_service_1 = require("./security/auth.service");
 var auth_guard_service_1 = require("./security/auth-guard.service");
 var ngx_toastr_1 = require("ngx-toastr");
-var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 require("./rxjs-operators");
 var angular2_highcharts_1 = require("angular2-highcharts");
 var HighchartsService_1 = require("angular2-highcharts/dist/HighchartsService");
+var ngx_bootstrap_1 = require("ngx-bootstrap");
 function highchartsFactory() {
     var hc = require('highcharts');
     var dd = require('highcharts/modules/drilldown');
@@ -38,7 +38,16 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [ng_bootstrap_1.NgbModule.forRoot(), angular2_highcharts_1.ChartModule, animations_1.BrowserAnimationsModule, platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, ngx_toastr_1.ToastrModule.forRoot(), app_routing_1.routing],
+        imports: [angular2_highcharts_1.ChartModule,
+            ngx_bootstrap_1.AlertModule.forRoot(),
+            ngx_bootstrap_1.DatepickerModule.forRoot(),
+            ngx_bootstrap_1.RatingModule.forRoot(),
+            animations_1.BrowserAnimationsModule,
+            platform_browser_1.BrowserModule,
+            forms_1.FormsModule,
+            http_1.HttpModule,
+            ngx_toastr_1.ToastrModule.forRoot(),
+            app_routing_1.routing],
         declarations: [app_component_1.AppComponent, app_routing_1.routedComponents],
         providers: [sampleData_service_1.SampleDataService,
             ErrorMessageService_1.ErrorMessageService,

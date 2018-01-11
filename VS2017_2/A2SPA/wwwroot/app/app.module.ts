@@ -11,11 +11,11 @@ import { SampleDataService } from './services/sampleData.service';
 import { AuthService } from './security/auth.service';
 import { AuthGuard } from './security/auth-guard.service';
 import { ToastrModule } from 'ngx-toastr';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import './rxjs-operators';
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+import { AlertModule, DatepickerModule, RatingModule } from 'ngx-bootstrap';
 
 declare var require: any;
 
@@ -27,9 +27,17 @@ export function highchartsFactory() {
 }
 
 // enableProdMode();
-
 @NgModule({
-    imports: [NgbModule.forRoot(), ChartModule, BrowserAnimationsModule, BrowserModule, FormsModule, HttpModule, ToastrModule.forRoot(), routing],
+    imports: [ChartModule,
+        AlertModule.forRoot(),
+        DatepickerModule.forRoot(),
+        RatingModule.forRoot(),
+        BrowserAnimationsModule,
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        ToastrModule.forRoot(),
+        routing],
     declarations: [AppComponent, routedComponents],
     providers: [SampleDataService,
         ErrorMessageService,

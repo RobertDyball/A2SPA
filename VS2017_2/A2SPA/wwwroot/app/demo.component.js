@@ -16,6 +16,8 @@ var DemoComponent = (function () {
     function DemoComponent(toastrService, titleService) {
         this.toastrService = toastrService;
         this.titleService = titleService;
+        this.max = 10;
+        this.rate = 7;
         // highchart example .... to usenormally, remove/change line below: pane: [{ size: 50 }],
         this.options = {
             title: {

@@ -6,4 +6,7 @@ export class TestData {
     currency: number;
     emailAddress: string;
     password: string;
+    dateOfBirth: Date;
+    lastLoginDate: Date;
+    sessionExpiryTime: Date;
 }
