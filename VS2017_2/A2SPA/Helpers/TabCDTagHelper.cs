@@ -30,7 +30,7 @@ namespace A2SPA.Helpers
         public ModelExpression CdFor { get; set; }
 
         /// <summary>
-        /// Option: directly set display format using Angular 2 pipe and pipe format values
+        /// Option: directly set display format using Angular 5 pipe and pipe format values
         /// </summary>
         ///<remarks>This attribute sets both pipe type and the pipe filter parameters.
         /// Numeric formats for decimal or percent in Angular use a string with the following format: 
@@ -48,7 +48,7 @@ namespace A2SPA.Helpers
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var pipe = string.IsNullOrEmpty(Pipe) ? string.Empty : Pipe;
+            var pipe = string.IsNullOrEmpty(Pipe) ? string.Empty : "|" + Pipe;
             var tagContents = CdFor.PopulateDataDisplayContents(pipe, Par, Var);
             output.Content.AppendHtml(tagContents);
         }

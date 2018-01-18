@@ -56,6 +56,18 @@ namespace A2SPA.Helpers
             // TODO: further expand datatypes here
             switch (dataType)
             {
+                case "Date":
+                    inputTag.MergeAttribute("type", dataType);
+                    break;
+
+                case "DateTime":
+                    inputTag.MergeAttribute("type", dataType);
+                    break;
+
+                case "Time":
+                    inputTag.MergeAttribute("type", dataType);
+                    break;
+
                 case "Password":
                     inputTag.MergeAttribute("type", dataType);
                     break;

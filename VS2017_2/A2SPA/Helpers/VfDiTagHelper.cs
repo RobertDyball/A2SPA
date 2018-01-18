@@ -55,6 +55,18 @@ namespace A2SPA.Helpers
             // TODO: further expand datatypes here
             switch (dataType)
             {
+                case "Date":
+                    inputTag.MergeAttribute("type", dataType);
+                    break;
+
+                case "DateTime":
+                    inputTag.MergeAttribute("type", dataType);
+                    break;
+
+                case "Time":
+                    inputTag.MergeAttribute("type", dataType);
+                    break;
+
                 case "Password":
                     inputTag.MergeAttribute("type", dataType);
                     break;
@@ -63,10 +75,17 @@ namespace A2SPA.Helpers
                     inputTag.MergeAttribute("type", "number");
                     break;
 
+                //case "Date":
+                //    inputTag.MergeAttribute("bsDatepicker", "bsDatepicker");
+                //    inputTag.MergeAttribute("type", "text");
+                //    break;
+
                 default:
                     inputTag.MergeAttribute("type", "text");
                     break;
             }
+
+            //<input placeholder="Datepicker" type="text" class="form-control" bsDatepicker #dp="bsDatepicker">
 
             // common attributes for data input control here
             inputTag.MergeAttribute("id", propertyName);
@@ -142,6 +161,20 @@ namespace A2SPA.Helpers
             // Some input controls use bootstrap "input group"- wrap the input tag with an input group, if needed
             switch (dataType)
             {
+                //case "Date":
+                //    var divInputGroupDt = new TagBuilder("div");
+                //    divInputGroupDt.MergeAttribute("class", "input-group");
+
+                //    //var spanInputGroupAddonDt = new TagBuilder("span");
+                //    //spanInputGroupAddonDt.MergeAttribute("class", "input-group-addon");
+                //    //spanInputGroupAddonDt.InnerHtml.Append("$");
+
+                //    //divInputGroupDt.InnerHtml.AppendHtml(spanInputGroupAddonDt);
+                //    divInputGroupDt.InnerHtml.AppendHtml(inputTag);
+
+                //    output.Content.AppendHtml(divInputGroupDt);
+                //    break;
+
                 case "Currency":
                     var divInputGroup = new TagBuilder("div");
                     divInputGroup.MergeAttribute("class", "input-group");

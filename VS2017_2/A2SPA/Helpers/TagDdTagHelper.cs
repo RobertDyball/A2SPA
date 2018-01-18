@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using System.Globalization;
 
 namespace A2SPA.Helpers
 {
@@ -28,7 +30,7 @@ namespace A2SPA.Helpers
         public ModelExpression For { get; set; }
 
         /// <summary>
-        /// Option: directly set display format using Angular 2 pipe and pipe format values
+        /// Option: directly set display format using Angular 5 pipe and pipe format values
         /// </summary>
         ///<remarks>This attribute sets both pipe type and the pipe filter parameters.
         /// Numeric formats for decimal or percent in Angular use a string with the following format: 
@@ -46,7 +48,42 @@ namespace A2SPA.Helpers
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var pipe = string.IsNullOrEmpty(Pipe) ? string.Empty : Pipe;
+            // get metadata, find data type
+            var metadata = ((DefaultModelMetadata)For.Metadata);
+            var dataType = metadata.DataTypeName;
+
+            var pipe = string.Empty;
+
+            string datePattern = CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern;
+            // .net core uses "tt" for "AM/PM" whereas ANgular 5 uses "aa". 
+            // TODO: consider a conversion class/method to handle this (or other potential issues)
+            string timePattern = CultureInfo.CurrentUICulture.DateTimeFormat.ShortTimePattern.Replace("tt", "aa");
+
+            //string currencyPattern = "'" + CultureInfo.CurrentUICulture.ThreeLetterISOLanguageName + "':true:'1.2.2'";
+
+            // TODO: further expand datatypes here
+            switch (dataType)
+            {
+                case "Date":
+                    pipe = string.IsNullOrEmpty(Pipe) ? "|date:'" + datePattern + "'" : Pipe;
+                    break;
+
+                case "DateTime":
+                    pipe = string.IsNullOrEmpty(Pipe) ? "|date:'" + datePattern + " " + timePattern + "'" : Pipe;
+                    break;
+
+                case "Time":
+                    pipe = string.IsNullOrEmpty(Pipe) ? "|date:'" + timePattern + "'" : Pipe;
+                    break;
+
+                //case "Currency":
+                //    pipe = string.IsNullOrEmpty(Pipe) ? "|currency:'" + currencyPattern + "'" : Pipe;
+                //    break;
+
+                default:
+                    pipe = string.IsNullOrEmpty(Pipe) ? string.Empty : "|" + Pipe;
+                    break;
+            }
 
             var labelTag = new TagBuilder("label");
             labelTag.InnerHtml.Append(For.Metadata.Description);
