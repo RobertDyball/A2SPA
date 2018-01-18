@@ -42,6 +42,7 @@ AppModule = __decorate([
             ngx_bootstrap_1.AlertModule.forRoot(),
             ngx_bootstrap_1.DatepickerModule.forRoot(),
             ngx_bootstrap_1.RatingModule.forRoot(),
+            ngx_bootstrap_1.TooltipModule.forRoot(),
             animations_1.BrowserAnimationsModule,
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,

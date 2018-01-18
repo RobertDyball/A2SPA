@@ -3,27 +3,12 @@
 @addTagHelper *,A2SPA
 @model TestData
 
-@{
-    ViewData["Title"] = "About";
-}
-
 <form #testForm="ngForm">
     <div class="row">
-        <div class="col-md-8">
-            <h2>@ViewData["Title"].</h2>
-            <h3>@ViewData["Message"]</h3>
-            <p>Examples of Angular 5 data served by ASP.Net Core 2.x Web API:</p>
-        </div>
-        <div class="col-md-4">
-            <div class="row">
-                <div class="row pull-right text-right">
-                    <span class="badge badge-pill badge-success">rowcount: {{ (testDataList == null) ? '0' : testDataList.length }}</span><br />
-                </div>
-                <div class="row pull-right text-right">
-                    <span class="badge badge-pill badge-primary">mode: {{tableMode}}</span><br />
-                </div>
-            </div>
-        </div>
+        <h2>About</h2>
+    </div>
+    <div class="row">
+        <p>Examples of Angular 5 data served by ASP.Net Core 2.x Web API:</p>
     </div>
 
     <div class="row">
@@ -70,15 +55,31 @@
         <div class="col-md-3">
             <div *ngIf="testDataList != null" class="row">
                 <div class="btn-group" role="group">
-                    <button type="button" [hidden]="tableMode == 'add'" class="btn btn-info" (click)="tableMode='add'">Add</button>
-                    <button type="button" [hidden]="testDataList.length==0 || tableMode == 'list'" class="btn btn-info" (click)="tableMode='list'">List</button>
-                </div>
-
-                <div class="btn-group" role="group">
-                    <button [disabled]="!testForm.form.valid" [hidden]="!(tableMode==='add')" type="button" class="btn btn-warning" (click)="addTestData($event)">Save</button>
-                    <button [disabled]="!testForm.form.valid" [hidden]="!(tableMode==='edit')" type="button" class="btn btn-warning" (click)="editTestData($event)">Save</button>
-                    <button [hidden]="(tableMode==='list')" type="button" class="btn btn-info" (click)="testForm.reset();tableMode='list';">Cancel</button>
-                    <button [hidden]="!(tableMode==='list')" *ngIf="testDataList.length>0 && selectedItem != null" type="button" class="btn btn-info" (click)="getTestData()">Get All</button>
+                    <button type="button" [hidden]="tableMode == 'add'" class="btn btn-info"
+                            tooltip="Add New Data" placement="top" (click)="tableMode='add'">
+                        Add
+                    </button>
+                    <button type="button" [hidden]="testDataList.length==0 || tableMode == 'list'" class="btn btn-info"
+                            tooltip="List Data" placement="top" (click)="tableMode='list'">
+                        List
+                    </button>
+                    <button [disabled]="!testForm.form.valid" [hidden]="!(tableMode==='add')" type="button" class="btn btn-warning"
+                            tooltip="Save New Data" placement="top" (click)="addTestData($event)">
+                        Save
+                    </button>
+                    <button [disabled]="!testForm.form.valid" [hidden]="!(tableMode==='edit')" type="button" class="btn btn-danger"
+                            tooltip="Save Edited Data" placement="top" (click)="editTestData($event)">
+                        Save
+                    </button>
+                    <button [hidden]="(tableMode==='list')" type="button" class="btn btn-info" tooltip="Cancel Add/Edit"
+                            placement="top" (click)="testForm.reset();tableMode='list';">
+                        Cancel
+                    </button>
+                    <button [hidden]="!(tableMode==='list')" *ngIf="testDataList.length>0 && selectedItem != null" type="button"
+                            tooltip="Get All Data" placement="top" class="btn btn-info" (click)="getTestData()">
+                        Get All
+                    </button>
+                    <button [disabled]="disabled" class="btn btn-light">mode: {{tableMode}} - rows: {{ (testDataList == null) ? '0' : testDataList.length }}</button>
                 </div>
             </div>
 
