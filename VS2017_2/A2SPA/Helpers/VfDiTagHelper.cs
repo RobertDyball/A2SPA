@@ -57,12 +57,12 @@ namespace A2SPA.Helpers
             {
                 case "Date":
                     inputTag.MergeAttribute("bsDatepicker", string.Empty);
-                    //inputTag.MergeAttribute("#dp", "bsDatepicker");
+                    string localDateFormat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString();
+                    // from local server date time format (eg dd/MM/yyyy) convert to uppercase to suite ngx-bootstrap (eg DD/MM/YYYY)
+                    inputTag.MergeAttribute("[bsConfig]", "{ dateInputFormat: '" + localDateFormat.ToUpper() + "' }");
+                    //inputTag.MergeAttribute("[bsConfig]", "{ dateInputFormat: 'DD-MM-YYYY' }");
                     inputTag.MergeAttribute("type", "text");
                     break;
-                //case "Date":
-                //    inputTag.MergeAttribute("type", dataType);
-                //    break;
 
                 case "DateTime":
                     inputTag.MergeAttribute("type", dataType);
