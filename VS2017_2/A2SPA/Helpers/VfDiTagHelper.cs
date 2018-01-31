@@ -56,8 +56,13 @@ namespace A2SPA.Helpers
             switch (dataType)
             {
                 case "Date":
-                    inputTag.MergeAttribute("type", dataType);
+                    inputTag.MergeAttribute("bsDatepicker", string.Empty);
+                    //inputTag.MergeAttribute("#dp", "bsDatepicker");
+                    inputTag.MergeAttribute("type", "text");
                     break;
+                //case "Date":
+                //    inputTag.MergeAttribute("type", dataType);
+                //    break;
 
                 case "DateTime":
                     inputTag.MergeAttribute("type", dataType);
@@ -74,11 +79,6 @@ namespace A2SPA.Helpers
                 case "Currency":
                     inputTag.MergeAttribute("type", "number");
                     break;
-
-                //case "Date":
-                //    inputTag.MergeAttribute("bsDatepicker", "bsDatepicker");
-                //    inputTag.MergeAttribute("type", "text");
-                //    break;
 
                 default:
                     inputTag.MergeAttribute("type", "text");

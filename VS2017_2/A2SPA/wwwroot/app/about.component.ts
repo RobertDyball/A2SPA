@@ -1,4 +1,5 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { Component, OnInit } from '@angular/core';
 import { SampleDataService } from './services/sampleData.service';
 import { TestData } from './models/testData';
 import { ViewModelResponse } from './models/viewModelResponse';

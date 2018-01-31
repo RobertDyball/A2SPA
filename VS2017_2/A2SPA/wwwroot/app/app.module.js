@@ -40,7 +40,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [angular2_highcharts_1.ChartModule,
             ngx_bootstrap_1.AlertModule.forRoot(),
-            ngx_bootstrap_1.DatepickerModule.forRoot(),
+            ngx_bootstrap_1.BsDatepickerModule.forRoot(),
             ngx_bootstrap_1.RatingModule.forRoot(),
             ngx_bootstrap_1.TooltipModule.forRoot(),
             animations_1.BrowserAnimationsModule,

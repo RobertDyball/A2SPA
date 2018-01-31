@@ -79,7 +79,9 @@
                             tooltip="Get All Data" placement="top" class="btn btn-info" (click)="getTestData()">
                         Get All
                     </button>
-                    <button [disabled]="disabled" class="btn btn-light">mode: {{tableMode}} - rows: {{ (testDataList == null) ? '0' : testDataList.length }}</button>
+                    <button [disabled]="disabled" class="btn btn-light">
+                        mode: {{tableMode}} - rows: {{ (testDataList == null) ? '0' : testDataList.length }}
+                    </button>
                 </div>
             </div>
 
@@ -87,44 +89,44 @@
                 <table class="table">
                     <tbody class="card-block">
                         <tr [hidden]="tableMode==='add'">
-                            <th>
+                            <td>
                                 <tag-dd par="testData" for="Id"></tag-dd>
-                            </th>
+                            </td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 <vfdi par="testData" for="Username"></vfdi>
-                            </th>
+                            </td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 <vfdi par="testData" for="Currency"></vfdi>
-                            </th>
+                            </td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 <vfdi par="testData" for="EmailAddress"></vfdi>
-                            </th>
+                            </td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 <vfdi par="testData" for="Password"></vfdi>
-                            </th>
+                            </td>
                         </tr>
                         <tr>
-                            <th>
-                                <vfdi par="testData" for="DateOfBirth"></vfdi>
-                            </th>
+                            <td>
+                                <vfdi par="testData" for="DateOfBirth"></vfdi><br />
+                            </td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 <vfdi par="testData" for="LastLoginDate"></vfdi>
-                            </th>
+                            </td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 <vfdi par="testData" for="SessionExpiryTime"></vfdi>
-                            </th>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
