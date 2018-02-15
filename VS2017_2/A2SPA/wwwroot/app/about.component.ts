@@ -1,4 +1,4 @@
-﻿import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
+﻿import { DatetimePopupModule } from 'ngx-bootstrap-datetime-popup';
 import { Component, OnInit } from '@angular/core';
 import { SampleDataService } from './services/sampleData.service';
 import { TestData } from './models/testData';
@@ -8,6 +8,14 @@ import { ErrorMessageService } from './services/ErrorMessageService';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import * as moment from 'moment';
+//import 'moment/locale/en';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
     selector: 'my-about',
@@ -36,6 +44,7 @@ export class AboutComponent implements OnInit {
     }
 
     ngOnInit() {
+        moment.locale('en');
         this.tableMode = 'add';
         this.getTestData();
         this.testData = this.initTestData();
@@ -156,4 +165,15 @@ export class AboutComponent implements OnInit {
                 this.errorMessageService.showError('Delete', JSON.stringify(error));
             });
     }
+}
+
+export interface IDatetimePopupButtonOptions {
+    // should the button be shown
+    show: boolean;
+
+    // What text label should it be given
+    label: string;
+
+    // css classes to be used, default is 'btn btn-sm btn-secondary'
+    cssClass: string;
 }

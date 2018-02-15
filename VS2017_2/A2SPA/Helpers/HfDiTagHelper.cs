@@ -30,12 +30,19 @@ namespace A2SPA.Helpers
         [HtmlAttributeName("for")]
         public ModelExpression For { get; set; }
 
+        /// <summary>
+        /// Name of options property 
+        /// </summary>
+        [HtmlAttributeName("options")]
+        public string Options { get; set; } = null;
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             // get metadata names, property name and data type
             var metadata = ((DefaultModelMetadata)For.Metadata);
             var propertyName = For.Name.Camelize();
             var dataType = metadata.DataTypeName;
+            var options = string.IsNullOrEmpty(Options) ? string.Empty : Options.ToLower();
 
             // find best fit for labels and descriptions
             var shortLabelName = metadata.DisplayName ?? this.For.Name.Humanize();
@@ -73,6 +80,7 @@ namespace A2SPA.Helpers
                     break;
 
                 case "Currency":
+                    inputTag = new TagBuilder("input");
                     inputTag.MergeAttribute("type", "number");
                     break;
 
@@ -162,15 +170,40 @@ namespace A2SPA.Helpers
                     var divInputGroup = new TagBuilder("div");
                     divInputGroup.MergeAttribute("class", "input-group");
 
-                    var spanInputGroupAddon = new TagBuilder("span");
-                    spanInputGroupAddon.MergeAttribute("class", "input-group-addon");
-                    spanInputGroupAddon.InnerHtml.Append("$");
+                    if (!options.Contains("nosymbol"))
+                    {
+                        string localCurrencyFormat = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol.ToString();
 
-                    divInputGroup.InnerHtml.AppendHtml(spanInputGroupAddon);
+                        var spanInputGroupPrepend = new TagBuilder("span");
+                        spanInputGroupPrepend.MergeAttribute("class", "input-group-text");
+                        spanInputGroupPrepend.InnerHtml.Append(localCurrencyFormat);
+
+                        var divInputGroupPrepend = new TagBuilder("div");
+                        divInputGroupPrepend.MergeAttribute("class", "input-group-prepend");
+                        divInputGroupPrepend.InnerHtml.AppendHtml(spanInputGroupPrepend);
+
+                        divInputGroup.InnerHtml.AppendHtml(divInputGroupPrepend);
+                    }
+
                     divInputGroup.InnerHtml.AppendHtml(inputTag);
 
+                    if (options.Contains("integercurrency"))
+                    {
+                        var spanInputGroupAppend = new TagBuilder("span");
+                        spanInputGroupAppend.MergeAttribute("class", "input-group-text");
+                        spanInputGroupAppend.InnerHtml.Append(".00");
+
+                        var divInputGroupAppend = new TagBuilder("span");
+                        divInputGroupAppend.MergeAttribute("class", "input-group-append");
+                        divInputGroupAppend.InnerHtml.AppendHtml(spanInputGroupAppend);
+
+                        divInputGroup.InnerHtml.AppendHtml(divInputGroupAppend);
+                    }
+
+                    //output.Content.AppendHtml(divInputGroup);
                     rhsColumn.InnerHtml.AppendHtml(divInputGroup);
                     output.Content.AppendHtml(rhsColumn);
+
                     break;
 
                 default:

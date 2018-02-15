@@ -23,6 +23,7 @@ require("./rxjs-operators");
 var angular2_highcharts_1 = require("angular2-highcharts");
 var HighchartsService_1 = require("angular2-highcharts/dist/HighchartsService");
 var ngx_bootstrap_1 = require("ngx-bootstrap");
+var ngx_bootstrap_datetime_popup_1 = require("ngx-bootstrap-datetime-popup");
 function highchartsFactory() {
     var hc = require('highcharts');
     var dd = require('highcharts/modules/drilldown');
@@ -40,7 +41,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [angular2_highcharts_1.ChartModule,
             ngx_bootstrap_1.AlertModule.forRoot(),
-            ngx_bootstrap_1.BsDatepickerModule.forRoot(),
+            ngx_bootstrap_datetime_popup_1.DatetimePopupModule.forRoot(),
             ngx_bootstrap_1.RatingModule.forRoot(),
             ngx_bootstrap_1.TooltipModule.forRoot(),
             animations_1.BrowserAnimationsModule,

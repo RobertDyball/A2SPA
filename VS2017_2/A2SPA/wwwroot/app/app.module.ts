@@ -15,7 +15,8 @@ import './rxjs-operators';
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
-import { AlertModule, BsDatepickerModule, RatingModule, TooltipModule  } from 'ngx-bootstrap';
+import { AlertModule, RatingModule, TooltipModule  } from 'ngx-bootstrap';
+import { DatetimePopupModule } from 'ngx-bootstrap-datetime-popup';
 
 declare var require: any;
 
@@ -30,7 +31,7 @@ export function highchartsFactory() {
 @NgModule({
     imports: [ChartModule,
         AlertModule.forRoot(),
-        BsDatepickerModule.forRoot(),
+        DatetimePopupModule.forRoot(),
         RatingModule.forRoot(),
         TooltipModule.forRoot(),
         BrowserAnimationsModule,

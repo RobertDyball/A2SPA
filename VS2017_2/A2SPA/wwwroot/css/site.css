@@ -616,7 +616,7 @@ body {
 }
 
 
-/* RESPONSIVE CSS
+/* ngx-bootstrap-datetime-popup
 -------------------------------------------------- */
 
 @media (min-width: 40em) {
@@ -636,4 +636,59 @@ body {
     .featurette-heading {
         margin-top: 7rem;
     }
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+datetime-popup > .dropdown .glyphicon {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+datetime-popup > .dropdown timepicker {
+    display: flex;
+    justify-content: center;
+}
+
+datetime-popup > .dropdown .bg-faded {
+    border:0;
+    background-color: #fff;
+}
+
+datetime-popup > .dropdown datepicker button {
+    border:0;
+    background-color: #fff;
+}
+
+datetime-popup > .dropdown datepicker button.active {
+    background-color: #ddd;
+}
+
+datetime-popup > .dropdown .glyphicon.glyphicon-remove-circle:before {
+    content: "\f05c";
+}
+
+datetime-popup > .dropdown .glyphicon.glyphicon-chevron-down:before {
+    content: "\f078";
+}
+
+datetime-popup > .dropdown .glyphicon.glyphicon-chevron-up:before {
+    content: "\f077";
+}
+
+datetime-popup > .dropdown .glyphicon.glyphicon-chevron-left:before {
+    content: "\f053";
+}
+
+datetime-popup > .dropdown .glyphicon.glyphicon-chevron-right:before {
+    content: "\f054";
+}
+
+datetime-popup > .dropdown .glyphicon.hidden {
+    display: none !important;
 }

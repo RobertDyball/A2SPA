@@ -30,12 +30,19 @@ namespace A2SPA.Helpers
         [HtmlAttributeName("for")]
         public ModelExpression For { get; set; }
 
+        /// <summary>
+        /// Name of options property 
+        /// </summary>
+        [HtmlAttributeName("options")]
+        public string Options { get; set; } = null;
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             // get metadata names, property name and data type
             var metadata = ((DefaultModelMetadata)For.Metadata);
             var propertyName = For.Name.Camelize();
             var dataType = metadata.DataTypeName;
+            var options = string.IsNullOrEmpty(Options) ? string.Empty : Options.ToLower();
 
             // find best fit for labels and descriptions
             var shortLabelName = metadata.DisplayName ?? this.For.Name.Humanize();
@@ -49,49 +56,69 @@ namespace A2SPA.Helpers
             //labelTag.AddCssClass("control-label");
 
             // add the input control; TODO: add textarea, date picker support
-            var inputTag = new TagBuilder("input");
-            inputTag.AddCssClass("form-control");
+            TagBuilder inputTag;
 
             // TODO: further expand datatypes here
             switch (dataType)
             {
                 case "Date":
-                    inputTag.MergeAttribute("bsDatepicker", string.Empty);
-                    string localDateFormat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString();
+                    inputTag = new TagBuilder("datetime-popup");
+                    //inputTag.MergeAttribute("bsDatepicker", string.Empty);
+                    //string localDateFormat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString();
                     // from local server date time format (eg dd/MM/yyyy) convert to uppercase to suite ngx-bootstrap (eg DD/MM/YYYY)
-                    inputTag.MergeAttribute("[bsConfig]", "{ dateInputFormat: '" + localDateFormat.ToUpper() + "' }");
+                    //inputTag.MergeAttribute("[bsConfig]", "{ dateInputFormat: '" + localDateFormat.ToUpper() + "' }");
                     //inputTag.MergeAttribute("[bsConfig]", "{ dateInputFormat: 'DD-MM-YYYY' }");
-                    inputTag.MergeAttribute("type", "text");
+                    //inputTag.MergeAttribute("type", "text");
                     break;
 
                 case "DateTime":
+                    inputTag = new TagBuilder("input");
                     inputTag.MergeAttribute("type", dataType);
                     break;
 
-                case "Time":
-                    inputTag.MergeAttribute("type", dataType);
-                    break;
+                //case "Time":
+                //    inputTag = new TagBuilder("timepicker");
+                //    break;
 
                 case "Password":
+                    inputTag = new TagBuilder("input");
                     inputTag.MergeAttribute("type", dataType);
                     break;
 
                 case "Currency":
+                    inputTag = new TagBuilder("input");
                     inputTag.MergeAttribute("type", "number");
                     break;
 
                 default:
+                    inputTag = new TagBuilder("input");
                     inputTag.MergeAttribute("type", "text");
                     break;
             }
 
-            //<input placeholder="Datepicker" type="text" class="form-control" bsDatepicker #dp="bsDatepicker">
 
-            // common attributes for data input control here
-            inputTag.MergeAttribute("id", propertyName);
-            inputTag.MergeAttribute("name", propertyName);
-            inputTag.MergeAttribute("placeholder", shortLabelName);
-            inputTag.MergeAttribute("#" + propertyName, "ngModel");
+            // bind angular data model to the control,
+            switch (dataType)
+            {
+                case "Date":
+                    //<input placeholder="Datepicker" type="text" class="form-control" bsDatepicker #dp="bsDatepicker">
+                    inputTag.MergeAttribute("[value]", For.GetDataBindVariableName(Par, Var));
+                    inputTag.TagRenderMode = TagRenderMode.Normal;
+                    break;
+
+                default:
+                    inputTag.AddCssClass("form-control");
+
+                    // common attributes for data input control here
+                    inputTag.MergeAttribute("id", propertyName);
+                    inputTag.MergeAttribute("name", propertyName);
+                    inputTag.MergeAttribute("placeholder", shortLabelName);
+
+                    inputTag.TagRenderMode = TagRenderMode.StartTag;
+                    inputTag.MergeAttribute("#" + propertyName, "ngModel");
+                    inputTag.MergeAttribute("[(ngModel)]", For.GetDataBindVariableName(Par, Var));
+                    break;
+            }
 
             // set up validation conditional DIV's here; only show error if modifications to form have been made
             TagBuilder outerValidationBlock = new TagBuilder("div");
@@ -145,11 +172,7 @@ namespace A2SPA.Helpers
                 inputTag.Attributes.Add("required", "required");
             }
 
-            // bind angular data model to the control,
-            inputTag.MergeAttribute("[(ngModel)]", For.GetDataBindVariableName(Par, Var));
-
             // TODO: if adding say text area, you want closing tag. For input tag you do not have closing or self-closing
-            inputTag.TagRenderMode = TagRenderMode.StartTag;
 
             // now generate the outer wrapper for the form group, get ready to start filling it with content prepared above
             output.TagName = "div";
@@ -175,16 +198,43 @@ namespace A2SPA.Helpers
                 //    output.Content.AppendHtml(divInputGroupDt);
                 //    break;
 
+                //case "Time":
+                //    inputTag.RenderEndTag();
+                //    break;
+
                 case "Currency":
                     var divInputGroup = new TagBuilder("div");
                     divInputGroup.MergeAttribute("class", "input-group");
 
-                    var spanInputGroupAddon = new TagBuilder("span");
-                    spanInputGroupAddon.MergeAttribute("class", "input-group-addon");
-                    spanInputGroupAddon.InnerHtml.Append("$");
+                    if (!options.Contains("nosymbol"))
+                    {
+                        string localCurrencyFormat = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol.ToString();
 
-                    divInputGroup.InnerHtml.AppendHtml(spanInputGroupAddon);
+                        var spanInputGroupPrepend = new TagBuilder("span");
+                        spanInputGroupPrepend.MergeAttribute("class", "input-group-text");
+                        spanInputGroupPrepend.InnerHtml.Append(localCurrencyFormat);
+
+                        var divInputGroupPrepend = new TagBuilder("div");
+                        divInputGroupPrepend.MergeAttribute("class", "input-group-prepend");
+                        divInputGroupPrepend.InnerHtml.AppendHtml(spanInputGroupPrepend);
+
+                        divInputGroup.InnerHtml.AppendHtml(divInputGroupPrepend);
+                    }
+
                     divInputGroup.InnerHtml.AppendHtml(inputTag);
+
+                    if (options.Contains("integercurrency"))
+                    {
+                        var spanInputGroupAppend = new TagBuilder("span");
+                        spanInputGroupAppend.MergeAttribute("class", "input-group-text");
+                        spanInputGroupAppend.InnerHtml.Append(".00");
+
+                        var divInputGroupAppend = new TagBuilder("span");
+                        divInputGroupAppend.MergeAttribute("class", "input-group-append");
+                        divInputGroupAppend.InnerHtml.AppendHtml(spanInputGroupAppend);
+
+                        divInputGroup.InnerHtml.AppendHtml(divInputGroupAppend);
+                    }
 
                     output.Content.AppendHtml(divInputGroup);
                     break;
