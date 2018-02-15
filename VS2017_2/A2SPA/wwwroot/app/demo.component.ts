@@ -1,5 +1,4 @@
 ﻿import { Component } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { Title } from '@angular/platform-browser';
 import { ChartModule } from "angular2-highcharts";
 import * as moment from 'moment';
@@ -18,12 +17,7 @@ export class DemoComponent {
         this.titleService.setTitle(newTitle);
     }
 
-    // ngx-toastr example
-    showSuccess() {
-        this.toastrService.success('Hello world!', 'Toastr fun!');
-    }
-
-    constructor(private toastrService: ToastrService, public titleService: Title) {
+    constructor(public titleService: Title) {
         // highchart example .... to usenormally, remove/change line below: pane: [{ size: 50 }],
         this.options = {
             title: {

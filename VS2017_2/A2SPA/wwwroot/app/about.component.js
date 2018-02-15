@@ -16,6 +16,7 @@ var ErrorMessageService_1 = require("./services/ErrorMessageService");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var moment = require("moment");
+//import 'moment/locale/en';
 var AboutComponent = (function () {
     function AboutComponent(sampleDataService, errorMessageService) {
         this.sampleDataService = sampleDataService;

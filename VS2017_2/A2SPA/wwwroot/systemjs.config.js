@@ -26,20 +26,19 @@
             'angular2-highcharts': 'npm:angular2-highcharts',
             'highcharts': 'npm:highcharts',
             'moment': 'npm:moment/moment.js',
-            'ngx-bootstrap': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js',
-            'ngx-bootstrap-datetime-popup': 'npm:ngx-bootstrap-datetime-popup/dist/index.umd.js',
 
             // other libraries
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-            'ngx-toastr': 'npm:ngx-toastr/bundles/ngx-toastr.umd.min.js'
+            'primeng': 'npm:primeng' 
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
             app: { defaultExtension: 'js', meta: { './*.js': { loader: 'systemjs-angular-loader.js' } } },
             rxjs: { defaultExtension: 'js' },
             highcharts: { main: './highcharts.js', defaultExtension: 'js' },
-            'angular2-highcharts': { main: './index.js', defaultExtension: 'js' }
+            'angular2-highcharts': { main: './index.js', defaultExtension: 'js' },
+            primeng: { defaultExtension: 'js' }
         }
     });
 })(this);

@@ -1,11 +1,10 @@
 ﻿import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { ErrorResponse } from '../models/errorResponse';
 
 @Injectable()
 export class ErrorMessageService {
 
-    constructor(private toastrService: ToastrService    ) { }
+    constructor() { }
 
     formattedErrorResponse(error: ErrorResponse[]): string {
         var plural = (error.length > 0) ? 's' : '';
@@ -19,10 +18,8 @@ export class ErrorMessageService {
     }
 
     showSuccess(title: string, message: string) {
-        this.toastrService.success(message, title);
     }
 
     showError(title: string, message: string) {
-        this.toastrService.error(message, title);
     }
 }

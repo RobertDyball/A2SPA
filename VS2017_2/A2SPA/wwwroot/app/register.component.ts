@@ -38,7 +38,7 @@ export class RegisterComponent {
                 }
             },
             error => {
-                // TODO: parse error messages, generate toast popups
+                // TODO: parse error messages, 
                 // {"Email":["The Email field is required.","The Email field is not a valid e-mail address."],"Password":["The Password field is required.","The Password must be at least 6 characters long."]}
                 alert(error.text());
                 console.log(error.text());

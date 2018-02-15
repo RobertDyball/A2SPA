@@ -10,10 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ngx_toastr_1 = require("ngx-toastr");
 var ErrorMessageService = (function () {
-    function ErrorMessageService(toastrService) {
-        this.toastrService = toastrService;
+    function ErrorMessageService() {
     }
     ErrorMessageService.prototype.formattedErrorResponse = function (error) {
         var plural = (error.length > 0) ? 's' : '';
@@ -28,16 +26,14 @@ var ErrorMessageService = (function () {
         return errorMessage;
     };
     ErrorMessageService.prototype.showSuccess = function (title, message) {
-        this.toastrService.success(message, title);
     };
     ErrorMessageService.prototype.showError = function (title, message) {
-        this.toastrService.error(message, title);
     };
     return ErrorMessageService;
 }());
 ErrorMessageService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [ngx_toastr_1.ToastrService])
+    __metadata("design:paramtypes", [])
 ], ErrorMessageService);
 exports.ErrorMessageService = ErrorMessageService;
 //# sourceMappingURL=ErrorMessageService.js.map

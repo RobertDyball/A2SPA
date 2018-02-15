@@ -10,13 +10,11 @@ import { ErrorMessageService } from './services/ErrorMessageService';
 import { SampleDataService } from './services/sampleData.service';
 import { AuthService } from './security/auth.service';
 import { AuthGuard } from './security/auth-guard.service';
-import { ToastrModule } from 'ngx-toastr';
 import './rxjs-operators';
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
-import { AlertModule, RatingModule, TooltipModule  } from 'ngx-bootstrap';
-import { DatetimePopupModule } from 'ngx-bootstrap-datetime-popup';
+import { InputTextModule, ButtonModule } from 'primeng/primeng';
 
 declare var require: any;
 
@@ -29,16 +27,14 @@ export function highchartsFactory() {
 
 // enableProdMode();
 @NgModule({
-    imports: [ChartModule,
-        AlertModule.forRoot(),
-        DatetimePopupModule.forRoot(),
-        RatingModule.forRoot(),
-        TooltipModule.forRoot(),
+    imports: [
+        InputTextModule,
+        ButtonModule,
+        ChartModule,
         BrowserAnimationsModule,
         BrowserModule,
         FormsModule,
         HttpModule,
-        ToastrModule.forRoot(),
         routing],
     declarations: [AppComponent, routedComponents],
     providers: [SampleDataService,

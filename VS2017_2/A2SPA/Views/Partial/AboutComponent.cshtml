@@ -18,15 +18,13 @@
             </div>
 
             <div *ngIf="testData != null && testDataList != null && testDataList.length > 0" class="col-md-12">
-<pre>
-{{testData.dateOfBirth}}
-</pre>
-                <div>
-                    <datetime-popup [(value)]="testData.dateOfBirth"></datetime-popup>
-                </div>
-<pre>
-{{testData.dateOfBirth}}
-</pre>
+
+                <hr />
+                <input type="text" [(ngModel)]="name" pInputText>
+                <button type="button" pButton label="Click" icon="fa fa-check" (click)="onClick($event)"></button>
+                <hr />
+
+
                 <table class="table table-hover table-responsive">
                     <thead>
                         <tr>
