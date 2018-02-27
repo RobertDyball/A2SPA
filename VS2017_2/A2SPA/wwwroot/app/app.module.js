@@ -21,7 +21,9 @@ var auth_guard_service_1 = require("./security/auth-guard.service");
 require("./rxjs-operators");
 var angular2_highcharts_1 = require("angular2-highcharts");
 var HighchartsService_1 = require("angular2-highcharts/dist/HighchartsService");
-var primeng_1 = require("primeng/primeng");
+var calendar_1 = require("primeng/components/calendar/calendar");
+var inputtext_1 = require("primeng/components/inputtext/inputtext");
+var button_1 = require("primeng/components/button/button");
 function highchartsFactory() {
     var hc = require('highcharts');
     var dd = require('highcharts/modules/drilldown');
@@ -38,8 +40,9 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
-            primeng_1.InputTextModule,
-            primeng_1.ButtonModule,
+            calendar_1.CalendarModule,
+            inputtext_1.InputTextModule,
+            button_1.ButtonModule,
             angular2_highcharts_1.ChartModule,
             animations_1.BrowserAnimationsModule,
             platform_browser_1.BrowserModule,

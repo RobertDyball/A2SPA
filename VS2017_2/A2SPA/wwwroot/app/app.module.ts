@@ -14,7 +14,9 @@ import './rxjs-operators';
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
-import { InputTextModule, ButtonModule } from 'primeng/primeng';
+import { CalendarModule } from 'primeng/components/calendar/calendar';
+import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { ButtonModule } from 'primeng/components/button/button';
 
 declare var require: any;
 
@@ -28,6 +30,7 @@ export function highchartsFactory() {
 // enableProdMode();
 @NgModule({
     imports: [
+        CalendarModule,
         InputTextModule,
         ButtonModule,
         ChartModule,

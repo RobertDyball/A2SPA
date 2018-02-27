@@ -7,23 +7,23 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@angular/animations": "^5.2.3",
-    "@angular/common": "^5.2.3",
-    "@angular/compiler": "^5.2.3",
-    "@angular/core": "^5.2.3",
-    "@angular/forms": "^5.2.3",
-    "@angular/http": "^5.2.3",
-    "@angular/platform-browser": "^5.2.3",
-    "@angular/platform-browser-dynamic": "^5.2.3",
-    "@angular/router": "^5.2.3",
-    "@angular/upgrade": "^5.2.3",
+    "@angular/animations": "^5.2.6",
+    "@angular/common": "^5.2.6",
+    "@angular/compiler": "^5.2.6",
+    "@angular/core": "^5.2.6",
+    "@angular/forms": "^5.2.6",
+    "@angular/http": "^5.2.6",
+    "@angular/platform-browser": "^5.2.6",
+    "@angular/platform-browser-dynamic": "^5.2.6",
+    "@angular/router": "^5.2.6",
+    "@angular/upgrade": "^5.2.6",
     "angular-in-memory-web-api": "^0.5.3",
     "angular2-highcharts": "^0.5.5",
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.3",
-    "highcharts": "^6.0.6",
+    "font-awesome": "^4.7.0",
+    "highcharts": "^6.0.7",
     "jquery": "^3.3.1",
-    "material-design-icons": "^3.0.1",
     "moment": "^2.20.1",
     "octicons": "^7.1.0",
     "popper.js": "^1.12.9",
@@ -32,14 +32,12 @@
     "rxjs": "^5.5.6",
     "systemjs": "^0.21.0",
     "tether": "^1.4.3",
-    "typescript": "^2.7.1",
-    "zone.js": "^0.8.20",
-    "font-awesome": "^4.7.0"
+    "zone.js": "^0.8.20"
   },
   "devDependencies": {
     "@types/node": "^9.4.6",
     "tslint": "^5.9.1",
-    "typescript": "^2.7.1"
+    "typescript": "^2.7.2"
   },
   "repository": {}
 }

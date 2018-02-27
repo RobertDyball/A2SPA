@@ -26,6 +26,9 @@ var AboutComponent = (function () {
         this.testData = null;
         this.tableMode = 'list';
         this.showForm = true;
+        if (!this.testData) {
+            this.testData = new testData_1.TestData();
+        }
     }
     AboutComponent.prototype.initTestData = function () {
         var newTestData = new testData_1.TestData();

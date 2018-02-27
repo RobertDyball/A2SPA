@@ -62,23 +62,24 @@ namespace A2SPA.Helpers
             switch (dataType)
             {
                 case "Date":
-                    inputTag = new TagBuilder("datetime-popup");
-                    //inputTag.MergeAttribute("bsDatepicker", string.Empty);
-                    //string localDateFormat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString();
-                    // from local server date time format (eg dd/MM/yyyy) convert to uppercase to suite ngx-bootstrap (eg DD/MM/YYYY)
-                    //inputTag.MergeAttribute("[bsConfig]", "{ dateInputFormat: '" + localDateFormat.ToUpper() + "' }");
-                    //inputTag.MergeAttribute("[bsConfig]", "{ dateInputFormat: 'DD-MM-YYYY' }");
-                    //inputTag.MergeAttribute("type", "text");
+                    inputTag = new TagBuilder("p-calendar");
+                    string localDateFormat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString();
+                    // from local server date time format (eg dd/MM/yyyy) convert to uppercase to suite PrimeNG (eg dd/mm/yyyy)
+//                    inputTag.MergeAttribute("dateFormat", localDateFormat.ToLower());
                     break;
 
                 case "DateTime":
-                    inputTag = new TagBuilder("input");
-                    inputTag.MergeAttribute("type", dataType);
+                    inputTag = new TagBuilder("p-calendar");
+                    string localDateTimeFormat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString();
+                    // from local server date time format (eg dd/MM/yyyy) convert to uppercase to suite PrimeNG (eg dd/mm/yyyy)
+                    //inputTag.MergeAttribute("dateFormat", localDateTimeFormat.ToLower());
+                    inputTag.MergeAttribute("[showTime]", "true");
                     break;
 
-                //case "Time":
-                //    inputTag = new TagBuilder("timepicker");
-                //    break;
+                case "Time":
+                    inputTag = new TagBuilder("p-calendar");
+                    inputTag.MergeAttribute("[timeOnly]", "true");
+                    break;
 
                 case "Password":
                     inputTag = new TagBuilder("input");
@@ -101,32 +102,31 @@ namespace A2SPA.Helpers
             switch (dataType)
             {
                 case "Date":
-                    //<input placeholder="Datepicker" type="text" class="form-control" bsDatepicker #dp="bsDatepicker">
-                    inputTag.MergeAttribute("[value]", For.GetDataBindVariableName(Par, Var));
+                case "DateTime":
+                case "Time":
                     inputTag.TagRenderMode = TagRenderMode.Normal;
                     break;
 
                 default:
-                    inputTag.AddCssClass("form-control");
-
-                    // common attributes for data input control here
-                    inputTag.MergeAttribute("id", propertyName);
-                    inputTag.MergeAttribute("name", propertyName);
-                    inputTag.MergeAttribute("placeholder", shortLabelName);
-
                     inputTag.TagRenderMode = TagRenderMode.StartTag;
                     inputTag.MergeAttribute("#" + propertyName, "ngModel");
-                    inputTag.MergeAttribute("[(ngModel)]", For.GetDataBindVariableName(Par, Var));
                     break;
             }
 
+            // common attributes for data input control here
+            inputTag.AddCssClass("form-control");
+            inputTag.MergeAttribute("[ngModel]", For.GetDataBindVariableName(Par, Var));
+            inputTag.MergeAttribute("id", propertyName);
+            inputTag.MergeAttribute("name", propertyName);
+            inputTag.MergeAttribute("placeholder", shortLabelName);
+
             // set up validation conditional DIV's here; only show error if modifications to form have been made
             TagBuilder outerValidationBlock = new TagBuilder("div");
-            outerValidationBlock.MergeAttribute("*ngIf", string.Format("{0}.errors && ({0}.dirty || {0}.touched)", propertyName));
+            outerValidationBlock.MergeAttribute("*ngIf", string.Format("!!{0} && {0}.errors && ({0}.dirty || {0}.touched)", propertyName));
 
             // .. and then, only if an error in data entry
             TagBuilder validationBlock = new TagBuilder("div");
-            validationBlock.MergeAttribute("*ngIf", string.Format("{0}.errors", propertyName));
+            validationBlock.MergeAttribute("*ngIf", string.Format("!!{0} && {0}.errors", propertyName));
             validationBlock.MergeAttribute("class", "alert alert-danger");
 
             // Handle minimum, maximum, required, regex and other validation. TODO: refactor common code out
@@ -134,7 +134,7 @@ namespace A2SPA.Helpers
             {
                 var minLength = metadata.MinLength();
                 var minLengthValidation = new TagBuilder("div");
-                minLengthValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.minLength", propertyName));
+                minLengthValidation.MergeAttribute("[hidden]", string.Format("!!{0} && !{0}.errors.minLength", propertyName));
                 minLengthValidation.InnerHtml.Append(string.Format("{0} must be at least {1} characters long", labelName, minLength));
                 validationBlock.InnerHtml.AppendHtml(minLengthValidation);
 
@@ -145,7 +145,7 @@ namespace A2SPA.Helpers
             {
                 var maxLength = metadata.MaxLength();
                 var maxLengthValidation = new TagBuilder("div");
-                maxLengthValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.maxlength", propertyName));
+                maxLengthValidation.MergeAttribute("[hidden]", string.Format("!!{0} && !{0}.errors.maxlength", propertyName));
                 maxLengthValidation.InnerHtml.Append(string.Format("{0} cannot be more than {1} characters long", labelName, maxLength));
                 validationBlock.InnerHtml.AppendHtml(maxLengthValidation);
 
@@ -155,7 +155,7 @@ namespace A2SPA.Helpers
             if (metadata.HasRegexValidation())
             {
                 var regexValidation = new TagBuilder("div");
-                regexValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.pattern", propertyName));
+                regexValidation.MergeAttribute("[hidden]", string.Format("!!{0} && !{0}.errors.pattern", propertyName));
                 regexValidation.InnerHtml.Append(string.Format("{0} is invalid", labelName));
                 validationBlock.InnerHtml.AppendHtml(regexValidation);
 
@@ -165,7 +165,7 @@ namespace A2SPA.Helpers
             if (metadata.IsRequired)
             {
                 var requiredValidation = new TagBuilder("div");
-                requiredValidation.MergeAttribute("[hidden]", string.Format("!{0}.errors.required", propertyName));
+                requiredValidation.MergeAttribute("[hidden]", string.Format("!!{0} && !{0}.errors.required", propertyName));
                 requiredValidation.InnerHtml.Append(string.Format("{0} is required", labelName));
                 validationBlock.InnerHtml.AppendHtml(requiredValidation);
 
@@ -184,23 +184,16 @@ namespace A2SPA.Helpers
             // Some input controls use bootstrap "input group"- wrap the input tag with an input group, if needed
             switch (dataType)
             {
-                //case "Date":
-                //    var divInputGroupDt = new TagBuilder("div");
-                //    divInputGroupDt.MergeAttribute("class", "input-group");
+                case "Date":
+                case "DateTime":
+                case "Time":
+                    inputTag.RenderEndTag();
 
-                //    //var spanInputGroupAddonDt = new TagBuilder("span");
-                //    //spanInputGroupAddonDt.MergeAttribute("class", "input-group-addon");
-                //    //spanInputGroupAddonDt.InnerHtml.Append("$");
-
-                //    //divInputGroupDt.InnerHtml.AppendHtml(spanInputGroupAddonDt);
-                //    divInputGroupDt.InnerHtml.AppendHtml(inputTag);
-
-                //    output.Content.AppendHtml(divInputGroupDt);
-                //    break;
-
-                //case "Time":
-                //    inputTag.RenderEndTag();
-                //    break;
+                    var divInputGroupDt = new TagBuilder("div");
+                    divInputGroupDt.MergeAttribute("class", "input-group");
+                    divInputGroupDt.InnerHtml.AppendHtml(inputTag);
+                    output.Content.AppendHtml(divInputGroupDt);
+                    break;
 
                 case "Currency":
                     var divInputGroup = new TagBuilder("div");

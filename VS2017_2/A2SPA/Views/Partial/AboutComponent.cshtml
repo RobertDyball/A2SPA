@@ -19,12 +19,6 @@
 
             <div *ngIf="testData != null && testDataList != null && testDataList.length > 0" class="col-md-12">
 
-                <hr />
-                <input type="text" [(ngModel)]="name" pInputText>
-                <button type="button" pButton label="Click" icon="fa fa-check" (click)="onClick($event)"></button>
-                <hr />
-
-
                 <table class="table table-hover table-responsive">
                     <thead>
                         <tr>
@@ -123,17 +117,17 @@
                         </tr>
                         <tr>
                             <td>
-                                @*<vfdi par="testData" for="DateOfBirth"></vfdi><br />*@
+                                <vfdi par="testData" for="DateOfBirth"></vfdi><br />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                @*<vfdi par="testData" for="LastLoginDate"></vfdi>*@
+                                <vfdi par="testData" for="LastLoginDate"></vfdi>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                @*<vfdi par="testData" for="SessionExpiryTime"></vfdi>*@
+                                <vfdi par="testData" for="SessionExpiryTime"></vfdi>
                             </td>
                         </tr>
                     </tbody>

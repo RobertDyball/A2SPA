@@ -24,7 +24,9 @@ export class AboutComponent implements OnInit {
     showForm: boolean = true;
     errorMessage: string;
 
-    constructor(private sampleDataService: SampleDataService, private errorMessageService: ErrorMessageService) { }
+    constructor(private sampleDataService: SampleDataService, private errorMessageService: ErrorMessageService) {
+        if (!this.testData) { this.testData = new TestData(); }
+    }
 
     initTestData(): TestData {
         var newTestData = new TestData();
