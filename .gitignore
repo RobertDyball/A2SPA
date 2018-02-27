@@ -241,4 +241,7 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 
-yarn.lock
+# NPM and Yarn package manager cruft
+npm-debug.log
+yarn-eror.log
+
