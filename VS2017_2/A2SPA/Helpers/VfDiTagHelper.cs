@@ -65,7 +65,7 @@ namespace A2SPA.Helpers
                     inputTag = new TagBuilder("p-calendar");
                     string localDateFormat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString();
                     // from local server date time format (eg dd/MM/yyyy) convert to uppercase to suite PrimeNG (eg dd/mm/yyyy)
-//                    inputTag.MergeAttribute("dateFormat", localDateFormat.ToLower());
+                    //inputTag.MergeAttribute("dateFormat", localDateFormat.ToLower());
                     break;
 
                 case "DateTime":
