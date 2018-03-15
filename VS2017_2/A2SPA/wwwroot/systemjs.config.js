@@ -23,9 +23,12 @@
             '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+
             'angular2-highcharts': 'npm:angular2-highcharts',
             'highcharts': 'npm:highcharts',
-            'moment': 'npm:moment/moment.js',
+
+            'json.date-extensions': 'npm:json.date-extensions/json.date-extensions.js',
+            //'moment': 'npm:moment/moment.js',
 
             // other libraries
             'rxjs': 'npm:rxjs',

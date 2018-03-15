@@ -7,7 +7,7 @@ import { ErrorMessageService } from './services/ErrorMessageService';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import * as moment from 'moment';
+//import * as moment from 'moment';
 //import 'moment/locale/en';
 
 @Component({
@@ -25,7 +25,7 @@ export class AboutComponent implements OnInit {
     errorMessage: string;
 
     constructor(private sampleDataService: SampleDataService, private errorMessageService: ErrorMessageService) {
-        if (!this.testData) { this.testData = new TestData(); }
+        if (!this.testData) { this.testData = this.initTestData(); }
     }
 
     initTestData(): TestData {
@@ -35,15 +35,18 @@ export class AboutComponent implements OnInit {
         newTestData.emailAddress = null;
         newTestData.password = null;
         newTestData.username = null;
+        newTestData.dateOfBirth = new Date();
+        newTestData.lastLoginDate = new Date();
+        newTestData.sessionExpiryTime = new Date();
         return newTestData;
     }
 
     ngOnInit() {
-        moment.locale('en');
+        //moment.locale('en');
         this.tableMode = 'add';
         this.getTestData();
         this.testData = this.initTestData();
-        this.selectedItem = new TestData();
+        this.selectedItem = this.initTestData();
     }
 
     changeMode(newMode: string, thisItem: TestData, event: any): void {
@@ -83,6 +86,11 @@ export class AboutComponent implements OnInit {
             .subscribe((data: ViewModelResponse) => {
                 if (data != null && data.statusCode == 200) {
                     //use this to save network traffic; just pushes new record into existing
+
+                    data.value.dateOfBirth = new Date(data.value.dateOfBirth);
+                    data.value.lastLoginDate = new Date(data.value.lastLoginDate);
+                    data.value.sessionExpiryTime = new Date(data.value.sessionExpiryTime);
+
                     this.testDataList.push(data.value);
                     // or keep these 2 lines; subscribe to data, but then refresh all data anyway
                     //this.testData = data.value;
@@ -105,6 +113,11 @@ export class AboutComponent implements OnInit {
                     this.testDataList = data.value;
                     this.errorMessageService.showSuccess('Get', "data fetched ok");
                     if (this.testDataList != null && this.testDataList.length > 0) {
+
+                        this.testDataList[0].dateOfBirth = new Date(this.testDataList[0].dateOfBirth);
+                        this.testDataList[0].lastLoginDate = new Date(this.testDataList[0].lastLoginDate);
+                        this.testDataList[0].sessionExpiryTime = new Date(this.testDataList[0].sessionExpiryTime);
+
                         this.selectedItem = this.testDataList[0];
                         this.tableMode = 'list';
                     } else {
@@ -132,6 +145,11 @@ export class AboutComponent implements OnInit {
             .subscribe((data: ViewModelResponse) => {
                 if (data != null && data.statusCode == 200) {
                     this.errorMessageService.showSuccess('Update', "updated ok");
+
+                    data.value.dateOfBirth = new Date(data.value.dateOfBirth);
+                    data.value.lastLoginDate = new Date(data.value.lastLoginDate);
+                    data.value.sessionExpiryTime = new Date(data.value.sessionExpiryTime);
+
                     this.testData = data.value;
                     this.getTestData();
                 }

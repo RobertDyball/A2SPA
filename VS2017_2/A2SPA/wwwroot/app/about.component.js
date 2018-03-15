@@ -15,7 +15,7 @@ var testData_1 = require("./models/testData");
 var ErrorMessageService_1 = require("./services/ErrorMessageService");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
-var moment = require("moment");
+//import * as moment from 'moment';
 //import 'moment/locale/en';
 var AboutComponent = (function () {
     function AboutComponent(sampleDataService, errorMessageService) {
@@ -27,7 +27,7 @@ var AboutComponent = (function () {
         this.tableMode = 'list';
         this.showForm = true;
         if (!this.testData) {
-            this.testData = new testData_1.TestData();
+            this.testData = this.initTestData();
         }
     }
     AboutComponent.prototype.initTestData = function () {
@@ -37,14 +37,17 @@ var AboutComponent = (function () {
         newTestData.emailAddress = null;
         newTestData.password = null;
         newTestData.username = null;
+        newTestData.dateOfBirth = new Date();
+        newTestData.lastLoginDate = new Date();
+        newTestData.sessionExpiryTime = new Date();
         return newTestData;
     };
     AboutComponent.prototype.ngOnInit = function () {
-        moment.locale('en');
+        //moment.locale('en');
         this.tableMode = 'add';
         this.getTestData();
         this.testData = this.initTestData();
-        this.selectedItem = new testData_1.TestData();
+        this.selectedItem = this.initTestData();
     };
     AboutComponent.prototype.changeMode = function (newMode, thisItem, event) {
         event.preventDefault();
@@ -80,6 +83,9 @@ var AboutComponent = (function () {
             .subscribe(function (data) {
             if (data != null && data.statusCode == 200) {
                 //use this to save network traffic; just pushes new record into existing
+                data.value.dateOfBirth = new Date(data.value.dateOfBirth);
+                data.value.lastLoginDate = new Date(data.value.lastLoginDate);
+                data.value.sessionExpiryTime = new Date(data.value.sessionExpiryTime);
                 _this.testDataList.push(data.value);
                 // or keep these 2 lines; subscribe to data, but then refresh all data anyway
                 //this.testData = data.value;
@@ -101,6 +107,9 @@ var AboutComponent = (function () {
                 _this.testDataList = data.value;
                 _this.errorMessageService.showSuccess('Get', "data fetched ok");
                 if (_this.testDataList != null && _this.testDataList.length > 0) {
+                    _this.testDataList[0].dateOfBirth = new Date(_this.testDataList[0].dateOfBirth);
+                    _this.testDataList[0].lastLoginDate = new Date(_this.testDataList[0].lastLoginDate);
+                    _this.testDataList[0].sessionExpiryTime = new Date(_this.testDataList[0].sessionExpiryTime);
                     _this.selectedItem = _this.testDataList[0];
                     _this.tableMode = 'list';
                 }
@@ -130,6 +139,9 @@ var AboutComponent = (function () {
             .subscribe(function (data) {
             if (data != null && data.statusCode == 200) {
                 _this.errorMessageService.showSuccess('Update', "updated ok");
+                data.value.dateOfBirth = new Date(data.value.dateOfBirth);
+                data.value.lastLoginDate = new Date(data.value.lastLoginDate);
+                data.value.sessionExpiryTime = new Date(data.value.sessionExpiryTime);
                 _this.testData = data.value;
                 _this.getTestData();
             }

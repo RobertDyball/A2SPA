@@ -138,18 +138,18 @@ namespace A2SPA.Helpers
                 minLengthValidation.InnerHtml.Append(string.Format("{0} must be at least {1} characters long", labelName, minLength));
                 validationBlock.InnerHtml.AppendHtml(minLengthValidation);
 
-                inputTag.Attributes.Add("minlength", minLength.ToString());
+                inputTag.Attributes.Add("minLength", minLength.ToString());
             }
 
             if (metadata.HasMaxLengthValidation())
             {
                 var maxLength = metadata.MaxLength();
                 var maxLengthValidation = new TagBuilder("div");
-                maxLengthValidation.MergeAttribute("[hidden]", string.Format("!!{0} && !{0}.errors.maxlength", propertyName));
+                maxLengthValidation.MergeAttribute("[hidden]", string.Format("!!{0} && !{0}.errors.maxLength", propertyName));
                 maxLengthValidation.InnerHtml.Append(string.Format("{0} cannot be more than {1} characters long", labelName, maxLength));
                 validationBlock.InnerHtml.AppendHtml(maxLengthValidation);
 
-                inputTag.Attributes.Add("maxlength", maxLength.ToString());
+                inputTag.Attributes.Add("maxLength", maxLength.ToString());
             }
 
             if (metadata.HasRegexValidation())
