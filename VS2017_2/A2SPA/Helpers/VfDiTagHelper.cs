@@ -58,21 +58,23 @@ namespace A2SPA.Helpers
             // add the input control; TODO: add textarea, date picker support
             TagBuilder inputTag;
 
+            string localDateFormat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString().ToLower();
+            localDateFormat = localDateFormat.Contains("dd") ? localDateFormat : localDateFormat.Replace("d", "dd");
+            localDateFormat = localDateFormat.Contains("yyyy") ? localDateFormat.Replace("yyyy", "yy"): localDateFormat;
+
             // TODO: further expand datatypes here
             switch (dataType)
             {
                 case "Date":
                     inputTag = new TagBuilder("p-calendar");
-                    string localDateFormat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString();
                     // from local server date time format (eg dd/MM/yyyy) convert to uppercase to suite PrimeNG (eg dd/mm/yyyy)
-                    //inputTag.MergeAttribute("dateFormat", localDateFormat.ToLower());
+                    inputTag.MergeAttribute("dateFormat", localDateFormat);
                     break;
 
                 case "DateTime":
                     inputTag = new TagBuilder("p-calendar");
-                    string localDateTimeFormat = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString();
                     // from local server date time format (eg dd/MM/yyyy) convert to uppercase to suite PrimeNG (eg dd/mm/yyyy)
-                    //inputTag.MergeAttribute("dateFormat", localDateTimeFormat.ToLower());
+                    inputTag.MergeAttribute("dateFormat", localDateFormat);
                     inputTag.MergeAttribute("[showTime]", "true");
                     break;
 

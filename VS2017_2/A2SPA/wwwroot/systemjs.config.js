@@ -27,8 +27,7 @@
             'angular2-highcharts': 'npm:angular2-highcharts',
             'highcharts': 'npm:highcharts',
 
-            'json.date-extensions': 'npm:json.date-extensions/json.date-extensions.js',
-            //'moment': 'npm:moment/moment.js',
+            'moment': 'npm:moment/moment.js',
 
             // other libraries
             'rxjs': 'npm:rxjs',

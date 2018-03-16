@@ -7,7 +7,7 @@ import { ErrorMessageService } from './services/ErrorMessageService';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-//import * as moment from 'moment';
+import * as moment from 'moment';
 //import 'moment/locale/en';
 
 @Component({
@@ -42,7 +42,7 @@ export class AboutComponent implements OnInit {
     }
 
     ngOnInit() {
-        //moment.locale('en');
+        moment.locale('en');
         this.tableMode = 'add';
         this.getTestData();
         this.testData = this.initTestData();

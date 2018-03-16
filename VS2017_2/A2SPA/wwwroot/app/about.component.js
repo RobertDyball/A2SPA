@@ -15,7 +15,7 @@ var testData_1 = require("./models/testData");
 var ErrorMessageService_1 = require("./services/ErrorMessageService");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
-//import * as moment from 'moment';
+var moment = require("moment");
 //import 'moment/locale/en';
 var AboutComponent = (function () {
     function AboutComponent(sampleDataService, errorMessageService) {
@@ -43,7 +43,7 @@ var AboutComponent = (function () {
         return newTestData;
     };
     AboutComponent.prototype.ngOnInit = function () {
-        //moment.locale('en');
+        moment.locale('en');
         this.tableMode = 'add';
         this.getTestData();
         this.testData = this.initTestData();
