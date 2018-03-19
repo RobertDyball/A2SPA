@@ -59,8 +59,12 @@ export class AboutComponent implements OnInit {
 
         switch (newMode) {
             case 'add':
-                this.testData = this.initTestData();
-                break;
+                //this.testData = this.initTestData();
+                this.testData = Object.assign({}, this.initTestData());
+                //this.testData.dateOfBirth = new Date();
+                //this.testData.lastLoginDate = new Date();
+                //this.testData.sessionExpiryTime = new Date();
+               break;
 
             case 'edit':
                 this.testData = Object.assign({}, thisItem);
@@ -77,24 +81,31 @@ export class AboutComponent implements OnInit {
         event.preventDefault();
         this.selectedItem = thisItem;
         this.testData = Object.assign({}, thisItem);
+        this.testData.dateOfBirth = new Date(thisItem.dateOfBirth);
+        this.testData.lastLoginDate = new Date(thisItem.lastLoginDate);
+        this.testData.sessionExpiryTime = new Date(thisItem.sessionExpiryTime);
     }
 
     addTestData(event: any) {
         event.preventDefault();
         if (!this.testData) { return; }
+
+        //this.testData.dateOfBirth = new Date(moment(this.testData.dateOfBirth).format("YYYY-MM-DDThh:mm"));
+        //this.testData.lastLoginDate = new Date(moment(this.testData.lastLoginDate).format("YYYY-MM-DDThh:mm"));
+        //this.testData.sessionExpiryTime = new Date(moment(this.testData.sessionExpiryTime).format("YYYY-MM-DDThh:mm"));
+
         this.sampleDataService.addSampleData(this.testData)
             .subscribe((data: ViewModelResponse) => {
                 if (data != null && data.statusCode == 200) {
                     //use this to save network traffic; just pushes new record into existing
+                    //data.value.dateOfBirth = moment(data.value.dateOfBirth).format("YYYY-MM-DDThh:mm");         // new Date(data.value.dateOfBirth);
+                    //data.value.lastLoginDate = moment(data.value.lastLoginDate).format("YYYY-MM-DDThh:mm");     // new Date(data.value.lastLoginDate);
+                    //data.value.sessionExpiryTime = moment(data.value.sessionExpiryTime).format("YYYY-MM-DDThh:mm");
+                    //this.testDataList.push(data.value);
 
-                    data.value.dateOfBirth = new Date(data.value.dateOfBirth);
-                    data.value.lastLoginDate = new Date(data.value.lastLoginDate);
-                    data.value.sessionExpiryTime = new Date(data.value.sessionExpiryTime);
-
-                    this.testDataList.push(data.value);
                     // or keep these 2 lines; subscribe to data, but then refresh all data anyway
-                    //this.testData = data.value;
-                    //this.getTestData();
+                    this.testData = this.initTestData();
+                    this.getTestData();
                     this.errorMessageService.showSuccess('Add', "data added ok");
                 }
                 else {
@@ -116,6 +127,7 @@ export class AboutComponent implements OnInit {
 
                         this.testDataList[0].dateOfBirth = new Date(this.testDataList[0].dateOfBirth);
                         this.testDataList[0].lastLoginDate = new Date(this.testDataList[0].lastLoginDate);
+                        // this.testDataList[0].sessionExpiryTime = moment(this.testDataList[0].sessionExpiryTime, moment.ISO_8601).format("hh:mm");
                         this.testDataList[0].sessionExpiryTime = new Date(this.testDataList[0].sessionExpiryTime);
 
                         this.selectedItem = this.testDataList[0];
@@ -141,16 +153,22 @@ export class AboutComponent implements OnInit {
     editTestData(event: any) {
         event.preventDefault();
         if (!this.testData) { return; }
+
+        //this.testData.dateOfBirth = new Date(moment(this.testData.dateOfBirth).format("YYYY-MM-DDThh:mm"));
+        //this.testData.lastLoginDate = new Date(moment(this.testData.lastLoginDate).format("YYYY-MM-DDThh:mm"));
+        //this.testData.sessionExpiryTime = new Date(moment(this.testData.sessionExpiryTime).format("YYYY-MM-DDThh:mm"));
+
         this.sampleDataService.editSampleData(this.testData)
             .subscribe((data: ViewModelResponse) => {
                 if (data != null && data.statusCode == 200) {
                     this.errorMessageService.showSuccess('Update', "updated ok");
 
-                    data.value.dateOfBirth = new Date(data.value.dateOfBirth);
-                    data.value.lastLoginDate = new Date(data.value.lastLoginDate);
-                    data.value.sessionExpiryTime = new Date(data.value.sessionExpiryTime);
+                    //data.value.dateOfBirth = new Date(data.value.dateOfBirth);
+                    //data.value.lastLoginDate = new Date(data.value.lastLoginDate);
+                    //data.value.sessionExpiryTime = new Date(moment(data.value.sessionExpiryTime).format("hh:mm"));
 
-                    this.testData = data.value;
+                    //this.testData = data.value;
+                    this.testData = this.initTestData();
                     this.getTestData();
                 }
                 else {

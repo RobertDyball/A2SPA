@@ -57,7 +57,11 @@ var AboutComponent = (function () {
         }
         switch (newMode) {
             case 'add':
-                this.testData = this.initTestData();
+                //this.testData = this.initTestData();
+                this.testData = Object.assign({}, this.initTestData());
+                //this.testData.dateOfBirth = new Date();
+                //this.testData.lastLoginDate = new Date();
+                //this.testData.sessionExpiryTime = new Date();
                 break;
             case 'edit':
                 this.testData = Object.assign({}, thisItem);
@@ -72,6 +76,9 @@ var AboutComponent = (function () {
         event.preventDefault();
         this.selectedItem = thisItem;
         this.testData = Object.assign({}, thisItem);
+        this.testData.dateOfBirth = new Date(thisItem.dateOfBirth);
+        this.testData.lastLoginDate = new Date(thisItem.lastLoginDate);
+        this.testData.sessionExpiryTime = new Date(thisItem.sessionExpiryTime);
     };
     AboutComponent.prototype.addTestData = function (event) {
         var _this = this;
@@ -79,17 +86,20 @@ var AboutComponent = (function () {
         if (!this.testData) {
             return;
         }
+        //this.testData.dateOfBirth = new Date(moment(this.testData.dateOfBirth).format("YYYY-MM-DDThh:mm"));
+        //this.testData.lastLoginDate = new Date(moment(this.testData.lastLoginDate).format("YYYY-MM-DDThh:mm"));
+        //this.testData.sessionExpiryTime = new Date(moment(this.testData.sessionExpiryTime).format("YYYY-MM-DDThh:mm"));
         this.sampleDataService.addSampleData(this.testData)
             .subscribe(function (data) {
             if (data != null && data.statusCode == 200) {
                 //use this to save network traffic; just pushes new record into existing
-                data.value.dateOfBirth = new Date(data.value.dateOfBirth);
-                data.value.lastLoginDate = new Date(data.value.lastLoginDate);
-                data.value.sessionExpiryTime = new Date(data.value.sessionExpiryTime);
-                _this.testDataList.push(data.value);
+                //data.value.dateOfBirth = moment(data.value.dateOfBirth).format("YYYY-MM-DDThh:mm");         // new Date(data.value.dateOfBirth);
+                //data.value.lastLoginDate = moment(data.value.lastLoginDate).format("YYYY-MM-DDThh:mm");     // new Date(data.value.lastLoginDate);
+                //data.value.sessionExpiryTime = moment(data.value.sessionExpiryTime).format("YYYY-MM-DDThh:mm");
+                //this.testDataList.push(data.value);
                 // or keep these 2 lines; subscribe to data, but then refresh all data anyway
-                //this.testData = data.value;
-                //this.getTestData();
+                _this.testData = _this.initTestData();
+                _this.getTestData();
                 _this.errorMessageService.showSuccess('Add', "data added ok");
             }
             else {
@@ -109,6 +119,7 @@ var AboutComponent = (function () {
                 if (_this.testDataList != null && _this.testDataList.length > 0) {
                     _this.testDataList[0].dateOfBirth = new Date(_this.testDataList[0].dateOfBirth);
                     _this.testDataList[0].lastLoginDate = new Date(_this.testDataList[0].lastLoginDate);
+                    // this.testDataList[0].sessionExpiryTime = moment(this.testDataList[0].sessionExpiryTime, moment.ISO_8601).format("hh:mm");
                     _this.testDataList[0].sessionExpiryTime = new Date(_this.testDataList[0].sessionExpiryTime);
                     _this.selectedItem = _this.testDataList[0];
                     _this.tableMode = 'list';
@@ -135,14 +146,18 @@ var AboutComponent = (function () {
         if (!this.testData) {
             return;
         }
+        //this.testData.dateOfBirth = new Date(moment(this.testData.dateOfBirth).format("YYYY-MM-DDThh:mm"));
+        //this.testData.lastLoginDate = new Date(moment(this.testData.lastLoginDate).format("YYYY-MM-DDThh:mm"));
+        //this.testData.sessionExpiryTime = new Date(moment(this.testData.sessionExpiryTime).format("YYYY-MM-DDThh:mm"));
         this.sampleDataService.editSampleData(this.testData)
             .subscribe(function (data) {
             if (data != null && data.statusCode == 200) {
                 _this.errorMessageService.showSuccess('Update', "updated ok");
-                data.value.dateOfBirth = new Date(data.value.dateOfBirth);
-                data.value.lastLoginDate = new Date(data.value.lastLoginDate);
-                data.value.sessionExpiryTime = new Date(data.value.sessionExpiryTime);
-                _this.testData = data.value;
+                //data.value.dateOfBirth = new Date(data.value.dateOfBirth);
+                //data.value.lastLoginDate = new Date(data.value.lastLoginDate);
+                //data.value.sessionExpiryTime = new Date(moment(data.value.sessionExpiryTime).format("hh:mm"));
+                //this.testData = data.value;
+                _this.testData = _this.initTestData();
                 _this.getTestData();
             }
             else {
