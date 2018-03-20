@@ -117,11 +117,11 @@ var AboutComponent = (function () {
                 _this.testDataList = data.value;
                 _this.errorMessageService.showSuccess('Get', "data fetched ok");
                 if (_this.testDataList != null && _this.testDataList.length > 0) {
-                    _this.testDataList[0].dateOfBirth = new Date(_this.testDataList[0].dateOfBirth);
-                    _this.testDataList[0].lastLoginDate = new Date(_this.testDataList[0].lastLoginDate);
-                    // this.testDataList[0].sessionExpiryTime = moment(this.testDataList[0].sessionExpiryTime, moment.ISO_8601).format("hh:mm");
-                    _this.testDataList[0].sessionExpiryTime = new Date(_this.testDataList[0].sessionExpiryTime);
-                    _this.selectedItem = _this.testDataList[0];
+                    //this.testDataList[0].dateOfBirth = new Date(this.testDataList[0].dateOfBirth);
+                    //this.testDataList[0].lastLoginDate = new Date(this.testDataList[0].lastLoginDate);
+                    //// this.testDataList[0].sessionExpiryTime = moment(this.testDataList[0].sessionExpiryTime, moment.ISO_8601).format("hh:mm");
+                    //this.testDataList[0].sessionExpiryTime = new Date(this.testDataList[0].sessionExpiryTime);
+                    //this.selectedItem = this.testDataList[0];
                     _this.tableMode = 'list';
                 }
                 else {

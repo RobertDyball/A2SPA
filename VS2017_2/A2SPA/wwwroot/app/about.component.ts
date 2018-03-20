@@ -125,12 +125,12 @@ export class AboutComponent implements OnInit {
                     this.errorMessageService.showSuccess('Get', "data fetched ok");
                     if (this.testDataList != null && this.testDataList.length > 0) {
 
-                        this.testDataList[0].dateOfBirth = new Date(this.testDataList[0].dateOfBirth);
-                        this.testDataList[0].lastLoginDate = new Date(this.testDataList[0].lastLoginDate);
-                        // this.testDataList[0].sessionExpiryTime = moment(this.testDataList[0].sessionExpiryTime, moment.ISO_8601).format("hh:mm");
-                        this.testDataList[0].sessionExpiryTime = new Date(this.testDataList[0].sessionExpiryTime);
+                        //this.testDataList[0].dateOfBirth = new Date(this.testDataList[0].dateOfBirth);
+                        //this.testDataList[0].lastLoginDate = new Date(this.testDataList[0].lastLoginDate);
+                        //// this.testDataList[0].sessionExpiryTime = moment(this.testDataList[0].sessionExpiryTime, moment.ISO_8601).format("hh:mm");
+                        //this.testDataList[0].sessionExpiryTime = new Date(this.testDataList[0].sessionExpiryTime);
 
-                        this.selectedItem = this.testDataList[0];
+                        //this.selectedItem = this.testDataList[0];
                         this.tableMode = 'list';
                     } else {
                         this.tableMode = 'add';

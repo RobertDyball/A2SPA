@@ -37,12 +37,13 @@
                         <tr *ngFor="let item of testDataList" (click)="selectCurrentItem(item,$event)" [class.info]="item==selectedItem">
                             <td par="item" cdfor="Id"></td>
                             <td par="item" cdfor="Username"></td>
-                            <td par="item" cdfor="Currency" pipe="currency:'AUD':'sybmol':'4.2-2'"></td>
+                            @*<td par="item" cdfor="Currency" pipe="currency:'AUD':'sybmol':'4.2-2'"></td>*@
+                            <td par="item" cdfor="Currency" pipe="currency"></td>
                             <td par="item" cdfor="EmailAddress"></td>
                             <td par="item" cdfor="Password"></td>
-                            <td par="item" cdfor="DateOfBirth"></td>
-                            <td par="item" cdfor="LastLoginDate"></td>
-                            <td par="item" cdfor="SessionExpiryTime"></td>
+                            <td par="item" cdfor="DateOfBirth" pipe="date:'dd-MM-yyyy'"></td>
+                            <td par="item" cdfor="LastLoginDate" pipe="date:'dd-MM-yyyy HH:mm a'"></td>
+                            <td par="item" cdfor="SessionExpiryTime" pipe="date:'HH:mm a'"></td>
                             <td>
                                 <button type="button" class="btn btn-danger btn-sm" (click)="deleteRecord(item, $event)">X</button>
                                 <button type="button" class="btn btn-info btn-sm" (click)="changeMode('edit', item, $event)">?</button>
