@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
+﻿using Humanizer;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using System.Globalization;
 
 namespace A2SPA.Helpers
 {
     /// <summary>
-    /// Tag Helper for Table columns to data display
+    /// Column Data Tag Helper - to create Table columns to data display
     /// </summary>
     [HtmlTargetElement("td", Attributes = columnDataAttribute)]
     public class TabCDTagHelper : TagHelper
@@ -46,9 +49,60 @@ namespace A2SPA.Helpers
         [HtmlAttributeName("pipe")]
         public string Pipe { get; set; } = null;
 
+        /// <summary>
+        /// create angular pipe from server's local date/time format; currenly has support for short date and/or short time only.
+        /// </summary>
+        /// <example>
+        /// local="short"
+        /// </example>
+        [HtmlAttributeName("local")]
+        public string Local { get; set; } = null;
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var pipe = string.IsNullOrEmpty(Pipe) ? string.Empty : "|" + Pipe;
+            // get metadata names, property name and data type
+            var metadata = ((DefaultModelMetadata)CdFor.Metadata);
+            var propertyName = CdFor.Name.Camelize();
+            var dataType = metadata.DataTypeName;
+            var pipe = string.Empty;
+
+            if (!string.IsNullOrEmpty(Local))
+            {
+                var localShortDateFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString()
+                                                    // remove seconds
+                                                    .Replace(":ss", string.Empty)
+                                                    // AM/PM needs a switch from tt to a
+                                                    .Replace("tt", "a");
+                // ensure leading zero
+                localShortDateFormat = localShortDateFormat.Contains("dd") ? localShortDateFormat : localShortDateFormat.Replace("d", "dd");
+                // remove day name if present
+                localShortDateFormat = localShortDateFormat.Contains("ddd, ") ? localShortDateFormat : localShortDateFormat.Replace("ddd, ", string.Empty);
+
+                var localShortTimeFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern.ToString().Replace("tt", "a");
+                var localformat = string.Empty;
+
+                switch (dataType)
+                {
+                    case "Date":
+                        localformat = localShortDateFormat;
+                        break;
+
+                    case "DateTime":
+                        localformat = string.Format("{0} {1}", localShortDateFormat, localShortTimeFormat);
+                        break;
+
+                    case "Time":
+                        localformat = localShortTimeFormat;
+                        break;
+                }
+
+                pipe = "|date:'" + localformat + "'";
+            }
+            else if (!string.IsNullOrEmpty(Pipe))
+            {
+                pipe = "|" + Pipe;
+            }
+
             var tagContents = CdFor.PopulateDataDisplayContents(pipe, Par, Var);
             output.Content.AppendHtml(tagContents);
         }

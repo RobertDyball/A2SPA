@@ -41,9 +41,12 @@
                             <td par="item" cdfor="Currency" pipe="currency"></td>
                             <td par="item" cdfor="EmailAddress"></td>
                             <td par="item" cdfor="Password"></td>
-                            <td par="item" cdfor="DateOfBirth" pipe="date:'dd-MM-yyyy'"></td>
-                            <td par="item" cdfor="LastLoginDate" pipe="date:'dd-MM-yyyy HH:mm a'"></td>
-                            <td par="item" cdfor="SessionExpiryTime" pipe="date:'HH:mm a'"></td>
+                            @*<td par="item" cdfor="DateOfBirth" pipe="date:'dd-MM-yyyy'"></td>*@
+                            <td par="item" cdfor="DateOfBirth" local="short"></td>
+                            @*<td par="item" cdfor="LastLoginDate" pipe="date:'dd-MM-yyyy HH:mm a'"></td>*@
+                            <td par="item" cdfor="LastLoginDate" local="short"></td>
+                            @*<td par="item" cdfor="SessionExpiryTime" pipe="date:'HH:mm a'"></td>*@
+                            <td par="item" cdfor="SessionExpiryTime" local="short"></td>
                             <td>
                                 <button type="button" class="btn btn-danger btn-sm" (click)="deleteRecord(item, $event)">X</button>
                                 <button type="button" class="btn btn-info btn-sm" (click)="changeMode('edit', item, $event)">?</button>
