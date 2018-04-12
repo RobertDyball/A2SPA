@@ -58,6 +58,16 @@ namespace A2SPA.Helpers
         [HtmlAttributeName("local")]
         public string Local { get; set; } = null;
 
+        /// <summary>
+        /// use Moment.js to format the date, rather than Angular Datepipe.
+        /// options: local, date, time, custom:YYYY-MM-DDTHH:mm
+        /// </summary>
+        /// <example>
+        /// moment="local"
+        /// </example>
+        [HtmlAttributeName("moment")]
+        public string Moment { get; set; } = null;
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             // get metadata names, property name and data type
@@ -65,45 +75,45 @@ namespace A2SPA.Helpers
             var propertyName = CdFor.Name.Camelize();
             var dataType = metadata.DataTypeName;
             var pipe = string.Empty;
+            string tagContents = string.Empty;
 
-            if (!string.IsNullOrEmpty(Local))
+            var localShortDateFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString().ToUpper() //.Replace("M","m").Replace("d","D")
+                                                                                                                       // remove seconds
+                                                    .Replace("TT", "A")
+                                                    .Replace(":ss", string.Empty);
+            // AM/PM needs a switch from tt to a
+            // ensure leading zero
+            localShortDateFormat = localShortDateFormat.Contains("DD") ? localShortDateFormat : localShortDateFormat.Replace("D", "DD");
+            //// remove day name if present
+            //localShortDateFormat = localShortDateFormat.Contains("ddd, ") ? localShortDateFormat : localShortDateFormat.Replace("ddd, ", string.Empty);
+            var localShortTimeFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern.ToString().ToUpper()
+                .Replace("TT", string.Empty); // "A"
+            localShortTimeFormat = localShortTimeFormat.Contains("MM") ? localShortTimeFormat : localShortTimeFormat.Replace("M", "MM");
+            var localformat = string.Empty;
+
+            switch (dataType)
             {
-                var localShortDateFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToString()
-                                                    // remove seconds
-                                                    .Replace(":ss", string.Empty)
-                                                    // AM/PM needs a switch from tt to a
-                                                    .Replace("tt", "a");
-                // ensure leading zero
-                localShortDateFormat = localShortDateFormat.Contains("dd") ? localShortDateFormat : localShortDateFormat.Replace("d", "dd");
-                // remove day name if present
-                localShortDateFormat = localShortDateFormat.Contains("ddd, ") ? localShortDateFormat : localShortDateFormat.Replace("ddd, ", string.Empty);
+                case "Date":
+                    localformat = localShortDateFormat;
+                    tagContents = "{{moment(" + CdFor.GetDataBindVariableName(Par, Var) + ").format('" + localformat + "')}}";
+                    break;
 
-                var localShortTimeFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern.ToString().Replace("tt", "a");
-                var localformat = string.Empty;
+                case "DateTime":
+                    localformat = string.Format("{0} {1}", localShortDateFormat, localShortTimeFormat);
+                    tagContents = "{{moment(" + CdFor.GetDataBindVariableName(Par, Var) + ").format('" + localformat + "')}}";
+                    break;
 
-                switch (dataType)
-                {
-                    case "Date":
-                        localformat = localShortDateFormat;
-                        break;
+                case "Time":
+                    localformat = localShortTimeFormat;
+                    tagContents = "{{moment(" + CdFor.GetDataBindVariableName(Par, Var) + ").format('" + localformat + "')}}";
+                    break;
 
-                    case "DateTime":
-                        localformat = string.Format("{0} {1}", localShortDateFormat, localShortTimeFormat);
-                        break;
-
-                    case "Time":
-                        localformat = localShortTimeFormat;
-                        break;
-                }
-
-                pipe = "|date:'" + localformat + "'";
-            }
-            else if (!string.IsNullOrEmpty(Pipe))
-            {
-                pipe = "|" + Pipe;
+                default:
+                    pipe = string.IsNullOrEmpty(Pipe) ? string.Empty : "|" + Pipe;
+                    tagContents = CdFor.PopulateDataDisplayContents(pipe, Par, Var);
+                    break;
             }
 
-            var tagContents = CdFor.PopulateDataDisplayContents(pipe, Par, Var);
             output.Content.AppendHtml(tagContents);
         }
     }

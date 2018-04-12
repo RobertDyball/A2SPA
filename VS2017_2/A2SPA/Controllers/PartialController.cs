@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NSwag.Annotations;
+//using NSwag.Annotations;
 
 namespace A2SPA.Controllers
 {
-    [SwaggerIgnore]
+//    [SwaggerIgnore]
     public class PartialController : Controller
     {
         public IActionResult AboutComponent() => PartialView();

@@ -18,7 +18,6 @@
             </div>
 
             <div *ngIf="testData != null && testDataList != null && testDataList.length > 0" class="col-md-12">
-
                 <table class="table table-hover table-responsive">
                     <thead>
                         <tr>
@@ -37,16 +36,12 @@
                         <tr *ngFor="let item of testDataList" (click)="selectCurrentItem(item,$event)" [class.info]="item==selectedItem">
                             <td par="item" cdfor="Id"></td>
                             <td par="item" cdfor="Username"></td>
-                            @*<td par="item" cdfor="Currency" pipe="currency:'AUD':'sybmol':'4.2-2'"></td>*@
                             <td par="item" cdfor="Currency" pipe="currency"></td>
                             <td par="item" cdfor="EmailAddress"></td>
                             <td par="item" cdfor="Password"></td>
-                            @*<td par="item" cdfor="DateOfBirth" pipe="date:'dd-MM-yyyy'"></td>*@
-                            <td par="item" cdfor="DateOfBirth" local="short"></td>
-                            @*<td par="item" cdfor="LastLoginDate" pipe="date:'dd-MM-yyyy HH:mm a'"></td>*@
-                            <td par="item" cdfor="LastLoginDate" local="short"></td>
-                            @*<td par="item" cdfor="SessionExpiryTime" pipe="date:'HH:mm a'"></td>*@
-                            <td par="item" cdfor="SessionExpiryTime" local="short"></td>
+                            <td par="item" cdfor="DateOfBirth"></td>
+                            <td par="item" cdfor="LastLoginDate"></td>
+                            <td par="item" cdfor="SessionExpiryTime"></td>
                             <td>
                                 <button type="button" class="btn btn-danger btn-sm" (click)="deleteRecord(item, $event)">X</button>
                                 <button type="button" class="btn btn-info btn-sm" (click)="changeMode('edit', item, $event)">?</button>
@@ -89,7 +84,6 @@
                     </button>
                 </div>
             </div>
-
             <div class="row" [hidden]="!(tableMode==='add'||tableMode==='edit')">
                 <table class="table">
                     <tbody class="card-block">

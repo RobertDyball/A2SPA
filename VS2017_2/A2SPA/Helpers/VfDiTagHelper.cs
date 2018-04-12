@@ -117,7 +117,7 @@ namespace A2SPA.Helpers
 
             // common attributes for data input control here
             inputTag.AddCssClass("form-control");
-            inputTag.MergeAttribute("[ngModel]", For.GetDataBindVariableName(Par, Var));
+            inputTag.MergeAttribute("[(ngModel)]", For.GetDataBindVariableName(Par, Var));
             inputTag.MergeAttribute("id", propertyName);
             inputTag.MergeAttribute("name", propertyName);
             inputTag.MergeAttribute("placeholder", shortLabelName);

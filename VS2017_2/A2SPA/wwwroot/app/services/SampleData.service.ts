@@ -24,6 +24,7 @@ export class SampleDataService {
     }
 
     addSampleData(testData: TestData) {
+        console.log(JSON.stringify(testData));
         return this.http
             .post(this.url, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
             .map((resp: Response) => resp.json())

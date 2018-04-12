@@ -28,6 +28,7 @@ var SampleDataService = (function () {
             .catch(this.handleError);
     };
     SampleDataService.prototype.addSampleData = function (testData) {
+        console.log(JSON.stringify(testData));
         return this.http
             .post(this.url, JSON.stringify(testData), { headers: this.authService.authJsonHeaders() })
             .map(function (resp) { return resp.json(); })

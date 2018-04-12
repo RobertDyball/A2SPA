@@ -14,18 +14,31 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\app\about.component.ts" />
+    <Content Remove="wwwroot\app\app.component.ts" />
+    <Content Remove="wwwroot\app\app.module.ts" />
     <Content Remove="wwwroot\app\app.routing.ts" />
+    <Content Remove="wwwroot\app\changePassword.component.ts" />
     <Content Remove="wwwroot\app\contact.component.ts" />
     <Content Remove="wwwroot\app\demo.component.ts" />
     <Content Remove="wwwroot\app\index.component.ts" />
+    <Content Remove="wwwroot\app\login.component.ts" />
+    <Content Remove="wwwroot\app\manage.component.ts" />
+    <Content Remove="wwwroot\app\models\ChangePasswordViewModel.ts" />
     <Content Remove="wwwroot\app\models\ErrorResponse.ts" />
+    <Content Remove="wwwroot\app\models\LoginViewModel.ts" />
+    <Content Remove="wwwroot\app\models\RegisterViewModel.ts" />
+    <Content Remove="wwwroot\app\register.component.ts" />
+    <Content Remove="wwwroot\app\security\auth-guard.service.ts" />
+    <Content Remove="wwwroot\app\security\auth.service.ts" />
     <Content Remove="wwwroot\app\security\AuthService.ts" />
     <Content Remove="wwwroot\app\security\OpenIdDictToken.ts" />
     <Content Remove="wwwroot\app\models\TestData.ts" />
     <Content Remove="wwwroot\app\models\ViewModelResponse.ts" />
     <Content Remove="wwwroot\app\rxjs-operators.ts" />
     <Content Remove="wwwroot\app\services\ErrorMessageService.ts" />
+    <Content Remove="wwwroot\app\services\SampleData.service.ts" />
     <Content Remove="wwwroot\app\services\SampleDataService.ts" />
+    <Content Remove="wwwroot\main.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,9 +48,9 @@
   <ItemGroup>
     <PackageReference Include="AspNet.Security.OAuth.Validation" Version="2.0.0-rc2-final" />
     <PackageReference Include="Humanizer.Core" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.2" />
-    <PackageReference Include="NSwag.AspNetCore" Version="11.15.3" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.3" />
+    <PackageReference Include="NSwag.AspNetCore" Version="11.17.0" />
     <PackageReference Include="OpenIddict" Version="2.0.0-rc2-0854" />
     <PackageReference Include="OpenIddict.Core" Version="2.0.0-rc2-0854" />
     <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0-rc2-0854" />
@@ -73,16 +86,29 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\app\about.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\app.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\app.module.ts" />
     <TypeScriptCompile Include="wwwroot\app\app.routing.ts" />
+    <TypeScriptCompile Include="wwwroot\app\changePassword.component.ts" />
     <TypeScriptCompile Include="wwwroot\app\demo.component.ts" />
     <TypeScriptCompile Include="wwwroot\app\contact.component.ts" />
     <TypeScriptCompile Include="wwwroot\app\index.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\login.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\manage.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\models\ChangePasswordViewModel.ts" />
     <TypeScriptCompile Include="wwwroot\app\models\ErrorResponse.ts" />
+    <TypeScriptCompile Include="wwwroot\app\models\LoginViewModel.ts" />
+    <TypeScriptCompile Include="wwwroot\app\models\RegisterViewModel.ts" />
+    <TypeScriptCompile Include="wwwroot\app\register.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\security\auth-guard.service.ts" />
+    <TypeScriptCompile Include="wwwroot\app\security\auth.service.ts" />
     <TypeScriptCompile Include="wwwroot\app\security\OpenIdDictToken.ts" />
     <TypeScriptCompile Include="wwwroot\app\models\TestData.ts" />
     <TypeScriptCompile Include="wwwroot\app\models\ViewModelResponse.ts" />
     <TypeScriptCompile Include="wwwroot\app\rxjs-operators.ts" />
     <TypeScriptCompile Include="wwwroot\app\services\ErrorMessageService.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\SampleData.service.ts" />
+    <TypeScriptCompile Include="wwwroot\main.ts" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

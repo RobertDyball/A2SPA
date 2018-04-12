@@ -9,12 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using NJsonSchema;
-using NSwag;
-using NSwag.AspNetCore;
-using NSwag.SwaggerGeneration.Processors.Security;
+//using NJsonSchema;
+//using NSwag;
+//using NSwag.AspNetCore;
+//using NSwag.SwaggerGeneration.Processors.Security;
 using System.IO;
-using System.Reflection;
+//using System.Reflection;
 
 namespace A2SPA
 {
@@ -118,7 +118,7 @@ namespace A2SPA
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        //public void Configure(IApplicationBuilder app, IHostingEnvironment env, IDatabaseInitializer databaseInitializer)
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env, IDatabaseInitializer databaseInitializer)
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -141,23 +141,23 @@ namespace A2SPA
                 RequestPath = "/node_modules"
             });
 
-            app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, new SwaggerUiSettings()
-            {
-                OperationProcessors =
-                {
-                    new OperationSecurityScopeProcessor("apikey")
-                },
-                DocumentProcessors =
-                {
-                    new SecurityDefinitionAppender("apikey", new SwaggerSecurityScheme
-                    {
-                        Type = SwaggerSecuritySchemeType.ApiKey,
-                        Name = "Authorization",
-                        In = SwaggerSecurityApiKeyLocation.Header
-                    })
-                },
-                DefaultPropertyNameHandling = PropertyNameHandling.CamelCase
-            });
+            //app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, new SwaggerUiSettings()
+            //{
+            //    OperationProcessors =
+            //    {
+            //        new OperationSecurityScopeProcessor("apikey")
+            //    },
+            //    DocumentProcessors =
+            //    {
+            //        new SecurityDefinitionAppender("apikey", new SwaggerSecurityScheme
+            //        {
+            //            Type = SwaggerSecuritySchemeType.ApiKey,
+            //            Name = "Authorization",
+            //            In = SwaggerSecurityApiKeyLocation.Header
+            //        })
+            //    },
+            //    DefaultPropertyNameHandling = PropertyNameHandling.CamelCase
+            //});
 
             app.UseAuthentication();
 

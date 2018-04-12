@@ -16,7 +16,6 @@ var ErrorMessageService_1 = require("./services/ErrorMessageService");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var moment = require("moment");
-//import 'moment/locale/en';
 var AboutComponent = (function () {
     function AboutComponent(sampleDataService, errorMessageService) {
         this.sampleDataService = sampleDataService;
@@ -26,6 +25,7 @@ var AboutComponent = (function () {
         this.testData = null;
         this.tableMode = 'list';
         this.showForm = true;
+        this.moment = moment;
         if (!this.testData) {
             this.testData = this.initTestData();
         }
@@ -43,7 +43,6 @@ var AboutComponent = (function () {
         return newTestData;
     };
     AboutComponent.prototype.ngOnInit = function () {
-        moment.locale('en');
         this.tableMode = 'add';
         this.getTestData();
         this.testData = this.initTestData();
@@ -65,6 +64,9 @@ var AboutComponent = (function () {
                 break;
             case 'edit':
                 this.testData = Object.assign({}, thisItem);
+                this.testData.dateOfBirth = new Date(thisItem.dateOfBirth);
+                this.testData.lastLoginDate = new Date(thisItem.lastLoginDate);
+                this.testData.sessionExpiryTime = new Date(thisItem.sessionExpiryTime);
                 break;
             case 'list':
             default:
@@ -86,6 +88,9 @@ var AboutComponent = (function () {
         if (!this.testData) {
             return;
         }
+        //this.testData.dateOfBirth = moment(this.testData.dateOfBirth).toDate(); //.format("YYYY-MM-DDThh:mm:00.000Z");
+        //this.testData.lastLoginDate = moment(this.testData.lastLoginDate).toDate(); //.format("YYYY-MM-DDThh:mm:00.000Z");
+        //this.testData.sessionExpiryTime = moment(this.testData.sessionExpiryTime).toDate(); //.format("YYYY-MM-DDThh:mm:00.000Z");
         //this.testData.dateOfBirth = new Date(moment(this.testData.dateOfBirth).format("YYYY-MM-DDThh:mm"));
         //this.testData.lastLoginDate = new Date(moment(this.testData.lastLoginDate).format("YYYY-MM-DDThh:mm"));
         //this.testData.sessionExpiryTime = new Date(moment(this.testData.sessionExpiryTime).format("YYYY-MM-DDThh:mm"));
@@ -146,9 +151,16 @@ var AboutComponent = (function () {
         if (!this.testData) {
             return;
         }
-        //this.testData.dateOfBirth = new Date(moment(this.testData.dateOfBirth).format("YYYY-MM-DDThh:mm"));
-        //this.testData.lastLoginDate = new Date(moment(this.testData.lastLoginDate).format("YYYY-MM-DDThh:mm"));
-        //this.testData.sessionExpiryTime = new Date(moment(this.testData.sessionExpiryTime).format("YYYY-MM-DDThh:mm"));
+        //        console.log(this.testData.dateOfBirth);
+        //        //this.testData.dateOfBirth = moment.utc(this.testData.dateOfBirth).toDate(); //.format("YYYY-MM-DDThh:mm:00.000Z");
+        ////         this.testData.dateOfBirth = moment(moment(this.testData.dateOfBirth).format("YYYY-MM-DDThh:mm:00.000Z"), "YYYY-MM-DD 00:00 +00:00").toDate(); //.format("YYYY-MM-DDThh:mm:00.000Z");
+        //        console.log(this.testData.dateOfBirth);
+        //        console.log(this.testData.lastLoginDate);
+        //        this.testData.lastLoginDate = moment(moment(this.testData.lastLoginDate).format("YYYY-MM-DDThh:mm:00.000Z"), "YYYY-MM-DD hh:mm +00:00").toDate(); //.format("YYYY-MM-DDThh:mm:00.000Z");
+        //        console.log(this.testData.lastLoginDate);
+        //        console.log(this.testData.sessionExpiryTime);
+        //        this.testData.sessionExpiryTime = moment(moment(this.testData.sessionExpiryTime).format("YYYY-MM-DDThh:mm:00.000Z"), "0001-01-01 hh:mm +00:00").toDate(); //.format("YYYY-MM-DDThh:mm:00.000Z");
+        //        console.log(this.testData.sessionExpiryTime);
         this.sampleDataService.editSampleData(this.testData)
             .subscribe(function (data) {
             if (data != null && data.statusCode == 200) {
