@@ -2,11 +2,13 @@
 
 NOTE: This branch now supports Angular 5 + .Net Core 2.x using VS2017. 
 
+This branch uses Primefaces PrimeNG for Angular / Bootstrap integration.
+
 There will no longer be active support for VS2015 nor for earlier versions of .Net Core 1.x
 VS Code should also work but has not been tested.
 
 This new version of the code is still rough and a work in progress. (todo: code cleanup, debugging, re-addition of NSwag).
-OPenIdDict implementation in A2SPA supports login, logout and password. (Still needto add 2FA and user maintenance).
+OPenIdDict implementation in A2SPA supports login, logout and password. (Still need to complete the addition of 2FA and user maintenance).
 Basic data CRUD functions should work (usually).
 
 What is A2SPA?
